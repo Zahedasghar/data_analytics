@@ -99,7 +99,7 @@ More often than not, you don't need all columns of a data set for your analysis.
 Three selected columns are selected as follows. You can give new name to this data.
 
 ```{r}
-gapminder %>% select(country, pop, lifeExp)%>%kable()%>%
+gapminder[1:10,] %>% select(country, pop, lifeExp)%>%kable()%>%
   kable_styling(bootstrap_options = "striped", full_width = F)
 
 ```

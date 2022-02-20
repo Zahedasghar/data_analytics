@@ -93,14 +93,14 @@ summary(gapminder)
 
 
 Now I shall mention some of the powerful but very simple to use features of dplyr.
+
 ## Column Selection
 
 More often than not, you don't need all columns of a data set for your analysis. For example `PDHS` files have more than 5000 columns in some files and maybe 40 or 50 or even fewer than that are needed for your analysis. `Select()` function of R's dplyr is used to select columns of your interest
 Three selected columns are selected as follows. You can give new name to this data.
 
 ```{r}
-gapminder[1:10,] %>% select(country, pop, lifeExp)%>%kable()%>%
-  kable_styling(bootstrap_options = "striped", full_width = F)
+gapminder %>% select(country, pop, lifeExp)
 
 ```
 

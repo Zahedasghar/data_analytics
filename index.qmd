@@ -1,0 +1,389 @@
+---
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    logo: "za_icon_2.png"
+    footer: "[PIDE—R](https://pide.org.pk)"
+    height: 900
+    width: 1600
+    #df-print: paged
+    slide-number: c
+    code-fold: true
+    chalkboard: true
+overview: true
+execute:
+  echo: false
+  warning: false
+  freeze: auto
+---
+
+##  {data-menu-title="Title Slide" background-image="trial.png"}
+
+### [Learning R & Quarto]{.custom-title}
+
+### [[PIDE Lecture Series ]{.yellow}]{.custom-author}
+
+[<a href="mailto:zasghar@qau.edu.pk"><i class="fa fa-paper-plane fa-fw"></i>zasghar\@qau.edu.pk</a> <br> <a href="https://github.com/zahedasghar"><i class="fa fa-github fa-fw"></i>zahedasghar</a><br> <a href="https://QMR.zahidasghar.com"> <i class="fa fa-globe fa-fw"></i>zahidasghar.com</a><br>]{.custom-institution}
+
+```{r include=FALSE}
+library(tidyverse)
+library(gapminder)
+library(kableExtra)
+library(patchwork)
+library(fontawesome)
+library(gapminder)
+library(scales)
+library(httr)
+clrs <- MetBrewer::met.brewer(name = "Java")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
+options(digits = 3, width = 75)
+```
+
+# [R Language]{.yellow} is more than a [Statistics Application]{.yellow}, endless opportunities and has great presence in research community and is [one of the most popular language for data analysis.]{.yellow}
+
+::: notes
+[Good econometrics cannot save a shaky research agenda]{.yellow}, but the promiscuous (بے ہودہ) [use of fancy econometric techniques sometimes brings down a good one.]{.yellow}
+
+Anyone interested in [using data to shape public policy]{.yellow} or to promote public health must [digest and use statistical results]{.yellow}. Anyone interested in drawing useful inferences from data on people can be said to be an applied econometrician.
+:::
+
+## Why data analytics skills matter
+
+-   Data Wrangling (80% )
+-   Summarising and Visualizing Data for making sense of data
+-   Dealing with Categorical Data
+-   Modeling and producing models in nice printable
+-   How to produce beautiful documents with Quarto in R
+
+## Excel (or Stata) Can't Do This {.white background-color="`r clrs[2]`"}
+
+::: panel-tabset
+## Code
+
+```{r}
+#| echo: true
+#| eval: false
+ggplot(data = gapminder, 
+       aes(x = gdpPercap,
+           y = lifeExp,
+           color = continent))+
+  geom_point(alpha=0.3)+
+  geom_smooth(method = "lm")+
+	scale_x_log10(breaks=c(1000,10000, 100000),
+	              label=scales::dollar)+
+	labs(x = "GDP/Capita",
+	     y = "Life Expectancy (Years)")+
+  facet_wrap(~continent)+
+  guides(color = F)+
+  theme_light()
+```
+
+## Output
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-align: center
+ggplot(data = gapminder, 
+       aes(x = gdpPercap,
+           y = lifeExp,
+           color = continent))+
+  geom_point(alpha=0.3)+
+  geom_smooth(method = "lm")+
+	scale_x_log10(breaks=c(1000,10000, 100000),
+	              label=scales::dollar)+
+	labs(x = "GDP/Capita",
+	     y = "Life Expectancy (Years)")+
+  facet_wrap(~continent)+
+  guides(color = F)+
+  theme_light()
+```
+:::
+
+## Or This {.white background-color="`r clrs[2]`"}
+
+::: panel-tabset
+### Input
+
+The average GDP per capita is `` ` r dollar(mean(gapminder$gdpPercap)) ` `` with a standard deviation of `` ` r dollar(sd(gapminder$gdpPercap)) ` ``.
+
+### Output
+
+The average GDP per capita is `r dollar(mean(gapminder$gdpPercap))` with a standard deviation of `r dollar(sd(gapminder$gdpPercap))`.
+:::
+
+## Is it not crazy
+
+::: {.panel-tabset}
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+#| cache: true
+library(gapminder)
+library(gganimate)
+gapminder %>%
+  filter(continent != "Oceania") %>%
+ggplot(aes(x = gdpPercap,
+           y = lifeExp,
+           color = country,
+           size = pop))+
+  geom_point(alpha=0.3)+
+	scale_x_log10(breaks=c(1000,10000, 100000),
+	              label=scales::dollar)+
+  scale_size(range = c(0.5, 12)) +
+  scale_color_manual(values = gapminder::country_colors) +
+ 	labs(x = "GDP/Capita",
+	     y = "Life Expectancy (Years)",
+	     caption = "Source: Hans Rosling's gapminder.org",
+	     title = "Income & Life Expectancy - {frame_time}")+
+  facet_wrap(~continent)+
+  guides(color = F, size = F)+
+  theme_bw(base_family = "Fira Sans Condensed")+
+  transition_time(year)+
+  ease_aes("linear")
+```
+
+## Code
+```{r}
+#| echo: true
+#| eval: false
+library(gapminder)
+library(gganimate)
+gapminder %>%
+  filter(continent != "Oceania") %>%
+ggplot(aes(x = gdpPercap,
+           y = lifeExp,
+           color = country,
+           size = pop))+
+  geom_point(alpha=0.3)+
+	scale_x_log10(breaks=c(1000,10000, 100000),
+	              label=scales::dollar)+
+  scale_size(range = c(0.5, 12)) +
+  scale_color_manual(values = gapminder::country_colors) +
+ 	labs(x = "GDP/Capita",
+	     y = "Life Expectancy (Years)",
+	     caption = "Source: Hans Rosling's gapminder.org",
+	     title = "Income & Life Expectancy - {frame_time}")+
+  facet_wrap(~continent)+
+  guides(color = F, size = F)+
+  theme_minimal(base_family = "Fira Sans Condensed")+
+  transition_time(year)+
+  ease_aes("linear")
+```
+
+:::
+
+## Or This {background-color="`r clrs[2]`"}
+
+```{r}
+#| echo: true
+#| fig-width: 18
+#| fig-align: center
+library(leaflet)
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = 73.1387, lat =33.7492  ,
+             popup = "Pakistan Institute of Development Economics, Islamabad")
+```
+
+# How To Prepare Students For The Jobs Of 2030
+
+[Forbes Magzine](https://www.forbes.com/sites/forbestechcouncil/2021/10/27/how-to-prepare-students-for-the-jobs-of-2030/?fbclid=IwAR2JWkxiQlPFnjLPv6Z567RbQvpLp2ZQzP1m6xHvyfJdxCfzjyW7LU1WcdY&sh=7ee4b4714ad3)
+
+> ### Develop comprehensive computer curricula and technical materials that cover popular [**computer programming like Python or R**]{.yellow} as well as common digital tools like [Bloomberg Terminal or ArcGIS]{.yellow}. This will help students become digitally fluent in mastering computers across different platforms to advance their coursework and research.
+
+## In today's digital age, [**simply knowing how to use MS Word, Excel, Powerpoint, emails, internet search or social media no longer qualifies as digital fluency**]{.yellow}. Students with comprehensive computer skills who know how to use various tech tools will thrive and succeed in their future workplaces.
+
+#
+
+![](Future.gif)
+
+## [Quarto-R]{.yellow}
+
+::: columns
+::: {.column width="50%"}
+-   [Google Trends](https://trends.google.com/trends/explore?date=today%205-y&q=R,STATA,SPSS,Python)
+-   [google sheet](https://docs.google.com/forms/d/1MTl4-k94qTELvAFZw4TS3pLbc_wDQ1ZezZvjz62yYg8/edit?pli=1)
+-   [PIDE policy brief](https://zahidasghar.com/PIDE/)
+-   Investment, Penguine, Cricket
+-   Web API like WDI, [youth bulge]{.yellow}, export
+-   Interactive , animated
+-   Reproducibility
+-   CV, webpage, [book](https://tellingstorieswithdata.com/)/thesis writing 
+:::
+
+::: {.column width="50%"}
+-   PPTX, slidy, ioslidy, beamer, revealjs slides
+
+-   word, pdf/LaTex, html reports/thesis/blogs/research papers
+
+-   [Data import/export (STATA, csv, xlsx, SPSS, SAS....)]{.yellow}
+
+-   Meta Data
+
+-   Tables with NYT, 538, guardian, wsj themes
+
+-   ggplot2 for data visualization (Economist, BBC, WSJ, Gaurdian, Google, FB, NYT...)
+
+-   Shinny App
+:::
+:::
+
+
+::: notes 
+Import Microfinance data from excel and spss data for AHK
+:::
+## Why choose R and Quarto {.scrollable}
+
+-   
+
+    ### [Use One Tool from Start to Finish]{.yellow}
+
+. . .
+
+-   
+
+    ### Focus on Content, Not Formatting
+
+. . .
+
+-   
+
+    ### [Easier to share and review]{.yellow}
+
+. . .
+
+-   
+
+    ### Its not R vs others but [R for jobs](https://www.indeed.com/q-Field-Economist-R-Program-jobs.html?vjk=adc248ffcc74c281)
+
+. . .
+
+-   
+
+    ### [R for analytics and statistical computing, econometric modeling and data science]{.yellow}
+
+. . .
+
+-   
+
+    ### R for Reproducible research
+
+## What will you gain by learning Quarto and R
+
+### Speed
+
+### Simplicity
+
+### Focus on core instead of focusing on formating and editing
+
+### Reproducibility and replicability without any copy and paste
+
+## What else
+
+-   Free
+-   [Flexible]{.yellow}
+-   open source
+-   [expanding (increasing capabilities through add-ons)]{.yellow}
+-   able to open almost any data format
+-   [able to scrape data from the web]{.yellow}
+-   a decent tool for data wrangling
+-   [popular in data products, business analytics,industry & academia]{.yellow}
+-   pretty old ("born" 1976...)
+
+
+## How might you use R?
+
+### Create dataviz for teaching
+
+### Introduce as a tool for students
+
+### Your own research
+
+### [Nonlinear Regression](https://zahidasghar.com/econometrics/Nonlinear)
+
+### math equations
+
+$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
+
+
+
+# [This whole sentence is yellow.]{.yellow}
+
+## [Its]{.blue} not cool!
+
+::: columns
+::: callout-warning
+::: {.column width="100%"}
+### [Pakistan's energy crisis is a crisis of governance and politics. Nothing else. Neither bureaucracy nor politicians want to give up control to set up a system of checks and balances. They want control and do projects. Not their jobs.]{.yellow}
+:::
+
+::: {.column width="100%"}
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8S64MS9MvQr1rXM6Rh7QpuQvJlT4mMhAotA&usqp=CAU){fig-align="right"}
+:::
+:::
+:::
+
+
+
+##  {background-color="`r clrs_lt[5]`"}
+
+```{r }
+#| warning: false
+#| message: false
+#| code-line-numbers: true
+
+library(readr)
+library(lubridate)
+CPI <- read_csv("cpi.csv")
+colnames(CPI)<-c("Time","YoY","MoM")
+CPI$Time<-mdy(CPI$Time)
+library(ggthemes)
+library(gganimate)
+p<-ggplot(CPI,aes(x=Time, y=YoY*100))+geom_line()+theme_economist()+ggtitle("Inflation  2016-2022 (YoY) ")
+ #p+transition_reveal(Year) 
+p
+```
+
+## [PIDE-R Programme]{.yellow}
+
+-   ### Data wrangling (80% of the work with very few) 
+
+. . .
+
+-   ### [Survey Data Analytics, Beautiful Documents using Quarto]{.yellow} 
+
+. . .
+
+-   ### Data Visualizations using ggplot2 
+
+. . .
+
+-   ### [Program/Impact Evaluation Tools' Application: DID, RDD, IV, Propensity Score Matching...]{.yellow}
+
+. . . 
+
+-   ### Computer+Your Brain+ Your Skills+Your traits= Job Success
+
+::: callout-caution
+### Learning Curve is relatively steep.
+:::
+
+
+## Resources
+
+::: columns
+::: {.column width="49%"}
+![](images/image-1588437529.png){width="900"}
+:::
+
+::: {.column width="49%"}
+![](images/image-1759386098.png){width="600"}
+:::
+:::
+
+# And hey, there's a ![](images/image-786519286.png){width="46"} over 👉

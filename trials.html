@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Untitled</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="trials_files/libs/clipboard/clipboard.min.js"></script>
+<script src="trials_files/libs/quarto-html/quarto.js"></script>
+<script src="trials_files/libs/quarto-html/popper.min.js"></script>
+<script src="trials_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="trials_files/libs/quarto-html/anchor.min.js"></script>
+<link href="trials_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="trials_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="trials_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="trials_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="trials_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="trials_files/libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="trials_files/libs/viz-1.8.2/viz.js"></script>
+<link href="trials_files/libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="trials_files/libs/grViz-binding-1.0.9/grViz.js"></script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Untitled</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell" data-fig-width="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode dot code-with-copy"><code class="sourceCode dot"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">digraph</span> <span class="va">D</span> <span class="ot">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">shape</span><span class="ot">=</span><span class="va">plaintext</span><span class="co">, </span><span class="at">fontname</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"helvetica"</span><span class="ot">];</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">a</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"Income"</span><span class="ot">];</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">b</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"Happiness"</span><span class="ot">];</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">c</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"Education"</span><span class="ot">];</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="ot">{</span><span class="co"> </span><span class="at">rank</span><span class="ot">=</span><span class="va">same</span><span class="co"> </span><span class="va">a</span><span class="co"> </span><span class="va">b</span><span class="ot">};</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">a</span><span class="ot">-&gt;</span><span class="va">b</span><span class="ot">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">c</span><span class="ot">-&gt;{</span><span class="va">a</span><span class="co">, </span><span class="va">b</span><span class="ot">};</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ot">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-dot-educationasconfounder" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p>
+<svg width="192" height="480" viewbox="0.00 0.00 170.03 116.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>
+D
+</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-112 166.03,-112 166.03,4 -4,4"></polygon> <!-- a --> <g id="node1" class="node">
+<title>
+a
+</title>
+<text text-anchor="middle" x="30.96" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">Income</text> </g> <!-- b --> <g id="node2" class="node">
+<title>
+b
+</title>
+<text text-anchor="middle" x="120.96" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">Happiness</text> </g> <!-- a&#45;&gt;b --> <g id="edge1" class="edge">
+<title>
+a-&gt;b
+</title>
+<path fill="none" stroke="black" d="M61.89,-18C64.36,-18 66.82,-18 69.29,-18"></path> <polygon fill="black" stroke="black" points="69.43,-21.5 79.43,-18 69.43,-14.5 69.43,-21.5"></polygon> </g> <!-- c --> <g id="node3" class="node">
+<title>
+c
+</title>
+<text text-anchor="middle" x="75.96" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Education</text> </g> <!-- c&#45;&gt;a --> <g id="edge2" class="edge">
+<title>
+c-&gt;a
+</title>
+<path fill="none" stroke="black" d="M64.83,-71.7C59.6,-63.56 53.26,-53.69 47.48,-44.7"></path> <polygon fill="black" stroke="black" points="50.3,-42.62 41.95,-36.1 44.41,-46.41 50.3,-42.62"></polygon> </g> <!-- c&#45;&gt;b --> <g id="edge3" class="edge">
+<title>
+c-&gt;b
+</title>
+<path fill="none" stroke="black" d="M87.08,-71.7C92.31,-63.56 98.65,-53.69 104.43,-44.7"></path> <polygon fill="black" stroke="black" points="107.5,-46.41 109.96,-36.1 101.61,-42.62 107.5,-46.41"></polygon> </g> </g>
+</svg>
+</p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Education is a confounder that affects the relationship between income and happiness</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="section" class="level3">
+<h3 class="anchored" data-anchor-id="section"></h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+<svg width="672" height="480" viewbox="0.00 0.00 170.03 116.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>
+D
+</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-112 166.03,-112 166.03,4 -4,4"></polygon> <!-- a --> <g id="node1" class="node">
+<title>
+a
+</title>
+<text text-anchor="middle" x="30.96" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Income</text> </g> <!-- b --> <g id="node2" class="node">
+<title>
+b
+</title>
+<text text-anchor="middle" x="120.96" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Happiness</text> </g> <!-- a&#45;&gt;b --> <g id="edge1" class="edge">
+<title>
+a-&gt;b
+</title>
+<path fill="none" stroke="black" d="M61.89,-90C64.36,-90 66.82,-90 69.29,-90"></path> <polygon fill="black" stroke="black" points="69.43,-93.5 79.43,-90 69.43,-86.5 69.43,-93.5"></polygon> </g> <!-- c --> <g id="node3" class="node">
+<title>
+c
+</title>
+<text text-anchor="middle" x="75.96" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">Exercise</text> </g> <!-- a&#45;&gt;c --> <g id="edge2" class="edge">
+<title>
+a-&gt;c
+</title>
+<path fill="none" stroke="black" d="M42.08,-71.7C47.31,-63.56 53.65,-53.69 59.43,-44.7"></path> <polygon fill="black" stroke="black" points="62.5,-46.41 64.96,-36.1 56.61,-42.62 62.5,-46.41"></polygon> </g> <!-- b&#45;&gt;c --> <g id="edge3" class="edge">
+<title>
+b-&gt;c
+</title>
+<path fill="none" stroke="black" d="M109.83,-71.7C104.6,-63.56 98.26,-53.69 92.48,-44.7"></path> <polygon fill="black" stroke="black" points="95.3,-42.62 86.95,-36.1 89.41,-46.41 95.3,-42.62"></polygon> </g> </g>
+</svg>
+</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.4.0           ✔ purrr   0.3.4      
+✔ tibble  3.1.7           ✔ dplyr   1.0.99.9000
+✔ tidyr   1.2.0           ✔ stringr 1.4.1      
+✔ readr   2.1.3           ✔ forcats 0.5.2      
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">853</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>number_in_each <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>department_one <span class="ot">&lt;-</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">undergrad =</span> <span class="fu">runif</span>(<span class="at">n =</span> number_in_each, <span class="at">min =</span> <span class="fl">0.7</span>, <span class="at">max =</span> <span class="fl">0.9</span>),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">noise =</span> <span class="fu">rnorm</span>(<span class="at">n =</span> number_in_each, <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.1</span>),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">grad =</span> undergrad <span class="sc">+</span> noise,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"Department 1"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>department_two <span class="ot">&lt;-</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">undergrad =</span> <span class="fu">runif</span>(<span class="at">n =</span> number_in_each, <span class="at">min =</span> <span class="fl">0.6</span>, <span class="at">max =</span> <span class="fl">0.8</span>),</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">noise =</span> <span class="fu">rnorm</span>(<span class="at">n =</span> number_in_each, <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.1</span>),</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">grad =</span> undergrad <span class="sc">+</span> noise <span class="sc">+</span> <span class="fl">0.3</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"Department 2"</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>both_departments <span class="ot">&lt;-</span> <span class="fu">rbind</span>(department_one, department_two)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>both_departments</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,000 × 4
+   undergrad   noise  grad type        
+       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       
+ 1     0.772 -0.0566 0.715 Department 1
+ 2     0.724 -0.0312 0.693 Department 1
+ 3     0.797  0.0770 0.874 Department 1
+ 4     0.763 -0.0664 0.697 Department 1
+ 5     0.707  0.0717 0.779 Department 1
+ 6     0.781 -0.0165 0.764 Department 1
+ 7     0.726 -0.104  0.623 Department 1
+ 8     0.749  0.0527 0.801 Department 1
+ 9     0.732 -0.0471 0.684 Department 1
+10     0.738  0.0552 0.793 Department 1
+# … with 1,990 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>both_departments <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> undergrad, <span class="at">y =</span> grad)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> type), <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> type), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"black"</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Undergraduate results"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Graduate results"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Department"</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="trials_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> <span class="st">"y ~ x"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"black"</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Body mass (grams)"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Bill depth (millimeters)"</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Species"</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite values (`stat_smooth()`).
+Removed 2 rows containing non-finite values (`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="trials_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="berksons-paradox" class="level2">
+<h2 class="anchored" data-anchor-id="berksons-paradox">Berkson’s paradox</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">853</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>number_of_pros <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>number_of_public <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>professionals <span class="ot">&lt;-</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">VO2 =</span> <span class="fu">runif</span>(<span class="at">n =</span> number_of_pros, <span class="at">min =</span> <span class="fl">0.7</span>, <span class="at">max =</span> <span class="fl">0.9</span>),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">chance_of_winning =</span> <span class="fu">runif</span>(<span class="at">n =</span> number_of_pros, <span class="at">min =</span> <span class="fl">0.7</span>, <span class="at">max =</span> <span class="fl">0.9</span>),</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"Professionals"</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>general_public <span class="ot">&lt;-</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">VO2 =</span> <span class="fu">runif</span>(<span class="at">n =</span> number_of_public, <span class="at">min =</span> <span class="fl">0.6</span>, <span class="at">max =</span> <span class="fl">0.8</span>),</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">noise =</span> <span class="fu">rnorm</span>(<span class="at">n =</span> number_of_public, <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.03</span>),</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">chance_of_winning =</span> VO2 <span class="sc">+</span> noise <span class="sc">+</span> <span class="fl">0.1</span>,</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"Public"</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>noise)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>professionals_and_public <span class="ot">&lt;-</span> <span class="fu">rbind</span>(professionals, general_public)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>professionals_and_public</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,100 × 3
+     VO2 chance_of_winning type         
+   &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;        
+ 1 0.772             0.734 Professionals
+ 2 0.724             0.773 Professionals
+ 3 0.797             0.772 Professionals
+ 4 0.763             0.754 Professionals
+ 5 0.707             0.843 Professionals
+ 6 0.781             0.740 Professionals
+ 7 0.726             0.803 Professionals
+ 8 0.749             0.750 Professionals
+ 9 0.732             0.890 Professionals
+10 0.738             0.821 Professionals
+# … with 1,090 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>professionals_and_public <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> VO2, <span class="at">y =</span> chance_of_winning)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> type), <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> type), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"VO2 max"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Chance of winning a bike race"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Type"</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="trials_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4"></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>DiagrammeR<span class="sc">::</span><span class="fu">grViz</span>(<span class="st">"digraph {</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="st">  graph [layout = dot, rankdir = TB]</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">  node [shape = oval]        </span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">  rec1 [label = 'Wake up early']</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="st">  rec2 [label = 'Read Books and learn R']</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="st">  rec3 [label =  'Minimizing social media']</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="st">  rec4 [label = 'Persona/Professional/Family Life']</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="st">  rec5 [label = 'New Year Resolution']</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="st">  # edge definitions with the node IDs</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="st">  rec1 -&gt; rec5;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="st">  rec2-&gt; rec5;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="st">  rec3-&gt; rec5;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="st">  rec4-&gt; rec5</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="st">  }"</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-dot-newyear_resolution" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="htmlwidget-2128b561c52046297bec" style="width:100%;height:1692px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2128b561c52046297bec">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = oval]        \n  rec1 [label = \"Wake up early\"]\n  rec2 [label = \"Read Books and learn R\"]\n  rec3 [label =  \"Minimizing social media\"]\n  rec4 [label = \"Persona/Professional/Family Life\"]\n  rec5 [label = \"New Year Resolution\"]\n  # edge definitions with the node IDs\n  rec1 -> rec5;\n  rec2-> rec5;\n  rec3-> rec5;\n  rec4-> rec5\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Not exactly but 2022 resolution went well</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="year-2023-resolution-in-r-and-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="year-2023-resolution-in-r-and-quarto">Year 2023 Resolution in R and Quarto</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode dot code-with-copy"><code class="sourceCode dot"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">digraph</span> <span class="va">D</span> <span class="ot">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">shape</span><span class="ot">=</span><span class="va">plaintext</span><span class="co">, </span><span class="at">fontname</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"helvetica"</span><span class="ot">];</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">a</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"Wake up early"</span><span class="ot">];</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">b</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"Read Books and learn R"</span><span class="ot">];</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">c</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"Minimizing use of social media"</span><span class="ot">];</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">d</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"Personal/Professional/Family life"</span><span class="ot">];</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">e</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"2023 Resolution"</span><span class="ot">];</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="ot">{</span><span class="co"> </span><span class="at">rank</span><span class="ot">=</span><span class="va">same</span><span class="co"> </span><span class="va">a</span><span class="co"> </span><span class="va">b</span><span class="co"> </span><span class="va">c</span><span class="co"> </span><span class="va">d</span><span class="ot">};</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">a</span><span class="ot">-&gt;</span><span class="va">e</span><span class="ot">;</span><span class="va">b</span><span class="ot">-&gt;</span><span class="va">e</span><span class="ot">;</span><span class="va">c</span><span class="ot">-&gt;</span><span class="va">e</span><span class="ot">;</span><span class="va">d</span><span class="ot">-&gt;</span><span class="va">e</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="ot">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p>
+<svg width="672" height="480" viewbox="0.00 0.00 760.28 116.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>
+D
+</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-112 756.28,-112 756.28,4 -4,4"></polygon> <!-- a --> <g id="node1" class="node">
+<title>
+a
+</title>
+<text text-anchor="middle" x="52.74" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Wake up early</text> </g> <!-- e --> <g id="node5" class="node">
+<title>
+e
+</title>
+<text text-anchor="middle" x="309.74" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">2023 Resolution</text> </g> <!-- a&#45;&gt;e --> <g id="edge1" class="edge">
+<title>
+a-&gt;e
+</title>
+<path fill="none" stroke="black" d="M105.5,-74.52C108.63,-73.67 111.73,-72.82 114.74,-72 156.68,-60.55 203.71,-47.77 241.08,-37.62"></path> <polygon fill="black" stroke="black" points="242.12,-40.97 250.85,-34.97 240.29,-34.21 242.12,-40.97"></polygon> </g> <!-- b --> <g id="node2" class="node">
+<title>
+b
+</title>
+<text text-anchor="middle" x="207.74" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Read Books and learn R</text> </g> <!-- b&#45;&gt;e --> <g id="edge2" class="edge">
+<title>
+b-&gt;e
+</title>
+<path fill="none" stroke="black" d="M232.69,-71.88C245.78,-62.89 262,-51.76 276.18,-42.03"></path> <polygon fill="black" stroke="black" points="278.43,-44.73 284.69,-36.19 274.47,-38.96 278.43,-44.73"></polygon> </g> <!-- c --> <g id="node3" class="node">
+<title>
+c
+</title>
+<text text-anchor="middle" x="412.74" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Minimizing use of social media</text> </g> <!-- c&#45;&gt;e --> <g id="edge3" class="edge">
+<title>
+c-&gt;e
+</title>
+<path fill="none" stroke="black" d="M387.54,-71.88C374.33,-62.89 357.95,-51.76 343.63,-42.03"></path> <polygon fill="black" stroke="black" points="345.27,-38.92 335.03,-36.19 341.34,-44.71 345.27,-38.92"></polygon> </g> <!-- d --> <g id="node4" class="node">
+<title>
+d
+</title>
+<text text-anchor="middle" x="642.74" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Personal/Professional/Family life</text> </g> <!-- d&#45;&gt;e --> <g id="edge4" class="edge">
+<title>
+d-&gt;e
+</title>
+<path fill="none" stroke="black" d="M561.71,-71.97C505.64,-60.18 431.83,-44.66 378.61,-33.48"></path> <polygon fill="black" stroke="black" points="379.09,-30 368.58,-31.37 377.65,-36.85 379.09,-30"></polygon> </g> </g>
+</svg>
+</p>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

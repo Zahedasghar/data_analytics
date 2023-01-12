@@ -1,0 +1,67 @@
+library(curl)
+library(trendyy)
+
+#devtools::install_github("PMassicotte/gtrendsR")
+library(gtrendsR)
+trends <- gtrends("PTI", geo = "PK") 
+#View(trends)
+
+plot<-ggplot(data=trend, aes(x=date, y=hits,group=keyword,col=keyword))+
+  geom_line()+xlab('Time')+ylab('Relative Interest')+ theme_bw()+
+  theme(legend.title = element_blank(),legend.position="bottom",legend.text=element_text(size=12))+ggtitle("Google Search Volume")
+
+plot
+View(trend)
+
+
+Imran<-gtrends("Imran Khan","PK","2019-01-01", "2020-08-13") %>% get_interest()
+
+Imran <- trendy("Imran Khan", "2022-01-01", "2022-08-1","PK") 
+kamala <- trendy("Kamala Harris", "2019-01-01", "2020-08-13") %>% get_interest()
+
+library(gtrendsR)
+library(tidyverse)
+library(trendyy)
+search_terms <- c("Imran Khan","Nawaz Sharif")
+gtrends(keyword = search_terms,
+        geo = "PK",
+        time = "today 12-m") -> output_results
+output_results %>% summary()
+output_results %>% 
+  .$interest_over_time %>%
+  glimpse()
+
+output_results %>%
+  .$interest_over_time %>%
+  ggplot(aes(x = date, y = hits)) +
+  geom_line(colour = "darkblue", size = 1.5) +
+  facet_wrap(~keyword) +
+  ggthemes::theme_economist() -> plot
+plot
+
+"2019-01-01", "2020-08-13"
+
+search_terms1 <- c("Nawaz Sharif", "Imran Khan")
+gtrends(keyword = search_terms1,
+        geo = "PK",
+        time = "2017-01-01 2017-12-31") -> output_results1
+output_results1 %>% summary()
+output_results1 %>% 
+  .$interest_over_time %>%
+  glimpse()
+
+output_results1 %>%
+  .$interest_over_time %>%
+  ggplot(aes(x = date, y = hits)) +
+  geom_line(colour = "darkblue", size = 1.5) +
+  facet_wrap(~keyword) +
+  ggthemes::theme_economist() -> plot1
+plot1
+
+
+
+
+##trade_data <- read.csv("https://r.tiid.org/R_tute_data2007-2017.csv")
+library(readr)
+trade_data<-read_csv("C:/Users/92300/Downloads/R_tute_data2007-2017.csv")
+trade_data<-save(trade_data,file="trade_data.RData")

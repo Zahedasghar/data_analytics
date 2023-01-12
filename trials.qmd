@@ -1,0 +1,223 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+
+```{dot}
+//| label: fig-dot-educationasconfounder
+//| fig-cap: "Education is a confounder that affects the relationship between income and happiness"
+//| echo: true
+//| fig-width: 2
+digraph D {
+  
+  node [shape=plaintext, fontname = "helvetica"];
+  
+  a [label = "Income"];
+  b [label = "Happiness"];
+  c [label = "Education"];
+  
+  { rank=same a b};
+  
+  a->b;
+  c->{a, b};
+}
+```
+
+###
+
+```{dot}
+digraph D {
+
+  node [shape=plaintext, fontname = "helvetica"];
+  
+  a [label = "Income"];
+  b [label = "Happiness"];
+  c [label = "Exercise"];
+  
+  { rank=same a b};
+  
+  a->{b c};
+  b->c;
+}
+
+```
+
+
+
+```{r}
+library(tidyverse)
+
+set.seed(853)
+
+number_in_each <- 1000
+
+department_one <-
+  tibble(
+    undergrad = runif(n = number_in_each, min = 0.7, max = 0.9),
+    noise = rnorm(n = number_in_each, 0, sd = 0.1),
+    grad = undergrad + noise,
+    type = "Department 1"
+  )
+
+department_two <-
+  tibble(
+    undergrad = runif(n = number_in_each, min = 0.6, max = 0.8),
+    noise = rnorm(n = number_in_each, 0, sd = 0.1),
+    grad = undergrad + noise + 0.3,
+    type = "Department 2"
+  )
+
+both_departments <- rbind(department_one, department_two)
+
+both_departments
+```
+
+
+
+
+
+## 
+```{r}
+both_departments |>
+  ggplot(aes(x = undergrad, y = grad)) +
+  geom_point(aes(color = type), alpha = 0.1) +
+  geom_smooth(aes(color = type), method = "lm", formula = "y ~ x") +
+  geom_smooth(
+    method = "lm",
+    formula = "y ~ x",
+    color = "black"
+  ) +
+  labs(
+    x = "Undergraduate results",
+    y = "Graduate results",
+    color = "Department"
+  ) +
+  theme_minimal() +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "bottom")
+
+```
+
+
+
+## 
+```{r}
+library(palmerpenguins)
+
+penguins |>
+  ggplot(aes(x = body_mass_g, y = bill_depth_mm)) +
+  geom_point(aes(color = species), alpha = 0.1) +
+  geom_smooth(aes(color = species), method = "lm", formula = "y ~ x") +
+  geom_smooth(
+    method = "lm",
+    formula = "y ~ x",
+    color = "black"
+  ) +
+  labs(
+    x = "Body mass (grams)",
+    y = "Bill depth (millimeters)",
+    color = "Species"
+  ) +
+  theme_minimal() +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "bottom")
+
+```
+
+
+## Berkson's paradox
+
+```{r}
+set.seed(853)
+
+number_of_pros <- 100
+
+number_of_public <- 1000
+
+professionals <-
+  tibble(
+    VO2 = runif(n = number_of_pros, min = 0.7, max = 0.9),
+    chance_of_winning = runif(n = number_of_pros, min = 0.7, max = 0.9),
+    type = "Professionals"
+  )
+
+general_public <-
+  tibble(
+    VO2 = runif(n = number_of_public, min = 0.6, max = 0.8),
+    noise = rnorm(n = number_of_public, 0, sd = 0.03),
+    chance_of_winning = VO2 + noise + 0.1,
+    type = "Public"
+  ) |>
+  select(-noise)
+
+professionals_and_public <- rbind(professionals, general_public)
+
+professionals_and_public
+
+```
+
+
+## 
+
+```{r}
+professionals_and_public |>
+  ggplot(aes(x = VO2, y = chance_of_winning)) +
+  geom_point(aes(color = type), alpha = 0.1) +
+  geom_smooth(aes(color = type), method = "lm", formula = "y ~ x") +
+  geom_smooth(method = "lm", formula = "y ~ x", color = "black") +
+  labs(
+    x = "VO2 max",
+    y = "Chance of winning a bike race",
+    color = "Type"
+  ) +
+  theme_minimal() +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "bottom")
+```
+## 
+```{r}
+#| label: fig-dot-newyear_resolution
+#| fig-cap: "Not exactly but 2022 resolution went well"
+#| echo: true
+#| fig-width: 2
+#| fig-align: center
+DiagrammeR::grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = oval]        
+  rec1 [label = 'Wake up early']
+  rec2 [label = 'Read Books and learn R']
+  rec3 [label =  'Minimizing social media']
+  rec4 [label = 'Persona/Professional/Family Life']
+  rec5 [label = 'New Year Resolution']
+  # edge definitions with the node IDs
+  rec1 -> rec5;
+  rec2-> rec5;
+  rec3-> rec5;
+  rec4-> rec5
+  }",
+  height = 500)
+```
+
+
+
+## Year 2023 Resolution in R and Quarto
+
+```{dot}
+//| echo: true
+digraph D {
+
+  node [shape=plaintext, fontname = "helvetica"];
+  
+  a [label = "Wake up early"];
+  b [label = "Read Books and learn R"];
+  c [label = "Minimizing use of social media"];
+  d [label="Personal/Professional/Family life"];
+  e [label="2023 Resolution"];
+  { rank=same a b c d};
+  a->e;b->e;c->e;d->e
+}
+
+```

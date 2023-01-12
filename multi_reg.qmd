@@ -1,0 +1,110 @@
+---
+title: "multi_reg"
+format: html
+editor: visual
+---
+
+## 
+
+## Multiple Linear Regression
+
+Load relevant libraries and for more details you browse a course on econometrics in swirl library.
+
+```{r}
+#| warning: false
+#| message: false
+library(tidyverse)
+library(NHANES)
+library(fixest)
+```
+
+Now uploaded `NHANES` data and explore variables and other information contained in NHANES data as follows
+
+```{r}
+data(NHANES)
+help(NHANES)
+```
+
+## Simple Linear Regression
+
+Run a model having self report bad health on sleep hours and store results as `SLR`.
+
+```{r}
+SLR<-feols(DaysPhysHlthBad~SleepHrsNight,data=NHANES)
+## Regression results table
+etable(SLR)
+```
+
+How can we interpret that -.51 in the table?
+
+1.  Sleeping one more hour per night is associated with a decrease in the number of days of bad physical health by 51 percent
+
+2.  Sleeping one more hour per night is associated with a decrease in the number of days of bad physical health by .51
+
+3.  The correlation between hours of sleep and days of bad health is -.51
+
+4.  Sleeping one more hour per night is associated with an increase in the number of days of bad physical health by 51 percent
+
+5.  Sleeping one more hour per night is associated with an increase in the number of days of bad physical health by .51
+
+6.  If people slept 0 hours per night, we would predict theyd have -.51 days of bad physical health.
+
+Option 2 is the correct answer.
+
+Browse variables and think about which other variables can be included as control. Criteria for inclusion of a variable that it should be correlated with variable of interest, in this case its sleep, and should be related with dependent or outcome variable.
+
+A good place to start is to look through and think "is this variable likely to \*cause\* both hours of sleep \*and\* days of bad health?"
+
+```{r eval=FALSE}
+testImplications <- function( covariance.matrix, sample.size ){
+	library(ggm)
+	tst <- function(i){ pcor.test( pcor(i,covariance.matrix), length(i)-2, sample.size )$pvalue }
+tos <- function(i){ paste(i,collapse=" ") }
+implications <- list(c("Disease","Depressed"),
+		c("Disease","Age"),
+		c("Depressed","Age"))
+	data.frame( implication=unlist(lapply(implications,tos)),
+		pvalue=unlist( lapply( implications, tst ) ) )
+
+}
+library(dagitty)
+
+
+
+```
+
+```{r}
+MLR<- feols(DaysPhysHlthBad~SleepHrsNight + Diabetes + Depressed + Age, data = NHANES)
+etable(MLR)
+```
+
+Adding some more control variables
+
+```{r}
+MLR2 <- feols(DaysPhysHlthBad ~ SleepHrsNight + Age + HHIncomeMid + Depressed + TVHrsDay, data = NHANES)
+etable(SLR, MLR2)
+
+```
+
+```{r}
+#Interpret the -.28 coefficient on SleepHrsNight.
+
+#1: The influence of the control variables deflates the correlation between sleep hours and bad-health days by .28
+#2: Comparing two people with the same values of all control variables, an additional hour of sleep reduces bad-health days by .28
+#3: An additional hour of sleep reduces bad-health days by -.28/.1 = -2.8
+#4: If all the control variables were set to 0, an additional hour of sleep would reduce bad-health days by .28
+
+
+```
+
+## Coeficients plot
+
+```{r}
+coefplot(list(SLR, MLR2))
+
+## use wald() to test whether Age = 0 AND HHIncomeMid = 0.
+
+wald(MLR2, c('Age','HHIncomeMid'))
+
+
+```

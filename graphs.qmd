@@ -1,0 +1,314 @@
+---
+title: "Data Analytics for Social Sciences in R <br> Faculty of Sciences and Humanities, School of Postgraduate Studies <br> and Research, Amoud University, Borama, Somalia."
+author: "Zahid Asghar<br><br> School of Economics, QAU, Islamabad"
+date: today
+format: 
+  revealjs:
+    self-contained: false
+    slide-number: c/t
+    width: 1600
+    height: 900
+    logo: "https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png"
+    footer: "[Zahid Asghar](https://zahidasghar.com/econometrics/Panel_reg)"
+    theme: ["simple", "custom2.scss"]
+    echo: true
+    multiplex: true
+    code-link: true
+    title-slide-attributes:
+      data-background-color: "#447099"
+editor: source
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(httr)
+clrs <- MetBrewer::met.brewer(name = "Java")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
+options(digits = 3, width = 75)
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo=F,
+                      message=F,
+                      warning=F)
+library(tidyverse)
+set.seed(256)
+update_geom_defaults("label", list(family = "Fira Sans Condensed"))
+library(gganimate)
+library(broom)
+```
+
+```{r , include=FALSE}
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=4, fig.retina=2, 
+  out.width="100%",
+  message = FALSE
+)
+```
+
+## Graphs of various kinds
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## 
+
+```{r}
+#| warning: false
+library("ggalt")
+library("tidyr")
+library(gapminder)
+library(tidyverse)
+#devtools::install_github('bbc/bbplot')
+library(bbplot)
+#Prepare data
+dumbbell_df <- gapminder %>%
+  filter(year == 1967 | year == 2007) %>%
+  select(country, year, lifeExp) %>%
+  spread(year, lifeExp) %>%
+  mutate(gap = `2007` - `1967`) %>%
+  arrange(desc(gap)) %>%
+  head(10)
+dumbbell_df
+#Make plot
+ggplot(dumbbell_df, aes(x = `1967`, xend = `2007`, y = reorder(country, gap), group = country)) + 
+  geom_dumbbell(colour = "#dddddd",
+                size = 3,
+                colour_x = "#FAAB18",
+                colour_xend = "#1380A1") +
+  bbc_style() + 
+  labs(title="We're living longer",
+       subtitle="Biggest life expectancy rise, 1967-2007")
+```
+
+## 
+
+```{r}
+party<-c("MQM", "PPP", "PTI")
+yes<-c(88.5, 13.6, 37.7)
+no<-c(6.5, 74.7, 47.9)
+dum_df<-bind_cols(party, yes, no)
+dum_df<-dum_df %>% mutate(gap=yes-no)
+dum_df$party<-dum_df$...1
+dum_df$yes<-dum_df$...2
+dum_df$no<-dum_df$...3
+dum_df<-dum_df %>% select(party, yes, no, gap)
+dum_df
+```
+
+## 
+
+```{r}
+#| warning: false
+library(ggthemes)
+ggplot(dum_df)+ aes( x=party,y=gap, fill=party) + geom_bar(stat = "identity")+
+  bbc_style() + 
+  labs(title="We're living longer",
+       subtitle="Biggest life expectancy rise, 1967-2007")
+```
+
+## CPI
+
+```{r}
+library(readxl)
+library(tidyverse)
+cpi <- read_excel("cpi.xlsx")
+
+cpi1<-cpi|>filter(Category %in% c("Food&Non-alcoholic","Housing,Water,Electricity,","Miscellaneous","Education","Clothing&Footwear","Transport","Recreation&Culture"))|>select(Category, Value, Time)
+cpi1<-cpi1 |>  filter(Time=="CPI-08-21"|Time=="CPI-08-22") 
+cols <- c("Food&Non-alcoholic" = "red", "Housing,Water,Electricity," = "gray",
+          "Transport" = "red", "Education" = "gray",
+          "Miscellaneous" = "gray", "Clothing&Footwear" = "gray","Recreation&Culture"="gray")
+
+
+cpi1
+```
+
+## 
+
+```{r}
+f1 <- ggplot(data = cpi1, aes(x = Time, y = Value, group = Category, color=Category,alpha=1)) +
+  geom_line( size = 1) +
+  geom_point( size = 2) +
+  xlab("") + ylab("Consumer Price Index") +
+  ggtitle("Change in CPI from Aug-21 to Aug-22 in Pakistan")+labs(subtitle = "There is an increase in CPI in almost all the sector  but \n transport and non-perishable food items inflation is very high", caption = "Zahid Asghar| data:PBS")
+
+```
+
+## 
+
+```{r}
+f2<-f1+  
+  scale_x_discrete(position = "top") +
+## Changing font size of x-axis and main title of the graph
+theme(
+  plot.title = element_text(color="black", size=15, face="bold",  hjust = 0.5 ), 
+  axis.text.x = element_text(vjust = 0.5, hjust=0.5, size = 12, face="bold"),
+## Removing grid lines
+  panel.grid.major.y = element_blank(),
+  panel.grid.minor.y = element_blank(),
+  panel.grid.major.x = element_blank(),
+  panel.grid.minor.x = element_blank(),
+## Removing the legend
+  legend.position = "none",
+## Removing everything from the y axis
+  axis.title.y     = element_blank(),
+  axis.text.y      = element_blank(),
+## Removing title from the x axis 
+  axis.title.x     = element_blank(),
+## Remove x & y tick marks
+  axis.ticks       = element_blank())
+
+```
+
+## 
+
+```{r}
+f3<-f2 + 
+geom_text(data = cpi %>% filter(Time == "CPI-07-22"), 
+aes(label = paste0(Category)),   hjust = 1.1, 
+fontface = "bold", 
+vjust=0.25,
+size = 3, 
+alpha = 3) +
+  
+geom_text(data = cpi %>% filter(Time == "CPI-08-22"), aes(label = paste0(Category)) , 
+hjust = -0.1, 
+fontface = "bold",
+vjust = 0.25,
+size = 3, 
+alpha = 3)
+```
+
+## 
+
+```{r}
+library(ggthemes)
+theme_538 <- function(base_size = 12, base_family = "Chivo") {
+  theme_grey(base_size = base_size, base_family = base_family) %+replace%
+    theme(
+      # drop minor gridlines and axis-ticks
+      panel.grid.minor = element_blank(),
+      axis.ticks = element_blank(),
+      # change font elements/family
+      text = element_text(family = "Chivo", size = base_size),
+      axis.text = element_text(face = "bold", color = "grey", size = base_size),
+      axis.title = element_text(face = "bold", size = rel(1.33)),
+      axis.title.x = element_text(margin = margin(0.5, 0, 0, 0, unit = "cm")),
+      axis.title.y = element_text(margin = margin(0, 0.5, 0, 0, unit = "cm"), angle =90),
+      plot.title = element_text(face = "bold", size = rel(1.67), hjust = 0),
+      plot.title.position = "plot",
+      plot.subtitle = element_text(size = 16, margin = margin(0.2, 0, 1, 0, unit = "cm"), hjust = 0),
+      plot.caption = element_text(size = 10, margin = margin(1, 0, 0, 0, unit = "cm"), hjust = 1),
+      # change plot colors for the background/panel elements
+      plot.background = element_rect(fill = "#f0f0f0", color = NA),
+      panel.background = element_rect(fill = "#f0f0f0", color = NA),
+      panel.grid.major =  element_line(color = "#d0d0d0"),
+      panel.border = element_blank(),
+      # shrinks margin and simplify the strip/facet elements
+      plot.margin = margin(0.5, 1, 0.5, 1, unit = "cm"),
+      strip.background = element_blank(),
+      strip.text = element_text(size = rel(1.33), face = "bold")
+    )
+}
+f3
+```
+
+[Slope chart in R charts need this CGPfunctions](https://r-charts.com/evolution/newggslopegraph/)
+
+## 
+
+```{r}
+#install.packages("CGPfunctions")
+library(CGPfunctions)
+newggslopegraph(dataframe = cpi1,
+                Times =Time,
+                Measurement = Value,
+                Grouping = Category, Title = "Consumer Price Index for Pakistan for Various Categories ",
+                SubTitle = "Increase in CPI from Aug2021-Aug2022 is alarming and has hit all categories. \n Transfort and non-perishable food items have very steep rise ",
+                Caption = "By Zahid Asghar|data:PBS", ThemeChoice = "tufte")
+```
+
+## Text size adjustment
+
+```{r}
+ newggslopegraph(dataframe = cpi,
+                Times =Time,
+                Measurement = Value,
+                Grouping = Category, Title = "Consumer Price Index for Pakistan for Various Categories ",
+                SubTitle = "Change in CPI from Aug2021-Aug2022 in all categories is more than 15%. \n Transfort  sector 63% rise and non-perishable food items have very steep rise and both have high imp ",
+                Caption = "By Zahid Asghar|data:PBS",XTextSize = 18,    # Size of the times
+                YTextSize = 1.5,     # Size of the groups
+                TitleTextSize = 14,
+                SubTitleTextSize = 12,
+                CaptionTextSize = 10,
+                TitleJustify = "right",
+                SubTitleJustify = "right",
+                CaptionJustify = "left",
+                DataTextSize = 2.0) # Size of the data
+```
+
+## 
+
+```{r}
+newggslopegraph(dataframe = cpi1,
+                Times =Time,
+                Measurement = Value,
+                Grouping = Category, Title = "Consumer Price Index for Pakistan for Various Categories ",
+                SubTitle = "Change in CPI from Aug2021-Aug2022 in all categories is more than 15%. \n Transfort  sector 63% rise and non-perishable food items have very steep rise and both have high imp ",
+                Caption = "By Zahid Asghar|data:PBS",XTextSize = 18,    # Size of the times
+                YTextSize = 1.5,     # Size of the groups
+                TitleTextSize = 14,
+                SubTitleTextSize = 12,
+                CaptionTextSize = 10,
+                TitleJustify = "right",
+                SubTitleJustify = "right",
+                CaptionJustify = "left",
+                DataTextSize = 2.0,LineColor = cols) # Size of the data
+
+```
+
+## 
+
+```{r}
+
+newggslopegraph(dataframe = cpi1,
+                Times =Time,
+                Measurement = Value,
+                Grouping = Category, Title = "Alarmingly high inflation and no respite in near future ",
+                SubTitle = "Rising inflation has serious consequences in general and for people suffering from floods in particular.\n CPI change from Aug21-Aug22 is high across all categories.  Transfort and non-perishable food \n items have very steep rise. Which instruments can be used for this type of inflation needs serious \n introspection, business as usual will probably not help a lot under current global & national circumstances. ",
+                Caption = "By Zahid Asghar|data:PBS", DataLabelPadding = 0.2,
+                DataLabelLineSize = 0.5,
+                DataLabelFillColor = "lightblue",LineColor = cols)
+
+
+```
+
+## Treemap
+
+```{r}
+# install.packages("treemapify")
+library(treemapify)
+# install.packages("ggplot2")
+cpi$Category
+library(ggplot2)
+cpi2<-cpi|>filter(Time=="Impact_yoy"&Category!="Food&Non-alcoholic"&Category!="General")
+cpi2
+ggplot(cpi2, aes(area = Value, fill = Category,label=Value)) +
+  geom_treemap()+geom_treemap_text(colour = "white",
+                    place = "centre",
+                    size = 15)
+```
+
+## 
+
+```{r}
+ggplot(cpi2, aes(area = Value, fill = Category, label = paste(Category, Value, sep = "\n"))) +
+  geom_treemap() +
+  geom_treemap_text(colour = "white",
+                    place = "centre",
+                    size = 15) +
+  theme(legend.position = "none")+
+  labs(title = "Groupwise contribution in 27.2% YoY inflation",subtitle="Housing , Food and Transport has maximum impact in overall inflation",caption="By Zahid Asghar|data:PBS")
+```

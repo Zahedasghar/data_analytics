@@ -198,7 +198,7 @@ gapminderSA %>% mutate(gdp = pop * gdpPercap)
 ```
 
 ## How to calculate new variables
-As mentioned above, `mutate` is used to calculate new variable. Here we have calculated a new variable `gdp` and then `arranged` data and selected `top_n(10)` countries to see whether higher `lifeExpectancy` and higher `gdp` are linked or not? 
+As mentioned above, `mutate` is used to calculate new variable. Here we have calculated a new variable `gdp` and then `arrange()` data and selected `top_n(10)` countries to see whether higher `lifeExpectancy` and higher `gdp` are linked or not? 
 
 ```{r top-10}
 gapminder %>% filter(year==2007) %>% 

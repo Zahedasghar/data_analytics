@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.35">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Zahid Asghar">
+
+<title>R Workshop / QAU, Islamabad</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="Learn-R-basics_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Learn-R-basics_files/libs/quarto-html/quarto.js"></script>
+<script src="Learn-R-basics_files/libs/quarto-html/popper.min.js"></script>
+<script src="Learn-R-basics_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Learn-R-basics_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Learn-R-basics_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Learn-R-basics_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Learn-R-basics_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Learn-R-basics_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Learn-R-basics_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">R Workshop / QAU, Islamabad</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Zahid Asghar </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<section id="intro" class="level1">
+<h1>Intro</h1>
+<section id="outline" class="level2">
+<h2 class="anchored" data-anchor-id="outline">Outline</h2>
+<ul>
+<li>Introduction to R and RStudio</li>
+<li>Reproducible data analysis with R Markdown</li>
+<li>Loading data</li>
+<li>Data visualization</li>
+<li>Data wrangling</li>
+<li>Basic R syntax</li>
+<li>What next?</li>
+<li>Hands on exercises</li>
+</ul>
+</section>
+<section id="materials" class="level2">
+<h2 class="anchored" data-anchor-id="materials">Materials</h2>
+<ul>
+<li>All source code are taken from https://github.com/mine-cetinkaya-rundel/rworkshop-mem</li>
+</ul>
+</section>
+</section>
+<section id="introduction-to-r-and-rstudio" class="level1">
+<h1>Introduction to R and RStudio</h1>
+<section id="what-is-r-and-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-r-and-rstudio">What is R and RStudio</h2>
+<ul>
+<li><p><strong>R:</strong> Statistical programming language</p></li>
+<li><p><strong>RStudio:</strong></p>
+<ul>
+<li>Inregtrated development environment for R</li>
+<li>Powerful and productive user interface for R</li>
+</ul></li>
+<li><p>Both are free and open-source</p></li>
+</ul>
+</section>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+<ul>
+<li><p>Traditionally you would install R and RStudio on your computer</p></li>
+<li><p>Local installation instructions will be provided at the end of the workshop</p></li>
+</ul>
+</section>
+<section id="anatomy-of-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="anatomy-of-rstudio">Anatomy of RStudio</h2>
+<div class="columns-2">
+<ul>
+<li>Left: Console
+<ul>
+<li>Text on top at launch: version of R that you’re running</li>
+<li>Below that is the prompt</li>
+</ul></li>
+<li>Upper right: Workspace and command history</li>
+<li>Lower right: Plots, access to files, help, packages, data viewer</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/RStudioSplash.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">R Splash Screen</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="what-version-am-i-using" class="level2">
+<h2 class="anchored" data-anchor-id="what-version-am-i-using">What version am I using?</h2>
+<ul>
+<li><p>The version of R is text that pops up in the Console when you start RStudio</p></li>
+<li><p>To find out the version of RStudio go to Help <span class="math inline">\(\rightarrow\)</span> About RStudio</p></li>
+<li><p>It’s good practice to keep both R and RStudio up to date</p></li>
+</ul>
+</section>
+<section id="r-packages" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="r-packages">R packages</h2>
+<ul>
+<li><p>Packages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and (often) sample data. (From: http://r-pkgs.had.co.nz)</p></li>
+<li><p>We will use the <code>ggplot2</code> package for plots and <code>dplyr</code> for data wrangling in this workshop</p></li>
+<li><p>Install these packages by running the following in the Console:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Then, load the packages by running the following:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#library(tidyverse) this package contains a multiple packages </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>This is just one way of installing a package, there is also a GUI approach in the Packages pane in RStudio</li>
+</ul>
+</section>
+</section>
+<section id="reproducible-data-analysis-with-r-markdown" class="level1">
+<h1>Reproducible data analysis with R Markdown</h1>
+<section id="what-is-r-markdown" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-r-markdown">What is R Markdown?</h2>
+<ul>
+<li><p>R Markdown is an authoring format that enables easy creation of dynamic documents, presentations, and reports from R.</p></li>
+<li><p>It combines the core syntax of markdown (an easy-to-write plain text format) with embedded R code chunks that are run so their output can be included in the final document.</p></li>
+<li><p>R Markdown documents are fully <strong>reproducible</strong> (they can be automatically regenerated whenever underlying R code or data changes).</p></li>
+</ul>
+<p>Source: http://rmarkdown.rstudio.com/</p>
+</section>
+<section id="your-turn" class="level2">
+<h2 class="anchored" data-anchor-id="your-turn">Your turn!</h2>
+<p>Create your first R Markdown document, knit it, and examine the source code and the output.</p>
+<ol type="1">
+<li><p>File <span class="math inline">\(\rightarrow\)</span> R Markdown…</p></li>
+<li><p>Enter a title (e.g.&nbsp;“My first R Markdown document”) and author info</p></li>
+<li><p>Choose Document as file type, and HTML as the output</p></li>
+<li><p>Hit OK</p></li>
+<li><p>Click Knit HTML in the new document, which will prompt you to save your document</p>
+<ul>
+<li>Naming tip: Do not use spaces</li>
+<li>Viewing tip: Click on the down arrow next to Knit HTML and select View in Pane</li>
+</ul></li>
+</ol>
+</section>
+<section id="markdown-basics" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="markdown-basics">Markdown basics</h2>
+<ul>
+<li><p>Markdown is a simple formatting language designed to make authoring content easy for everyone.</p></li>
+<li><p>Rather than writing complex markup code (e.g.&nbsp;HTML or LaTeX), Markdown enables the use of a syntax much more like plain-text email.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="markdown.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Markdown overview</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="r-code-chunks" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="r-code-chunks">R Code Chunks</h2>
+<p>Within an R Markdown file, R Code Chunks can be embedded using the native Markdown syntax for fenced code regions.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="codechunk.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Code chunks</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="your-turn-1" class="level2">
+<h2 class="anchored" data-anchor-id="your-turn-1">Your turn!</h2>
+<p>How many code chunks are in your R Markdown document?</p>
+<p>What does each code chunk do? You may not understand the R syntax yet, but you should be able to compare the source file and the output to answer this question.</p>
+</section>
+<section id="inline-r-code" class="level2">
+<h2 class="anchored" data-anchor-id="inline-r-code">Inline R Code</h2>
+<p>You can also evaluate R expressions inline by enclosing the expression within a single back-tick qualified with <code>r</code>. For example, the following code: I counted 2 trucks on highway.</p>
+<p>Results in this output: “I counted 2 red trucks on the highway.”</p>
+</section>
+<section id="your-turn-2" class="level2">
+<h2 class="anchored" data-anchor-id="your-turn-2">Your turn!</h2>
+<p>Suppose Sammy works on average 8.37 hours per day, 5 days per week. How many hours does Sammy work on average per week?</p>
+<p>Add a sentence to your document that includes simple inline R code that answers this question, along the lines of…</p>
+<p>“Sammy works 8.37 * 5 hours per week, on average.”</p>
+</section>
+<section id="workspaces" class="level2">
+<h2 class="anchored" data-anchor-id="workspaces">Workspaces</h2>
+<p>R Markdown workspace and Console workspace are independent of each other</p>
+<ul>
+<li><p>If you define a variable in your Console and it shows up in the Environment tab, it is not going to be automatically included in your R Markdown document</p></li>
+<li><p>If you define a variable in your R Markdown document, it won’t automatically be available in your Console</p></li>
+</ul>
+<p>[ Demo ]</p>
+<p><strong>Tip:</strong> Use the <em>Run all previous chunks</em> in the source file and <em>Run current chunk code</em> functionality in the buttons in each code chunk to help manage workspaces.</p>
+</section>
+<section id="workspaces-and-reproducibilty" class="level2">
+<h2 class="anchored" data-anchor-id="workspaces-and-reproducibilty">Workspaces and reproducibilty</h2>
+<ul>
+<li><p>The fact that the two workspaces do not automatically have access to the same variables might / will be frustrating at first.</p></li>
+<li><p>But this is not a bug, in fact, it’s a functionality that helps reproducibility, as it ensures that all variables, functions, etc. that are being used in the R Markdown document are explicitly defined or loaded.</p></li>
+</ul>
+</section>
+<section id="your-turn-3" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="your-turn-3">Your turn!</h2>
+<ol type="1">
+<li><p>Define <code>x = 2</code> in the Console. Then, in your Console run <code>x * 3</code>. Does your code run as expected?</p></li>
+<li><p>Now, insert a new code chunk in your R Markdown document and in this chunk type <code>x * 3</code> only. Knit your document. Does the document compile, or do you get an error? If you get an error, what does the error say, and how can you fix it? Implement the fix and Knit your document. Make sure you are able to compile without errors before you move on.</p></li>
+</ol>
+<p><strong>Tip:</strong> Insert a new code chunk bu clicking Chunks <span class="math inline">\(\rightarrow\)</span> Insert Chunk.</p>
+<ol start="3" type="1">
+<li><p>Next insert another code chunk in your R Markdown document and define <code>y = 4</code> and calculate <code>y + 5</code>. Knit your document. Does everything work as expected?</p></li>
+<li><p>Now run <code>y + 5</code> in your Console. Does your code run as expected or do you get an error? If you get an error, what does the error say, and how can you fix it? Implement the fix.</p></li>
+</ol>
+</section>
+<section id="code-chunk-options" class="level2">
+<h2 class="anchored" data-anchor-id="code-chunk-options">Code chunk options</h2>
+<ul>
+<li><p>You can hide the code, hide the result, hide warnings, messages, etc.</p></li>
+<li><p>Refer to the handy R Markdown <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">cheatsheet</a></p></li>
+<li><p>Another good reference: http://rmarkdown.rstudio.com/authoring_rcodechunks.html</p></li>
+</ul>
+</section>
+</section>
+<section id="loading-data" class="level1">
+<h1>Loading data</h1>
+<section id="nc-dot-fatal-crashes-in-north-carolina" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="nc-dot-fatal-crashes-in-north-carolina">NC DOT Fatal Crashes in North Carolina</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#bike &lt;- read_csv("https://stat.duke.edu/~mc301/data/nc_bike_crash.csv",                  sep = ";", stringsAsFactors = FALSE, na.strings = c("NA", "", "."))</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>bike<span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"D:/RepTemplates/data_analytics/ncbikecrash.csv"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_df</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+Please use `tibble::as_tibble()` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Rows: 7467 Columns: 65
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: "," chr
+(48): city, county, region, development, locality, on_road, rural_urban,... dbl
+(17): ...1, object_id, bike_age, driver_age, crash_hour, crash_time, cra...
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `` -&gt; `...1`</code></pre>
+</div>
+</div>
+<p>View the names of variables via</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bike)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "...1"                 "object_id"            "city"                
+ [4] "county"               "region"               "development"         
+ [7] "locality"             "on_road"              "rural_urban"         
+[10] "speed_limit"          "traffic_control"      "weather"             
+[13] "workzone"             "bike_age"             "bike_age_group"      
+[16] "bike_alcohol"         "bike_alcohol_drugs"   "bike_direction"      
+[19] "bike_injury"          "bike_position"        "bike_race"           
+[22] "bike_sex"             "driver_age"           "driver_age_group"    
+[25] "driver_alcohol"       "driver_alcohol_drugs" "driver_est_speed"    
+[28] "driver_injury"        "driver_race"          "driver_sex"          
+[31] "driver_vehicle_type"  "crash_alcohol"        "crash_date"          
+[34] "crash_day"            "crash_group"          "crash_hour"          
+[37] "crash_location"       "crash_month"          "crash_severity"      
+[40] "crash_time"           "crash_type"           "crash_year"          
+[43] "ambulance_req"        "hit_run"              "light_condition"     
+[46] "road_character"       "road_class"           "road_condition"      
+[49] "road_configuration"   "road_defects"         "road_feature"        
+[52] "road_surface"         "num_bikes_ai"         "num_bikes_bi"        
+[55] "num_bikes_ci"         "num_bikes_ki"         "num_bikes_no"        
+[58] "num_bikes_to"         "num_bikes_ui"         "num_lanes"           
+[61] "num_units"            "distance_mi_from"     "frm_road"            
+[64] "rte_invd_cd"          "towrd_road"          </code></pre>
+</div>
+</div>
+<p>and see detailed descriptions at https://stat.duke.edu/~mc301/data/nc_bike_crash.html.</p>
+</section>
+<section id="aside-strings-characters-vs-factors" class="level2">
+<h2 class="anchored" data-anchor-id="aside-strings-characters-vs-factors">Aside: Strings (characters) vs factors</h2>
+<ul>
+<li><p>By default R will convert character vectors into factors when they are included in a data frame.</p></li>
+<li><p>Sometimes this is useful, sometimes it isn’t – either way it is important to know what type/class you are working with.</p></li>
+<li><p>This behavior can be changed using the <code>stringsAsFactors = FALSE</code> when loading a data drame.</p></li>
+</ul>
+</section>
+<section id="viewing-your-data" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="viewing-your-data">Viewing your data</h2>
+<ul>
+<li><p>In the Environment, click on the name of the data frame to view it in the data viewer</p></li>
+<li><p>Use the <code>str()</code> function to compactly display the internal <strong>str</strong>ucture of an R object</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(bike)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [7,467 × 65] (S3: tbl_df/tbl/data.frame)
+ $ ...1                : num [1:7467] 1 2 3 4 5 6 7 8 9 10 ...
+ $ object_id           : num [1:7467] 1686 1674 1673 1687 1653 ...
+ $ city                : chr [1:7467] "None - Rural Crash" "Henderson" "None - Rural Crash" "Whiteville" ...
+ $ county              : chr [1:7467] "Wayne" "Vance" "Lincoln" "Columbus" ...
+ $ region              : chr [1:7467] "Coastal" "Piedmont" "Piedmont" "Coastal" ...
+ $ development         : chr [1:7467] "Farms, Woods, Pastures" "Residential" "Farms, Woods, Pastures" "Commercial" ...
+ $ locality            : chr [1:7467] "Rural (&lt;30% Developed)" "Mixed (30% To 70% Developed)" "Rural (&lt;30% Developed)" "Urban (&gt;70% Developed)" ...
+ $ on_road             : chr [1:7467] "SR 1915" "NICHOLAS ST" "US 321" "W BURKHEAD ST" ...
+ $ rural_urban         : chr [1:7467] "Rural" "Urban" "Rural" "Urban" ...
+ $ speed_limit         : chr [1:7467] "50 - 55  MPH" "30 - 35  MPH" "50 - 55  MPH" "30 - 35  MPH" ...
+ $ traffic_control     : chr [1:7467] "No Control Present" "Stop Sign" "Double Yellow Line, No Passing Zone" "No Control Present" ...
+ $ weather             : chr [1:7467] "Clear" "Clear" "Clear" "Rain" ...
+ $ workzone            : chr [1:7467] "No" "No" "No" "No" ...
+ $ bike_age            : num [1:7467] 52 66 33 52 22 15 41 14 16 54 ...
+ $ bike_age_group      : chr [1:7467] "50-59" "60-69" "30-39" "50-59" ...
+ $ bike_alcohol        : chr [1:7467] "No" "No" "No" "Yes" ...
+ $ bike_alcohol_drugs  : chr [1:7467] NA NA NA NA ...
+ $ bike_direction      : chr [1:7467] "With Traffic" "With Traffic" "With Traffic" NA ...
+ $ bike_injury         : chr [1:7467] "B: Evident Injury" "C: Possible Injury" "C: Possible Injury" "C: Possible Injury" ...
+ $ bike_position       : chr [1:7467] "Bike Lane / Paved Shoulder" "Travel Lane" "Travel Lane" NA ...
+ $ bike_race           : chr [1:7467] "Black" "Black" "White" "Black" ...
+ $ bike_sex            : chr [1:7467] "Male" "Male" "Male" "Male" ...
+ $ driver_age          : num [1:7467] 34 NA 37 55 25 17 NA 50 32 69 ...
+ $ driver_age_group    : chr [1:7467] "30-39" NA "30-39" "50-59" ...
+ $ driver_alcohol      : chr [1:7467] "No" "Missing" "No" "No" ...
+ $ driver_alcohol_drugs: chr [1:7467] NA NA NA NA ...
+ $ driver_est_speed    : chr [1:7467] "51-55 mph" "6-10 mph" "41-45 mph" "11-15 mph" ...
+ $ driver_injury       : chr [1:7467] "O: No Injury" "Unknown Injury" "O: No Injury" "O: No Injury" ...
+ $ driver_race         : chr [1:7467] "White" "Unknown/Missing" "Hispanic" "Black" ...
+ $ driver_sex          : chr [1:7467] "Male" NA "Female" "Male" ...
+ $ driver_vehicle_type : chr [1:7467] "Single Unit Truck (2-Axle, 6-Tire)" NA "Passenger Car" "Passenger Car" ...
+ $ crash_alcohol       : chr [1:7467] "No" "No" "No" "Yes" ...
+ $ crash_date          : chr [1:7467] "11DEC2013" "20NOV2013" "03NOV2013" "14DEC2013" ...
+ $ crash_day           : chr [1:7467] "Wednesday" "Wednesday" "Sunday" "Saturday" ...
+ $ crash_group         : chr [1:7467] "Motorist Overtaking Bicyclist" "Bicyclist Failed to Yield - Sign-Controlled Intersection" "Motorist Overtaking Bicyclist" "Bicyclist Failed to Yield - Signalized Intersection" ...
+ $ crash_hour          : num [1:7467] 6 20 18 18 13 17 17 7 15 2 ...
+ $ crash_location      : chr [1:7467] "Non-Intersection" "Intersection" "Non-Intersection" "Intersection" ...
+ $ crash_month         : chr [1:7467] "December" "November" "November" "December" ...
+ $ crash_severity      : chr [1:7467] "B: Evident Injury" "C: Possible Injury" "C: Possible Injury" "C: Possible Injury" ...
+ $ crash_time          : num [1:7467] 22200 74460 65100 66840 48420 ...
+ $ crash_type          : chr [1:7467] "Motorist Overtaking - Undetected Bicyclist" "Bicyclist Ride Out - Sign-Controlled Intersection" "Motorist Overtaking - Undetected Bicyclist" "Bicyclist Ride Out - Signalized  Intersection" ...
+ $ crash_year          : num [1:7467] 2013 2013 2013 2013 2013 ...
+ $ ambulance_req       : chr [1:7467] "Yes" "No" "Yes" "Yes" ...
+ $ hit_run             : chr [1:7467] "No" "Yes" "No" "No" ...
+ $ light_condition     : chr [1:7467] "Dark - Roadway Not Lighted" NA "Dark - Roadway Not Lighted" "Dark - Lighted Roadway" ...
+ $ road_character      : chr [1:7467] "Straight - Level" "Straight - Level" "Straight - Grade" "Straight - Level" ...
+ $ road_class          : chr [1:7467] "State Secondary Route" "Local Street" "US Route" "Local Street" ...
+ $ road_condition      : chr [1:7467] "Dry" "Dry" "Dry" "Water (Standing, Moving)" ...
+ $ road_configuration  : chr [1:7467] "Two-Way, Not Divided" "Two-Way, Divided, Unprotected Median" "Two-Way, Not Divided" "Two-Way, Not Divided" ...
+ $ road_defects        : chr [1:7467] "None" NA "None" "None" ...
+ $ road_feature        : chr [1:7467] "No Special Feature" "T-Intersection" "No Special Feature" "No Special Feature" ...
+ $ road_surface        : chr [1:7467] "Coarse Asphalt" "Smooth Asphalt" "Smooth Asphalt" "Coarse Asphalt" ...
+ $ num_bikes_ai        : num [1:7467] 0 0 0 0 0 0 0 0 0 0 ...
+ $ num_bikes_bi        : num [1:7467] 0 0 0 0 0 0 0 0 0 0 ...
+ $ num_bikes_ci        : num [1:7467] 0 0 0 0 0 0 0 0 0 0 ...
+ $ num_bikes_ki        : num [1:7467] 0 0 0 0 0 0 0 0 0 0 ...
+ $ num_bikes_no        : num [1:7467] 0 0 0 0 0 0 0 0 0 0 ...
+ $ num_bikes_to        : num [1:7467] 0 0 0 0 0 0 0 0 0 0 ...
+ $ num_bikes_ui        : num [1:7467] 0 0 0 0 0 0 0 0 0 0 ...
+ $ num_lanes           : chr [1:7467] "2 lanes" "2 lanes" "2 lanes" "1 lane" ...
+ $ num_units           : num [1:7467] 2 2 2 2 2 2 2 2 2 2 ...
+ $ distance_mi_from    : num [1:7467] 0 0 0 0 0 0 0 0 0 0 ...
+ $ frm_road            : chr [1:7467] NA NA NA NA ...
+ $ rte_invd_cd         : num [1:7467] 0 0 0 0 0 0 0 0 0 0 ...
+ $ towrd_road          : chr [1:7467] NA NA NA NA ...</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="data-visualization" class="level1">
+<h1>Data visualization</h1>
+<section id="data-visualization-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization-in-r">Data visualization in R</h2>
+<ul>
+<li><p>Using base R functions</p></li>
+<li><p>Using the <code>ggplot2</code> package <span class="math inline">\(\leftarrow\)</span> our focus today</p></li>
+<li><p>Using a variety of other packages like <code>lattice</code>, <code>ggvis</code>, etc.</p></li>
+</ul>
+</section>
+<section id="the-grammar-of-graphics" class="level2">
+<h2 class="anchored" data-anchor-id="the-grammar-of-graphics">The Grammar of Graphics</h2>
+<ul>
+<li>Visualisation concept created by Wilkinson (1999)
+<ul>
+<li>to define the basic elements of a statistical graphic</li>
+</ul></li>
+<li>Adapted for R by Wickham (2009) who created the <code>ggplot2</code> package
+<ul>
+<li>consistent and compact syntax to describe statistical graphics</li>
+<li>highly modular as it breaks up graphs into semantic components</li>
+</ul></li>
+<li>Is not a guide which graph to choose and how to convey information best!</li>
+</ul>
+<p>Source: https://rpubs.com/timwinke/ggplot2workshop</p>
+</section>
+<section id="the-grammar-of-graphics---terminology" class="level2">
+<h2 class="anchored" data-anchor-id="the-grammar-of-graphics---terminology">The Grammar of Graphics - Terminology</h2>
+<p>A statistical graphic is a…</p>
+<ul>
+<li>mapping of <strong>data</strong></li>
+<li>to <strong>aesthetic attributes</strong> (color, size, xy-position)</li>
+<li>using <strong>geometric objects</strong> (points, lines, bars)</li>
+<li>with data being <strong>statistically transformed</strong> (summarised, log-transformed)</li>
+<li>and mapped onto a specific <strong>facet</strong> and <strong>coordinate system</strong></li>
+</ul>
+</section>
+<section id="biker-age-vs.-crash-hour" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="biker-age-vs.-crash-hour">Biker age vs.&nbsp;crash hour</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Learn-R-basics_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+<ul>
+<li>Which data is used as an input?</li>
+<li>What geometric objects are chosen for visualization?</li>
+<li>What variables are mapped onto which attributes?</li>
+<li>What type of scales are used to map data to aesthetics?</li>
+<li>Are the variables statistically transformed before plotting?</li>
+</ul>
+</section>
+<section id="biker-age-vs.-crash-hour---code" class="level2">
+<h2 class="anchored" data-anchor-id="biker-age-vs.-crash-hour---code">Biker age vs.&nbsp;crash hour - code</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bike, <span class="fu">aes</span>(<span class="at">x =</span> crash_hour, <span class="at">y =</span> bike_age)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 209 rows containing missing values (geom_point).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Learn-R-basics_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+</section>
+<section id="altering-features" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="altering-features">Altering features</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Learn-R-basics_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+<ul>
+<li>How did the plot change?</li>
+<li>Are these changes based on data (i.e.&nbsp;can be mapped to variables in the dataset) or changes in preferences for geometric objects?</li>
+</ul>
+</section>
+<section id="altering-features---code" class="level2">
+<h2 class="anchored" data-anchor-id="altering-features---code">Altering features - code</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bike, <span class="fu">aes</span>(<span class="at">x =</span> crash_hour, <span class="at">y =</span> bike_age)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 209 rows containing missing values (geom_point).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Learn-R-basics_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+</section>
+<section id="more-alterations" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="more-alterations">More alterations</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Learn-R-basics_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<ul>
+<li>How did the plot change?</li>
+<li>Are these changes based on data (i.e.&nbsp;can be mapped to variables in the dataset) or changes in preferences for geometric objects?</li>
+</ul>
+</section>
+<section id="more-alterations---code" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="more-alterations---code">More alterations - code</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bike, <span class="fu">aes</span>(<span class="at">x =</span> crash_hour, <span class="at">y =</span> bike_age, <span class="at">color =</span> ambulance_req)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span> bike_sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Learn-R-basics_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="anatomy-of-ggplots" class="level2">
+<h2 class="anchored" data-anchor-id="anatomy-of-ggplots">Anatomy of ggplots</h2>
+<pre><code>ggplot(data = [dataframe], aes(x = [var_x], y = [var_y], 
+       color = [var_for_color], fill = [var_for_fill], 
+       shape = [var_for_shape])) +
+    geom_[some_geom] +
+    ... # other options</code></pre>
+</section>
+<section id="histograms" class="level2">
+<h2 class="anchored" data-anchor-id="histograms">Histograms</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bike, <span class="fu">aes</span>(<span class="at">x =</span> bike_age)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Learn-R-basics_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="boxplots" class="level2">
+<h2 class="anchored" data-anchor-id="boxplots">Boxplots</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bike, <span class="fu">aes</span>(<span class="at">y =</span> bike_age, <span class="at">x =</span> bike_sex)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Learn-R-basics_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="barplots" class="level2">
+<h2 class="anchored" data-anchor-id="barplots">Barplots</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bike, <span class="fu">aes</span>(<span class="at">x =</span> bike_injury)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Learn-R-basics_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="segmented-barplots" class="level2">
+<h2 class="anchored" data-anchor-id="segmented-barplots">Segmented barplots</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bike, <span class="fu">aes</span>(<span class="at">x =</span> crash_location, <span class="at">fill =</span> bike_injury)) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Learn-R-basics_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="864"></p>
+</div>
+</div>
+</section>
+<section id="segmented-barplots---proportions" class="level2">
+<h2 class="anchored" data-anchor-id="segmented-barplots---proportions">Segmented barplots - proportions</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bike, <span class="fu">aes</span>(<span class="at">x =</span> crash_location, <span class="at">fill =</span> bike_injury)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Learn-R-basics_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="864"></p>
+</div>
+</div>
+</section>
+<section id="more-ggplot2-resources" class="level2">
+<h2 class="anchored" data-anchor-id="more-ggplot2-resources">More <code>ggplot2</code> resources</h2>
+<ul>
+<li><p>Visit http://docs.ggplot2.org/current/ for documentation on the current version of the <code>ggplot2</code> package. It’s full of examples!</p></li>
+<li><p>Refer to the <code>ggplot2</code> <a href="https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf">cheatsheet</a>.</p></li>
+</ul>
+</section>
+</section>
+<section id="data-wrangling" class="level1">
+<h1>Data wrangling</h1>
+<section id="data-wrangling-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling-in-r">Data wrangling in R</h2>
+<ul>
+<li><p>Using base R functions</p></li>
+<li><p>Using the <code>dplyr</code> package <span class="math inline">\(\leftarrow\)</span> our focus today</p></li>
+<li><p>Using a variety of other packages like <code>plyr</code>, <code>tidyr</code>, <code>lubridate</code>, etc.</p></li>
+</ul>
+</section>
+<section id="data-wrangling-with-dplyr" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling-with-dplyr">Data wrangling with <code>dplyr</code></h2>
+<p>The <code>dplyr</code> package is based on the concepts of functions as verbs that manipulate data frames:</p>
+<ul>
+<li><code>filter()</code>: pick rows matching criteria</li>
+<li><code>select()</code>: pick columns by name</li>
+<li><code>rename()</code>: rename specific columns</li>
+<li><code>arrange()</code>: reorder rows</li>
+<li><code>mutate()</code>: add new variables</li>
+<li><code>transmute()</code>: create new data frame with variables</li>
+<li><code>sample_n()</code> / <code>sample_frac()</code>: randomly sample rows</li>
+<li><code>summarise()</code>: reduce variables to values</li>
+</ul>
+</section>
+<section id="dplyr-rules" class="level2">
+<h2 class="anchored" data-anchor-id="dplyr-rules"><code>dplyr</code> rules</h2>
+<ul>
+<li>First argument is a data frame</li>
+<li>Subsequent arguments say what to do with data frame</li>
+<li>Always return a data frame</li>
+<li>Avoid modify in place</li>
+</ul>
+</section>
+<section id="filter-rows-with-filter" class="level2">
+<h2 class="anchored" data-anchor-id="filter-rows-with-filter">Filter rows with <code>filter()</code></h2>
+<ul>
+<li>Select a subset of rows in a data frame.</li>
+<li>Easily filter for many conditions at once.</li>
+</ul>
+</section>
+<section id="filter" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="filter"><code>filter()</code></h2>
+<p>for crashes in Durham County</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>bike <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Durham"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 340 × 65
+    ...1 object_id city   county region development locality on_road rural_urban
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;      
+ 1    24      2452 Durham Durham Piedm… Residential Urban (… &lt;NA&gt;    Urban      
+ 2    28      2441 Durham Durham Piedm… Commercial  Urban (… &lt;NA&gt;    Urban      
+ 3    37      2466 Durham Durham Piedm… Commercial  Urban (… &lt;NA&gt;    Urban      
+ 4    63       549 Durham Durham Piedm… Residential Urban (… PARK A… Urban      
+ 5    87       598 Durham Durham Piedm… Residential Urban (… BELT S… Urban      
+ 6    90       603 Durham Durham Piedm… Residential Urban (… HINSON… Urban      
+ 7   144      3974 Durham Durham Piedm… Commercial  Urban (… &lt;NA&gt;    Urban      
+ 8   231      7134 Durham Durham Piedm… Commercial  Urban (… &lt;NA&gt;    Urban      
+ 9   336      1670 Durham Durham Piedm… Commercial  Urban (… INFINI… Urban      
+10   351      1773 Durham Durham Piedm… Residential Urban (… &lt;NA&gt;    Urban      
+# … with 330 more rows, and 56 more variables: speed_limit &lt;chr&gt;,
+#   traffic_control &lt;chr&gt;, weather &lt;chr&gt;, workzone &lt;chr&gt;, bike_age &lt;dbl&gt;,
+#   bike_age_group &lt;chr&gt;, bike_alcohol &lt;chr&gt;, bike_alcohol_drugs &lt;chr&gt;,
+#   bike_direction &lt;chr&gt;, bike_injury &lt;chr&gt;, bike_position &lt;chr&gt;,
+#   bike_race &lt;chr&gt;, bike_sex &lt;chr&gt;, driver_age &lt;dbl&gt;, driver_age_group &lt;chr&gt;,
+#   driver_alcohol &lt;chr&gt;, driver_alcohol_drugs &lt;chr&gt;, driver_est_speed &lt;chr&gt;,
+#   driver_injury &lt;chr&gt;, driver_race &lt;chr&gt;, driver_sex &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="filter-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="filter-1"><code>filter()</code></h2>
+<p>for crashes in Durham County where biker was &lt; 10 yrs old</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>bike <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Durham"</span>, bike_age <span class="sc">&lt;</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 27 × 65
+    ...1 object_id city   county region development locality on_road rural_urban
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;      
+ 1    24      2452 Durham Durham Piedm… Residential Urban (… &lt;NA&gt;    Urban      
+ 2    63       549 Durham Durham Piedm… Residential Urban (… PARK A… Urban      
+ 3   519      2279 Durham Durham Piedm… Residential Urban (… &lt;NA&gt;    Urban      
+ 4   827      2431 Durham Durham Piedm… Residential Urban (… &lt;NA&gt;    Urban      
+ 5  1072      4611 Durham Durham Piedm… Residential Urban (… &lt;NA&gt;    Urban      
+ 6  1147       950 Durham Durham Piedm… Residential Urban (… BERWYN… Urban      
+ 7  1767      6773 Durham Durham Piedm… Residential Urban (… &lt;NA&gt;    Urban      
+ 8  2429      4106 Durham Durham Piedm… Residential Urban (… &lt;NA&gt;    Urban      
+ 9  3337      6485 Durham Durham Piedm… Residential Mixed (… &lt;NA&gt;    Urban      
+10  3349      6591 Durham Durham Piedm… Residential Urban (… &lt;NA&gt;    Urban      
+# … with 17 more rows, and 56 more variables: speed_limit &lt;chr&gt;,
+#   traffic_control &lt;chr&gt;, weather &lt;chr&gt;, workzone &lt;chr&gt;, bike_age &lt;dbl&gt;,
+#   bike_age_group &lt;chr&gt;, bike_alcohol &lt;chr&gt;, bike_alcohol_drugs &lt;chr&gt;,
+#   bike_direction &lt;chr&gt;, bike_injury &lt;chr&gt;, bike_position &lt;chr&gt;,
+#   bike_race &lt;chr&gt;, bike_sex &lt;chr&gt;, driver_age &lt;dbl&gt;, driver_age_group &lt;chr&gt;,
+#   driver_alcohol &lt;chr&gt;, driver_alcohol_drugs &lt;chr&gt;, driver_est_speed &lt;chr&gt;,
+#   driver_injury &lt;chr&gt;, driver_race &lt;chr&gt;, driver_sex &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="commonly-used-logical-operators-in-r" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="commonly-used-logical-operators-in-r">Commonly used logical operators in R</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>operator</th>
+<th>definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&lt;</code></td>
+<td>less than</td>
+</tr>
+<tr class="even">
+<td><code>&lt;=</code></td>
+<td>less than or equal to</td>
+</tr>
+<tr class="odd">
+<td><code>&gt;</code></td>
+<td>greater than</td>
+</tr>
+<tr class="even">
+<td><code>&gt;=</code></td>
+<td>greater than or equal to</td>
+</tr>
+<tr class="odd">
+<td><code>==</code></td>
+<td>exactly equal to</td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>not equal to</td>
+</tr>
+<tr class="odd">
+<td><code>x | y</code></td>
+<td><code>x</code> OR <code>y</code></td>
+</tr>
+<tr class="even">
+<td><code>x &amp; y</code></td>
+<td><code>x</code> AND <code>y</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="commonly-used-logical-operators-in-r-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="commonly-used-logical-operators-in-r-1">Commonly used logical operators in R</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>operator</th>
+<th>definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>is.na(x)</code></td>
+<td>test if <code>x</code> is <code>NA</code></td>
+</tr>
+<tr class="even">
+<td><code>!is.na(x)</code></td>
+<td>test if <code>x</code> is not <code>NA</code></td>
+</tr>
+<tr class="odd">
+<td><code>x %in% y</code></td>
+<td>test if <code>x</code> is in <code>y</code></td>
+</tr>
+<tr class="even">
+<td><code>!(x %in% y)</code></td>
+<td>test if <code>x</code> is not in <code>y</code></td>
+</tr>
+<tr class="odd">
+<td><code>!x</code></td>
+<td>not <code>x</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="aside-real-data-is-messy" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="aside-real-data-is-messy">Aside: real data is messy!</h2>
+<div class="question">
+<p>What in the world does a <code>bike_age_group</code> of <code>10-Jun</code> or <code>15-Nov</code> mean?</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>bike <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bike_age_group) <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">crash_count =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   bike_age_group crash_count
+   &lt;chr&gt;                &lt;int&gt;
+ 1 0-5                     86
+ 2 11-15                  933
+ 3 16-19                  794
+ 4 20-24                  910
+ 5 25-29                  578
+ 6 30-39                  881
+ 7 40-49                 1144
+ 8 50-59                 1013
+ 9 6-10                   537
+10 60-69                  382
+11 70+                     96
+12 &lt;NA&gt;                   113</code></pre>
+</div>
+</div>
+</section>
+<section id="careful-data-scientists-clean-up-their-data-first" class="level2">
+<h2 class="anchored" data-anchor-id="careful-data-scientists-clean-up-their-data-first">Careful data scientists clean up their data first!</h2>
+<ul>
+<li>We’re going to need to do some text parsing to clean up these data
+<ul>
+<li><code>10-Jun</code> should be <code>6-10</code></li>
+<li><code>15-Nov</code> should be <code>11-15</code></li>
+</ul></li>
+<li>New R package: <code>stringr</code></li>
+</ul>
+</section>
+<section id="install-and-load-stringr" class="level2">
+<h2 class="anchored" data-anchor-id="install-and-load-stringr">Install and load: <code>stringr</code></h2>
+<ul>
+<li>Install:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("stringr")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Load:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Package reference: Most R packages come with a vignette that describe in detail what each function does and how to use them, they’re incredibly useful resources (in addition to other worked out examples on the web) https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html</li>
+</ul>
+</section>
+<section id="replace-with-str_replace-and-add-new-variables-with-mutate" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="replace-with-str_replace-and-add-new-variables-with-mutate">Replace with <code>str_replace()</code> and add new variables with <code>mutate()</code></h2>
+<ul>
+<li>Remember we want to do the following in the <code>bike_age_group</code> variable: <code>10-Jun</code> should be <code>6-10</code> and <code>15-Nov</code> should be <code>11-15</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>bike <span class="ot">&lt;-</span> bike <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bike_age_group =</span> <span class="fu">str_replace</span>(bike_age_group, <span class="st">"10-Jun"</span>, <span class="st">"6-10"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bike_age_group =</span> <span class="fu">str_replace</span>(bike_age_group, <span class="st">"15-Nov"</span>, <span class="st">"11-15"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Note that we’re overwriting existing data and columns, so be careful!
+<ul>
+<li>But remember, it’s easy to revert if you make a mistake since we didn’t touch the raw data, we can always reload it and start over</li>
+</ul></li>
+</ul>
+</section>
+<section id="check-before-you-move-on" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="check-before-you-move-on">Check before you move on</h2>
+<p>Always check your changes and confirm code did what you wanted it to do</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>bike <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bike_age_group) <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   bike_age_group count
+   &lt;chr&gt;          &lt;int&gt;
+ 1 0-5               86
+ 2 11-15            933
+ 3 16-19            794
+ 4 20-24            910
+ 5 25-29            578
+ 6 30-39            881
+ 7 40-49           1144
+ 8 50-59           1013
+ 9 6-10             537
+10 60-69            382
+11 70+               96
+12 &lt;NA&gt;             113</code></pre>
+</div>
+</div>
+</section>
+<section id="slice-for-certain-row-numbers" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="slice-for-certain-row-numbers"><code>slice()</code> for certain row numbers</h2>
+<p>First five</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>bike <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 65
+   ...1 object_id city    county region development locality on_road rural_urban
+  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;      
+1     1      1686 None -… Wayne  Coast… Farms, Woo… Rural (… SR 1915 Rural      
+2     2      1674 Hender… Vance  Piedm… Residential Mixed (… NICHOL… Urban      
+3     3      1673 None -… Linco… Piedm… Farms, Woo… Rural (… US 321  Rural      
+4     4      1687 Whitev… Colum… Coast… Commercial  Urban (… W BURK… Urban      
+5     5      1653 Wilmin… New H… Coast… Residential Urban (… RACINE… Urban      
+# … with 56 more variables: speed_limit &lt;chr&gt;, traffic_control &lt;chr&gt;,
+#   weather &lt;chr&gt;, workzone &lt;chr&gt;, bike_age &lt;dbl&gt;, bike_age_group &lt;chr&gt;,
+#   bike_alcohol &lt;chr&gt;, bike_alcohol_drugs &lt;chr&gt;, bike_direction &lt;chr&gt;,
+#   bike_injury &lt;chr&gt;, bike_position &lt;chr&gt;, bike_race &lt;chr&gt;, bike_sex &lt;chr&gt;,
+#   driver_age &lt;dbl&gt;, driver_age_group &lt;chr&gt;, driver_alcohol &lt;chr&gt;,
+#   driver_alcohol_drugs &lt;chr&gt;, driver_est_speed &lt;chr&gt;, driver_injury &lt;chr&gt;,
+#   driver_race &lt;chr&gt;, driver_sex &lt;chr&gt;, driver_vehicle_type &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="slice-for-certain-row-numbers-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="slice-for-certain-row-numbers-1"><code>slice()</code> for certain row numbers</h2>
+<p>Last five</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>last_row <span class="ot">&lt;-</span> <span class="fu">nrow</span>(bike)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>bike <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>((last_row<span class="dv">-4</span>)<span class="sc">:</span>last_row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 65
+   ...1 object_id city    county region development locality on_road rural_urban
+  &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;      
+1  7463      6989 High P… Guilf… Piedm… Residential Urban (… &lt;NA&gt;    Urban      
+2  7464      6991 Wilmin… New H… Coast… Residential Urban (… &lt;NA&gt;    Urban      
+3  7465      6995 Kinston Lenoir Coast… Commercial  Urban (… &lt;NA&gt;    Urban      
+4  7466      6998 Fayett… Cumbe… Coast… Residential Urban (… &lt;NA&gt;    Urban      
+5  7467      7000 None -… Onslow Coast… Farms, Woo… Rural (… &lt;NA&gt;    Rural      
+# … with 56 more variables: speed_limit &lt;chr&gt;, traffic_control &lt;chr&gt;,
+#   weather &lt;chr&gt;, workzone &lt;chr&gt;, bike_age &lt;dbl&gt;, bike_age_group &lt;chr&gt;,
+#   bike_alcohol &lt;chr&gt;, bike_alcohol_drugs &lt;chr&gt;, bike_direction &lt;chr&gt;,
+#   bike_injury &lt;chr&gt;, bike_position &lt;chr&gt;, bike_race &lt;chr&gt;, bike_sex &lt;chr&gt;,
+#   driver_age &lt;dbl&gt;, driver_age_group &lt;chr&gt;, driver_alcohol &lt;chr&gt;,
+#   driver_alcohol_drugs &lt;chr&gt;, driver_est_speed &lt;chr&gt;, driver_injury &lt;chr&gt;,
+#   driver_race &lt;chr&gt;, driver_sex &lt;chr&gt;, driver_vehicle_type &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="select-to-keep-only-the-variables-you-mention" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="select-to-keep-only-the-variables-you-mention"><code>select()</code> to keep only the variables you mention</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>bike <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(crash_location, hit_run) <span class="sc">%&gt;%</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      hit_run
+crash_location           No  Yes
+  Intersection         2878  352
+  Intersection-Related  369   72
+  Non-Intersection     2876  587
+  Non-Roadway           281   38
+  Unknown Location        3    7</code></pre>
+</div>
+</div>
+</section>
+<section id="or-selectto-exclude-variables" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="or-selectto-exclude-variables">or <code>select()</code>to exclude variables</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>bike <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>object_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7,467 × 64
+    ...1 city             county region development locality on_road rural_urban
+   &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;      
+ 1     1 None - Rural Cr… Wayne  Coast… Farms, Woo… Rural (… SR 1915 Rural      
+ 2     2 Henderson        Vance  Piedm… Residential Mixed (… NICHOL… Urban      
+ 3     3 None - Rural Cr… Linco… Piedm… Farms, Woo… Rural (… US 321  Rural      
+ 4     4 Whiteville       Colum… Coast… Commercial  Urban (… W BURK… Urban      
+ 5     5 Wilmington       New H… Coast… Residential Urban (… RACINE… Urban      
+ 6     6 None - Rural Cr… Robes… Coast… Farms, Woo… Rural (… SR 1513 Rural      
+ 7     7 None - Rural Cr… Richm… Piedm… Residential Mixed (… SR 1903 Rural      
+ 8     8 Raleigh          Wake   Piedm… Commercial  Urban (… PERSON… Urban      
+ 9     9 Whiteville       Colum… Coast… Residential Rural (… FLOWER… Urban      
+10    10 New Bern         Craven Coast… Residential Urban (… SUTTON… Urban      
+# … with 7,457 more rows, and 56 more variables: speed_limit &lt;chr&gt;,
+#   traffic_control &lt;chr&gt;, weather &lt;chr&gt;, workzone &lt;chr&gt;, bike_age &lt;dbl&gt;,
+#   bike_age_group &lt;chr&gt;, bike_alcohol &lt;chr&gt;, bike_alcohol_drugs &lt;chr&gt;,
+#   bike_direction &lt;chr&gt;, bike_injury &lt;chr&gt;, bike_position &lt;chr&gt;,
+#   bike_race &lt;chr&gt;, bike_sex &lt;chr&gt;, driver_age &lt;dbl&gt;, driver_age_group &lt;chr&gt;,
+#   driver_alcohol &lt;chr&gt;, driver_alcohol_drugs &lt;chr&gt;, driver_est_speed &lt;chr&gt;,
+#   driver_injury &lt;chr&gt;, driver_race &lt;chr&gt;, driver_sex &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="rename-specific-columns" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="rename-specific-columns"><code>rename()</code> specific columns</h2>
+<p>Correct typos and rename to make variable names shorter and/or more informative</p>
+<ul>
+<li>Original names:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bike)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "...1"                 "object_id"            "city"                
+ [4] "county"               "region"               "development"         
+ [7] "locality"             "on_road"              "rural_urban"         
+[10] "speed_limit"          "traffic_control"      "weather"             
+[13] "workzone"             "bike_age"             "bike_age_group"      
+[16] "bike_alcohol"         "bike_alcohol_drugs"   "bike_direction"      
+[19] "bike_injury"          "bike_position"        "bike_race"           
+[22] "bike_sex"             "driver_age"           "driver_age_group"    
+[25] "driver_alcohol"       "driver_alcohol_drugs" "driver_est_speed"    
+[28] "driver_injury"        "driver_race"          "driver_sex"          
+[31] "driver_vehicle_type"  "crash_alcohol"        "crash_date"          
+[34] "crash_day"            "crash_group"          "crash_hour"          
+[37] "crash_location"       "crash_month"          "crash_severity"      
+[40] "crash_time"           "crash_type"           "crash_year"          
+[43] "ambulance_req"        "hit_run"              "light_condition"     
+[46] "road_character"       "road_class"           "road_condition"      
+[49] "road_configuration"   "road_defects"         "road_feature"        
+[52] "road_surface"         "num_bikes_ai"         "num_bikes_bi"        
+[55] "num_bikes_ci"         "num_bikes_ki"         "num_bikes_no"        
+[58] "num_bikes_to"         "num_bikes_ui"         "num_lanes"           
+[61] "num_units"            "distance_mi_from"     "frm_road"            
+[64] "rte_invd_cd"          "towrd_road"          </code></pre>
+</div>
+</div>
+<ul>
+<li>Rename <code>Speed_Limi</code> to <code>Speed_Limit</code>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#bike &lt;- bike %&gt;%</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  rename(speed_limit = Speed_Limi)## Its already in speed_limit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="check-before-you-move-on-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="check-before-you-move-on-1">Check before you move on</h2>
+<p>Always check your changes and confirm code did what you wanted it to do</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bike)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "...1"                 "object_id"            "city"                
+ [4] "county"               "region"               "development"         
+ [7] "locality"             "on_road"              "rural_urban"         
+[10] "speed_limit"          "traffic_control"      "weather"             
+[13] "workzone"             "bike_age"             "bike_age_group"      
+[16] "bike_alcohol"         "bike_alcohol_drugs"   "bike_direction"      
+[19] "bike_injury"          "bike_position"        "bike_race"           
+[22] "bike_sex"             "driver_age"           "driver_age_group"    
+[25] "driver_alcohol"       "driver_alcohol_drugs" "driver_est_speed"    
+[28] "driver_injury"        "driver_race"          "driver_sex"          
+[31] "driver_vehicle_type"  "crash_alcohol"        "crash_date"          
+[34] "crash_day"            "crash_group"          "crash_hour"          
+[37] "crash_location"       "crash_month"          "crash_severity"      
+[40] "crash_time"           "crash_type"           "crash_year"          
+[43] "ambulance_req"        "hit_run"              "light_condition"     
+[46] "road_character"       "road_class"           "road_condition"      
+[49] "road_configuration"   "road_defects"         "road_feature"        
+[52] "road_surface"         "num_bikes_ai"         "num_bikes_bi"        
+[55] "num_bikes_ci"         "num_bikes_ki"         "num_bikes_no"        
+[58] "num_bikes_to"         "num_bikes_ui"         "num_lanes"           
+[61] "num_units"            "distance_mi_from"     "frm_road"            
+[64] "rte_invd_cd"          "towrd_road"          </code></pre>
+</div>
+</div>
+</section>
+<section id="summarise-in-a-new-data-frame" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="summarise-in-a-new-data-frame"><code>summarise()</code> in a new data frame</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>bike <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bike_age_group) <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">crash_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(crash_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   bike_age_group crash_count
+   &lt;chr&gt;                &lt;int&gt;
+ 1 0-5                     86
+ 2 70+                     96
+ 3 &lt;NA&gt;                   113
+ 4 60-69                  382
+ 5 6-10                   537
+ 6 25-29                  578
+ 7 16-19                  794
+ 8 30-39                  881
+ 9 20-24                  910
+10 11-15                  933
+11 50-59                 1013
+12 40-49                 1144</code></pre>
+</div>
+</div>
+</section>
+<section id="and-arrange-to-order-rows" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="and-arrange-to-order-rows">and <code>arrange()</code> to order rows</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>bike <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bike_age_group) <span class="sc">%&gt;%</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">crash_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(crash_count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   bike_age_group crash_count
+   &lt;chr&gt;                &lt;int&gt;
+ 1 40-49                 1144
+ 2 50-59                 1013
+ 3 11-15                  933
+ 4 20-24                  910
+ 5 30-39                  881
+ 6 16-19                  794
+ 7 25-29                  578
+ 8 6-10                   537
+ 9 60-69                  382
+10 &lt;NA&gt;                   113
+11 70+                     96
+12 0-5                     86</code></pre>
+</div>
+</div>
+</section>
+<section id="select-rows-with-sample_n-or-sample_frac" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="select-rows-with-sample_n-or-sample_frac">Select rows with <code>sample_n()</code> or <code>sample_frac()</code></h2>
+<ul>
+<li><code>sample_n()</code>: randomly sample 5 observations</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>bike_n5 <span class="ot">&lt;-</span> bike <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(bike_n5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  5 65</code></pre>
+</div>
+</div>
+<ul>
+<li><code>sample_frac()</code>: randomly sample 20% of observations</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>bike_perc20 <span class="ot">&lt;-</span>bike <span class="sc">%&gt;%</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_frac</span>(<span class="fl">0.2</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(bike_perc20)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1493   65</code></pre>
+</div>
+</div>
+</section>
+<section id="more-dplyr-resources" class="level2">
+<h2 class="anchored" data-anchor-id="more-dplyr-resources">More <code>dplyr</code> resources</h2>
+<ul>
+<li><p>Visit https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html for the package vignette.</p></li>
+<li><p>Refer to the <code>dplyr</code> <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">cheatsheet</a>.</p></li>
+</ul>
+</section>
+</section>
+<section id="basic-r-syntax" class="level1">
+<h1>Basic R syntax</h1>
+<section id="few-important-r-syntax-notes" class="level2">
+<h2 class="anchored" data-anchor-id="few-important-r-syntax-notes">Few important R syntax notes</h2>
+<p>For when not working with <code>dplyr</code> or <code>ggplot2</code></p>
+<ul>
+<li><p>Refer to a variable in a dataset as <code>bike$crash_location</code></p></li>
+<li><p>Access any element in a dataframe using square brackets</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>bike[<span class="dv">1</span>,<span class="dv">5</span>] <span class="co"># row 1, column 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  region 
+  &lt;chr&gt;  
+1 Coastal</code></pre>
+</div>
+</div>
+<pre><code>- For all observations in row 1: `bike[1, ]`
+- For all observations in column 5: `bike[, 5]`</code></pre>
+</section>
+</section>
+<section id="whats-next" class="level1">
+<h1>What’s next?</h1>
+<section id="want-more-r" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="want-more-r">Want more R?</h2>
+<ul>
+<li>Local install
+<ul>
+<li>R: https://cran.r-project.org/</li>
+<li>RStudio: https://www.rstudio.com/products/RStudio/#Desktop</li>
+</ul></li>
+<li>Resources for learning R:
+<ul>
+<li><a href="https://www.coursera.org/">Coursera</a></li>
+<li><a href="https://www.datacamp.com/">DataCamp</a></li>
+<li>Many many online demos, resources, examples, as well as books</li>
+</ul></li>
+<li>Debugging R errors:
+<ul>
+<li>Read the error!</li>
+<li><a href="http://stackoverflow.com/">StackOverflow</a></li>
+</ul></li>
+<li>Keeping up with what’s new in R land:
+<ul>
+<li><a href="http://www.r-bloggers.com/">R-bloggers</a></li>
+<li>Twitter: #rstats</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="exercise" class="level1">
+<h1>Exercise</h1>
+<section id="your-turn-4" class="level2">
+<h2 class="anchored" data-anchor-id="your-turn-4">Your turn</h2>
+<p>Create a new dataframe that doesn’t include observations where <code>bike_injury = Injury</code> since it’s not clear what this means.</p>
+<p>This new dataframe also should include observations in Durham, and where the biker is a teenager (13 to 19 years, inclusive).</p>
+<p>Create a visualization that will help answer whether facing traffic or riding with traffic (<code>Bike_Dir</code>) is more dangerous in bike crashes for teenagers in Durham, based on the <code>bike_injury</code> variable.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

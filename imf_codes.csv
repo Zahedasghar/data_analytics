@@ -1,0 +1,246 @@
+code,iso2,country,isCountry,region,income_level,AP_region,LLDC,LDC,SIDS
+110,XR29,Advanced Economies (IMF),0,,,,,,
+512,AF,Afghanistan,1,Asia Pacific,low_income,South and South-West Asia,1,1,0
+605,F1,Africa,0,,,,,,
+799,F19,Africa not specified,1,Africa and Middle East,,,0,0,0
+914,AL,Albania,1,Europe,upper_middle_income,,0,0,0
+612,DZ,Algeria,1,Africa and Middle East,upper_middle_income,,0,0,0
+1,W00,World,0,,,,,,
+859,AS,American Samoa,1,Asia Pacific,upper_middle_income,Pacific,0,0,0
+614,AO,Angola,1,Africa and Middle East,upper_middle_income,,0,1,0
+312,AI,Anguilla,1,Latin America and Carribean,high_income,,0,0,0
+311,AG,Antigua and Barbuda,1,Latin America and Carribean,high_income,,0,0,1
+213,AR,Argentina,1,Latin America and Carribean,high_income,,0,0,0
+911,AM,Armenia,1,Asia Pacific,lower_middle_income,North and Central Asia,1,0,0
+314,AW,Aruba,1,Latin America and Carribean,high_income,,0,0,0
+598,S19,Asia not specified,1,Asia Pacific,,,0,0,0
+193,AU,Australia,1,Asia Pacific,high_income,Pacific,0,0,0
+122,AT,Austria,1,Europe,high_income,,0,0,0
+912,AZ,Azerbaijan,1,Asia Pacific,upper_middle_income,North and Central Asia,1,0,0
+313,BS,Bahamas,1,Latin America and Carribean,high_income,,0,0,1
+419,BH,Bahrain,1,Africa and Middle East,high_income,,0,0,0
+513,BD,Bangladesh,1,Asia Pacific,lower_middle_income,South and South-West Asia,0,1,0
+316,BB,Barbados,1,Latin America and Carribean,high_income,,0,0,1
+913,BY,Belarus,1,Europe,upper_middle_income,,0,0,0
+124,BE,Belgium,1,Europe,high_income,,0,0,0
+126,R1,Belgium-Luxembourg,0,,,,,,
+339,BZ,Belize,1,Latin America and Carribean,upper_middle_income,,0,0,1
+638,BJ,Benin,1,Africa and Middle East,low_income,,0,1,0
+319,BM,Bermuda,1,North America,high_income,,0,0,0
+514,BT,Bhutan,1,Asia Pacific,lower_middle_income,South and South-West Asia,1,1,0
+218,BO,Bolivia,1,Latin America and Carribean,lower_middle_income,,1,0,0
+963,BA,Bosnia and Herzegovina,1,Europe,upper_middle_income,,0,0,0
+616,BW,Botswana,1,Africa and Middle East,upper_middle_income,,1,0,0
+223,BR,Brazil,1,Latin America and Carribean,upper_middle_income,,0,0,0
+516,BN,Brunei Darussalam,1,Asia Pacific,high_income,South East Asia,0,0,0
+918,BG,Bulgaria,1,Europe,upper_middle_income,,0,0,0
+748,BF,Burkina Faso,1,Africa and Middle East,low_income,,1,1,0
+618,BI,Burundi,1,Africa and Middle East,low_income,,1,1,0
+522,KH,Cambodia,1,Asia Pacific,low_income,South East Asia,0,1,0
+622,CM,Cameroon,1,Africa and Middle East,lower_middle_income,,0,0,0
+156,CA,Canada,1,North America,high_income,,0,0,0
+624,CV,Cabo Verde,1,Africa and Middle East,lower_middle_income,,0,0,0
+626,CF,Central African Republic,1,Africa and Middle East,low_income,,1,1,0
+628,TD,Chad,1,Africa and Middle East,low_income,,1,1,0
+228,CL,Chile,1,Latin America and Carribean,high_income,,0,0,0
+924,CN,China,1,Asia Pacific,upper_middle_income,East and North East Asia,0,0,0
+233,CO,Colombia,1,Latin America and Carribean,upper_middle_income,,0,0,0
+901,R14,CIS,0,,,,,,
+632,KM,Comoros,1,Africa and Middle East,low_income,,0,1,1
+634,CG,Congo,1,Africa and Middle East,lower_middle_income,,0,0,0
+636,CD,"Congo, the Democratic Republic of the",1,Africa and Middle East,low_income,,0,1,0
+238,CR,Costa Rica,1,Latin America and Carribean,upper_middle_income,,0,0,0
+662,CI,Cote d`Ivoire,1,Africa and Middle East,lower_middle_income,,0,0,0
+960,HR,Croatia,1,Europe,high_income,,0,0,0
+928,CU,Cuba,1,Latin America and Carribean,upper_middle_income,,0,0,1
+354,CW,Curaçao,1,Latin America and Carribean,high_income,,0,0,0
+423,CY,Cyprus,1,Europe,high_income,,0,0,0
+935,CZ,Czech Republic,1,Europe,high_income,,0,0,0
+128,DK,Denmark,1,Europe,high_income,,0,0,0
+505,XS25,Developing Asia (IMF),0,,,,,,
+611,DJ,Djibouti,1,Africa and Middle East,lower_middle_income,,0,1,0
+321,DM,Dominica,1,Latin America and Carribean,upper_middle_income,,0,0,1
+243,DO,Dominican Republic,1,Latin America and Carribean,upper_middle_income,,0,0,1
+938,DE2,East Germany,0,,,,,,
+248,EC,Ecuador,1,Latin America and Carribean,upper_middle_income,,0,0,0
+469,EG,Egypt,1,Africa and Middle East,lower_middle_income,,0,0,0
+253,SV,El Salvador,1,Latin America and Carribean,lower_middle_income,,0,0,0
+200,XR43,Emerging and Developing Countries,0,,,,,,
+903,1C_903,Emerging and Developing Europe,0,,,,,,
+642,GQ,Equatorial Guinea,1,Africa and Middle East,upper_middle_income,,0,1,0
+643,ER,Eritrea,1,Africa and Middle East,low_income,,0,1,0
+939,EE,Estonia,1,Europe,high_income,,0,0,0
+644,ET,Ethiopia,1,Africa and Middle East,low_income,,1,1,0
+998,B0,European Union,0,,,,,,
+163,U2,Euro Area,0,,,,,,
+170,E1,Europe,0,,,,,,
+884,E19,Europe not specified,1,Europe,,,0,0,0
+80,1C_080,Export earnings: fuel,0,,,,,,
+92,1C_092,Export earnings: nonfuel,0,,,,,,
+323,FK,Falkland Islands,1,Latin America and Carribean,high_income,,0,0,0
+816,FO,Faroe Islands,1,Europe,high_income,,0,0,0
+819,FJ,Fiji,1,Asia Pacific,upper_middle_income,Pacific,0,0,1
+172,FI,Finland,1,Europe,high_income,,0,0,0
+934,CSH,Former Czechoslovakia,0,,,,,,
+974,SUH,U.S.S.R.,0,,,,,,
+188,YUC,"Yugoslavia, SFR",0,,,,,,
+132,FR,France,1,Europe,high_income,,0,0,0
+887,PF,French Polynesia,1,Asia Pacific,high_income,Pacific,0,0,0
+646,GA,Gabon,1,Africa and Middle East,upper_middle_income,,0,0,0
+648,GM,Gambia,1,Africa and Middle East,low_income,,0,1,0
+915,GE,Georgia,1,Asia Pacific,lower_middle_income,North and Central Asia,0,0,0
+134,DE,Germany,1,Europe,high_income,,0,0,0
+652,GH,Ghana,1,Africa and Middle East,lower_middle_income,,0,0,0
+823,GI,Gibraltar,1,Europe,high_income,,0,0,0
+174,GR,Greece,1,Europe,high_income,,0,0,0
+326,GL,Greenland,1,North America,high_income,,0,0,0
+328,GD,Grenada,1,Latin America and Carribean,upper_middle_income,,0,0,1
+829,GU,Guam,1,Asia Pacific,high_income,Pacific,0,0,0
+258,GT,Guatemala,1,Latin America and Carribean,lower_middle_income,,0,0,0
+656,GN,Guinea,1,Africa and Middle East,low_income,,0,1,0
+654,GW,Guinea-Bissau,1,Africa and Middle East,low_income,,0,1,1
+336,GY,Guyana,1,Latin America and Carribean,lower_middle_income,,0,0,1
+263,HT,Haiti,1,Latin America and Carribean,low_income,,0,1,1
+187,VA,Vatican,1,Europe,high_income,,0,0,0
+268,HN,Honduras,1,Latin America and Carribean,lower_middle_income,,0,0,0
+532,HK,"Hong Kong, China",1,Asia Pacific,high_income,East and North East Asia,0,0,0
+944,HU,Hungary,1,Europe,high_income,,0,0,0
+176,IS,Iceland,1,Europe,high_income,,0,0,0
+534,IN,India,1,Asia Pacific,lower_middle_income,South and South-West Asia,0,0,0
+536,ID,Indonesia,1,Asia Pacific,lower_middle_income,South East Asia,0,0,0
+429,IR,"Iran, Islamic Republic of",1,Asia Pacific,upper_middle_income,South and South-West Asia,0,0,0
+433,IQ,Iraq,1,Africa and Middle East,upper_middle_income,,0,0,0
+178,IE,Ireland,1,Europe,high_income,,0,0,0
+436,IL,Israel,1,Africa and Middle East,upper_middle_income,,0,0,0
+136,IT,Italy,1,Europe,high_income,,0,0,0
+343,JM,Jamaica,1,Latin America and Carribean,upper_middle_income,,0,0,1
+158,JP,Japan,1,Asia Pacific,high_income,East and North East Asia,0,0,0
+439,JO,Jordan,1,Africa and Middle East,upper_middle_income,,0,0,0
+916,KZ,Kazakhstan,1,Asia Pacific,upper_middle_income,North and Central Asia,1,0,0
+664,KE,Kenya,1,Africa and Middle East,lower_middle_income,,0,0,0
+826,KI,Kiribati,1,Asia Pacific,lower_middle_income,Pacific,0,1,1
+954,KP,"Korea, Democratic People's Rep. of",1,Asia Pacific,low_income,East and North East Asia,0,0,0
+542,KR,"Korea, Republic of",1,Asia Pacific,high_income,East and North East Asia,0,0,0
+967,XK,Kosovo,1,Europe,lower_middle_income,,0,0,0
+443,KW,Kuwait,1,Africa and Middle East,high_income,,0,0,0
+917,KG,Kyrgyzstan,1,Asia Pacific,lower_middle_income,North and Central Asia,1,0,0
+544,LA,Lao People's Democratic Republic,1,Asia Pacific,lower_middle_income,South East Asia,1,1,0
+941,LV,Latvia,1,Europe,high_income,,0,0,0
+446,LB,Lebanon,1,Africa and Middle East,upper_middle_income,,0,0,0
+666,LS,Lesotho,1,Africa and Middle East,lower_middle_income,,1,1,0
+668,LR,Liberia,1,Africa and Middle East,low_income,,0,1,0
+672,LY,Libya,1,Africa and Middle East,upper_middle_income,,0,0,0
+946,LT,Lithuania,1,Europe,high_income,,0,0,0
+137,LU,Luxembourg,1,Europe,high_income,,0,0,0
+546,MO,"Macao, China",1,Asia Pacific,high_income,East and North East Asia,0,0,0
+962,MK,"Macedonia, FYR",1,Europe,upper_middle_income,,1,0,0
+674,MG,Madagascar,1,Africa and Middle East,low_income,,0,1,0
+676,MW,Malawi,1,Africa and Middle East,low_income,,1,1,0
+548,MY,Malaysia,1,Asia Pacific,upper_middle_income,South East Asia,0,0,0
+554,1C_554,"Malaysia, West",0,,,,,,
+556,MV,Maldives,1,Asia Pacific,upper_middle_income,South and South-West Asia,0,0,1
+678,ML,Mali,1,Africa and Middle East,low_income,,1,1,0
+181,MT,Malta,1,Europe,high_income,,0,0,0
+867,MH,Marshall islands,1,Asia Pacific,upper_middle_income,Pacific,0,0,1
+682,MR,Mauritania,1,Africa and Middle East,lower_middle_income,,0,1,0
+684,MU,Mauritius,1,Africa and Middle East,upper_middle_income,,0,0,1
+273,MX,Mexico,1,Latin America and Carribean,upper_middle_income,,0,0,0
+868,FM,"Micronesia, Federated States of",1,Asia Pacific,lower_middle_income,Pacific,0,0,1
+405,F97,Middle East,0,,,,,,
+489,F979,Middle East not specified,1,Africa and Middle East,,,0,0,0
+440,1C_440,"Middle East, North Africa, and Pakistan",0,,,,,,
+921,MD,Moldova,1,Europe,lower_middle_income,,1,0,0
+948,MN,Mongolia,1,Asia Pacific,upper_middle_income,East and North East Asia,1,0,0
+943,ME,Montenegro,1,Europe,upper_middle_income,,0,0,0
+351,MS,Montserrat,1,Latin America and Carribean,lower_middle_income,,0,0,0
+686,MA,Morocco,1,Africa and Middle East,lower_middle_income,,0,0,0
+688,MZ,Mozambique,1,Africa and Middle East,low_income,,0,1,0
+518,MM,Myanmar,1,Asia Pacific,low_income,South East Asia,0,1,0
+728,NA,Namibia,1,Africa and Middle East,upper_middle_income,,0,0,0
+836,NR,Nauru,1,Asia Pacific,upper_middle_income,Pacific,0,0,1
+558,NP,Nepal,1,Asia Pacific,low_income,South and South-West Asia,1,1,0
+138,NL,Netherlands,1,Europe,high_income,,0,0,0
+353,AN,Netherlands Antilles,1,Latin America and Carribean,high_income,,0,0,0
+839,NC,New Caledonia,1,Asia Pacific,high_income,Pacific,0,0,0
+196,NZ,New Zealand,1,Asia Pacific,high_income,Pacific,0,0,0
+278,NI,Nicaragua,1,Latin America and Carribean,lower_middle_income,,0,0,0
+692,NE,Niger,1,Africa and Middle East,low_income,,1,1,0
+694,NG,Nigeria,1,Africa and Middle East,lower_middle_income,,0,0,0
+142,NO,Norway,1,Europe,high_income,,0,0,0
+898,_X,Not allocated/unspecified,0,,,,,,
+449,OM,Oman,1,Africa and Middle East,high_income,,0,0,0
+910,X88,Other Countries n.i.e. (IMF),0,,,,,,
+564,PK,Pakistan,1,Asia Pacific,lower_middle_income,South and South-West Asia,0,0,0
+565,PW,Palau,1,Asia Pacific,upper_middle_income,Pacific,0,0,1
+487,PS,West Bank and Gaza,1,Africa and Middle East,lower_middle_income,,0,0,0
+283,PA,Panama,1,Latin America and Carribean,upper_middle_income,,0,0,0
+853,PG,Papua New Guinea,1,Asia Pacific,lower_middle_income,Pacific,0,0,1
+288,PY,Paraguay,1,Latin America and Carribean,upper_middle_income,,1,0,0
+293,PE,Peru,1,Latin America and Carribean,upper_middle_income,,0,0,0
+566,PH,Philippines,1,Asia Pacific,lower_middle_income,South East Asia,0,0,0
+964,PL,Poland,1,Europe,high_income,,0,0,0
+182,PT,Portugal,1,Europe,high_income,,0,0,0
+453,QA,Qatar,1,Africa and Middle East,high_income,,0,0,0
+968,RO,Romania,1,Europe,upper_middle_income,,0,0,0
+922,RU,Russian Federation,1,Asia Pacific,high_income,North and Central Asia,0,0,0
+714,RW,Rwanda,1,Africa and Middle East,low_income,,1,1,0
+361,KN,St. Kitts and Nevis,1,Latin America and Carribean,high_income,,0,0,1
+362,LC,St. Lucia,1,Latin America and Carribean,upper_middle_income,,0,0,1
+364,VC,St. Vincent and the Grenadines,1,Latin America and Carribean,upper_middle_income,,0,0,1
+862,WS,Samoa,1,Asia Pacific,lower_middle_income,Pacific,0,0,1
+135,SM,San Marino,1,Europe,high_income,,0,0,0
+716,ST,São Tomé & Príncipe,1,Africa and Middle East,lower_middle_income,,0,0,1
+456,SA,Saudi Arabia,1,Africa and Middle East,high_income,,0,0,0
+722,SN,Senegal,1,Africa and Middle East,lower_middle_income,,0,1,0
+942,RS,Serbia,1,Europe,upper_middle_income,,0,0,0
+965,CS,Serbia and Montenegro,0,,,,,,
+718,SC,Seychelles,1,Africa and Middle East,high_income,,0,0,1
+724,SL,Sierra Leone,1,Africa and Middle East,low_income,,0,1,0
+576,SG,Singapore,1,Asia Pacific,high_income,South East Asia,0,0,1
+352,SX,Sint Maarten,1,Latin America and Carribean,high_income,,0,0,0
+936,SK,Slovakia,1,Europe,high_income,,0,0,0
+961,SI,Slovenia,1,Europe,high_income,,0,0,0
+813,SB,Solomon Islands,1,Asia Pacific,lower_middle_income,Pacific,0,1,1
+726,SO,Somalia,1,Africa and Middle East,low_income,,0,1,0
+199,ZA,South Africa,1,Africa and Middle East,upper_middle_income,,0,0,0
+198,1C_198,South African Common Customs Area (SACCA),0,,,,,,
+733,SS,South Sudan,1,Africa and Middle East,high_income,,1,0,0
+184,ES,Spain,1,Europe,high_income,,0,0,0
+899,XR99,Special Categories and Economic Zones,0,,,,,,
+524,LK,Sri Lanka,1,Asia Pacific,lower_middle_income,South and South-West Asia,0,0,0
+603,F6,Sub-Saharan Africa,0,,,,,,
+732,SD,Sudan,1,Africa and Middle East,lower_middle_income,,0,1,0
+366,SR,Suriname,1,Latin America and Carribean,upper_middle_income,,0,0,1
+734,SZ,Swaziland,1,Africa and Middle East,lower_middle_income,,1,0,0
+144,SE,Sweden,1,Europe,high_income,,0,0,0
+146,CH,Switzerland,1,Europe,high_income,,0,0,0
+463,SY,Syrian Arab Republic,1,Africa and Middle East,lower_middle_income,,0,0,0
+528,TW,"Taiwan, Province of China",1,Asia Pacific,high_income,East and North East Asia,0,0,0
+923,TJ,Tajikistan,1,Asia Pacific,low_income,North and Central Asia,1,0,0
+738,TZ,Tanzania,1,Africa and Middle East,low_income,,0,0,0
+578,TH,Thailand,1,Asia Pacific,upper_middle_income,South East Asia,0,0,0
+537,TL,Timor-Leste,1,Asia Pacific,lower_middle_income,South East Asia,0,1,1
+742,TG,Togo,1,Africa and Middle East,low_income,,0,1,0
+866,TO,Tonga,1,Asia Pacific,upper_middle_income,Pacific,0,0,1
+369,TT,Trinidad and Tobago,1,Latin America and Carribean,high_income,,0,0,1
+744,TN,Tunisia,1,Africa and Middle East,upper_middle_income,,0,0,0
+186,TR,Turkey,1,Asia Pacific,upper_middle_income,South and South-West Asia,0,0,0
+925,TM,Turkmenistan,1,Asia Pacific,upper_middle_income,North and Central Asia,1,0,0
+869,TV,Tuvalu,1,Asia Pacific,upper_middle_income,Pacific,0,1,1
+746,UG,Uganda,1,Africa and Middle East,low_income,,1,1,0
+926,UA,Ukraine,1,Europe,lower_middle_income,,0,0,0
+466,AE,United Arab Emirates,1,Africa and Middle East,high_income,,0,0,0
+112,GB,United Kingdom,1,Europe,high_income,,0,0,0
+111,US,United States,1,North America,high_income,,0,0,0
+298,UY,Uruguay,1,Latin America and Carribean,high_income,,0,0,0
+927,UZ,Uzbekistan,1,Asia Pacific,lower_middle_income,North and Central Asia,1,0,0
+846,VU,Vanuatu,1,Asia Pacific,lower_middle_income,Pacific,0,1,1
+299,VE,"Venezuela, Bolivarian Republic",1,Latin America and Carribean,high_income,,0,0,0
+582,VN,Viet Nam,1,Asia Pacific,lower_middle_income,South East Asia,0,0,0
+205,A10,Western Hemisphere,0,,,,,,
+399,A109,Western Hemisphere not specified,0,,,,,,
+474,YE,Yemen,1,Africa and Middle East,lower_middle_income,,0,1,0
+473,1C_473,Yemen Arab Rep.,0,,,,,,
+459,1C_459,"Yemen, P.D. Rep.",0,,,,,,
+754,ZM,Zambia,1,Africa and Middle East,lower_middle_income,,1,1,0
+698,ZW,Zimbabwe,1,Africa and Middle East,low_income,,1,0,0

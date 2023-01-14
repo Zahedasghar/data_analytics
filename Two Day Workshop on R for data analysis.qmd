@@ -1,0 +1,226 @@
+---
+title: '4-Days Online Workshop on Data Analysis & Econometrics with R '
+subtitle: "17,18, 25 and 26 February"
+title-block-banner: true
+title-block-banner-color: "white"
+#author: "Zahid Asghar"
+#date: "`r Sys.Date()`"
+format:
+  html:
+    theme: [default, custom.scss]
+    logo: "za_icon_2.png"
+    footer: "[PIDE—R](https://pide.org.pk)"
+    height: 900
+    width: 1600
+    #df-print: paged
+    slide-number: c
+    code-fold: true
+    chalkboard: true
+overview: true
+execute:
+  echo: false
+  warning: false
+  freeze: auto
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(httr)
+clrs <- MetBrewer::met.brewer(name = "Java")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
+options(digits = 3, width = 75)
+```
+
+## Why choose R and Quarto
+
+-   
+
+    #### [Use One Tool from Start to Finish]{.yellow}
+
+-   
+
+    #### Focus on Content, Not Formatting
+
+-   
+
+    #### [Easier to share and review]{.yellow}
+
+-   
+
+    #### Its not R vs others but [R for jobs](https://www.indeed.com/q-Field-Economist-R-Program-jobs.html?vjk=adc248ffcc74c281)
+
+-   
+
+    ### [R for analytics and statistical computing, econometric modeling and data science]{.yellow}
+
+-   
+
+    ### R for Reproducible research
+
+# What will you learn
+
+Basic feature of this workshop will be to start exploring and modeling data using R along-with hands-on experience. All workshop and related data will be provided to all the participants once they will register for the workshop.
+
+## By the end of Data Analysis with R, you'll understand:
+
+-   How to use base R and tidyverse to carry out analysis on your own data
+-   The core features of a data analysis workflow
+-   Generating summary statistics, visualizing and doing econometrics data
+
+## And you'll be able to use:
+
+-   Basic functions in the tidyverse to process raw data for typical data analysis questions
+-   Logical expressions and indexing to ask specific questions of data
+-   Functions to conduct common statistical tests
+-   Application of conepts on a case study data of Health Insurance Subsidy Program data
+
+## Why this is for you
+
+-   You have your own data sets and you want to analyze it
+-   You think R is important but intimidated by R and dont know where to start with
+-   You want to do good in data analytics
+-   You want to get data insight for your intelligent decision making
+-   You want to be at par in academia with the rest of the world
+
+# Uploaded data and required R packages
+
+Understanding datasets requires many hours/days or in some cases weeks.There are many commercially available softwares but open source community based softwares have now dominated and R is one of these. R makes data understanding process as easy as possible through the dplyr package. It is one of the easiest solution for code-based data analysis. We will learn in this training how to do it. I have already uploaded videos for downloading packages and relevant information. [Installing R and RStudio](https://youtu.be/ZNBZevfYgo00),
+
+[R Packages, Library, Errors](https://youtu.be/SRSNdCZ_QnE),
+
+[R Codes Basics](https://youtu.be/0IEfQdjc5mM)
+
+We shall use Health Insurance Subsidy Program and related data sets throughout this training. It's available through CRAN, so make sure to install it. Here's how to load in all required packages:
+
+```{r, echo=FALSE, warning=FALSE,message=FALSE}
+library(tidyverse)
+#install.packages("gapminder")
+library(gapminder)
+#gapminder %>% filter(country=="Pakistan")
+```
+
+# Outline
+
+## Some basic commands for data loading and its features
+
+-   Reading csv files, excel, Stata , SPSS ... data files
+-   View
+-   glimpse
+-   structure
+-   head, tail
+
+## Components
+
+-   Column Selection
+-   Data Filtering
+-   Sort data with arrange
+-   Creating Derived Columns
+-   Calculating Summary Statistics
+-   Summarising data groupwise
+-   Creating Tables
+
+## How to merge files
+
+-   Merging files
+
+### Summarising data by groups
+
+Average life expectancy is calculated by_grouping continents:
+
+```{r, echo=FALSE}
+gapminder %>% 
+  group_by(continent) %>% 
+  filter(year==2007) %>% 
+  summarize(avglife=mean(lifeExp)) 
+
+```
+
+### if_else command alongwith mutate
+
+### Percentiles
+
+### Advanced Analysis
+
+## Visualizing Data
+
+Creating awesome graphs using themes of popular magzines like **The Economist**, **Financial Times** and many ohters.
+
+```{r, echo=FALSE}
+library(ggthemes )
+library(knitr)
+gapminder_2007 <- gapminder %>% filter(year == 2007)
+ggplot(data = gapminder_2007) +
+geom_point(mapping = aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
+scale_x_log10()
+
+```
+
+```{r, echo=FALSE, warning=FALSE}
+library(plotly)
+library(gapminder)
+g <- crosstalk::SharedData$new(gapminder, ~continent)
+gg <- ggplot(g, aes(gdpPercap, lifeExp, color = continent, frame = year)) +
+  geom_point(aes(size = pop, ids = country)) +
+  geom_smooth(se = FALSE, method = "lm") +
+  scale_x_log10()+labs(title = "Relationship between GDP per capita and life_expectancy 1952-2007",
+                       subtitle="Bubble size is population of the country and color represents continent",
+                       caption="Source: Gapminder, Zahid Asghar")
+ggplotly(gg) %>% 
+  highlight("plotly_hover")
+
+```
+
+## Basic of Regression Analysis
+
+-   Doing regression analysis in practice
+-   Producing nice regression tables in word and other formats
+
+## Producing beautiful documents in Quarto
+
+
+## About me
+
+::: columns
+::: {.column width="30%"}
+![Zahid Asghar](docs/images/zahid.jpg){width="600"}
+:::
+
+::: {.column width="70%"}
+::: nonincremental
+-   Student of:
+    -   Applied Econometrics
+    -   Data Analytics
+    -   Development Economics
+    -   R, STATA, Excel
+    -   Urban Economics
+    -   Skills for jobs of today and tomorrow
+-   Research interests : data for policy, development economics , Applied Econometrics
+:::
+:::
+:::
+
+## Pre-requisite for workshop
+
+There is no pre-requisite for the workshop and all of the participants can benefits depending on how much effort they put it in doing practical work.
+-   install R and RStudio 
+-   install tidyverse package [R Packages, Library, Errors](https://youtu.be/SRSNdCZ_QnE),
+-   install gapminder package [R Packages, Library, Errors](https://youtu.be/SRSNdCZ_QnE),
+R and RStudion installation is desirable but not necessary as I shall use [RStudio(now Posit)  Cloud](https://posit.cloud).
+
+## Course fee and refund
+
+Full fee refund will be made to General category within 24 hours of the first lecture. 75% of the fee will be refund to students of general category, and fee refund for students of special category will only be made if they cancel registration at least 3-days before the start of the first class.
+
+| Category                                                                   | Fee      | Remarks                                                                     |
+|--------------------------|--------------|--------------------------------|
+| General                                                                    | Rs.4000/ |                                                                             |
+| Student                                                                    | Rs.2000/ | Certificate of fee deposited in the university enrolled. Seats are limited.(First come first serve basis) |
+| Students enrolled in Balochistan and selected universities of KP and Sindh | Rs.1000/ | [10 seats (First come first serve basis)]{.yellow}                    |
+|                                                                            |          |                                                                             |
+
+: Course Fee
+
+All those who have attended `Data Analysis Using Excel` workshop will get 25% discount if they fall in general category
+
+Please pay course fee in the account given below and in case of student, please share neat image of being fee deposited in the university and for this course. Same is the case for special category students.

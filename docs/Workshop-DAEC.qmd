@@ -1,6 +1,6 @@
 ---
 title: '4-Days Online Workshop on Data Analysis & Econometrics with R '
-subtitle: "17,18, 25 and 26 February"
+subtitle: "17, 18, 25 and 26 February 2023 (6-9 PM)"
 title-block-banner: true
 title-block-banner-color: "white"
 #author: "Zahid Asghar"
@@ -9,7 +9,7 @@ format:
   html:
     theme: [default, custom.scss]
     logo: "za_icon_2.png"
-    footer: "[PIDE—R](https://pide.org.pk)"
+    footer: "[Zahid—R](https://zahidasghar.com/)"
     height: 900
     width: 1600
     #df-print: paged
@@ -60,7 +60,7 @@ options(digits = 3, width = 75)
 
 # What will you learn
 
-Basic feature of this workshop will be to start exploring and modeling data using R along-with hands-on experience. All workshop and related data will be provided to all the participants once they will register for the workshop.
+Basic feature of this workshop will be to start exploring and modeling data using R along-with hands-on experience. All workshops recording, codes, slides and related things will be provided to all the participants once they will register for the workshop.
 
 ## By the end of Data Analysis with R, you'll understand:
 
@@ -224,3 +224,5 @@ Full fee refund will be made to General category within 24 hours of the first le
 All those who have attended `Data Analysis Using Excel` workshop will get 25% discount if they fall in general category
 
 Please pay course fee in the account given below and in case of student, please share neat image of being fee deposited in the university and for this course. Same is the case for special category students.
+
+# [Registration](https://docs.google.com/forms/d/e/1FAIpQLScmsOFwhvNfZCIXsui4lDlCYpLDUIvRvuRsCbZFsG7pk7VnOA/viewform?usp=sf_link)

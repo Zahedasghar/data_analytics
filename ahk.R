@@ -1,5 +1,3 @@
-
-
 library(haven)
 library(tidyverse)
 library(gt)
@@ -144,6 +142,7 @@ ahk %>% tbl_cross(
   add_p()
 
 
+
 ahk %>% tbl_cross(
   row = S2Q22,
   col = S6Q26,
@@ -191,6 +190,7 @@ ahk %>% select(S2Q2) %>% mutate(S2Q2=as_factor(S2Q2)) %>% tbl_summary()
 ## Simply replace S2Q2 98 with 9
 
 ahk<-ahk %>% mutate(S2Q2=replace(S2Q2,S2Q2==98,9)) 
+
 
 
 ahk$S2Q2_1<-ifelse(is.na(ahk$S2Q2_other),ahk$S2Q2,ahk$S2Q2_other)

@@ -6,8 +6,8 @@ library(gt)
 library(gtExtras)
 #NY.GDP.MKTP.KD.ZG
 #gdp_growth <- WDI(indicator = "NY.GDP.MKTP.KD.ZG", start = 1975, end = 2021) # gdp growth rate 
-saveRDS(gdp_growth,file ="gdp_growth1.rds" )
-gdp_growth<-readRDS("gdp_growth.rds")
+#saveRDS(gdp_growth,file ="gdp_growth1.rds" )
+gdp_growth<-readRDS("gdp_growth1.rds")
 
 gdp_growth_sub<-gdp_growth|>filter(country %in%c("Pakistan", "India", "Bangladesh"),year>1990)
 gdp_growth_sub|>glimpse()
@@ -30,7 +30,7 @@ tab<-bind_cols(tab1,tab2)
 tab<-tab|>select(country...1,avg...2,avg...4)
 
 tab<-tab|>rename(country="country...1",avg_1991_2021="avg...2",avg_gr_2012_2021="avg...4")
-tab
+tab|>gt()|>gt_theme_538()
 gdp_per_capita<-c(2227,1942,1547)
 tab<-bind_cols(tab,gdp_per_capita)
 tab<-tab|>rename(gdp_percap="...4")
@@ -39,5 +39,3 @@ tab|>
 
 
 
-library(patchwork)
-tab1+tab2

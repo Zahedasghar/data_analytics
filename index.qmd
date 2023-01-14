@@ -42,11 +42,13 @@ options(digits = 3, width = 75)
 
 # [R Language]{.yellow} is more than a [Statistics Application]{.yellow}, endless opportunities and has great presence in research community and is [one of the most popular language for data analysis.]{.yellow}
 
-::: notes
-[Good econometrics cannot save a shaky research agenda]{.yellow}, but the promiscuous (بے ہودہ) [use of fancy econometric techniques sometimes brings down a good one.]{.yellow}
+# [Good econometrics cannot save a shaky research agenda]{.yellow}, but the promiscuous (بے ہودہ) [use of fancy econometric techniques sometimes brings down a good one.]{.yellow} (Mostly Harless Econometrics)
 
-Anyone interested in [using data to shape public policy]{.yellow} or to promote public health must [digest and use statistical results]{.yellow}. Anyone interested in drawing useful inferences from data on people can be said to be an applied econometrician.
-:::
+# Anyone interested in [using data to shape public policy]{.yellow} or to promote public health must [digest and use statistical results]{.yellow}. Anyone interested in drawing useful inferences from data on people can be said to be an applied econometrician.
+
+# “data wrangling,” “data munging” and “data janitor work” 
+
+# One of the most important skills the [next generation of public employees can have is an understanding of both policy and data]{.yellow}, enabling them to understand the social context, deploy the necessary analysis and craft targeted solutions for the most pressing civic problems.
 
 ## Why data analytics skills matter
 
@@ -120,7 +122,7 @@ The average GDP per capita is `r dollar(mean(gapminder$gdpPercap))` with a stand
 ## Output
 
 ```{r}
-#| eval: true
+#| eval: false
 #| echo: false
 #| cache: true
 library(gapminder)
@@ -314,7 +316,7 @@ $$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
 
 # [This whole sentence is yellow.]{.yellow}
 
-## [Its]{.blue} not cool!
+##
 
 ::: columns
 ::: callout-warning

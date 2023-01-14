@@ -9,7 +9,7 @@ output:
     toc: yes
 date: "`r format(Sys.time(), '%d %B %Y')`"
 params:
-  country: Pakistan
+  country: Bangladesh
   year_start: '2016-07-01'
   year_end: '2017-06-30'
   fy: 2017

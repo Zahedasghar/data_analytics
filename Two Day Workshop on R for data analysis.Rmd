@@ -1,0 +1,155 @@
+---
+title: 'Workshop on Data Analysis with R '
+author: "Zahid Asghar"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_html: default
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+  rmarkdown::html_vignette:
+    toc: yes
+    toc_depth: 3
+vignette: |
+  %\VignetteIndexEntry{examples} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}
+subtitle: Friday and Saturday 6:00 PM to 8:00 PM (Online)
+header-includes:
+- \usepackage{titling}
+- \pretitle{ \begin{center} \hspace*{-16cm} \includegraphics[width=1.5in,height=1.5in]{/Users/hp//Pictures/umt.png}\LARGE\\
+  \vspace*{-3cm} }
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Introduction
+
+## Making Sense of Data
+
+## Why R
+
+Reproducibility, RMarkdown, Presentation, Webpages...., pdf, html, word, Latex and much more
+
+# What will you learn
+
+Basic feature of this workshop will be to start exploring data using R along-with hands-on experience. All workshop and related data will be provided to all the participants once they will register for the workshop.
+
+## By the end of Data Analysis with R, you'll understand:
+
+-   How to use base R and tidyverse to carry out analysis on your own data
+-   The core features of a data analysis workflow
+-   Generating summary statistics and visualizing data
+
+## And you'll be able to use:
+
+-   Basic functions in the tidyverse to process raw data for typical data analysis questions
+-   Logical expressions and indexing to ask specific questions of data
+-   Functions to conduct common statistical tests
+
+## Why this is for you
+
+-   You have your own data sets and you want to analyze it
+-   You think R is important but intimidated by R and dont know where to start with
+-   You want to do good in data analytics
+-   You want to get data insight for your intelligent decision making
+-   You want to be at par in academia with the rest of the world
+
+# Uploaded data and required R packages
+
+Understanding datasets requires many hours/days or in some cases weeks.There are many commercially available softwares but open source community based softwares have now dominated and R is one of these. R makes data understanding process as easy as possible through the dplyr package. It is one of the easiest solution for code-based data analysis. We will learn in this training how to do it. I have already uploaded videos for downloading packages and relevant information. [Installing R and RStudio](https://youtu.be/ZNBZevfYgo00),
+
+[R Packages, Library, Errors](https://youtu.be/SRSNdCZ_QnE),
+
+[R Codes Basics](https://youtu.be/0IEfQdjc5mM)
+
+I have discussed the [Gapminder dataset](https://cran.r-project.org/web/packages/gapminder/index.html) in my videos and we shall use it throughout this training. It's available through CRAN, so make sure to install it. Here's how to load in all required packages:
+
+```{r, echo=FALSE, warning=FALSE,message=FALSE}
+library(tidyverse)
+#install.packages("gapminder")
+library(gapminder)
+#gapminder %>% filter(country=="Pakistan")
+```
+
+# Ouline
+
+## Some Basic Commands for data loading and its features
+
+-   Reading csv files, excel, Stata , SPSS ... data files
+-   View
+-   glimpse
+-   structure
+-   head, tail
+
+## Components
+
+-   Column Selection
+-   Data Filtering
+-   Sort data with arrange
+-   Creating Derived Columns
+-   Calculating Summary Statistics
+-   Summarising data groupwise
+-   Creating Tables
+
+## How to merge files
+
+-   Merging files
+
+### Summarising data by groups
+
+Average life expectancy is calculated by_grouping continents:
+
+```{r, echo=FALSE}
+gapminder %>% 
+  group_by(continent) %>% 
+  filter(year==2007) %>% 
+  summarize(avglife=mean(lifeExp)) 
+
+```
+
+### if_else command alongwith mutate
+
+### Percentiles
+
+Understanding percentiles w.r.t lifeexpectancy and gdp per capita for 200 countries using gapminder data.
+
+## Advanced Analysis
+
+## Visualizing Data
+
+Creating awesome graphs using themes of popular magzines like **The Economist**, **Financial Times** and many ohters.
+
+```{r, echo=FALSE}
+library(ggthemes )
+library(knitr)
+gapminder_2007 <- gapminder %>% filter(year == 2007)
+ggplot(data = gapminder_2007) +
+geom_point(mapping = aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
+scale_x_log10()
+
+```
+
+```{r, echo=FALSE}
+library(plotly)
+library(gapminder)
+g <- crosstalk::SharedData$new(gapminder, ~continent)
+gg <- ggplot(g, aes(gdpPercap, lifeExp, color = continent, frame = year)) +
+  geom_point(aes(size = pop, ids = country)) +
+  geom_smooth(se = FALSE, method = "lm") +
+  scale_x_log10()
+ggplotly(gg) %>% 
+  highlight("plotly_hover")
+
+```
+
+
+## Basic of Regression Analysis
+
+After exploratory analysis, we shall discuss modeling of data in this section.
+
+# Pre-requisite for workshop preparation
+
+-   install R and RStudio
+-   install tidyverse package [R Packages, Library, Errors](https://youtu.be/SRSNdCZ_QnE),
+-   install gapminder package [R Packages, Library, Errors](https://youtu.be/SRSNdCZ_QnE),

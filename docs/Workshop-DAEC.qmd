@@ -3,7 +3,7 @@ title: '4-Days Online Workshop on Data Analysis & Econometrics with R '
 subtitle: "17, 18, 25 and 26 February 2023 (6-9 PM)"
 title-block-banner: true
 title-block-banner-color: "white"
-#author: "Zahid Asghar"
+author: "Zahid Asghar and Muhammad Yasin"
 #date: "`r Sys.Date()`"
 format:
   html:
@@ -18,7 +18,7 @@ format:
     chalkboard: true
 overview: true
 execute:
-  echo: false
+  echo: true
   warning: false
   freeze: auto
 ---
@@ -31,6 +31,12 @@ clrs_lt <- colorspace::lighten(clrs, 0.9)
 knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
 options(digits = 3, width = 75)
 ```
+
+
+## پ کو اس ورکشاپ میں کیوں جانا چاہئے؟ اس ورکشاپ میں کس کو شرکت کرنی چاہیے؟ آر پر توجہ کیوں دی جاتی ہے؟میں ان چیزوں کو اجاگر کروں گا تاکہ آپ کے لیے فیصلہ کرنا آسان ہو۔پہلی بات یہ ہے کہ جو کوئی بھی ڈیٹا کے تجزیہ میں دلچسپی رکھتا ہے ڈیٹا کا خلاصہ کرنے سے لے کر پیچیدہ ماڈلنگ تک اس ورکشاپ میں شامل ہوں۔ دوم، تمام ریسرچ اسٹوڈنٹس، ڈیٹا اینالسٹ، ریسرچ ورکرز اور بہت سے لوگوں کو اس ورکشاپ سے فائدہ اٹھانے کے لیے شامل ہونا چاہیے۔ آخر میں، R نوکریوں کے لیے ہے اور R/Python ملازمت کی حفاظت کے لیے سب سے زیادہ مطلوبہ ہنر ہیں۔ مزید یہ کہ یہ صرف ڈیٹا کے تجزیے کے لیے دستاویزی تحریر کے لیے بھی مفید ہے۔
+
+
+
 
 ## Why choose R and Quarto
 

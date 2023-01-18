@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Analysing used car sales data for Pakistan</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="pakwheels_files/libs/clipboard/clipboard.min.js"></script>
+<script src="pakwheels_files/libs/quarto-html/quarto.js"></script>
+<script src="pakwheels_files/libs/quarto-html/popper.min.js"></script>
+<script src="pakwheels_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="pakwheels_files/libs/quarto-html/anchor.min.js"></script>
+<link href="pakwheels_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="pakwheels_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="pakwheels_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="pakwheels_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="pakwheels_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+
+<script src="pakwheels_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="pakwheels_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Analysing used car sales data for Pakistan</h1>
+            <p class="subtitle lead">Zahid Asghar, SOE, QAU</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="section" class="level2" data-menu-title="Title Slide" data-background-image="trial.png">
+<h2 data-menu-title="Title Slide" data-background-image="trial.png" class="anchored" data-anchor-id="section"></h2>
+<section id="case-study-for-data-anlytics-from-basics-to-modeling" class="level3 custom-author">
+<h3 class="custom-author anchored" data-anchor-id="case-study-for-data-anlytics-from-basics-to-modeling"><span class="yellow">Case study for data anlytics from basics to modeling</span></h3>
+<p><span class="custom-institution"><a href="mailto:zasghar@qau.edu.pk"><i class="fa fa-paper-plane fa-fw"></i>zasghar@qau.edu.pk</a> <br> <a href="https://github.com/zahedasghar"><i class="fa fa-github fa-fw"></i>zahedasghar</a><br> <a href="https://QMR.zahidasghar.com"> <i class="fa fa-globe fa-fw"></i>zahidasghar.com</a><br></span></p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fontawesome)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>clrs <span class="ot">&lt;-</span> MetBrewer<span class="sc">::</span><span class="fu">met.brewer</span>(<span class="at">name =</span> <span class="st">"Java"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>clrs_lt <span class="ot">&lt;-</span> colorspace<span class="sc">::</span><span class="fu">lighten</span>(clrs, <span class="fl">0.9</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">fig.retina =</span> <span class="dv">3</span>, <span class="at">collapse =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>, <span class="at">width =</span> <span class="dv">75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="why-r" class="level1">
+<h1>Why R</h1>
+<p>There is an increasing recognition of reproducibility of research, though it has limited recognition in social sciences. The document in your hand is written in <code>Quarto</code>. <code>Quarto</code> which can be used for pdf, html, word, PowerPoint/Slidy/Beamer Presentations, Webpages, LaTex and many others. Besides learning basics of R-coding, another objective of this workshop is understanding the importance of reproducibility. Building this new habit of reproducible work at times maybe little challenging occasionally. Getting rid of culture of copying and pasting, and sparing this time for doing data analysis and research is one of the objectives of this or coming workshops. Purpose is to help you to get away from this tedious activity so that you can spend more time <strong>doing science</strong>.</p>
+<section id="installing-and-loading-packages" class="level2">
+<h2 class="anchored" data-anchor-id="installing-and-loading-packages">Installing and loading packages</h2>
+<p>The first thing we need to do is install and then load the <code>tidyverse</code> set of R packages to provide us with lots of extra functionality. You only need to install this once: once it’s installed we can simply load it into the workspace using the library() function each time we open a new R session.</p>
+<p>Understanding data sets requires many hours/days or in some cases weeks.There are many commercially available software but open source community based software have now dominated and R is one of these. R makes data understanding process as easy as possible through the <code>dplyr</code> package. It is one of the easiest solution for code-based data analysis. We will learn in this training how to do it. In case, you need more information, you can watch my <a href="https://youtu.be/ZNBZevfYgo0">videos</a>.</p>
+<p>I have discussed the <a href="https://cran.r-project.org/web/packages/gapminder/index.html">Gapminder dataset</a> in <a href="youtube">my videos</a>, you can watch those videos. <code>gapminder</code> package is available through CRAN, so make sure to install it. Here’s how to load in all required packages:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("gapminder")</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.table.format =</span> <span class="st">"html"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>**The dataset to be used is pakwheels data obtained from kaggle and you can download data from the link <a href="https://www.kaggle.com/datasets/spideysloth/pakwheels-cars-dataset">data download</a> or from my github repository. We read <code>data</code> as follows</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pakwheels_11Jul2020 &lt;- read_csv("C:/Users/92300/Downloads/archive/pakwheels-11Jul2020.csv")</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#pakwheels&lt;-saveRDS(pakwheels_11Jul2020,file = "pakwheels.rds")</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>pakwheels <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"D:/RepTemplates/data_analytics/pakwheels.rds"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>pakwheels</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 56,186 × 16</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">##    `Ad No` Name       Price Model…¹ Locat…² Mileage Regis…³ Engin…⁴ Engin…⁵</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="do">##      &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 4096758 Toyota Vi… 2385…    2017 G- 8, …    9869 Un-Reg… Petrol  1000 cc</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 4168305 Toyota Co… 1110…    2019 Peshaw…   11111 Islama… Petrol  1300 cc</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 4168298 Suzuki Al… 1530…    2019 Akora …   17500 Un-Reg… Petrol  660 cc </span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 4168307 Suzuki Al… 1650…    2019 Abdull…    9600 Lahore  Petrol  660 cc </span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 4168306 Toyota Co… 1435…    2010 9th Av…  120000 Islama… Petrol  1300 cc</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 4168303 Honda Civ… 3850…    2017 Peshaw…   22000 Islama… Petrol  1500 cc</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 4168304 Suzuki Wa… 1440…    2017 Gulber…   31000 Lahore  Petrol  1000 cc</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 4168309 Mitsubish… 1425…    2012 Askari…  101000 Lahore  Petrol  1000 cc</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 4168310 Toyota Pr… 2650…    1998 Sargod…  110000 Rawalp… Diesel  3000 cc</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 4168311 Honda Civ… 3350…    2017 Air Av…   60000 Lahore  Petrol  1800 cc</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 56,176 more rows, 7 more variables: Transmission &lt;chr&gt;,</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="do">## #   Color &lt;chr&gt;, Assembly &lt;chr&gt;, `Body Type` &lt;chr&gt;, Features &lt;chr&gt;,</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="do">## #   `Last Updated` &lt;chr&gt;, URL &lt;chr&gt;, and abbreviated variable names</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="do">## #   ¹​`Model Year`, ²​Location, ³​`Registered City`, ⁴​`Engine Type`,</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="do">## #   ⁵​`Engine Capacity`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>First few rows of data are displayed here and there <code>56186</code> observations in total. We will start from scratch and end up a sophisticated analysis. Firs step in dealing with data is to clean up the data and bringing it in workable format. It is said that every <code>tidy</code> data is alike but every messy data is messy in its own way. So lets see whether this data are in neat and clean format.</p>
+</section>
+<section id="data-overview" class="level2">
+<h2 class="anchored" data-anchor-id="data-overview">Data Overview</h2>
+<p><strong>Pipe operator</strong> <code>%&gt;%</code> or <code>|&gt;</code> play very nicely with dplyr and make our code very easy to understand. For this lets have an overview of data for which one can use <code>glimpse()</code> or <code>str()</code> for structure of data and to view entire spreadsheet use <code>View()</code>.<code>View</code> command opens data in new worksheet while glimpse lists nature of variables (numeric/character/factor…) and total number of rows and columns.To see first 6 and last 6 observations use <code>head()</code> and <code>tail()</code> ,respectively.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pakwheels<span class="sc">|&gt;</span><span class="fu">glimpse</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Rows: 56,186</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Columns: 16</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Ad No`           &lt;dbl&gt; 4096758, 4168305, 4168298, 4168307, 4168306, 41…</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Name              &lt;chr&gt; "Toyota Vitz F 1.0 2017", "Toyota Corolla GLi A…</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Price             &lt;chr&gt; "2385000.0", "111000.00000000001", "1530000.0",…</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Model Year`      &lt;dbl&gt; 2017, 2019, 2019, 2019, 2010, 2017, 2017, 2012,…</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Location          &lt;chr&gt; "G- 8, Islamabad Islamabad", "Peshawar KPK", "A…</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Mileage           &lt;dbl&gt; 9869, 11111, 17500, 9600, 120000, 22000, 31000,…</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Registered City` &lt;chr&gt; "Un-Registered", "Islamabad", "Un-Registered", …</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Engine Type`     &lt;chr&gt; "Petrol", "Petrol", "Petrol", "Petrol", "Petrol…</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Engine Capacity` &lt;chr&gt; "1000 cc", "1300 cc", "660 cc", "660 cc", "1300…</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Transmission      &lt;chr&gt; "Automatic", "Automatic", "Automatic", "Manual"…</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Color             &lt;chr&gt; "Silver", "White", "White", "White", "Black", "…</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Assembly          &lt;chr&gt; "Imported", "Local", "Local", "Local", "Local",…</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Body Type`       &lt;chr&gt; "Hatchback", "Sedan", "Hatchback", "Hatchback",…</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Features          &lt;chr&gt; "ABS, AM/FM Radio, Air Bags, Air Conditioning, …</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Last Updated`    &lt;chr&gt; "Jul 11, 2020", "Jul 12, 2020", "Jul 12, 2020",…</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="do">## $ URL               &lt;chr&gt; "https://www.pakwheels.com/used-cars/toyota-vit…</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pakwheels)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 6 × 16</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="do">##   `Ad No` Name        Price Model…¹ Locat…² Mileage Regis…³ Engin…⁴ Engin…⁵</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="do">##     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  </span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 4096758 Toyota Vit… 2385…    2017 G- 8, …    9869 Un-Reg… Petrol  1000 cc</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 4168305 Toyota Cor… 1110…    2019 Peshaw…   11111 Islama… Petrol  1300 cc</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 4168298 Suzuki Alt… 1530…    2019 Akora …   17500 Un-Reg… Petrol  660 cc </span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 4168307 Suzuki Alt… 1650…    2019 Abdull…    9600 Lahore  Petrol  660 cc </span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 4168306 Toyota Cor… 1435…    2010 9th Av…  120000 Islama… Petrol  1300 cc</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 4168303 Honda Civi… 3850…    2017 Peshaw…   22000 Islama… Petrol  1500 cc</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 7 more variables: Transmission &lt;chr&gt;, Color &lt;chr&gt;,</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="do">## #   Assembly &lt;chr&gt;, `Body Type` &lt;chr&gt;, Features &lt;chr&gt;,</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="do">## #   `Last Updated` &lt;chr&gt;, URL &lt;chr&gt;, and abbreviated variable names</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="do">## #   ¹​`Model Year`, ²​Location, ³​`Registered City`, ⁴​`Engine Type`,</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="do">## #   ⁵​`Engine Capacity`</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(pakwheels)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 6 × 16</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="do">##   `Ad No` Name        Price Model…¹ Locat…² Mileage Regis…³ Engin…⁴ Engin…⁵</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="do">##     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  </span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 3339018 Nissan Kix… 1900…    2012 Faisal…   42000 Faisal… Petrol  660 cc </span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 3349017 Honda Civi… 3250…    2015 Lahore…  125000 Lahore  Petrol  1800 cc</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 3722322 Toyota Pri… 4000…    2015 Peshaw…   35000 Lahore  Hybrid  1800 cc</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 3748215 Toyota Aqu… 3000…    2016 Gujran…   60000 Lahore  Petrol  1500 cc</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 3785520 Honda Veze… Call…    2015 Multan…   45000 Un-Reg… Hybrid  1500 cc</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 3806951 Toyota Cor… 2250…    2015 Gujran…   77000 Gujran… Petrol  1300 cc</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 7 more variables: Transmission &lt;chr&gt;, Color &lt;chr&gt;,</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="do">## #   Assembly &lt;chr&gt;, `Body Type` &lt;chr&gt;, Features &lt;chr&gt;,</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="do">## #   `Last Updated` &lt;chr&gt;, URL &lt;chr&gt;, and abbreviated variable names</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="do">## #   ¹​`Model Year`, ²​Location, ³​`Registered City`, ⁴​`Engine Type`,</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="do">## #   ⁵​`Engine Capacity`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>One can observe that <code>Price</code> and <code>Engine Capacity</code> are character variables while we know Price is numeric variable and should fall in cateogry of <code>dbl</code> used in <code>R</code> for numeric variable. Similarly <code>Engine Capacity</code> can be made numeric if we remove cc from it. In the follow <code>chunk</code> I am going to convert these two variables as <code>numeric</code></p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pakwheels<span class="sc">$</span>price<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(pakwheels<span class="sc">$</span>Price) <span class="do">## To convert price as numeric, R-base command. There are other ways to do the same</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pakwheels<span class="sc">$</span>hp <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"([A-Za-z]+).*"</span>, <span class="st">""</span>, pakwheels<span class="sc">$</span><span class="st">`</span><span class="at">Engine Capacity</span><span class="st">`</span>)) <span class="do">## To take numeric values from variable Engine Capacity and lets give it a new name: hp.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>pakwheels<span class="sc">$</span>company <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"([A-Za-z]+).*"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>, pakwheels<span class="sc">$</span>Name)  <span class="do">## To take first word from column Name for taking it a </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>So far so good. We have converted now three new variables <code>price</code>, <code>hp</code> and <code>company</code>. Variable names should preferably not have space between their names. Better use one word or use hyphen or underscore. Lets have a look at data again.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pakwheels<span class="sc">|&gt;</span><span class="fu">glimpse</span>()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Rows: 56,186</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Columns: 19</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Ad No`           &lt;dbl&gt; 4096758, 4168305, 4168298, 4168307, 4168306, 41…</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Name              &lt;chr&gt; "Toyota Vitz F 1.0 2017", "Toyota Corolla GLi A…</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Price             &lt;chr&gt; "2385000.0", "111000.00000000001", "1530000.0",…</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Model Year`      &lt;dbl&gt; 2017, 2019, 2019, 2019, 2010, 2017, 2017, 2012,…</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Location          &lt;chr&gt; "G- 8, Islamabad Islamabad", "Peshawar KPK", "A…</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Mileage           &lt;dbl&gt; 9869, 11111, 17500, 9600, 120000, 22000, 31000,…</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Registered City` &lt;chr&gt; "Un-Registered", "Islamabad", "Un-Registered", …</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Engine Type`     &lt;chr&gt; "Petrol", "Petrol", "Petrol", "Petrol", "Petrol…</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Engine Capacity` &lt;chr&gt; "1000 cc", "1300 cc", "660 cc", "660 cc", "1300…</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Transmission      &lt;chr&gt; "Automatic", "Automatic", "Automatic", "Manual"…</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Color             &lt;chr&gt; "Silver", "White", "White", "White", "Black", "…</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Assembly          &lt;chr&gt; "Imported", "Local", "Local", "Local", "Local",…</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Body Type`       &lt;chr&gt; "Hatchback", "Sedan", "Hatchback", "Hatchback",…</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Features          &lt;chr&gt; "ABS, AM/FM Radio, Air Bags, Air Conditioning, …</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Last Updated`    &lt;chr&gt; "Jul 11, 2020", "Jul 12, 2020", "Jul 12, 2020",…</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="do">## $ URL               &lt;chr&gt; "https://www.pakwheels.com/used-cars/toyota-vit…</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="do">## $ price             &lt;dbl&gt; 2385000, 111000, 1530000, 1650000, 1435000, 385…</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="do">## $ hp                &lt;dbl&gt; 1000, 1300, 660, 660, 1300, 1500, 1000, 1000, 3…</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="do">## $ company           &lt;chr&gt; "Toyota", "Toyota", "Suzuki", "Suzuki", "Toyota…</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>So now we have 19 variables and <code>price</code> and <code>hp</code> are numeric variables.</p>
+</section>
+</section>
+<section id="key-components-of-handling-data" class="level1">
+<h1>Key components of handling data</h1>
+<ul>
+<li>View, glimpse, structure</li>
+<li>head, tail</li>
+<li>Column Selection</li>
+<li>Data Filtering</li>
+<li>Data Ordering</li>
+<li>Creating Derived Columns</li>
+<li>Calculating Summary Statistics</li>
+<li>Grouping</li>
+</ul>
+<section id="information-in-pakwheels-data" class="level2">
+<h2 class="anchored" data-anchor-id="information-in-pakwheels-data">Information in <strong>pakwheels</strong> data</h2>
+<p>To rename a variable, there are various ways. I am using a command <code>rename(new_va=old_var)</code>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pakwheels<span class="ot">&lt;-</span>pakwheels<span class="sc">|&gt;</span><span class="fu">rename</span>(<span class="at">year=</span><span class="st">`</span><span class="at">Model Year</span><span class="st">`</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#kbl()#|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># kable_styling(bootstrap_options = "striped", full_width = F)</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#View(pakwheels)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>pakwheels<span class="sc">|&gt;</span><span class="fu">count</span>(year)<span class="sc">|&gt;</span><span class="fu">arrange</span>(<span class="fu">desc</span>(year))<span class="co"># How many cars by year model are listed for sale</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 30 × 2</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    year     n</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>   <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>int<span class="sc">&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>  <span class="dv">2019</span>  <span class="dv">3166</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>  <span class="dv">2018</span>  <span class="dv">3820</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>  <span class="dv">2017</span>  <span class="dv">4628</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span>  <span class="dv">2016</span>  <span class="dv">4484</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span>  <span class="dv">2015</span>  <span class="dv">4900</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span>  <span class="dv">2014</span>  <span class="dv">4430</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span>  <span class="dv">2013</span>  <span class="dv">3342</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span>  <span class="dv">2012</span>  <span class="dv">3146</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span>  <span class="dv">2011</span>  <span class="dv">2621</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>  <span class="dv">2010</span>  <span class="dv">2117</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># … with 20 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>As there are a large number of observations and it is not possible to find out through scrolling how many missing observations in the data. We use a command <code>na.omit()</code> to find out how many missing observations and give a <code>new name</code> to our data without losing our original data as follows: glimpse(gapminder) # We see that there are 1704 rows for 6 columns and also tells nature of variable #View(gapminder) # This opens up full data in a new window</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pkw<span class="ot">&lt;-</span> pakwheels<span class="sc">|&gt;</span><span class="fu">na.omit</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pkw<span class="sc">|&gt;</span><span class="fu">glimpse</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Rows: 44,917</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Columns: 19</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Ad No`           &lt;dbl&gt; 4096758, 4168305, 4168298, 4168307, 4168306, 41…</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Name              &lt;chr&gt; "Toyota Vitz F 1.0 2017", "Toyota Corolla GLi A…</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Price             &lt;chr&gt; "2385000.0", "111000.00000000001", "1530000.0",…</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="do">## $ year              &lt;dbl&gt; 2017, 2019, 2019, 2019, 2010, 2017, 2017, 2012,…</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Location          &lt;chr&gt; "G- 8, Islamabad Islamabad", "Peshawar KPK", "A…</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Mileage           &lt;dbl&gt; 9869, 11111, 17500, 9600, 120000, 22000, 31000,…</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Registered City` &lt;chr&gt; "Un-Registered", "Islamabad", "Un-Registered", …</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Engine Type`     &lt;chr&gt; "Petrol", "Petrol", "Petrol", "Petrol", "Petrol…</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Engine Capacity` &lt;chr&gt; "1000 cc", "1300 cc", "660 cc", "660 cc", "1300…</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Transmission      &lt;chr&gt; "Automatic", "Automatic", "Automatic", "Manual"…</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Color             &lt;chr&gt; "Silver", "White", "White", "White", "Black", "…</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Assembly          &lt;chr&gt; "Imported", "Local", "Local", "Local", "Local",…</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Body Type`       &lt;chr&gt; "Hatchback", "Sedan", "Hatchback", "Hatchback",…</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Features          &lt;chr&gt; "ABS, AM/FM Radio, Air Bags, Air Conditioning, …</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Last Updated`    &lt;chr&gt; "Jul 11, 2020", "Jul 12, 2020", "Jul 12, 2020",…</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="do">## $ URL               &lt;chr&gt; "https://www.pakwheels.com/used-cars/toyota-vit…</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="do">## $ price             &lt;dbl&gt; 2385000, 111000, 1530000, 1650000, 1435000, 385…</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="do">## $ hp                &lt;dbl&gt; 1000, 1300, 660, 660, 1300, 1500, 1000, 1000, 3…</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="do">## $ company           &lt;chr&gt; "Toyota", "Toyota", "Suzuki", "Suzuki", "Toyota…</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>So now we have 44,917 observations aftere liminating missing observations.</p>
+</section>
+</section>
+<section id="dplyr-features" class="level1">
+<h1>dplyr features</h1>
+<p>One of the most widely used <code>package</code> in R for data wrangling is <code>dplyr</code> which is under <code>tidyverse</code> or you can simply recall <code>dplyr</code>.</p>
+<ol type="1">
+<li><code>filter()</code> to keep selected observations</li>
+<li><code>select()</code> to keep selected variables</li>
+<li><code>arrange()</code> to reorder observations by a value</li>
+<li><code>mutate()</code> to create new variables</li>
+<li><code>summarize()</code> to create summary statistics</li>
+<li><code>group_by()</code> for performing operations by group</li>
+</ol>
+<p>Now I shall mention some of the powerful but very simple to use features of dplyr. ## Column Selection</p>
+<p>More often than not, you don’t need all columns of a data set for your analysis. For example <code>PDHS</code> files have more than 5000 columns in some files and maybe 40 or 50 or even fewer than that are needed for your analysis. <code>Select()</code> function of R’s dplyr is used to select columns of your interest Three selected columns are selected as follows. You can give new name to this data.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">%&gt;%</span> <span class="fu">select</span>(price, hp, company)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 44,917 × 3</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">##      price    hp company   </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">##      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     </span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 2385000  1000 Toyota    </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  2  111000  1300 Toyota    </span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 1530000   660 Suzuki    </span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 1650000   660 Suzuki    </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 1435000  1300 Toyota    </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 3850000  1500 Honda     </span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 1440000  1000 Suzuki    </span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 1425000  1000 Mitsubishi</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 2650000  3000 Toyota    </span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 3350000  1800 Honda     </span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 44,907 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>In case you want to select most of the variables and drop one or two, you may proceed as follows</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>URL)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 44,917 × 18</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    `Ad No` Name         Price  year Locat…¹ Mileage Regis…² Engin…³ Engin…⁴</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">##      &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  </span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 4096758 Toyota Vitz… 2385…  2017 G- 8, …    9869 Un-Reg… Petrol  1000 cc</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 4168305 Toyota Coro… 1110…  2019 Peshaw…   11111 Islama… Petrol  1300 cc</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 4168298 Suzuki Alto… 1530…  2019 Akora …   17500 Un-Reg… Petrol  660 cc </span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 4168307 Suzuki Alto… 1650…  2019 Abdull…    9600 Lahore  Petrol  660 cc </span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 4168306 Toyota Coro… 1435…  2010 9th Av…  120000 Islama… Petrol  1300 cc</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 4168303 Honda Civic… 3850…  2017 Peshaw…   22000 Islama… Petrol  1500 cc</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 4168304 Suzuki Wago… 1440…  2017 Gulber…   31000 Lahore  Petrol  1000 cc</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 4168309 Mitsubishi … 1425…  2012 Askari…  101000 Lahore  Petrol  1000 cc</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 4168310 Toyota Prad… 2650…  1998 Sargod…  110000 Rawalp… Diesel  3000 cc</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 4168311 Honda Civic… 3350…  2017 Air Av…   60000 Lahore  Petrol  1800 cc</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 44,907 more rows, 9 more variables: Transmission &lt;chr&gt;,</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="do">## #   Color &lt;chr&gt;, Assembly &lt;chr&gt;, `Body Type` &lt;chr&gt;, Features &lt;chr&gt;,</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="do">## #   `Last Updated` &lt;chr&gt;, price &lt;dbl&gt;, hp &lt;dbl&gt;, company &lt;chr&gt;, and</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="do">## #   abbreviated variable names ¹​Location, ²​`Registered City`,</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="do">## #   ³​`Engine Type`, ⁴​`Engine Capacity`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>So <code>url</code> column is now not shown above.</p>
+<section id="data-filtering" class="level2">
+<h2 class="anchored" data-anchor-id="data-filtering">Data Filtering</h2>
+<p>Filtering is another very important task one has to do in one’s analysis. Sometimes, one has to select sale related to a particular city or agent or quarter. Here is how one uses <code>filter()</code> command for data with a condition. We are using here command only to select data for year 2007 for all the countries. I am going to explain <code>filter</code> variable of dplyr. <code>filter</code> is used only to select rows for a given condition. I am going to select data only for year 2007.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pkw_szk<span class="ot">&lt;-</span> pkw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(company<span class="sc">==</span><span class="st">"Suzuki"</span>)<span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="st">`</span><span class="at">year</span><span class="st">`</span>, price, hp,Color,Assembly, Transmission,<span class="st">`</span><span class="at">Engine Type</span><span class="st">`</span>, <span class="st">`</span><span class="at">Mileage</span><span class="st">`</span>, <span class="st">`</span><span class="at">Registered City</span><span class="st">`</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pkw_szk<span class="sc">|&gt;</span><span class="fu">glimpse</span>() </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Rows: 14,199</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Columns: 9</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="do">## $ year              &lt;dbl&gt; 2019, 2019, 2017, 2012, 2016, 2018, 2000, 2016,…</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="do">## $ price             &lt;dbl&gt; 1530000, 1650000, 1440000, 920000, 1625000, 840…</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="do">## $ hp                &lt;dbl&gt; 660, 660, 1000, 1000, 660, 800, 1000, 660, 660,…</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Color             &lt;chr&gt; "White", "White", "White", "Grey", "Brown", "Wh…</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Assembly          &lt;chr&gt; "Local", "Local", "Local", "Local", "Imported",…</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Transmission      &lt;chr&gt; "Automatic", "Manual", "Manual", "Manual", "Aut…</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Engine Type`     &lt;chr&gt; "Petrol", "Petrol", "Petrol", "Petrol", "Petrol…</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Mileage           &lt;dbl&gt; 17500, 9600, 31000, 83000, 45000, 55000, 90000,…</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Registered City` &lt;chr&gt; "Un-Registered", "Lahore", "Lahore", "Lahore", …</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="fu">kbl</span>(pkw_szk[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,])<span class="sc">%&gt;%</span><span class="fu">kable_styling</span>(<span class="at">fixed_thead=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> price </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> hp </th>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Color </th>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Assembly </th>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Transmission </th>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Engine Type </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Mileage </th>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Registered City </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:right;"> 1530000 </td>
+   <td style="text-align:right;"> 660 </td>
+   <td style="text-align:left;"> White </td>
+   <td style="text-align:left;"> Local </td>
+   <td style="text-align:left;"> Automatic </td>
+   <td style="text-align:left;"> Petrol </td>
+   <td style="text-align:right;"> 17500 </td>
+   <td style="text-align:left;"> Un-Registered </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:right;"> 1650000 </td>
+   <td style="text-align:right;"> 660 </td>
+   <td style="text-align:left;"> White </td>
+   <td style="text-align:left;"> Local </td>
+   <td style="text-align:left;"> Manual </td>
+   <td style="text-align:left;"> Petrol </td>
+   <td style="text-align:right;"> 9600 </td>
+   <td style="text-align:left;"> Lahore </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2017 </td>
+   <td style="text-align:right;"> 1440000 </td>
+   <td style="text-align:right;"> 1000 </td>
+   <td style="text-align:left;"> White </td>
+   <td style="text-align:left;"> Local </td>
+   <td style="text-align:left;"> Manual </td>
+   <td style="text-align:left;"> Petrol </td>
+   <td style="text-align:right;"> 31000 </td>
+   <td style="text-align:left;"> Lahore </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2012 </td>
+   <td style="text-align:right;"> 920000 </td>
+   <td style="text-align:right;"> 1000 </td>
+   <td style="text-align:left;"> Grey </td>
+   <td style="text-align:left;"> Local </td>
+   <td style="text-align:left;"> Manual </td>
+   <td style="text-align:left;"> Petrol </td>
+   <td style="text-align:right;"> 83000 </td>
+   <td style="text-align:left;"> Lahore </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:right;"> 1625000 </td>
+   <td style="text-align:right;"> 660 </td>
+   <td style="text-align:left;"> Brown </td>
+   <td style="text-align:left;"> Imported </td>
+   <td style="text-align:left;"> Automatic </td>
+   <td style="text-align:left;"> Petrol </td>
+   <td style="text-align:right;"> 45000 </td>
+   <td style="text-align:left;"> Un-Registered </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:right;"> 840000 </td>
+   <td style="text-align:right;"> 800 </td>
+   <td style="text-align:left;"> White </td>
+   <td style="text-align:left;"> Local </td>
+   <td style="text-align:left;"> Manual </td>
+   <td style="text-align:left;"> Petrol </td>
+   <td style="text-align:right;"> 55000 </td>
+   <td style="text-align:left;"> Islamabad </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:right;"> 400000 </td>
+   <td style="text-align:right;"> 1000 </td>
+   <td style="text-align:left;"> Assembly </td>
+   <td style="text-align:left;"> Local </td>
+   <td style="text-align:left;"> Manual </td>
+   <td style="text-align:left;"> Petrol </td>
+   <td style="text-align:right;"> 90000 </td>
+   <td style="text-align:left;"> Multan </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:right;"> 1445000 </td>
+   <td style="text-align:right;"> 660 </td>
+   <td style="text-align:left;"> White </td>
+   <td style="text-align:left;"> Imported </td>
+   <td style="text-align:left;"> Automatic </td>
+   <td style="text-align:left;"> Petrol </td>
+   <td style="text-align:right;"> 65000 </td>
+   <td style="text-align:left;"> Lahore </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2013 </td>
+   <td style="text-align:right;"> 1495000 </td>
+   <td style="text-align:right;"> 660 </td>
+   <td style="text-align:left;"> White </td>
+   <td style="text-align:left;"> Local </td>
+   <td style="text-align:left;"> Automatic </td>
+   <td style="text-align:left;"> Petrol </td>
+   <td style="text-align:right;"> 85000 </td>
+   <td style="text-align:left;"> Islamabad </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:right;"> 1495000 </td>
+   <td style="text-align:right;"> 660 </td>
+   <td style="text-align:left;"> Burgundy </td>
+   <td style="text-align:left;"> Local </td>
+   <td style="text-align:left;"> Automatic </td>
+   <td style="text-align:left;"> Petrol </td>
+   <td style="text-align:right;"> 63000 </td>
+   <td style="text-align:left;"> Karachi </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Compared to previous one, <code>pkw_szk</code> is showing data only for There are 14,199 cars. The tibble (name used for data in tidyverse form) <code>pkw</code> is being piped into the function <code>filter()</code>. The argument <code>company == "Suzuki"</code> tells filter() that it should find all the rows such that the logical condition <code>year == "Suzuki</code> is TRUE.</p>
+<p><code>Have we accidently deleted all other rows? Answer is no.</code></p>
+<p>Nope: we haven’t made any changes to gapminder at all. If you don’t believe me try entering <code>pkw</code> at the console. All that this command does is display a subset of gapminder. If we wanted to store the result of running this command, we’d need to assign it to a variable, for example if you are not sure, lets type</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">|&gt;</span> <span class="fu">filter</span>(company<span class="sc">==</span><span class="st">"Suzuki"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 14,199 × 19</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    `Ad No` Name         Price  year Locat…¹ Mileage Regis…² Engin…³ Engin…⁴</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="do">##      &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  </span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 4168298 Suzuki Alto… 1530…  2019 Akora …   17500 Un-Reg… Petrol  660 cc </span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 4168307 Suzuki Alto… 1650…  2019 Abdull…    9600 Lahore  Petrol  660 cc </span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 4168304 Suzuki Wago… 1440…  2017 Gulber…   31000 Lahore  Petrol  1000 cc</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 4168320 Suzuki Cult… 9199…  2012 Bismil…   83000 Lahore  Petrol  1000 cc</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 4168327 Suzuki Wago… 1625…  2016 Sui No…   45000 Un-Reg… Petrol  660 cc </span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 4168332 Suzuki Mehr… 8400…  2018 Sargod…   55000 Islama… Petrol  800 cc </span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 4168333 Suzuki Khyb… 4000…  2000 MDA Ch…   90000 Multan  Petrol  1000 cc</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 4134011 Suzuki Alto… 1445…  2016 Johar …   65000 Lahore  Petrol  660 cc </span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 4168228 Suzuki Wago… 1495…  2013 Hospit…   85000 Islama… Petrol  660 cc </span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 4168257 Suzuki Alto… 1495…  2016 Karach…   63000 Karachi Petrol  660 cc </span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 14,189 more rows, 10 more variables: Transmission &lt;chr&gt;,</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="do">## #   Color &lt;chr&gt;, Assembly &lt;chr&gt;, `Body Type` &lt;chr&gt;, Features &lt;chr&gt;,</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="do">## #   `Last Updated` &lt;chr&gt;, URL &lt;chr&gt;, price &lt;dbl&gt;, hp &lt;dbl&gt;, company &lt;chr&gt;,</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="do">## #   and abbreviated variable names ¹​Location, ²​`Registered City`,</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="do">## #   ³​`Engine Type`, ⁴​`Engine Capacity`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="filtering-with-respect-to-two-variables" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-with-respect-to-two-variables">Filtering with respect to two variables</h2>
+<p>One can apply multiple <code>filters</code></p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="st">"2019"</span>,company<span class="sc">==</span><span class="st">"Toyota"</span>) <span class="do">## year 2019 and company is Toyota</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now we are selecting multiple years for <code>Toyota</code>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">%in%</span><span class="fu">c</span>(<span class="dv">2015</span>,<span class="dv">2016</span>,<span class="dv">2017</span>,<span class="dv">2018</span>,<span class="dv">2019</span>), company<span class="sc">==</span><span class="st">"Toyota"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="filtering-data-for-honda" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-data-for-honda">Filtering data for Honda</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pkw_hnd<span class="ot">&lt;-</span>pkw <span class="sc">|&gt;</span> <span class="fu">filter</span>(company<span class="sc">==</span><span class="st">"Honda"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="sort-data-with-arrange" class="level2">
+<h2 class="anchored" data-anchor-id="sort-data-with-arrange">Sort data with <code>arrange</code></h2>
+<p>Sort data with arrange Suppose we wanted to sort <code>pkw</code> data for <code>Honda</code> by <code>Color</code>. To do this we can use the arrange command along with the pipe <code>|&gt;</code> as follows:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">|&gt;</span><span class="fu">filter</span>(company<span class="sc">==</span><span class="st">"Honda"</span>) <span class="sc">|&gt;</span> <span class="fu">count</span>(Color)<span class="sc">|&gt;</span><span class="fu">arrange</span>(n)<span class="do">## This sorts in asceding order</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 23 × 2</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">##    Color         n</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;     &lt;int&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 Magenta       1</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 Orange        3</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 Yellow       10</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 Navy         17</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 Turquoise    17</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 Pink         20</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 Purple       24</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 Indigo       25</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 Unlisted     29</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 Beige        42</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 13 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>Descending order requires <code>arrange(desc())</code> comand</strong></p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">|&gt;</span><span class="fu">filter</span>(company<span class="sc">==</span><span class="st">"Honda"</span>) <span class="sc">|&gt;</span> <span class="fu">count</span>(Color)<span class="sc">|&gt;</span><span class="fu">arrange</span>(<span class="fu">desc</span>(n))<span class="do">## This sorts in asceding order</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 23 × 2</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    Color        n</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;    &lt;int&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 White     3425</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 Black     1848</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 Silver    1603</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 Grey       992</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 Blue       315</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 Assembly   271</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 Maroon     162</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 Red        150</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 Gold       140</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 Green      128</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 13 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The logic is very similar to what we saw above for filter. Here, I use another important function <code>arrange</code>. The argument <code>count(Color)</code> tells <code>arrange()</code> that we want to sort by Color for Honda company cars. Note that by default <code>arrange()</code> sorts in ascending order. If we want to sort in descending order, we use the function <code>desc()</code>.</p>
+</section>
+<section id="change-an-existing-variable-or-create-a-new-one-with-mutate" class="level2">
+<h2 class="anchored" data-anchor-id="change-an-existing-variable-or-create-a-new-one-with-mutate">Change an existing variable or create a new one with mutate</h2>
+<p>It’s a little hard to read the column <code>peice</code> in <code>pkw</code> data since there are so many digits. Suppose that, instead of <code>price in Rs.</code>, we wanted to display <code>price</code> in millions of rupees. This requires us to divide <code>price</code> by 1000000, which we can do using the function <code>mutate()</code> from dplyr as follows:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pkw<span class="ot">&lt;-</span> pkw <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">price_m=</span>price<span class="sc">/</span><span class="dv">1000000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="top-bottom-prices-by-companies-for-pkw-data" class="level2">
+<h2 class="anchored" data-anchor-id="top-bottom-prices-by-companies-for-pkw-data">Top bottom prices by companies for pkw data</h2>
+<p>What are the five lowest and highest car prices for 1300 cc for model year 2017?</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">|&gt;</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="st">"2017"</span>,hp<span class="sc">==</span><span class="dv">1300</span>) <span class="do">## year 2017 and engine capacity 1300</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 758 × 20</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    `Ad No` Name         Price  year Locat…¹ Mileage Regis…² Engin…³ Engin…⁴</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="do">##      &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  </span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 4168312 Honda City … 1989…  2017 Lahore…   75000 Lahore  Petrol  1300 cc</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 4168141 Toyota Coro… 2595…  2017 Islama…   41000 Islama… Petrol  1300 cc</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 4168148 Toyota Coro… 2480…  2017 North …   38000 Karachi Petrol  1300 cc</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 4168061 Honda City … 2145…  2017 Bahria…   70000 Islama… Petrol  1300 cc</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 4145330 Toyota Coro… 2540…  2017 Karach…   36000 Karachi Petrol  1300 cc</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 4145974 Suzuki Swif… 1570…  2017 Garden…   56000 Islama… Petrol  1300 cc</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 4167831 Toyota Coro… 2400…  2017 Bahria…   50000 Islama… Petrol  1300 cc</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 3911337 Suzuki Swif… 1575…  2017 A.F.O.…   34000 Karachi Petrol  1300 cc</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 4167800 Honda City … 2050…  2017 Taj Pu…   85000 Lahore  Petrol  1300 cc</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 4167728 Honda City … 2025…  2017 Rawalp…   80000 Islama… Petrol  1300 cc</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 748 more rows, 11 more variables: Transmission &lt;chr&gt;,</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="do">## #   Color &lt;chr&gt;, Assembly &lt;chr&gt;, `Body Type` &lt;chr&gt;, Features &lt;chr&gt;,</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="do">## #   `Last Updated` &lt;chr&gt;, URL &lt;chr&gt;, price &lt;dbl&gt;, hp &lt;dbl&gt;, company &lt;chr&gt;,</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="do">## #   price_m &lt;dbl&gt;, and abbreviated variable names ¹​Location,</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="do">## #   ²​`Registered City`, ³​`Engine Type`, ⁴​`Engine Capacity`</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>pkw<span class="sc">|&gt;</span><span class="fu">glimpse</span>()</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Rows: 44,917</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Columns: 20</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Ad No`           &lt;dbl&gt; 4096758, 4168305, 4168298, 4168307, 4168306, 41…</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Name              &lt;chr&gt; "Toyota Vitz F 1.0 2017", "Toyota Corolla GLi A…</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Price             &lt;chr&gt; "2385000.0", "111000.00000000001", "1530000.0",…</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="do">## $ year              &lt;dbl&gt; 2017, 2019, 2019, 2019, 2010, 2017, 2017, 2012,…</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Location          &lt;chr&gt; "G- 8, Islamabad Islamabad", "Peshawar KPK", "A…</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Mileage           &lt;dbl&gt; 9869, 11111, 17500, 9600, 120000, 22000, 31000,…</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Registered City` &lt;chr&gt; "Un-Registered", "Islamabad", "Un-Registered", …</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Engine Type`     &lt;chr&gt; "Petrol", "Petrol", "Petrol", "Petrol", "Petrol…</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Engine Capacity` &lt;chr&gt; "1000 cc", "1300 cc", "660 cc", "660 cc", "1300…</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Transmission      &lt;chr&gt; "Automatic", "Automatic", "Automatic", "Manual"…</span></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Color             &lt;chr&gt; "Silver", "White", "White", "White", "Black", "…</span></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Assembly          &lt;chr&gt; "Imported", "Local", "Local", "Local", "Local",…</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Body Type`       &lt;chr&gt; "Hatchback", "Sedan", "Hatchback", "Hatchback",…</span></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a><span class="do">## $ Features          &lt;chr&gt; "ABS, AM/FM Radio, Air Bags, Air Conditioning, …</span></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a><span class="do">## $ `Last Updated`    &lt;chr&gt; "Jul 11, 2020", "Jul 12, 2020", "Jul 12, 2020",…</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a><span class="do">## $ URL               &lt;chr&gt; "https://www.pakwheels.com/used-cars/toyota-vit…</span></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a><span class="do">## $ price             &lt;dbl&gt; 2385000, 111000, 1530000, 1650000, 1435000, 385…</span></span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a><span class="do">## $ hp                &lt;dbl&gt; 1000, 1300, 660, 660, 1300, 1500, 1000, 1000, 3…</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a><span class="do">## $ company           &lt;chr&gt; "Toyota", "Toyota", "Suzuki", "Suzuki", "Toyota…</span></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a><span class="do">## $ price_m           &lt;dbl&gt; 2.385, 0.111, 1.530, 1.650, 1.435, 3.850, 1.440…</span></span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">|&gt;</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="st">"2017"</span><span class="sc">&amp;</span>hp<span class="sc">==</span><span class="dv">1300</span>)<span class="sc">|&gt;</span><span class="fu">select</span>(company, price, Assembly,Mileage,Color,Transmission)<span class="sc">|&gt;</span><span class="fu">arrange</span>(<span class="fu">desc</span>(price))<span class="sc">|&gt;</span><span class="fu">top_n</span>(<span class="dv">10</span>,price)</span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 10 × 6</span></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a><span class="do">##    company   price Assembly Mileage Color  Transmission</span></span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;       </span></span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 Toyota  3220000 Local      40000 Grey   Automatic   </span></span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 Toyota  3150000 Local      40000 White  Manual      </span></span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 Toyota  3150000 Local      40000 White  Manual      </span></span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 Suzuki  3000000 Local      35000 White  Manual      </span></span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 Toyota  2950000 Local      50000 Silver Automatic   </span></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 Toyota  2890000 Local      40000 Silver Automatic   </span></span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 Toyota  2850000 Local      33000 Bronze Automatic   </span></span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 Toyota  2800000 Local      14000 Grey   Automatic   </span></span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 Toyota  2800000 Local      15000 Silver Automatic   </span></span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 Toyota  2800000 Local      20000 Silver Manual</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>Bottom 10 are reported as follows</strong></p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">|&gt;</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="st">"2017"</span><span class="sc">&amp;</span>hp<span class="sc">==</span><span class="dv">1300</span>)<span class="sc">|&gt;</span><span class="fu">select</span>(company, price, Assembly,Mileage,Color,Transmission)<span class="sc">|&gt;</span><span class="fu">arrange</span>(<span class="fu">desc</span>(price))<span class="sc">|&gt;</span><span class="fu">top_n</span>(<span class="sc">-</span><span class="dv">10</span>,price)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 10 × 6</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    company   price Assembly Mileage Color  Transmission</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;       </span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 FAW     1220000 Imported   30000 Gold   Manual      </span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 FAW     1215000 Local      91000 White  Manual      </span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 FAW     1200000 Local      57000 Gold   Manual      </span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 FAW     1200000 Imported   50000 White  Manual      </span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 FAW     1200000 Imported   54000 Black  Manual      </span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 FAW     1100000 Imported   24000 White  Manual      </span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 Suzuki  1100000 Local      67000 White  Manual      </span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 FAW     1080000 Local      82000 Silver Manual      </span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 FAW     1075000 Imported   90000 Silver Manual      </span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 Toyota   800000 Local      62800 Grey   Automatic</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="how-to-calculate-new-variables" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-calculate-new-variables">How to calculate new variables</h2>
+<p>As mentioned above, <code>mutate</code> is used to calculate new variable. Here,we calculate a new variable <code>price_mill</code> (price in million of Rs.) and then <code>arranged</code> data and selected <code>top_n(10)</code> cars <code>transmute()</code> keeps only the derived column. Let’s use it in the example from above:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2017</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">price_million=</span>price<span class="sc">/</span><span class="dv">1000000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(price_million)) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, price_million)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 11 × 1</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="do">##    price_million</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="do">##            &lt;dbl&gt;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  1          47  </span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  2          45  </span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  3          44  </span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  4          43.5</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  5          42.5</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  6          42.5</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  7          42.5</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  8          42.5</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  9          42  </span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 10          41.5</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 11          41.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="ordering" class="level2">
+<h2 class="anchored" data-anchor-id="ordering">Ordering</h2>
+<p>If one wants to have ordered data with respect to specific column(s), <code>arrange()</code> function is used in dplyr. To arrange data by life expectancy, we use <code>arrange()</code> function</p>
+<p>If one wants order from top to bottom, then use <code>arrange(desc())</code> command as follows:</p>
+</section>
+</section>
+<section id="summarising-data" class="level1">
+<h1>Summarising data</h1>
+<p>Another feature of dplyr is <code>summarise</code> data</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">|&gt;</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2018</span>,hp<span class="sc">==</span><span class="dv">1300</span>) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">mean=</span><span class="fu">mean</span>(price),<span class="at">min=</span><span class="fu">min</span>(price),<span class="at">max=</span><span class="fu">max</span>(price))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 1 × 3</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="do">##       mean    min     max</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="do">##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2393775. 239000 3285000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="summarising-data-by-groups" class="level2">
+<h2 class="anchored" data-anchor-id="summarising-data-by-groups">Summarising data by groups</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">|&gt;</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2018</span>,hp<span class="sc">==</span><span class="dv">1300</span>) <span class="sc">|&gt;</span> <span class="fu">group_by</span>(company) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">mean=</span><span class="fu">mean</span>(price),<span class="at">min=</span><span class="fu">min</span>(price),<span class="at">max=</span><span class="fu">max</span>(price))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 4 × 4</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   company     mean     min     max</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 FAW     1305136.  700000 1500000</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 Honda   2301686.  239000 2750000</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 Suzuki  1820240  1350000 3285000</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 Toyota  2661864.  560000 3200000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="if_else-command-alongwith-mutate" class="level2">
+<h2 class="anchored" data-anchor-id="if_else-command-alongwith-mutate">if_else command alongwith mutate</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2017</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(company) <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">under_25 =</span> <span class="fu">if_else</span>(Mileage<span class="sc">&lt;</span><span class="dv">25000</span>, <span class="st">"Y"</span>, <span class="st">"N"</span>))<span class="sc">|&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_price =</span> <span class="fu">mean</span>(price)) </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="total-number-of-cars-for-sale-year-wise" class="level2">
+<h2 class="anchored" data-anchor-id="total-number-of-cars-for-sale-year-wise">Total number of cars for sale year-wise</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pkw</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 44,917 × 20</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    `Ad No` Name         Price  year Locat…¹ Mileage Regis…² Engin…³ Engin…⁴</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="do">##      &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  </span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 4096758 Toyota Vitz… 2385…  2017 G- 8, …    9869 Un-Reg… Petrol  1000 cc</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 4168305 Toyota Coro… 1110…  2019 Peshaw…   11111 Islama… Petrol  1300 cc</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 4168298 Suzuki Alto… 1530…  2019 Akora …   17500 Un-Reg… Petrol  660 cc </span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 4168307 Suzuki Alto… 1650…  2019 Abdull…    9600 Lahore  Petrol  660 cc </span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 4168306 Toyota Coro… 1435…  2010 9th Av…  120000 Islama… Petrol  1300 cc</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 4168303 Honda Civic… 3850…  2017 Peshaw…   22000 Islama… Petrol  1500 cc</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 4168304 Suzuki Wago… 1440…  2017 Gulber…   31000 Lahore  Petrol  1000 cc</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 4168309 Mitsubishi … 1425…  2012 Askari…  101000 Lahore  Petrol  1000 cc</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 4168310 Toyota Prad… 2650…  1998 Sargod…  110000 Rawalp… Diesel  3000 cc</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 4168311 Honda Civic… 3350…  2017 Air Av…   60000 Lahore  Petrol  1800 cc</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 44,907 more rows, 11 more variables: Transmission &lt;chr&gt;,</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="do">## #   Color &lt;chr&gt;, Assembly &lt;chr&gt;, `Body Type` &lt;chr&gt;, Features &lt;chr&gt;,</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="do">## #   `Last Updated` &lt;chr&gt;, URL &lt;chr&gt;, price &lt;dbl&gt;, hp &lt;dbl&gt;, company &lt;chr&gt;,</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="do">## #   price_m &lt;dbl&gt;, and abbreviated variable names ¹​Location,</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="do">## #   ²​`Registered City`, ³​`Engine Type`, ⁴​`Engine Capacity`</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>pkw<span class="sc">|&gt;</span><span class="fu">filter</span>(hp<span class="sc">==</span><span class="dv">1300</span>)<span class="sc">|&gt;</span><span class="fu">group_by</span>(year,company)<span class="sc">|&gt;</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Color)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">total=</span><span class="fu">sum</span>(n))<span class="sc">|&gt;</span><span class="fu">arrange</span>(<span class="fu">desc</span>(year))</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 135 × 3</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="do">## # Groups:   year [30]</span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="do">##     year company total</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;</span></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="do">##  1  2019 FAW         5</span></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="do">##  2  2019 Honda     228</span></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="do">##  3  2019 Suzuki     84</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="do">##  4  2019 Toyota    345</span></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a><span class="do">##  5  2018 FAW        22</span></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="do">##  6  2018 Honda     334</span></span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="do">##  7  2018 Suzuki    100</span></span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a><span class="do">##  8  2018 Toyota    418</span></span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a><span class="do">##  9  2017 FAW        19</span></span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="do">## 10  2017 Honda     237</span></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 125 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="percentiles" class="level2">
+<h2 class="anchored" data-anchor-id="percentiles">Percentiles</h2>
+<p>In general, higher the Mileage (more the age of a car) , lower the price. To test this assumption, lets calculate percentiles of price. This will indicate how many have ranking lower than the current country.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">%&gt;%</span> <span class="fu">select</span>(price,year, Mileage) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2017</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentile =</span> <span class="fu">ntile</span>(Mileage, <span class="dv">100</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(price))</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 4,038 × 4</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="do">##       price  year Mileage percentile</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="do">##       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;      &lt;int&gt;</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 47000000  2017   18000         11</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 45000000  2017   20000         12</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 44000000  2017     700          1</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 43500000  2017   13000          6</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 42500000  2017      50          1</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 42500000  2017   25000         17</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 42500000  2017   60000         75</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 42500000  2017   18000         10</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 42000000  2017   16000          9</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 41500000  2017   14000          7</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 4,028 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>.</p>
+<p>So it makes sense that higher the Mileage, lower the price. This is not formal testing but exploratory data makes lot of sense here.</p>
+</section>
+<section id="data-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization">Data visualization</h2>
+<p>Filtering data as done in introductory analysis seems quite difficult if you are not familiar with these simple things. But if you are working with dplyr for quite sometime, there is not anything very advanced or difficult.</p>
+<p>For example, let’s say you have to find out the top 10 countries in the 90th percentile regarding life expectancy in 2007. You can reuse some of the logic from the previous sections, but answering this question alone requires <code>multiple filtering</code> and <code>subsetting</code>:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2017</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentile=</span><span class="fu">ntile</span>(price,<span class="dv">100</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(percentile<span class="sc">&gt;</span><span class="dv">90</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(percentile)) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>,<span class="at">wt=</span>percentile) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(company,Mileage,price,hp)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 40 × 4</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="do">##    company  Mileage    price    hp</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 Mercedes   11000 15500000  2000</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 Toyota        50 42500000  4608</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 Toyota      4000 26500000  2700</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 Toyota     25000 42500000  4608</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 Audi       21000 13500000  1800</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 Toyota       700 44000000  4600</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 Mercedes   12900 17500000  2000</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 Toyota     60000 38000000  4608</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 Toyota     16500 25500000  2700</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 Toyota     20000 45000000  4600</span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 30 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>In case you are interested in bottom 10 (lowest price cars), use <code>top_n</code> with <code>-10</code>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pkw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2017</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentile=</span><span class="fu">ntile</span>(price,<span class="dv">100</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(percentile<span class="sc">&lt;</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(percentile)) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="at">wt=</span>percentile) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(company,Mileage,price,hp)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 41 × 4</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="do">##    company Mileage  price    hp</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 Toyota    97000 123000  2700</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 Suzuki    77928 725000   800</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 Suzuki    40000 700000   800</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 Suzuki    49000 760000   800</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 Suzuki    57000 750000   800</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 Suzuki    74000 740000   800</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 Suzuki    60000 640000   800</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 Suzuki    95000 700000  1000</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 Suzuki    39000 730000   800</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 Suzuki    68000 730000   800</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 31 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="visualizing-data-to-get-data-insight" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-data-to-get-data-insight">Visualizing data to get data insight</h2>
+<p>Visualizing data is one of the most important aspect of getting data insight and may provide a better data insight than a complicated model. Visualizing large data sets were not an easy task, so researchers relied on mathematical and core econometric/regression models. <code>ggplot2</code> which is a set of <code>tidyverse</code> package is probably one of the greatest tool for data visualization used in <code>R</code>. In the following sections we are going to visualize <code>gapminder</code> data.</p>
+<p>Stat graphics is a mapping of variable to <code>aes</code>thetic attributes of <code>geom</code>etric objects.</p>
+</section>
+<section id="essential-components-of-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="essential-components-of-ggplot2">3 Essential components of <code>ggplot2</code></h2>
+<ul>
+<li>data: dataset containing the variables of interest</li>
+<li>geom: geometric object in question line, point, bars</li>
+<li>aes: aesthetic attributes of an object x/y position, colors, shape, size</li>
+</ul>
+</section>
+<section id="scatter-plot" class="level2">
+<h2 class="anchored" data-anchor-id="scatter-plot">Scatter plot</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">&lt;-</span>pkw<span class="sc">|&gt;</span><span class="fu">filter</span>(hp<span class="sc">&gt;=</span><span class="dv">600</span> <span class="sc">&amp;</span> hp<span class="sc">&lt;=</span><span class="dv">3000</span>,<span class="st">`</span><span class="at">year</span><span class="st">`</span><span class="sc">==</span><span class="dv">2009</span>)<span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">price_m=</span>price<span class="sc">/</span><span class="dv">1000000</span>)<span class="sc">|&gt;</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>hp,<span class="at">y=</span>price_m,<span class="at">color=</span>company))<span class="sc">+</span><span class="fu">geom_point</span>()</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>p1<span class="sc">+</span>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Engine capacity"</span>, <span class="at">y =</span> <span class="st">"sale price in million of Rs."</span>,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Used sales car data from pakwheels"</span>,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Data are vehicles listed on pakwheels for sale in 2020"</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: pakwheels, By Zahid Asghar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pakwheels_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="bubbleplot" class="level2">
+<h2 class="anchored" data-anchor-id="bubbleplot">Bubbleplot</h2>
+<div class="cell">
+
+</div>
+<p>If you just want to highlight the relationship between gbp per capita and life Expectancy you’ve probably done most of the work now. However, it is a good practice to highlight a few interesting dots in this chart to give more insight to the plot:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">#tmp &lt;- pkw %&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a> <span class="co">#mutate(</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># annotation = case_when(</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>   <span class="co"># hp &lt; 2000 &amp; price &lt; 700000 ~ "yes",</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#price &lt; 3000000 ~ "yes",</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>     <span class="co">#Mileage &gt; 15000 ~ "yes"</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#)</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co">#) %&gt;% mutate(Mileage=Mileage/10000)</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a> <span class="co"># arrange(desc(price)) </span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot( tmp, aes(x=hp, y=price, size =Mileage , color = company)) +</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a> <span class="co">#   geom_point(alpha=0.7) +</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#  scale_size(range = c(1.4, 19), name="Price in Million of Rupees") +</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>   <span class="co"># scale_color_viridis(discrete=TRUE) +</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">#theme_ipsum() +</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">#theme(legend.position="none") +</span></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">#geom_text_repel(data=tmp %&gt;% filter(annotation=="yes"), aes(label=company), size=4 )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">##This is a table of data about a large number of countries, each observed over several years. Let's make a scatterplot with it.</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>P<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>pkw,<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>hp,<span class="at">y=</span>price))  </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>P<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pakwheels_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>P<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pakwheels_files/figure-html/unnamed-chunk-29-2.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>P<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"gam"</span>)<span class="sc">+</span><span class="fu">scale_x_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pakwheels_files/figure-html/unnamed-chunk-29-3.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>P<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"gam"</span>)<span class="sc">+</span><span class="fu">scale_x_log10</span>(<span class="at">labels=</span>scales<span class="sc">::</span>dollar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pakwheels_files/figure-html/unnamed-chunk-29-4.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>P<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>pkw,<span class="at">mapping =</span> <span class="fu">aes</span>(hp,<span class="at">y=</span><span class="fu">log</span>(price),<span class="at">color=</span><span class="st">"purple"</span>))</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>P<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>)<span class="sc">+</span><span class="fu">scale_x_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pakwheels_files/figure-html/unnamed-chunk-29-5.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="do">##aes() is for variables</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>P<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>pkw,<span class="at">mapping =</span> <span class="fu">aes</span>(hp,<span class="at">y=</span><span class="fu">log</span>(price)))</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>P<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">"purple"</span>)<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>)<span class="sc">+</span><span class="fu">scale_x_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3"></h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>P<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>pkw,<span class="at">mapping =</span> <span class="fu">aes</span>(hp,<span class="at">y=</span>price))</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>P<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">color=</span><span class="st">"orange"</span>,<span class="at">se=</span><span class="cn">FALSE</span>,<span class="at">size=</span><span class="dv">8</span>,<span class="at">method =</span> <span class="st">"lm"</span>)<span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pakwheels_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4"></h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#With proper title</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>P<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>pkw,<span class="at">mapping =</span> <span class="fu">aes</span>(hp,<span class="at">y=</span>price))</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>P<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"gam"</span>)<span class="sc">+</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels=</span>scales<span class="sc">::</span>dollar)<span class="sc">+</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"engine capacity"</span>, <span class="at">y =</span> <span class="st">"price of a car for sale"</span>,</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"pakwheels car sale data"</span>,</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Data points are company-years"</span>,</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: pakwheels."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pakwheels_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="section-5" class="level2">
+<h2 class="anchored" data-anchor-id="section-5"></h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Continent wise</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> gapminder,</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y =</span> lifeExp,</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color =</span> continent))</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>) <span class="sc">+</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pakwheels_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> gapminder,</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y =</span> lifeExp,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color =</span> continent,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">fill =</span> continent))</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>) <span class="sc">+</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Aesthetics can be mapped per geom</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> gapminder, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp))</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> continent)) <span class="sc">+</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>) <span class="sc">+</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pakwheels_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">log</span>(pop))) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pakwheels_files/figure-html/unnamed-chunk-35-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

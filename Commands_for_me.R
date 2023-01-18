@@ -10,7 +10,8 @@ https://moderndive.github.io/moderndive_labs/
 https://stat545.com/factors-boss.html
 
 
-
+## Coloring title in ggplot
+https://datacornering.com/how-to-use-different-colors-in-the-ggplot2-title-in-r/
 
 
 
@@ -51,7 +52,7 @@ quarto use template quarto-journals/jasa
 ```{r}
 #| code-line-number: "|4|11|12|"
 
-
+library(tidyverse)
 library(gapminder)
 gapminder
 library(gt)

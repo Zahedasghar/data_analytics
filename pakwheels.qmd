@@ -1,0 +1,558 @@
+---
+title: "Analysing used car sales data for Pakistan"
+subtitle: "Zahid Asghar, SOE, QAU"
+title-block-banner: true
+format:
+  html:
+    theme: [default, custom.scss]
+    logo: "za_icon_2.png"
+    footer: "[zahidasghaR](https://zahidasghar.com/data_analytics/Workshop-DAEC)"
+    #height: 900
+    #width: 1600
+    #df-print: paged
+    #slide-number: c
+    code-fold: true
+    code-block-bg: true
+    #chalkboard: true
+execute:
+  echo: true
+  warning: false
+  freeze: auto
+---
+
+##  {data-menu-title="Title Slide" background-image="trial.png"}
+
+
+### [Case study for data anlytics from basics to modeling ]{.yellow}{.custom-author}
+
+[<a href="mailto:zasghar@qau.edu.pk"><i class="fa fa-paper-plane fa-fw"></i>zasghar\@qau.edu.pk</a> <br> <a href="https://github.com/zahedasghar"><i class="fa fa-github fa-fw"></i>zahedasghar</a><br> <a href="https://QMR.zahidasghar.com"> <i class="fa fa-globe fa-fw"></i>zahidasghar.com</a><br>]{.custom-institution}
+
+```{r }
+library(tidyverse)
+library(gapminder)
+library(kableExtra)
+library(patchwork)
+library(fontawesome)
+library(gapminder)
+library(scales)
+library(httr)
+clrs <- MetBrewer::met.brewer(name = "Java")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
+options(digits = 3, width = 75)
+```
+
+# Why R
+
+There is an increasing recognition of reproducibility of research, though it has limited recognition in social sciences.  The document in your hand is written in `Quarto`. 
+`Quarto` which can be used for pdf, html, word, PowerPoint/Slidy/Beamer Presentations, Webpages, LaTex and many others. 
+Besides learning basics of R-coding, another objective of this workshop is understanding the importance of reproducibility. Building this new habit of reproducible work at times maybe little challenging occasionally. Getting rid of culture of copying and pasting, and sparing this time for doing data analysis and research is one of the objectives of this or coming workshops. Purpose is to help you to get away from this tedious activity so that you can spend more time __doing science__.
+
+## Installing and loading packages
+The first thing we need to do is install and then load the `tidyverse` set of R packages to provide us with lots of extra functionality. You only need to install this once: once it’s installed we can simply load it into the workspace using the library() function each time we open a new R session.
+
+Understanding data sets requires many hours/days or in some cases weeks.There are many commercially available software but open source community based software have now dominated and R is one of these. R makes data understanding process as easy as possible through the `dplyr` package. It is one of the easiest solution for code-based data analysis. We will learn in this training how to do it. In case, you need more information, you can watch my [videos](https://youtu.be/ZNBZevfYgo0).
+
+I have discussed the [Gapminder dataset](https://cran.r-project.org/web/packages/gapminder/index.html) in [my videos](youtube), you can watch those videos. `gapminder` package is available through CRAN, so make sure to install it. Here's how to load in all required packages:
+
+```{r , warning=FALSE,message=FALSE}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+#install.packages("gapminder")
+library(hrbrthemes)
+library(viridis)
+library(kableExtra)
+options(knitr.table.format = "html")
+library(plotly)
+library(gridExtra)
+library(ggrepel)
+```
+
+
+
+**The dataset to be used is pakwheels data obtained from kaggle and you can download data from the link [data download](https://www.kaggle.com/datasets/spideysloth/pakwheels-cars-dataset) or from my github repository. We read `data` as follows
+
+```{r}
+#pakwheels_11Jul2020 <- read_csv("C:/Users/92300/Downloads/archive/pakwheels-11Jul2020.csv")
+#pakwheels<-saveRDS(pakwheels_11Jul2020,file = "pakwheels.rds")
+
+pakwheels <- readRDS("D:/RepTemplates/data_analytics/pakwheels.rds")
+
+pakwheels
+
+```
+
+First few rows of data are displayed here and there `56186` observations in total. We will start from scratch and end up a sophisticated analysis. Firs step in dealing with data is to clean up the data and bringing it in workable format. It is said that every `tidy` data is alike but every messy data is messy in its own way. So lets see whether this data are in neat and clean format. 
+
+## Data Overview
+
+**Pipe operator** `%>%` or `|>` play very nicely with dplyr and make our code very easy to understand.
+For this lets have  an overview of data for which one can use `glimpse()` or `str()` for structure of data and  to view entire spreadsheet use `View()`.`View` command opens data in new worksheet while glimpse lists nature of variables (numeric/character/factor...) and total number of rows and columns.To see first 6 and last 6 observations use    `head()` and `tail()` ,respectively.
+
+```{r}
+
+pakwheels|>glimpse()
+head(pakwheels)
+tail(pakwheels)
+
+```
+
+One can observe that `Price` and `Engine Capacity` are character variables while we know Price is numeric variable and should fall in cateogry of `dbl` used in `R` for numeric variable. Similarly `Engine Capacity` can be made numeric if we remove cc from it. In the follow  `chunk` I am going to convert these two variables as `numeric`
+
+
+```{r}
+
+pakwheels$price<-as.numeric(pakwheels$Price) ## To convert price as numeric, R-base command. There are other ways to do the same
+pakwheels$hp <- as.numeric(gsub("([A-Za-z]+).*", "", pakwheels$`Engine Capacity`)) ## To take numeric values from variable Engine Capacity and lets give it a new name: hp.
+pakwheels$company <- gsub("([A-Za-z]+).*", "\\1", pakwheels$Name)  ## To take first word from column Name for taking it a 
+```
+
+So far so good. We have converted now three new variables `price`, `hp` and `company`. Variable names should preferably not have space between their names. Better use one word or use hyphen or underscore. 
+Lets have a look at data again.
+
+```{r}
+pakwheels|>glimpse()
+
+```
+
+So now we have 19 variables and `price` and `hp` are numeric variables. 
+
+# Key components of handling data
+
+-   View, glimpse, structure
+-   head, tail
+-   Column Selection
+-   Data Filtering
+-   Data Ordering
+-   Creating Derived Columns
+-   Calculating Summary Statistics
+-   Grouping
+
+## Information in **pakwheels** data
+
+To rename a variable, there are various ways. I am using a command `rename(new_va=old_var)`.
+
+```{r data-structure, comment= ""}
+pakwheels<-pakwheels|>rename(year=`Model Year`)
+#kbl()#|>
+ # kable_styling(bootstrap_options = "striped", full_width = F)
+#View(pakwheels)
+pakwheels|>count(year)|>arrange(desc(year))# How many cars by year model are listed for sale
+
+```
+
+As there are a large number of observations and it is not possible to find out through scrolling how many missing observations in the data. We use a command `na.omit()` to find out how many missing observations and give a `new name` to our data without losing our original data as follows:
+glimpse(gapminder) # We see that there are 1704 rows for 6 columns and also tells nature of variable
+#View(gapminder)    # This opens up full data in a new window
+
+```{r}
+pkw<- pakwheels|>na.omit()
+pkw|>glimpse()
+```
+So now we have 44,917 observations aftere liminating missing observations.
+
+
+# dplyr features
+One of the most widely used `package` in R for data wrangling is `dplyr` which is under `tidyverse` or you can simply recall `dplyr`. 
+
+1. `filter()` to keep selected observations
+2. `select()` to keep selected variables
+3. `arrange()` to reorder observations by a value
+4. `mutate()` to create new variables
+5. `summarize()` to create summary statistics
+6. `group_by()` for performing operations by group
+
+
+Now I shall mention some of the powerful but very simple to use features of dplyr.
+## Column Selection
+
+More often than not, you don't need all columns of a data set for your analysis. For example `PDHS` files have more than 5000 columns in some files and maybe 40 or 50 or even fewer than that are needed for your analysis. `Select()` function of R's dplyr is used to select columns of your interest
+Three selected columns are selected as follows. You can give new name to this data.
+
+```{r}
+pkw %>% select(price, hp, company)
+```
+
+In case you want to select most of the variables and drop one or two, you may proceed as follows
+
+```{r}
+pkw |> select(-URL)
+```
+
+So `url` column is now not shown above.
+
+## Data Filtering
+
+Filtering is another very important task one has to do in one's analysis. Sometimes, one has to select sale related to a particular city or agent or quarter. Here is how one uses `filter()` command for data with a condition. We are using here command only to select data for year 2007 for all the countries.
+I am going to explain `filter` variable of dplyr. `filter` is used only to select rows for a given condition. I am going to select data only for year 2007.
+
+```{r}
+pkw_szk<- pkw %>% filter(company=="Suzuki")|> select(`year`, price, hp,Color,Assembly, Transmission,`Engine Type`, `Mileage`, `Registered City`)
+pkw_szk|>glimpse() 
+kbl(pkw_szk[1:10,])%>%kable_styling(fixed_thead=T)
+```
+Compared to previous one, `pkw_szk` is showing data only for There are 14,199 cars.  The tibble (name used for data in tidyverse form) `pkw` is being piped into the function `filter()`. The argument `company == "Suzuki"` tells filter() that it should find all the rows such that the logical condition `year == "Suzuki` is TRUE.
+
+   ` Have we accidently deleted all other rows? Answer is no.` 
+    
+Nope: we haven't made any changes to gapminder at all. If you don't believe me try entering `pkw` at the console. All that this command does is display a subset of gapminder. If we wanted to store the result of running this command, we'd need to assign it to a variable, for example if you are not sure, lets type
+
+```{r tables}
+pkw |> filter(company=="Suzuki")
+
+```
+
+## Filtering with respect to two variables
+
+One can apply multiple `filters`
+
+```{r}
+#| eval: false
+pkw %>% filter(year=="2019",company=="Toyota") ## year 2019 and company is Toyota
+
+
+
+```
+
+Now we are selecting multiple years for `Toyota`.
+
+```{r}
+#| eval: false
+pkw %>% filter(year %in%c(2015,2016,2017,2018,2019), company=="Toyota") 
+```
+
+
+## Filtering data for Honda
+
+```{r}
+#| eval: false
+pkw_hnd<-pkw |> filter(company=="Honda")
+
+```
+
+## Sort data with `arrange`
+
+Sort data with arrange Suppose we wanted to sort `pkw` data for `Honda` by `Color`. To do this we can use the arrange command along with the pipe `|>` as follows:
+
+```{r}
+
+pkw |>filter(company=="Honda") |> count(Color)|>arrange(n)## This sorts in asceding order
+
+```
+
+**Descending order requires `arrange(desc())` comand**
+```{r}
+pkw |>filter(company=="Honda") |> count(Color)|>arrange(desc(n))## This sorts in asceding order
+
+```
+
+
+The logic is very similar to what we saw above for filter. Here, I use another important function `arrange`. The argument `count(Color)` tells `arrange()` that we want to sort by Color for Honda company cars. Note that by default `arrange()` sorts in ascending order. If we want to sort in descending order, we use the function `desc()`.
+
+
+
+
+## Change an existing variable or create a new one with mutate
+
+It's a little hard to read the column `peice` in `pkw` data since there are so many digits. Suppose that, instead of `price in Rs.`, we wanted to display `price` in millions of rupees. This requires us to divide `price` by 1000000, which we can do using the function `mutate()` from dplyr as follows:
+
+```{r}
+
+pkw<- pkw %>% mutate(price_m=price/1000000)
+```
+
+## Top bottom prices by companies for pkw data
+
+What are the five lowest and highest car prices for 1300 cc for model year 2017?
+
+```{r}
+pkw |> filter(year=="2017",hp==1300) ## year 2017 and engine capacity 1300
+pkw|>glimpse()
+pkw |> filter(year=="2017"&hp==1300)|>select(company, price, Assembly,Mileage,Color,Transmission)|>arrange(desc(price))|>top_n(10,price)
+```
+
+**Bottom 10 are reported as follows**
+
+```{r}
+pkw |> filter(year=="2017"&hp==1300)|>select(company, price, Assembly,Mileage,Color,Transmission)|>arrange(desc(price))|>top_n(-10,price)
+
+```
+
+
+
+
+
+## How to calculate new variables
+As mentioned above, `mutate` is used to calculate new variable. Here,we calculate a new variable `price_mill` (price in million of Rs.) and then `arranged` data and selected `top_n(10)` cars `transmute()` keeps only the derived column. Let's use it in the example from above:
+
+```{r top-10}
+
+pkw %>% filter(year==2017) %>% 
+  transmute(price_million=price/1000000) %>% 
+  arrange(desc(price_million)) %>% 
+  top_n(10, price_million)
+```
+
+ 
+## Ordering
+
+If one wants to have ordered data with respect to specific column(s), `arrange()` function is used in dplyr. To arrange data by life expectancy, we use `arrange()` function
+
+
+
+If one wants order from top to bottom, then use `arrange(desc())` command as follows:
+
+
+
+
+# Summarising data
+
+Another feature of dplyr is `summarise` data
+
+```{r}
+pkw |> filter(year==2018,hp==1300) |> summarise(mean=mean(price),min=min(price),max=max(price))
+```
+
+
+## Summarising data by groups
+
+```{r}
+
+pkw |> filter(year==2018,hp==1300) |> group_by(company) |> summarise(mean=mean(price),min=min(price),max=max(price))
+
+```
+
+
+## if_else command alongwith mutate
+
+```{r}
+#| eval: false
+pkw |>
+  filter(year == 2017) |>
+  group_by(company) |>
+  mutate(under_25 = if_else(Mileage<25000, "Y", "N"))|>
+  summarize(avg_price = mean(price)) 
+  
+
+```
+
+## Total number of cars for sale year-wise
+
+```{r}
+pkw
+pkw|>filter(hp==1300)|>group_by(year,company)|>
+  count(Color)|>summarise(total=sum(n))|>arrange(desc(year))
+```
+
+## Percentiles
+
+In general, higher the Mileage (more the age of a car) , lower the price. To test this assumption, lets calculate percentiles of price. This will indicate how many  have ranking lower than the current country.
+
+```{r}
+
+pkw %>% select(price,year, Mileage) %>% 
+  filter(year == 2017) %>%
+  mutate(percentile = ntile(Mileage, 100)) %>%
+  arrange(desc(price))
+```
+
+.
+
+So it makes sense that higher the Mileage, lower the price. This is not formal testing but exploratory data makes lot of sense here.
+
+## Data visualization
+
+Filtering data as done in introductory analysis seems quite difficult if you are not familiar with these simple things. But if you are working with dplyr for quite sometime, there is not anything very advanced or difficult.
+
+For example, let's say you have to find out the top 10 countries in the 90th percentile regarding life expectancy in 2007. You can reuse some of the logic from the previous sections, but answering this question alone requires `multiple filtering` and `subsetting`:
+
+```{r}
+pkw %>% filter(year==2017) %>% 
+  mutate(percentile=ntile(price,100)) %>% 
+  filter(percentile>90) %>% 
+  arrange(desc(percentile)) %>% 
+  top_n(10,wt=percentile) %>% 
+  select(company,Mileage,price,hp)
+
+```
+
+In case you are interested in bottom 10 (lowest price cars), use `top_n` with `-10`.
+
+```{r}
+pkw %>% filter(year==2017) %>% 
+  mutate(percentile=ntile(price,100)) %>% 
+  filter(percentile<10) %>% 
+  arrange(desc(percentile)) %>% 
+  top_n(-10,wt=percentile) %>% 
+  select(company,Mileage,price,hp)
+
+
+```
+
+## Visualizing data to get data insight
+Visualizing data is one of the most important aspect of getting data insight and may provide a better data insight than a complicated model. Visualizing large data sets were not an easy task, so researchers relied on mathematical and core econometric/regression models. `ggplot2` which is a set of `tidyverse` package is probably one of the greatest tool for data visualization used in `R`. In the following sections we are going to visualize `gapminder` data.
+
+Stat graphics is a mapping of variable to `aes`thetic attributes of `geom`etric objects.
+
+## 3 Essential components of `ggplot2`
+
+-   data: dataset containing the variables of interest
+-   geom: geometric object in question line, point, bars
+-   aes:  aesthetic attributes of an object x/y position, colors, shape, size
+
+## Scatter plot
+
+```{r}
+
+
+p1<-pkw|>filter(hp>=600 & hp<=3000,`year`==2009)|> mutate(price_m=price/1000000)|>
+  ggplot(aes(x=hp,y=price_m,color=company))+geom_point()
+p1+  labs(x = "Engine capacity", y = "sale price in million of Rs.",
+       title = "Used sales car data from pakwheels",
+       subtitle = "Data are vehicles listed on pakwheels for sale in 2020",
+       caption = "Source: pakwheels, By Zahid Asghar")
+
+```
+
+
+## Bubbleplot
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Show a bubbleplot
+#| eval: false
+
+data <- gapminder %>% filter(year=="2007") %>% select(-year)
+
+#data %>%
+ # mutate(pop=pop/1000000) %>%
+  #arrange(desc(pop)) %>%
+  #mutate(country = factor(country, country)) %>%
+  #ggplot( aes(x=gdpPercap, y=lifeExp, size = pop, color = continent)) +
+   # geom_point(alpha=0.7) +
+    #scale_size(range = c(1.4, 19), name="Population (M)") +
+    #scale_color_viridis(discrete=TRUE, guide=FALSE) +
+    #theme_ipsum() +
+    #theme(legend.position="bottom")
+```
+
+If you just want to highlight the relationship between gbp per capita and life Expectancy you’ve probably done most of the work now. However, it is a good practice to highlight a few interesting dots in this chart to give more insight to the plot:
+
+
+```{r message=FALSE, warning=FALSE}
+
+#| eval: false
+#tmp <- pkw %>%
+ #mutate(
+  # annotation = case_when(
+   # hp < 2000 & price < 700000 ~ "yes",
+    #price < 3000000 ~ "yes",
+     #Mileage > 15000 ~ "yes"
+    #)
+#) %>% mutate(Mileage=Mileage/10000)
+ # arrange(desc(price)) 
+
+# Plot
+#ggplot( tmp, aes(x=hp, y=price, size =Mileage , color = company)) +
+ #   geom_point(alpha=0.7) +
+  #  scale_size(range = c(1.4, 19), name="Price in Million of Rupees") +
+   # scale_color_viridis(discrete=TRUE) +
+    #theme_ipsum() +
+    #theme(legend.position="none") +
+    #geom_text_repel(data=tmp %>% filter(annotation=="yes"), aes(label=company), size=4 )
+```
+
+## 
+
+
+```{r message=FALSE, warning=FALSE}
+##This is a table of data about a large number of countries, each observed over several years. Let's make a scatterplot with it.
+#| eval: false
+P<-ggplot(data=pkw,mapping = aes(x=hp,y=price))  
+
+P+geom_point()+geom_smooth()
+
+P+geom_point()+geom_smooth(method = "lm")
+
+P+geom_point()+geom_smooth(method = "gam")+scale_x_log10()
+
+
+P+geom_point()+geom_smooth(method = "gam")+scale_x_log10(labels=scales::dollar)
+
+
+P<-ggplot(data=pkw,mapping = aes(hp,y=log(price),color="purple"))
+P+geom_point()+geom_smooth(method = "loess")+scale_x_log10()
+```
+
+## 
+```{r message=FALSE, warning=FALSE}
+#| eval: false
+##aes() is for variables
+P<-ggplot(data=pkw,mapping = aes(hp,y=log(price)))
+P+geom_point(color="purple")+geom_smooth(method = "loess")+scale_x_log10()
+```
+## 
+
+```{r}
+P<-ggplot(data=pkw,mapping = aes(hp,y=price))
+P+geom_point(alpha=0.3)+
+  geom_smooth(color="orange",se=FALSE,size=8,method = "lm")+
+  scale_x_log10()
+```
+##
+
+```{r}
+#With proper title
+P<-ggplot(data=pkw,mapping = aes(hp,y=price))
+P+geom_point(alpha=0.3)+
+  geom_smooth(method = "gam")+
+  scale_x_log10(labels=scales::dollar)+
+  labs(x = "engine capacity", y = "price of a car for sale",
+       title = "pakwheels car sale data",
+       subtitle = "Data points are company-years",
+       caption = "Source: pakwheels.")
+
+```
+## 
+
+```{r message=FALSE, warning=FALSE}
+##Continent wise
+#| eval: false
+
+p <- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp,
+                          color = continent))
+p + geom_point() +
+  geom_smooth(method = "loess") +
+  scale_x_log10()
+```
+
+```{r}
+#| eval: false
+p <- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp,
+                          color = continent,
+                          fill = continent))
+p + geom_point() +
+  geom_smooth(method = "loess") +
+  scale_x_log10()
+```
+
+```{r}
+##Aesthetics can be mapped per geom
+#| eval: false
+p <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp))
+p + geom_point(mapping = aes(color = continent)) +
+  geom_smooth(method = "loess") +
+  scale_x_log10()
+
+
+p + geom_point(mapping = aes(color = log(pop))) +
+  scale_x_log10()  
+
+
+```
+

@@ -407,7 +407,7 @@ Stat graphics is a mapping of variable to `aes`thetic attributes of `geom`etric 
 
 
 p1<-pkw|>filter(hp>=600 & hp<=3000,`year`==2009)|> mutate(price_m=price/1000000)|>
-  ggplot(aes(x=hp,y=price_m,color=company))+geom_point()
+  ggplot(aes(x=hp,y=price_m,color=company))+geom_point()+scale_x_log10(labels=scales::dollar)
 p1+  labs(x = "Engine capacity", y = "sale price in million of Rs.",
        title = "Used sales car data from pakwheels",
        subtitle = "Data are vehicles listed on pakwheels for sale in 2020",
@@ -497,17 +497,17 @@ P+geom_point(color="purple")+geom_smooth(method = "loess")+scale_x_log10()
 ```{r}
 P<-ggplot(data=pkw,mapping = aes(hp,y=price))
 P+geom_point(alpha=0.3)+
-  geom_smooth(color="orange",se=FALSE,size=8,method = "lm")+
+  geom_smooth(color="orange",se=FALSE,size=5,method = "lm")+
   scale_x_log10()
 ```
 ##
 
 ```{r}
 #With proper title
-P<-ggplot(data=pkw,mapping = aes(hp,y=price))
+P<-ggplot(data=pkw,mapping = aes(hp,y=log(price)))
 P+geom_point(alpha=0.3)+
   geom_smooth(method = "gam")+
-  scale_x_log10(labels=scales::dollar)+
+  scale_y_log10()+
   labs(x = "engine capacity", y = "price of a car for sale",
        title = "pakwheels car sale data",
        subtitle = "Data points are company-years",
@@ -520,10 +520,10 @@ P+geom_point(alpha=0.3)+
 ##Continent wise
 #| eval: false
 
-p <- ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap,
-                          y = lifeExp,
-                          color = continent))
+p <- ggplot(data = pkw,
+            mapping = aes(x = hp,
+                          y = price,
+                          color = company))
 p + geom_point() +
   geom_smooth(method = "loess") +
   scale_x_log10()
@@ -531,28 +531,26 @@ p + geom_point() +
 
 ```{r}
 #| eval: false
-p <- ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap,
-                          y = lifeExp,
-                          color = continent,
-                          fill = continent))
+p <-pkw|> filter(hp>300)|> ggplot(aes(x = hp,
+                          y = price,
+                          color = Assembly,
+                          fill = Assembly))
 p + geom_point() +
   geom_smooth(method = "loess") +
-  scale_x_log10()
+  scale_x_log10()+scale_y_continuous()
 ```
 
 ```{r}
 ##Aesthetics can be mapped per geom
 #| eval: false
-p <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp))
-p + geom_point(mapping = aes(color = continent)) +
-  geom_smooth(method = "loess") +
+p <-pkw|>filter(hp>500)|> ggplot(aes(x = hp, y = log(price)))
+p + geom_point(mapping = aes(color = company)) +
+  geom_smooth(method = "loess") +scale_y_log10()+
   scale_x_log10()
 
 
-p + geom_point(mapping = aes(color = log(pop))) +
-  scale_x_log10()  
-
+p + geom_point(mapping = aes(color = company)) +
+  scale_x_log10()+scale_y_log10()
 
 ```
 

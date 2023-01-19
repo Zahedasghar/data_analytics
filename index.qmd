@@ -52,7 +52,7 @@ options(digits = 3, width = 75)
 
 ## Why data analytics skills matter
 
--   Data Wrangling (80% )
+-   [Data Wrangling]{.adage} (80% )
 -   Summarising and Visualizing Data for making sense of data
 -   Dealing with Categorical Data
 -   Modeling and producing models in nice printable

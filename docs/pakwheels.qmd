@@ -23,7 +23,7 @@ execute:
 ##  {data-menu-title="Title Slide" background-image="trial.png"}
 
 
-### [Case study for data anlytics from basics to modeling ]{.yellow}{.custom-author}
+### [ ]{.yellow}{.custom-author}
 
 [<a href="mailto:zasghar@qau.edu.pk"><i class="fa fa-paper-plane fa-fw"></i>zasghar\@qau.edu.pk</a> <br> <a href="https://github.com/zahedasghar"><i class="fa fa-github fa-fw"></i>zahedasghar</a><br> <a href="https://QMR.zahidasghar.com"> <i class="fa fa-globe fa-fw"></i>zahidasghar.com</a><br>]{.custom-institution}
 

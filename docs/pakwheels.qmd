@@ -3,7 +3,7 @@ title: "Analysing used car sales data for Pakistan"
 subtitle: "Zahid Asghar, SOE, QAU"
 title-block-banner: true
 format:
-  html:
+  pdf:
     theme: [default, custom.scss]
     logo: "za_icon_2.png"
     footer: "[zahidasghaR](https://zahidasghar.com/data_analytics/Workshop-DAEC)"
@@ -11,6 +11,7 @@ format:
     #width: 1600
     #df-print: paged
     #slide-number: c
+    toc: true
     code-fold: true
     code-block-bg: true
     #chalkboard: true
@@ -20,6 +21,10 @@ execute:
   freeze: auto
 ---
 
+
+
+ 
+ 
 ##  {data-menu-title="Title Slide" background-image="trial.png"}
 
 
@@ -407,7 +412,7 @@ Stat graphics is a mapping of variable to `aes`thetic attributes of `geom`etric 
 
 
 p1<-pkw|>filter(hp>=600 & hp<=3000,`year`==2009)|> mutate(price_m=price/1000000)|>
-  ggplot(aes(x=hp,y=price_m,color=company))+geom_point()+scale_x_log10(labels=scales::dollar)
+  ggplot(aes(x=hp,y=price_m,color=company))+geom_point()+scale_x_log10()
 p1+  labs(x = "Engine capacity", y = "sale price in million of Rs.",
        title = "Used sales car data from pakwheels",
        subtitle = "Data are vehicles listed on pakwheels for sale in 2020",
@@ -416,7 +421,7 @@ p1+  labs(x = "Engine capacity", y = "sale price in million of Rs.",
 ```
 
 
-## Bubbleplot
+
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -554,3 +559,58 @@ p + geom_point(mapping = aes(color = company)) +
 
 ```
 
+## Bar plot
+
+```{r}
+manufacturers <- pkw |> 
+  count(company, sort = TRUE) |> 
+  mutate(
+    manufacturer = str_to_title(company),
+    manufacturer = fct_reorder(company, n) 
+  )|>na.omit()
+manufacturers |> filter(n>100)|>
+  ggplot(aes(y = manufacturer, x = n)) +
+  geom_col(fill = 'dodgerblue4') +
+  theme_minimal() +
+  scale_x_continuous(
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  labs(
+    x = element_blank(), 
+    y = element_blank(),
+    title = 'Number of vehicles in the Pakwheels data set',
+    subtitle = "At least 100 vehicles should be in the data to be included in graph",
+    caption = "Source: Pakwheels| Zahid Asghar "
+  ) +
+  theme(
+    panel.grid.major.y = element_blank()
+  )
+
+``` 
+
+
+## Lollipop chart
+```{r}
+manufacturers |> filter(n>100)|>
+  ggplot(aes(y = manufacturer, x = n)) +
+  geom_point(col = 'dodgerblue4', size = 5) +
+  geom_segment(
+    aes(x = 0, xend = n, y = manufacturer, yend = manufacturer),
+    linewidth = 1.5,
+    col = 'dodgerblue4'
+  ) +
+  theme_minimal() +
+  scale_x_continuous(
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  labs(
+    x = element_blank(), 
+    y = element_blank(),
+    title = 'Number of vehicles in the Pakwheels data set',
+    subtitle = "At least 100 vehicles should be in the data to be included in graph",
+    caption = "Source: Pakwheels| Zahid Asghar "
+  ) +
+  theme(
+    panel.grid.major.y = element_blank()
+  )
+```

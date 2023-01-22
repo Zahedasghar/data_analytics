@@ -4,17 +4,19 @@ subtitle: "17, 18, 25 and 26 February 2023 (6-9 PM)"
 title-block-banner: true
 title-block-banner-color: "white"
 author: "Zahid Asghar and Muhammad Yasin"
-#date: "`r Sys.Date()`"
+#date: " "
 format:
-  html:
+  revealjs:
     theme: [default, custom.scss]
     logo: "za_icon_2.png"
-    footer: "[Zahid—R](https://zahidasghar.com/)"
+    footer: "[Registratin link](https://forms.gle/rsDJ7H4vUXdeANfLA)"
     height: 900
     width: 1600
     #df-print: paged
     slide-number: c
     code-fold: true
+    title-slide-attributes:
+      data-background-color: "#b02038"
     chalkboard: true
 overview: true
 execute:
@@ -170,6 +172,11 @@ ggplotly(gg) %>%
   highlight("plotly_hover")
 
 ```
+
+
+## Presenting data in tables 
+
+
 
 ## Basic of Regression Analysis
 

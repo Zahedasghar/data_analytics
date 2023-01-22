@@ -3,7 +3,7 @@ title: "Analysing used car sales data for Pakistan"
 subtitle: "Zahid Asghar, SOE, QAU"
 title-block-banner: true
 format:
-  pdf:
+  html:
     theme: [default, custom.scss]
     logo: "za_icon_2.png"
     footer: "[zahidasghaR](https://zahidasghar.com/data_analytics/Workshop-DAEC)"
@@ -22,7 +22,7 @@ execute:
 ---
 
 
-
+![used cars for sale](images/auto.jpg)
  
  
 ##  {data-menu-title="Title Slide" background-image="trial.png"}

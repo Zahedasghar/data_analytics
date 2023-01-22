@@ -103,7 +103,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="fullcontent">
+<body>
 
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
@@ -123,25 +123,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     
   
   </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a>
+  <ul class="collapse">
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="yellow"></span></a></li>
+  </ul></li>
+  <li><a href="#why-r" id="toc-why-r" class="nav-link" data-scroll-target="#why-r">Why R</a>
+  <ul class="collapse">
+  <li><a href="#installing-and-loading-packages" id="toc-installing-and-loading-packages" class="nav-link" data-scroll-target="#installing-and-loading-packages">Installing and loading packages</a></li>
+  <li><a href="#data-overview" id="toc-data-overview" class="nav-link" data-scroll-target="#data-overview">Data Overview</a></li>
+  </ul></li>
+  <li><a href="#key-components-of-handling-data" id="toc-key-components-of-handling-data" class="nav-link" data-scroll-target="#key-components-of-handling-data">Key components of handling data</a>
+  <ul class="collapse">
+  <li><a href="#information-in-pakwheels-data" id="toc-information-in-pakwheels-data" class="nav-link" data-scroll-target="#information-in-pakwheels-data">Information in <strong>pakwheels</strong> data</a></li>
+  </ul></li>
+  <li><a href="#dplyr-features" id="toc-dplyr-features" class="nav-link" data-scroll-target="#dplyr-features">dplyr features</a>
+  <ul class="collapse">
+  <li><a href="#data-filtering" id="toc-data-filtering" class="nav-link" data-scroll-target="#data-filtering">Data Filtering</a></li>
+  <li><a href="#filtering-with-respect-to-two-variables" id="toc-filtering-with-respect-to-two-variables" class="nav-link" data-scroll-target="#filtering-with-respect-to-two-variables">Filtering with respect to two variables</a></li>
+  <li><a href="#filtering-data-for-honda" id="toc-filtering-data-for-honda" class="nav-link" data-scroll-target="#filtering-data-for-honda">Filtering data for Honda</a></li>
+  <li><a href="#sort-data-with-arrange" id="toc-sort-data-with-arrange" class="nav-link" data-scroll-target="#sort-data-with-arrange">Sort data with <code>arrange</code></a></li>
+  <li><a href="#change-an-existing-variable-or-create-a-new-one-with-mutate" id="toc-change-an-existing-variable-or-create-a-new-one-with-mutate" class="nav-link" data-scroll-target="#change-an-existing-variable-or-create-a-new-one-with-mutate">Change an existing variable or create a new one with mutate</a></li>
+  <li><a href="#top-bottom-prices-by-companies-for-pkw-data" id="toc-top-bottom-prices-by-companies-for-pkw-data" class="nav-link" data-scroll-target="#top-bottom-prices-by-companies-for-pkw-data">Top bottom prices by companies for pkw data</a></li>
+  <li><a href="#how-to-calculate-new-variables" id="toc-how-to-calculate-new-variables" class="nav-link" data-scroll-target="#how-to-calculate-new-variables">How to calculate new variables</a></li>
+  <li><a href="#ordering" id="toc-ordering" class="nav-link" data-scroll-target="#ordering">Ordering</a></li>
+  </ul></li>
+  <li><a href="#summarising-data" id="toc-summarising-data" class="nav-link" data-scroll-target="#summarising-data">Summarising data</a>
+  <ul class="collapse">
+  <li><a href="#summarising-data-by-groups" id="toc-summarising-data-by-groups" class="nav-link" data-scroll-target="#summarising-data-by-groups">Summarising data by groups</a></li>
+  <li><a href="#if_else-command-alongwith-mutate" id="toc-if_else-command-alongwith-mutate" class="nav-link" data-scroll-target="#if_else-command-alongwith-mutate">if_else command alongwith mutate</a></li>
+  <li><a href="#total-number-of-cars-for-sale-year-wise" id="toc-total-number-of-cars-for-sale-year-wise" class="nav-link" data-scroll-target="#total-number-of-cars-for-sale-year-wise">Total number of cars for sale year-wise</a></li>
+  <li><a href="#percentiles" id="toc-percentiles" class="nav-link" data-scroll-target="#percentiles">Percentiles</a></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data visualization</a></li>
+  <li><a href="#visualizing-data-to-get-data-insight" id="toc-visualizing-data-to-get-data-insight" class="nav-link" data-scroll-target="#visualizing-data-to-get-data-insight">Visualizing data to get data insight</a></li>
+  <li><a href="#essential-components-of-ggplot2" id="toc-essential-components-of-ggplot2" class="nav-link" data-scroll-target="#essential-components-of-ggplot2">3 Essential components of <code>ggplot2</code></a></li>
+  <li><a href="#scatter-plot" id="toc-scatter-plot" class="nav-link" data-scroll-target="#scatter-plot">Scatter plot</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"></a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"></a></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"></a></li>
+  <li><a href="#bar-plot" id="toc-bar-plot" class="nav-link" data-scroll-target="#bar-plot">Bar plot</a></li>
+  <li><a href="#lollipop-chart" id="toc-lollipop-chart" class="nav-link" data-scroll-target="#lollipop-chart">Lollipop chart</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/pkw.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">auto data</figcaption><p></p>
+<p><img src="images/auto.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">used cars for sale</figcaption><p></p>
 </figure>
 </div>
-</section>
-<section id="section-1" class="level2" data-menu-title="Title Slide" data-background-image="trial.png">
-<h2 data-menu-title="Title Slide" data-background-image="trial.png" class="anchored" data-anchor-id="section-1"></h2>
-<section id="section-2" class="level3 custom-author">
-<h3 class="custom-author anchored" data-anchor-id="section-2"><span class="yellow"></span></h3>
+<section id="section" class="level2" data-menu-title="Title Slide" data-background-image="trial.png">
+<h2 data-menu-title="Title Slide" data-background-image="trial.png" class="anchored" data-anchor-id="section"></h2>
+<section id="section-1" class="level3 custom-author">
+<h3 class="custom-author anchored" data-anchor-id="section-1"><span class="yellow"></span></h3>
 <p><span class="custom-institution"><a href="mailto:zasghar@qau.edu.pk"><i class="fa fa-paper-plane fa-fw"></i>zasghar@qau.edu.pk</a> <br> <a href="https://github.com/zahedasghar"><i class="fa fa-github fa-fw"></i>zahedasghar</a><br> <a href="https://QMR.zahidasghar.com"> <i class="fa fa-globe fa-fw"></i>zahidasghar.com</a><br></span></p>
 <div class="cell">
 <details>
@@ -1066,8 +1112,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 </section>
-<section id="section-3" class="level2">
-<h2 class="anchored" data-anchor-id="section-3"></h2>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -1117,8 +1163,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="section-4" class="level2">
-<h2 class="anchored" data-anchor-id="section-4"></h2>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3"></h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -1128,8 +1174,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 </section>
-<section id="section-5" class="level2">
-<h2 class="anchored" data-anchor-id="section-5"></h2>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4"></h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -1143,8 +1189,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="section-6" class="level2">
-<h2 class="anchored" data-anchor-id="section-6"></h2>
+<section id="section-5" class="level2">
+<h2 class="anchored" data-anchor-id="section-5"></h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -1163,8 +1209,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="section-7" class="level2">
-<h2 class="anchored" data-anchor-id="section-7"></h2>
+<section id="section-6" class="level2">
+<h2 class="anchored" data-anchor-id="section-6"></h2>
 <div class="cell">
 <details>
 <summary>Code</summary>

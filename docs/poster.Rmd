@@ -11,7 +11,7 @@ affiliation:
   - num: 1
     address: School of Economics, Quaid-i-Azam University
 main_findings:
-  - "Learn **Data Analytics** with R + **Quarto Markdown**."
+  - "[Learn **Data Analytics** with R + **Quarto Markdown**. register here](https://forms.gle/yzgTDuEZJDmGjzKHA)"
   - '![](images/za_icon_2.png){.main_pic}'
 logoleft_name: '![](){.main-img-left}'
 logoright_name: '![](){.main-img-right}'
@@ -55,10 +55,6 @@ knitr::write_bib(c('posterdown', 'rmarkdown','pagedown'), 'packages.bib')
 1.  Under taxonomy of data.
 2.  Data cleaning, wrangling, visualization, summarisation.
 3.  Introduction to Quarto for beautiful reports!
-
-<div>
-
-</div>
 
 ## Results
 

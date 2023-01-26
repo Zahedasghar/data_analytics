@@ -2,11 +2,11 @@
 library(cricketdata)
 library(tidyverse)
 menODI <- fetch_cricinfo("ODI", "Men", "Batting", type="innings",country = "Pakistan")
-mentest|>glimpse()
-View(mentest)
+menODI|>glimpse()
+View(menODI)
 
 
-Pak_NZ<-mentest|>filter(Opposition=="New Zealand"&Ground=="Karachi")
+Pak_NZ<-menODI|>filter(Opposition=="New Zealand"&Ground=="Karachi")
 Pak_NZ$Innings
 Pak_NZ|>group_by(Player)|>summarise(total_score=sum(Runs))|>arrange(desc(total_score))
 

@@ -116,7 +116,7 @@ ggplot(data, aes(x=wt, y=mpg)) +
 
 Mohammad_Rizwan_id<-find_player_id("Mohammad Rizwan")$ID
 Mohammad_Rizwan_id
-Mohammad_Rizwan<-fetch_player_data(Mohammad_Rizwan_id, "Test") %>%
+Mohammad_Rizwan<-fetch_player_data(Mohammad_Rizwan_id, "ODI") %>%
   mutate(NotOut = (Dismissal == "not out"))
 Mohammad_Rizwan|>glimpse()
 MRave <- Mohammad_Rizwan %>%
@@ -129,8 +129,31 @@ names(MRave) <- paste("Average =", round(MRave, 2))
 rizwan<-ggplot(Mohammad_Rizwan) +
   geom_hline(aes(yintercept = MRave), col="gray") +
   geom_point(aes(x = Date, y = Runs, col = NotOut)) +
-  ggtitle("Mohammad_Rizwan Test Matches Scores") +
+  ggtitle("Mohammad_Rizwan ODI Matches Scores") +
   scale_y_continuous(sec.axis = sec_axis(~., breaks = MRave))+theme(legend.position = "none") 
+rizwan
+
+Haris_Sohail_id<-find_player_id("Haris Sohail")$ID
+Haris_Sohail_id
+Haris_Sohail<-fetch_player_data(Haris_Sohail_id, "ODI") %>%
+  mutate(NotOut = (Dismissal == "not out"))
+HSave<-Haris_Sohail %>%
+  filter(!is.na(Runs)) %>%
+  summarise(Average = sum(Runs) / (n() - sum(NotOut))) %>%
+  pull(Average)
+HSave
+names(HSave) <- paste("Average =", round(HSave, 2))
+# Plot ODI scores
+Haris<-ggplot(Haris_Sohail) +
+  geom_hline(aes(yintercept = HSave), col="gray") +
+  geom_point(aes(x = Date, y = Runs, col = NotOut)) +
+  ggtitle("Haris_Sohail ODI Matches Scores") +
+  scale_y_continuous(sec.axis = sec_axis(~., breaks = HSave))+theme(legend.position = "none") 
+Haris
+
+
+
+
 
 Sarfaraz_Ahmed_id<-find_player_id("Sarfaraz Ahmed")$ID
 

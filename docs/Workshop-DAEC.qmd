@@ -1,23 +1,23 @@
 ---
-title: '4-Days Online Workshop on Data Analysis & Econometrics with R '
-subtitle: "17, 18, 25 and 26 February 2023 (6-9 PM)"
+title: 'Workshop on Data Analysis & Econometrics with R (ViRtual) '
+subtitle: "17, 18, 25 and 26 Feb-2023 (6-9 PM)"
 title-block-banner: true
 title-block-banner-color: "white"
-author: "Zahid Asghar and Muhammad Yasin"
+author: "Zahid Asghar and Muhammad Yaseen"
 #date: " "
 format:
   revealjs:
     theme: [default, custom.scss]
-    logo: "za_icon_2.png"
-    footer: "[Registratin link](https://forms.gle/rsDJ7H4vUXdeANfLA)"
+    #logo: "za_icon_2.png"
+    #footer: "[Registratin link](https://forms.gle/rsDJ7H4vUXdeANfLA)"
     height: 900
     width: 1600
     #df-print: paged
-    slide-number: c
+    #slide-number: c
     code-fold: true
     title-slide-attributes:
-      data-background-color: "#b02038"
-    chalkboard: true
+      data-background-color: "#3d6299"
+    #chalkboard: true
 overview: true
 execute:
   echo: true
@@ -33,6 +33,8 @@ clrs_lt <- colorspace::lighten(clrs, 0.9)
 knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
 options(digits = 3, width = 75)
 ```
+
+# [*How to be good at metRics*]{.yellow}
 
 ## Why choose R and Quarto
 
@@ -173,10 +175,7 @@ ggplotly(gg) %>%
 
 ```
 
-
-## Presenting data in tables 
-
-
+## Presenting data in tables
 
 ## Basic of Regression Analysis
 
@@ -184,7 +183,6 @@ ggplotly(gg) %>%
 -   Producing nice regression tables in word and other formats
 
 ## Producing beautiful documents in Quarto
-
 
 ## About me
 
@@ -209,22 +207,18 @@ ggplotly(gg) %>%
 
 ## Pre-requisite for workshop
 
-There is no pre-requisite for the workshop and all of the participants can benefits depending on how much effort they put it in doing practical work.
--   install R and RStudio 
--   install tidyverse package [R Packages, Library, Errors](https://youtu.be/SRSNdCZ_QnE),
--   install gapminder package [R Packages, Library, Errors](https://youtu.be/SRSNdCZ_QnE),
-R and RStudion installation is desirable but not necessary as I shall use [RStudio(now Posit)  Cloud](https://posit.cloud).
+There is no pre-requisite for the workshop and all of the participants can benefits depending on how much effort they put it in doing practical work. - install R and RStudio - install tidyverse package [R Packages, Library, Errors](https://youtu.be/SRSNdCZ_QnE), - install gapminder package [R Packages, Library, Errors](https://youtu.be/SRSNdCZ_QnE), R and RStudion installation is desirable but not necessary as I shall use [RStudio(now Posit) Cloud](https://posit.cloud).
 
 ## Course fee and refund
 
 Full fee refund will be made to General category within 24 hours of the first lecture. 75% of the fee will be refund to students of general category, and fee refund for students of special category will only be made if they cancel registration at least 3-days before the start of the first class.
 
-| Category                                                                   | Fee      | Remarks                                                                     |
-|--------------------------|--------------|--------------------------------|
-| General                                                                    | Rs.4000/ |                                                                             |
+| Category                                                                   | Fee      | Remarks                                                                                                   |
+|-------------------------|------------------|-----------------------------|
+| General                                                                    | Rs.4000/ |                                                                                                           |
 | Student                                                                    | Rs.2000/ | Certificate of fee deposited in the university enrolled. Seats are limited.(First come first serve basis) |
-| Students enrolled in Balochistan and selected universities of KP and Sindh | Rs.1000/ | [10 seats (First come first serve basis)]{.yellow}                    |
-|                                                                            |          |                                                                             |
+| Students enrolled in Balochistan and selected universities of KP and Sindh | Rs.1000/ | [10 seats (First come first serve basis)]{.yellow}                                                        |
+|                                                                            |          |                                                                                                           |
 
 : Course Fee
 

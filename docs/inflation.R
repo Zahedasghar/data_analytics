@@ -54,8 +54,20 @@ mpg %>%
 library(readxl)
 inflation<-read_excel("inflation-22.xlsx")
 inflation |> glimpse()
-colnames(inflation)<-c(Category, weight,Dec-22,Nov-22,Dec-)
+inflation<-inflation|>select(`...1`,weight, Date, CPI)
+colnames(inflation)<-c("category", "weight", "Date","CPI")
+inflation|>slice(1:30) |>filter(category%in% c("General","Transport", "Food & Non-alcohlic Bev."))|>
+plot_befafter_colors(Date, CPI, category)
+
+inflation|>slice(1:30) |>
+  plot_befafter_colors(Date, CPI, category)
 
 
 
+
+yoy<-inflation|>D
+yoy|>glimpse()
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
 

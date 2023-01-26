@@ -20,19 +20,19 @@ library(hexSticker)
 
 #Basic Image Processing
 
-img <- image_read("zahid.png")
+img <- image_read("docs/images/zahid.jpeg")
 img %>% 
   image_convert("png") %>% 
   image_resize("1080 x 200")%>% 
   image_fill(color="#022047", point="+45") %>% 
-  image_annotate("d?ta", size=38, location = "+07+100", color="blue") -> res
+  image_annotate("metRics", size=38, location = "+07+100", color="gray") -> res
 
 res
 #Actual Sticker Creation
 
 
 # wrap in plot to preview ie plot(sticker(...))
-final_res<-sticker(res, package="zaR", p_size=30,
+final_res<-sticker(res, package="Zahid Asghar", p_size=20,
                    p_y = 1.5,
                    s_x=1, s_y=0.8, s_width=1.4,
                    s_height = 14,
@@ -44,39 +44,71 @@ plot(final_res)
 library(tidyverse)
 library(hexSticker)
 library(ggplot2)
+library(ggthemes)
+p <- ggplot(aes(x = mpg, y = wt), data = mtcars) + geom_point()+geom_smooth(method = "loess",se=FALSE)
+p <- p + theme_void() + theme_fivethirtyeight()
 
-p <- ggplot(aes(x = mpg, y = wt), data = mtcars) + geom_point()
-p <- p + theme_void() + theme_transparent()
-p
-sticker(p, package="hexSticker", p_size=8, s_x=1, s_y=.75, s_width=1.3, s_height=1,
-        filename="ggplot2.png")
+fin_st<-sticker(p, package="Data Analytics", p_size=12, s_x=1, s_y=.75, s_width=1.3, s_height=1,
+        filename="ggplot2.png",h_fill="#401097",h_color = "#062047")
 
-
-
-
-
-
-
-
-
-
-
-
-
-img <- image_read("soe_logo.jpg")
-img %>% 
+plot(fin_st)
+img1 <- image_read("soe_logo.jpg")
+img1 %>% 
   image_convert("png") %>% 
   image_resize("1080 x 200")%>% 
   image_fill(color="#022047", point="+45") %>% 
-  image_annotate("d?ta", size=38, location = "+07+100", color="blue") -> res
+  image_annotate("Islamabad", size=38, location = "+10-10", color="white") -> res1
 
-res
+res1
 #Actual Sticker Creation
 
 
 # wrap in plot to preview ie plot(sticker(...))
-final_res<-sticker(res, package="zaR", p_size=30,
+final_res1<-sticker(res1, package="SOE, QAU", p_size=20,
                    p_y = 1.5,
-                   s_x=1, s_y=0.8, s_width=1.4,
+                   s_x=1, s_y=0.8, s_width=1.0,
                    s_height = 14,
-                   filename="soe.png",h_fill="#922047",h_color = "#062047")
+                   filename="soe.png",h_fill="#022047",h_color = "#062047")
+plot(final_res1)
+
+
+
+p1<-mpg %>%
+  ggplot(aes(hwy, cty, color = class)) +
+  geom_point(size = 2, alpha = 0.3) +
+  geom_smooth(aes(color = NULL), se=TRUE) +
+  geom_xsidedensity(
+    aes(
+      y    = after_stat(density),
+      fill = class
+    ),
+    alpha    = 0.5,
+    size     = 1
+    ,
+    position = "stack"
+  ) +
+  geom_ysidedensity(
+    aes(
+      x    = after_stat(density),
+      fill = class
+    ),
+    alpha    = 0.5,
+    size     = 1
+    ,
+    position = "stack"
+  ) +
+  scale_color_tq() +
+  scale_fill_tq() +
+  theme_tq() +
+  labs(title = "Fuel Economy by Vehicle Type" ,
+       subtitle = "ggside density",
+       x = "Highway MPG", y = "City MPG") +
+  theme(
+    ggside.panel.scale.x = 0.4,
+    ggside.panel.scale.y = 0.4
+  )
+p1
+fin_st1<-sticker(p1, package="Data Analytics", p_size=12, s_x=1, s_y=.75, s_width=1.3, s_height=1,
+                filename="ggplot_2.png",h_fill="#401097",h_color = "#062047")
+
+plot(fin_st1)

@@ -42,28 +42,28 @@ glimpse(ahk)
 
 ## Select all variables containing other in it
 
-ahk %>% select(S2Q27) %>% mutate(S2Q27=as_factor(S2Q27)) %>%  drop_na() %>%  tbl_summary()
+ahk %>% select(S2Q27) %>% mutate(S2Q27=as_factor(S2Q27)) %>%  drop_na() %>%  tbl_summary()|>
+ as_gt()
 
 ## Summarise by mode of transportation
+ahk %>% select(S2Q32) %>% mutate(S2Q32=as_factor(S2Q32))|>tbl_summary() %>% as_gt() %>% 
+  gt_theme_pff()
 
-ahk %>% select(S2Q32) %>% tbl_summary() %>% as_gt() %>% 
-  gt_theme_ft()
 
+#ahk %>% select(S2Q32) %>% tbl_summary() %>% as_gt() %>% 
+  #gt_theme_nytimes()
 
-ahk %>% select(S2Q32) %>% tbl_summary() %>% as_gt() %>% 
-  gt_theme_nytimes()
-
-ahk %>% select(S2Q32) %>% tbl_summary() %>% as_gt() %>% 
-  gt_theme_guardian()
-
+#ahk %>% select(S2Q32) %>% tbl_summary() %>% as_gt() %>% 
+ # gt_theme_guardian()
 
 
 
-ahk %>% select(S2Q32) %>% tbl_summary() %>% as_gt() %>% 
-  gt_theme_guardian() %>% 
+
+ahk %>% select(S2Q32) %>% mutate(S2Q32=as_factor(S2Q32))|> tbl_summary() %>% as_gt() %>% 
+  gt_theme_pff() %>% 
   tab_header(title = "Table 1: Mode of transportation to be used")
 
-ahk %>% select(S2Q32) %>% tbl_summary() %>% as_gt() %>% 
+ahk %>% select(S2Q32) %>% mutate(S2Q32=as_factor(S2Q32))|>tbl_summary() %>% as_gt() %>% 
   gt_theme_guardian() %>% 
   tab_header(title = "Table 1: Mode of transportation to be used")
 
@@ -73,26 +73,21 @@ ahk %>%
   # convert labelled values to a factor ----
 mutate_at(vars(matches("S")), haven::as_factor) %>% 
   gtsummary::tbl_summary() %>% as_gt() %>% 
-  gt_theme_guardian() %>% 
-  tab_header(title = "Table 1: Mode of transportation to be used")
-
+  gt_theme_pff() 
 ## Missing no and yes
 ahk %>% 
   dplyr::select(S2Q32) %>% 
   # convert labelled values to a factor ----
 mutate_at(vars(matches("S")), haven::as_factor) %>% 
   gtsummary::tbl_summary(missing = "no") %>% as_gt() %>% 
-  gt_theme_guardian() %>% 
-  tab_header(title = "Table 1: Mode of transportation to be used")
+  gt_theme_pff()
 
 ahk %>% 
   dplyr::select(S2Q32) %>% 
   # convert labelled values to a factor ----
 mutate_at(vars(matches("S")), haven::as_factor) %>% 
   gtsummary::tbl_summary() %>% as_gt() %>% 
-  gt_theme_guardian() %>% 
-  tab_header(title = "Table 1: Mode of transportation to be used")
-
+  gt_theme_pff()
 
 library(patchwork)
 
@@ -111,8 +106,8 @@ ahk %>% select(S3Q1) %>% tbl_summary()
 ahk %>% select(S2Q31) %>% mutate(S2Q31=as.factor(S2Q31)) %>% tbl_summary() ## This should be a factor variable
 
 
-ahk %>% select(S3Q16_1) %>% tbl_summary() %>% as_gt() %>% 
-  gt_theme_guardian()
+ahk %>% select(S3Q16_1)|>mutate(S3Q16_1=as.factor(S3Q16_1)) %>% tbl_summary() %>% as_gt() %>% 
+  gt_theme_pff()
 
 ahk %>% select(S6Q26) %>% tbl_summary()
 
@@ -154,7 +149,7 @@ ahk %>% sample_n(200)
 
 summary(ahk$S6Q26)
 
-ahk %>% select(S6Q26, S3Q19_10) %>% tbl_summary()
+ahk %>% select(S6Q26, S3Q19_10)|>mutate(S3Q19_10=as_factor(S3Q19_10)) %>% tbl_summary()
 ahk %>% glimpse()
 ## Ethnicity
 
@@ -165,9 +160,9 @@ ahk %>% select(S2Q2_other) %>% tbl_summary()
 
 
 
-ahk %>% select(S2Q2) %>% tbl_summary()
+ahk %>% select(S2Q2)|>mutate(S2Q2=as_factor(S2Q2)) %>% tbl_summary()
 
-ahk %>% select(S2Q2_other) %>% tbl_summary()
+ahk %>% select(S2Q2_other)|>mutate(S2Q2_other=as_factor(S2Q2_other)) %>% tbl_summary()
 
 
 
@@ -230,7 +225,7 @@ ahk<-ahk %>% mutate(
   library(gganimate)
   
   gapminder %>% filter(country%in% c("India", "Bangladesh", "Pakistan")) %>% 
-    ggplot(data=.)+aes(x=year, y=pop, color=country)+geom_line()+
+    ggplot(data=.)+aes(x=year, y=gdpPercap, color=country)+geom_line()+
     transition_reveal(year)
   
   
@@ -247,9 +242,10 @@ ahk<-ahk %>% mutate(
   library(gapminder)
   library(tidyverse)
   library(gganimate)
+  gapminder$gdpPercap<-round(gapminder$gdpPercap,0)
   datos2 <- gapminder %>%
     group_by(year) %>%
-    arrange(year, desc(gdpPercap)) %>%
+    arrange(year, desc(round(gdpPercap,0))) %>%
     mutate(ranking = row_number()) %>%
     filter(country %in% c("Pakistan", "India","Bangladesh", "Sri Lanka"))
   

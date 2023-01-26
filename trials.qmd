@@ -4,7 +4,6 @@ format: html
 editor: visual
 ---
 
-
 ```{dot}
 //| label: fig-dot-educationasconfounder
 //| fig-cap: "Education is a confounder that affects the relationship between income and happiness"
@@ -25,7 +24,7 @@ digraph D {
 }
 ```
 
-###
+### 
 
 ```{dot}
 digraph D {
@@ -43,8 +42,6 @@ digraph D {
 }
 
 ```
-
-
 
 ```{r}
 library(tidyverse)
@@ -74,11 +71,8 @@ both_departments <- rbind(department_one, department_two)
 both_departments
 ```
 
-
-
-
-
 ## 
+
 ```{r}
 both_departments |>
   ggplot(aes(x = undergrad, y = grad)) +
@@ -100,9 +94,8 @@ both_departments |>
 
 ```
 
-
-
 ## 
+
 ```{r}
 library(palmerpenguins)
 
@@ -125,7 +118,6 @@ penguins |>
   theme(legend.position = "bottom")
 
 ```
-
 
 ## Berkson's paradox
 
@@ -158,7 +150,6 @@ professionals_and_public
 
 ```
 
-
 ## 
 
 ```{r}
@@ -176,7 +167,9 @@ professionals_and_public |>
   scale_color_brewer(palette = "Set1") +
   theme(legend.position = "bottom")
 ```
+
 ## 
+
 ```{r}
 #| label: fig-dot-newyear_resolution
 #| fig-cap: "Not exactly but 2022 resolution went well"
@@ -200,8 +193,6 @@ DiagrammeR::grViz("digraph {
   }",
   height = 500)
 ```
-
-
 
 ## Year 2023 Resolution in R and Quarto
 

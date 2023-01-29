@@ -214,7 +214,7 @@ There is no pre-requisite for the workshop and all of the participants can benef
 Full fee refund will be made to General category within 24 hours of the first lecture. 75% of the fee will be refund to students of general category, and fee refund for students of special category will only be made if they cancel registration at least 3-days before the start of the first class.
 
 | Category                                                                   | Fee      | Remarks                                                                                                   |
-|-------------------------|------------------|-----------------------------|
+|----------------------------------------------------------------------------|----------|-----------------------------------------------------------------------------------------------------------|
 | General                                                                    | Rs.4000/ |                                                                                                           |
 | Student                                                                    | Rs.2000/ | Certificate of fee deposited in the university enrolled. Seats are limited.(First come first serve basis) |
 | Students enrolled in Balochistan and selected universities of KP and Sindh | Rs.1000/ | [10 seats (First come first serve basis)]{.yellow}                                                        |

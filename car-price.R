@@ -22,7 +22,13 @@ car_prices|>glimpse() ## Now Prices is a double (numeric variable) and it has PK
 
 
 ## To get first letter as Make
-
+car_prices|>
+  separate(
+    col = Cars,
+    into = c("first", "last"),
+    sep = " ",
+    remove = FALSE
+  )|>head()    ## stringr
 car_prices$Make <- gsub("([A-Za-z]+).*", "\\1", car_prices$Cars)
 car_prices|>glimpse()
 ## To convert price into millions of Rs.

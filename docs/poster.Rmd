@@ -5,7 +5,7 @@ author:
     affil: 1
     twitter: zahedasghar
     email: g.zahid@gmail.com
-    orcid: 0000-0002-1099-3857
+    orcid: 
     main: true
 affiliation:
   - num: 1

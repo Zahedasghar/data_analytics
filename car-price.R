@@ -74,3 +74,16 @@ carp|>filter(Make=="Honda")|> select(Cars,prices)|>  mutate(Cars = fct_reorder(C
 carp|>filter(Make=="Honda")|> select(Cars,prices)|>  mutate(Cars = fct_reorder(Cars, prices))|>
   gt()|>gt_theme_pff()|> 
   tab_source_note("Business Recorder")|>tab_caption("Honda vehicels prices (mill. of PKR) Jan 2023")
+
+
+library(dataxray)
+
+carp |>
+  make_xray() |> 
+  view_xray()
+library(palmerpenguins)
+penguins|>
+  make_xray()|>
+  view_xray()
+
+

@@ -1,31 +1,17 @@
 ---
-title: "Learn Basics of Data Analysis using R "
 format:
-  html:
+  html: 
     theme: [default, custom.scss]
-    logo: ""
-    footer: "[Zahid Asghar](https://zahidasghar.com)"
-    height: 900
-    width: 1600
-    chalkboard: true
-    title-slide-attributes: 
-      data-background-image: images/peacock.jpg
-      data-background-size: 15%
-      data-background-position: 95% 95%
-      data-background-color: "#447099"
-overview: true
-execute:
-  echo: false
+    toc: true
+    code-fold: true
+execute: 
   warning: false
-  freeze: auto
+  chalkboard: true
+editor: visual
 ---
+# Learn Basics of Data Analysis 
 
 ![](https://gordianknotbio.com/wp-content/uploads/2019/01/bubble-chart.png)
-
-```{r setup, include=FALSE}
-
-knitr::opts_chunk$set(echo = FALSE)
-```
 
 # Why R
 
@@ -40,7 +26,7 @@ Understanding data sets requires many hours/days or in some cases weeks.There ar
 
 I have discussed the [Gapminder dataset](https://cran.r-project.org/web/packages/gapminder/index.html) in my videos and we shall use it throughout this training. It's available through CRAN, so make sure to install it. Here's how to load in all required packages:
 
-```{r , warning=FALSE,message=FALSE}
+```{r }
 library(tidyverse)
 library(knitr)
 library(kableExtra)
@@ -79,7 +65,7 @@ First few rows of data are displayed here and there 1704 observations in total. 
 
 `View` command opens data in new worksheet while glimpse lists nature of variables (numeric/character/factor...) and total number of rows and columns.
 
-```{r data-structure, comment= ""}
+```{r }
 glimpse(gapminder) # We see that there are 1704 rows for 6 columns and also tells nature of variable
 #View(gapminder)    # This opens up full data in a new window
 ```
@@ -137,7 +123,7 @@ Compared to previous one, `gapminder` is showing data only for 142 rows. Pipes %
     
 Nope: we haven't made any changes to gapminder at all. If you don't believe me try entering gapminder at the console. All that this command does is display a subset of gapminder. If we wanted to store the result of running this command, we'd need to assign it to a variable, for example if you are not sure, lets type
 
-```{r tables}
+```{r }
 gapminder %>% filter(year==2007)
 
 ```
@@ -210,7 +196,7 @@ gapminderSA %>% mutate(gdp = pop * gdpPercap)
 ## How to calculate new variables
 As mentioned above, `mutate` is used to calculate new variable. Here we have calculated a new variable `gdp` and then `arranged` data and selected `top_n(10)` countries to see whether higher `lifeExpectancy` and higher `gdp` are linked or not? 
 
-```{r top-10}
+```{r }
 gapminder %>% filter(year==2007) %>% 
   mutate(gdp=gdpPercap*pop) %>% 
   arrange(desc(gdp)) %>% 
@@ -406,7 +392,7 @@ p1+  labs(x = "GDP Per Capita", y = "Life Expectancy in Years",
 ## Bubbleplot
 
 
-```{r echo=FALSE}
+```{r }
 # Show a bubbleplot
 
 data <- gapminder %>% filter(year=="2007") %>% select(-year)

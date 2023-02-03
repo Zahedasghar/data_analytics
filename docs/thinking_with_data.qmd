@@ -1,0 +1,217 @@
+---
+title: "The Philosophy and Techniques for Impact Evaluation Tools in SS"
+subtitle: "University of Sargodha"
+author: "Zahid Asghar"
+institute: "Quaid-i-Azam University, Islamabad"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    logo: "images/zahid.jpg"
+    footer: "[Zahid Asghar](https://zahidasghar.com)"
+    height: 900
+    width: 1600
+    chalkboard: true
+    title-slide-attributes: 
+      data-background-image: "http://www.result.pk/_images/articles/images/2021-01/12165_1_56856.jpg"
+      data-background-size: 20%
+      data-background-position: 100% 0%
+      data-background-color: "#447099"
+overview: true
+execute:
+  echo: false
+  warning: false
+  freeze: auto
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(httr)
+clrs <- MetBrewer::met.brewer(name = "Java")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
+options(digits = 3, width = 75)
+```
+
+## [Thinking and data are complement, not substitutes]{.yellow}
+
+::: incremental
+-   
+
+    ### Clear thinking is hard specially when mixed up with techniques that surround data and data analysis
+
+-   
+
+    ### Simply focussing statistics and econometric techniques: not a good idea
+
+-   
+
+    ### Miss the forest for the trees
+
+-   
+
+    ### Once thinking is focused, techniques will follow
+:::
+
+# AI, ML, Random Forests, ANN, CNN
+
+## We are told that this [new technology]{.yellow} will made it possible to do thinking for us. But that's not right, no data analysis, [no matter how futuristics its name]{.yellow}, will work if we [are'nt asking the right questions]{.yellow}, if we are'nt making right comparisons, if underlying assumptions are'nt sound, or if underlying data used are'nt appropriate.
+
+## Learning something new and interesting in the world is our goal
+
+### [Creative thinking instead of forced feed technique factory-based model for deep introspection about underlying issues/problems....]{.yellow}
+
+## Research Qeustions 
+:::: {.columns}
+
+::: {.column width="50%"}
+
+### [Coming up with a question is easy, but coming up with a good question is hard.]{.yellow}
+
+:::
+
+:::{.column width="50%"}
+
+### [A good question in empirical research is one that can be answered and improve our understanding of how world works]{.pink}
+:::
+::: 
+ 
+
+::: {.incremental}
+-   ### Which is the best car in Pakistan 
+-   ### cant be answered?
+
+-   ### Which car is sold most in Pakistan can definitely be answered.
+
+:::
+
+
+------------------------------------------------------------------------
+
+## Statistical Errors and Biases
+
+::: {.columns}
+::: {.column width="50%"}
+
+**Sample Selection**
+
+**Non-response Bias**
+
+**Survivorship Bias** 
+
+**Confirmatory Bias** 
+
+::: 
+
+::: {.column width="50%"}
+
+**Desirability Bias**
+
+**Bandwagon effect Bias**
+
+**Binary Bias**
+
+**Optimism Bias** 
+
+:::
+:::
+
+## What does matter vs why
+
+### Data mining, ML, AI, ANN... answers: [WHAT]{.yellow}
+
+### Social Sciences : [WHY]{.pink}
+
+
+## Concepts 
+
+# False Positive/Negative
+
+# Abstract Theory and Models (4 Levels of knowledge)
+
+# P-Screening , P-hacking, Publication Bias
+
+::: {.notes}
+??? All are very helpful in finding patterns and making predictions are very valuable. Social scientistis dilemma If why is ignored, data mining/ML/AI... are very useful. For example if I dont care why PSX will go up or down and I just want to predict if it will or not, then data mining may be fine Data mining is bad as final step if you are trying to explain the world 
+
+::: 
+
+## How do you know if you've got a good question
+
+:::{.incremental}
+1. ### Consider Potential Results  
+
+2. ### Consider Feasibility 
+3. ### Consider Scale  
+4. ### Consider Design 
+5. ### Keep It Simple 
+:::
+# 
+
+1. [*double check relationship between your research question and your theory to consider potential answers you might get*]{.yellow} 
+**Lets say we do find that kids who happen to play video games are more aggressive. Can we take than result and claim that video games are a cause of aggression?**
+
+2.  do we have right data, study involves asking people how much they spent on lunch 3 years back, 10 year study period
+
+3.  Research Design helps to figure out that whether you can answer the question A common mistake is to bundle a bunch of research questions into one. > **What are the determinants of social mobility?** You are unlikely to answer questin well. Instead try"Is birth location a determinant of social mobility?" 
+
+## Objectives of a regression/econometric model
+
+### Summarising Data
+
+### Forecasting
+
+### Causal/Structural Inference
+
+### Policy Analysis
+
+## Correlation doesn't imply causation
+
+> ### [Most politicians facing scandals win reelection]{.yellow}
+
+#### Correlation : description, forecasting
+
+#### Correlation helps to predict a feature of the world if it is correlated with another feature
+
+### Counterfactuals , Causal Inference
+
+## Ingredients of a quantitative model
+
+1. ### An economic theory model of the phenomenon of interest. 
+2. ### A statistical model of the data to be analyzed.
+3. ### An estimation method for the unknown parameters. 
+4. ### The sample of data to be used.
+5. ### Evaluation procedures for the adequacy of the fitted model. 
+6. ### A revision process if any mismatch occurs. 
+7. ### An analysis of the properties of the procedure.
+
+## 
+
+### Exploratory Data Analysis
+
+### Confirmatory Data Analysis
+
+### Microeconomic Analysis
+
+### Macroeconomic Analysis
+
+### Softwares : Open community softwares 
+
+
+## Furuious Five
+
+### Regression Analysis
+
+### DID
+
+### RDD
+
+### IV
+
+### RCTs
+
+
+
+# ABL : Always Be Learning. 
+
+![](images/yes.gif){.stretchK}

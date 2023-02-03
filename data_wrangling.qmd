@@ -191,7 +191,7 @@ Let's look at fivethirtyeight's article [" The Economic Guide To Picking A Colle
 The description in the `readme` file for the data is as follows:
 
 | Header                 | Description                                                                |
-|------------------|------------------------------------------------------|
+|------------------------|----------------------------------------------------------------------------|
 | `Rank`                 | Rank by median earnings                                                    |
 | `Major_code`           | Major code, FO1DP in ACS PUMS                                              |
 | `Major`                | Major description                                                          |
@@ -294,7 +294,7 @@ Finally, `summarize()` `Median` for stem and not stem groups.
 ```
 
 | Indicator                         | Value                                                                               |
-|----------------------|--------------------------------------------------|
+|-----------------------------------|-------------------------------------------------------------------------------------|
 | Policy Rate                       | 16%                                                                                 |
 | Inflation                         | 24%                                                                                 |
 | Foreign Reserves                  | Less than 8 USD (one months import while 3 months are considered comfortable level) |

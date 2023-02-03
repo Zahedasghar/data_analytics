@@ -1,0 +1,35 @@
+---
+title: "[Enhance your data skills to the next level]{.yellow}"
+subtitle: "R made easy for data analysis"
+author: "Zahid Asghar"
+institute: "Quaid-i-Azam University, Islamabad"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    logo: "images/zahid.jpg"
+    footer: "[Registration link](https://forms.gle/7CcCq6tvzxScrF7c6)"
+    height: 900
+    width: 1600
+    chalkboard: true
+    title-slide-attributes: 
+      data-background-image: "https://www.simplilearn.com/ice9/free_resources_article_thumb/Data-Science-vs.-Big-Data-vs.jpg"
+      data-background-size: contain
+      #data-background-position: 100% 0%
+      #data-background-color: "#447099"
+overview: true
+execute:
+  echo: false
+  warning: false
+  freeze: auto
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(httr)
+clrs <- MetBrewer::met.brewer(name = "Java")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
+options(digits = 3, width = 75)
+```
+

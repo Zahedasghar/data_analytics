@@ -5,7 +5,7 @@ library(tseries)
 library(gt)
 library(gtExtras)
 #NY.GDP.MKTP.KD.ZG
-#gdp_growth <- WDI(indicator = "NY.GDP.MKTP.KD.ZG", start = 1975, end = 2021) # gdp growth rate 
+gdp_growth <- WDI(indicator = "NY.GDP.MKTP.KD.ZG", start = 1975, end = 2021) # gdp growth rate 
 #saveRDS(gdp_growth,file ="gdp_growth1.rds" )
 gdp_growth<-readRDS("gdp_growth1.rds")
 

@@ -1,5 +1,7 @@
 library(readr)
 library(tidyverse)
+library(gt)
+library(gtExtras)
 #pakwheels_11Jul2020 <- read_csv("C:/Users/92300/Downloads/archive/pakwheels-11Jul2020.csv")
 #pakwheels<-saveRDS(pakwheels_11Jul2020,file = "pakwheels.rds")
 
@@ -11,7 +13,7 @@ pakwheels|>glimpse()|>na.omit()
 
 pakwheels$Price<-as.numeric(pakwheels$Price)
 View(pakwheels)
-pakwheels|>distinct(`Model Year`)
+pakwheels|>distinct(`Model Year`)|>arrange(`Model Year`)
 
 ## Select
 pakwheels<-pakwheels|>select(-URL)

@@ -84,7 +84,7 @@ library(ggrepel)
 
 pakwheels <- readRDS("D:/RepTemplates/data_analytics/pakwheels.rds")
 
-pakwheels
+View(pakwheels)
 
 ```
 

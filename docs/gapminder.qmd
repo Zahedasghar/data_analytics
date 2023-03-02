@@ -9,18 +9,18 @@ execute:
   chalkboard: true
 editor: visual
 ---
-# Learn Basics of Data Analysis 
+
+# Learn Basics of Data Analysis
 
 ![](https://gordianknotbio.com/wp-content/uploads/2019/01/bubble-chart.png)
 
 # Why R
 
-There is an increasing recognition of reproducibility of research, though it has limited recognition in social sciences.  The document in your hand is written in `Quarto Markdown`. 
-` Quarto Markown` which can be used for pdf, html, word, PowerPoint/Slidy/Beamer Presentations, Webpages, LaTex and many others. 
-Besides learning basics of R-coding, another objective of this workshop is understanding the importance of reproducibility. Building this new habit of reproducible work at times maybe little challenging occasionally. Getting rid of culture of copying and pasting, and sparing this time for doing data analysis and research is one of the objectives of this or coming workshops. Purpose is to help you to get away from this tedious activity so that you can spend more time __doing science__.
+There is an increasing recognition of reproducibility of research, though it has limited recognition in social sciences. The document in your hand is written in `Quarto Markdown`. `Quarto Markown` which can be used for pdf, html, word, PowerPoint/Slidy/Beamer Presentations, Webpages, LaTex and many others. Besides learning basics of R-coding, another objective of this workshop is understanding the importance of reproducibility. Building this new habit of reproducible work at times maybe little challenging occasionally. Getting rid of culture of copying and pasting, and sparing this time for doing data analysis and research is one of the objectives of this or coming workshops. Purpose is to help you to get away from this tedious activity so that you can spend more time **doing science**.
 
 ## Installing and loading packages
-The first thing we need to do is install and then load the `tidyverse` set of R packages to provide us with lots of extra functionality. You only need to install this once: once it’s installed we can simply load it into the workspace using the library() function each time we open a new R session.
+
+The first thing we need to do is install and then load the `tidyverse` set of R packages to provide us with lots of extra functionality. You only need to install this once: once it's installed we can simply load it into the workspace using the library() function each time we open a new R session.
 
 Understanding data sets requires many hours/days or in some cases weeks.There are many commercially available software but open source community based software have now dominated and R is one of these. R makes data understanding process as easy as possible through the `dplyr` package. It is one of the easiest solution for code-based data analysis. We will learn in this training how to do it. In case, you need more information, you can watch my [videos](https://youtu.be/ZNBZevfYgo0).
 
@@ -45,6 +45,7 @@ library(gapminder)
 gapminder %>% filter(country=="Sweden")%>%
   mutate(gdpPercap=round(gdpPercap,0), lifeExp=round(lifeExp,2))%>%kable()%>%
   kable_styling(bootstrap_options = "striped", full_width = F)
+
 
 ```
 
@@ -75,22 +76,18 @@ summary(gapminder)
 
 ```
 
-
 # dplyr features
 
-1. `filter()` to keep selected observations
-2. `select()` to keep selected variables
-3. `arrange()` to reorder observations by a value
-4. `mutate()` to create new variables
-5. `summarize()` to create summary statistics
-6. `group_by()` for performing operations by group
+1.  `filter()` to keep selected observations
+2.  `select()` to keep selected variables
+3.  `arrange()` to reorder observations by a value
+4.  `mutate()` to create new variables
+5.  `summarize()` to create summary statistics
+6.  `group_by()` for performing operations by group
 
+Now I shall mention some of the powerful but very simple to use features of dplyr. \## Column Selection
 
-Now I shall mention some of the powerful but very simple to use features of dplyr.
-## Column Selection
-
-More often than not, you don't need all columns of a data set for your analysis. For example `PDHS` files have more than 5000 columns in some files and maybe 40 or 50 or even fewer than that are needed for your analysis. `Select()` function of R's dplyr is used to select columns of your interest
-Three selected columns are selected as follows. You can give new name to this data.
+More often than not, you don't need all columns of a data set for your analysis. For example `PDHS` files have more than 5000 columns in some files and maybe 40 or 50 or even fewer than that are needed for your analysis. `Select()` function of R's dplyr is used to select columns of your interest Three selected columns are selected as follows. You can give new name to this data.
 
 ```{r}
 gapminder[1:6,] %>% select(country, pop, lifeExp)%>%kable()%>%
@@ -109,18 +106,17 @@ So `gdpPerCapita` column is now not shown above.
 
 ## Data Filtering
 
-Filtering is another very important task one has to do in one's analysis. Sometimes, one has to select sale related to a particular city or agent or quarter. Here is how one uses `filter()` command for data with a condition. We are using here command only to select data for year 2007 for all the countries.
-I am going to explain `filter` variable of dplyr. `filter` is used only to select rows for a given condition. I am going to select data only for year 2007.
+Filtering is another very important task one has to do in one's analysis. Sometimes, one has to select sale related to a particular city or agent or quarter. Here is how one uses `filter()` command for data with a condition. We are using here command only to select data for year 2007 for all the countries. I am going to explain `filter` variable of dplyr. `filter` is used only to select rows for a given condition. I am going to select data only for year 2007.
 
 ```{r}
 gapminder_07<- gapminder %>% filter(year==2007)
 kbl(gapminder_07[1:10,])%>%kable_styling(fixed_thead=T)
 ```
 
-Compared to previous one, `gapminder` is showing data only for 142 rows. Pipes %>% play very nicely with dplyr and make our code very easy to understand. The tibble gapminder is being piped into the function `filter()`. The argument `year == 2007` tells filter() that it should find all the rows such that the logical condition `year == 2007` is TRUE.
+Compared to previous one, `gapminder` is showing data only for 142 rows. Pipes %\>% play very nicely with dplyr and make our code very easy to understand. The tibble gapminder is being piped into the function `filter()`. The argument `year == 2007` tells filter() that it should find all the rows such that the logical condition `year == 2007` is TRUE.
 
-   ` Have we accidently deleted all other rows? Answer is no.` 
-    
+`Have we accidently deleted all other rows? Answer is no.`
+
 Nope: we haven't made any changes to gapminder at all. If you don't believe me try entering gapminder at the console. All that this command does is display a subset of gapminder. If we wanted to store the result of running this command, we'd need to assign it to a variable, for example if you are not sure, lets type
 
 ```{r }
@@ -144,7 +140,6 @@ Now we are selecting multiple countries for year 2007.
 ```{r}
 gapminder %>% filter(year==2007, country %in% c("India", "Pakistan","Bangladesh", "Afghanistan", "Iran"))
 ```
-
 
 ## Filtering data for South Asia countries
 
@@ -184,9 +179,10 @@ It's a little hard to read the column pop in gapminder since there are so many d
 gapminderSA %>% mutate(pop=pop/1000000)
 ```
 
-If we want to calculate GDP, we need to multiply gdpPercap by pop.    
+If we want to calculate GDP, we need to multiply gdpPercap by pop.
 
     But wait! Didn't we just change pop so it's expressed in millions? 
+
 No: we never stored the results of our previous command, we simply displayed them. Just as I discussed above, unless you overwrite it, the original gapminder dataset will be unchanged. With this in mind, we can create the gdp variable as follows:
 
 ```{r}
@@ -194,7 +190,8 @@ gapminderSA %>% mutate(gdp = pop * gdpPercap)
 ```
 
 ## How to calculate new variables
-As mentioned above, `mutate` is used to calculate new variable. Here we have calculated a new variable `gdp` and then `arranged` data and selected `top_n(10)` countries to see whether higher `lifeExpectancy` and higher `gdp` are linked or not? 
+
+As mentioned above, `mutate` is used to calculate new variable. Here we have calculated a new variable `gdp` and then `arranged` data and selected `top_n(10)` countries to see whether higher `lifeExpectancy` and higher `gdp` are linked or not?
 
 ```{r }
 gapminder %>% filter(year==2007) %>% 
@@ -204,7 +201,7 @@ gapminder %>% filter(year==2007) %>%
 
 ```
 
- `transmute()` keeps only the derived column. Let's use it in the example from above:
+`transmute()` keeps only the derived column. Let's use it in the example from above:
 
 ```{r }
 gapminder %>% filter(year==2007) %>% 
@@ -256,7 +253,6 @@ gapminder %>%
 
 ```
 
- 
 # Summarising data
 
 Another feature of dplyr is `summarise` data
@@ -264,7 +260,6 @@ Another feature of dplyr is `summarise` data
 ```{r}
 gapminder %>% filter(year==2007) %>% group_by(continent) %>% summarise(mean=mean(lifeExp),min=min(lifeExp),max=max(lifeExp))
 ```
-
 
 ```{r}
 gapminder %>% 
@@ -364,6 +359,7 @@ gapminder %>% filter(year==2007) %>%
 ```
 
 # Visualizing data to get data insight
+
 Visualizing data is one of the most important aspect of getting data insight and may provide a better data insight than a complicated model. Visualizing large data sets were not an easy task, so researchers relied on mathematical and core econometric/regression models. `ggplot2` which is a set of `tidyverse` package is probably one of the greatest tool for data visualization used in `R`. In the following sections we are going to visualize `gapminder` data.
 
 Stat graphics is a mapping of variable to `aes`thetic attributes of `geom`etric objects.
@@ -372,7 +368,7 @@ Stat graphics is a mapping of variable to `aes`thetic attributes of `geom`etric 
 
 -   data: dataset containing the variables of interest
 -   geom: geometric object in question line, point, bars
--   aes:  aesthetic attributes of an object x/y position, colors, shape, size
+-   aes: aesthetic attributes of an object x/y position, colors, shape, size
 
 ## Scatter plot
 
@@ -388,9 +384,7 @@ p1+  labs(x = "GDP Per Capita", y = "Life Expectancy in Years",
 
 ```
 
-
 ## Bubbleplot
-
 
 ```{r }
 # Show a bubbleplot
@@ -409,8 +403,7 @@ data %>%
     theme(legend.position="bottom")
 ```
 
-If you just want to highlight the relationship between gbp per capita and life Expectancy you’ve probably done most of the work now. However, it is a good practice to highlight a few interesting dots in this chart to give more insight to the plot:
-
+If you just want to highlight the relationship between gbp per capita and life Expectancy you've probably done most of the work now. However, it is a good practice to highlight a few interesting dots in this chart to give more insight to the plot:
 
 ```{r}
 # Prepare data
@@ -436,8 +429,6 @@ ggplot( tmp, aes(x=gdpPercap, y=lifeExp, size = pop, color = continent)) +
     geom_text_repel(data=tmp %>% filter(annotation=="yes"), aes(label=country), size=4 )
 ```
 
-
-
 ```{r}
 ##This is a table of data about a large number of countries, each observed over several years. Let's make a scatterplot with it.
 P<-ggplot(data=gapminder,mapping = aes(x=gdpPercap,y=lifeExp))  
@@ -455,7 +446,6 @@ P+geom_point()+geom_smooth(method = "gam")+scale_x_log10(labels=scales::dollar)
 P<-ggplot(data=gapminder,mapping = aes(gdpPercap,y=lifeExp,color="purple"))
 P+geom_point()+geom_smooth(method = "loess")+scale_x_log10()
 ```
-
 
 ```{r}
 ##aes() is for variables

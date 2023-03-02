@@ -7,9 +7,17 @@ diamonds
 # another useful command
 glimpse(diamonds)
 
-#| echo: true
+
 as_tibble(diamonds)
 
+library(dataxray)
+diamonds |>
+  make_xray()|>
+  view_xray()
+
+
+gapminder|>make_xray()|>
+  view_xray()
 
 ## Arrange
 # order by year, with the smallest to largest pop in each year
@@ -223,4 +231,7 @@ gapminder %>%
 |Exchange Rate	|Highly volatile|
 |Political stability (2000 onward)|	Bottom 10 countries|
 
+  
+
+  
   

@@ -1,6 +1,6 @@
 ---
 title: "The Philosophy and Techniques for Impact Evaluation Tools in SS"
-subtitle: "University of Sargodha"
+subtitle: "University of Sargodha, Sargodha"
 author: "Zahid Asghar"
 institute: "Quaid-i-Azam University, Islamabad"
 date: "`r format(Sys.time(), '%d %B %Y')`"

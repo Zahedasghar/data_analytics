@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="teachingr.com">
+
+<title>The 5 verbs of dplyr</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="teachR_files/libs/clipboard/clipboard.min.js"></script>
+<script src="teachR_files/libs/quarto-html/quarto.js"></script>
+<script src="teachR_files/libs/quarto-html/popper.min.js"></script>
+<script src="teachR_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="teachR_files/libs/quarto-html/anchor.min.js"></script>
+<link href="teachR_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="teachR_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="teachR_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="teachR_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="teachR_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a></li>
+  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange">Arrange</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#q1" id="toc-q1" class="nav-link" data-scroll-target="#q1">Q1</a></li>
+  <li><a href="#q2" id="toc-q2" class="nav-link" data-scroll-target="#q2">Q2</a></li>
+  <li><a href="#q3" id="toc-q3" class="nav-link" data-scroll-target="#q3">Q3</a></li>
+  </ul></li>
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select">Select</a>
+  <ul class="collapse">
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example</a></li>
+  <li><a href="#q1-1" id="toc-q1-1" class="nav-link" data-scroll-target="#q1-1">Q1</a></li>
+  <li><a href="#q2-1" id="toc-q2-1" class="nav-link" data-scroll-target="#q2-1">Q2</a></li>
+  <li><a href="#q3-1" id="toc-q3-1" class="nav-link" data-scroll-target="#q3-1">Q3</a></li>
+  </ul></li>
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter">Filter</a>
+  <ul class="collapse">
+  <li><a href="#example-2" id="toc-example-2" class="nav-link" data-scroll-target="#example-2">Example</a></li>
+  <li><a href="#q1-2" id="toc-q1-2" class="nav-link" data-scroll-target="#q1-2">Q1</a></li>
+  <li><a href="#q2-2" id="toc-q2-2" class="nav-link" data-scroll-target="#q2-2">Q2</a></li>
+  <li><a href="#q3-2" id="toc-q3-2" class="nav-link" data-scroll-target="#q3-2">Q3</a></li>
+  <li><a href="#q4" id="toc-q4" class="nav-link" data-scroll-target="#q4">Q4</a></li>
+  <li><a href="#q5" id="toc-q5" class="nav-link" data-scroll-target="#q5">Q5</a></li>
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge">Challenge</a></li>
+  </ul></li>
+  <li><a href="#filter-with-groups" id="toc-filter-with-groups" class="nav-link" data-scroll-target="#filter-with-groups">Filter with groups</a>
+  <ul class="collapse">
+  <li><a href="#example-3" id="toc-example-3" class="nav-link" data-scroll-target="#example-3">Example</a></li>
+  <li><a href="#q1-3" id="toc-q1-3" class="nav-link" data-scroll-target="#q1-3">Q1</a></li>
+  <li><a href="#q2-3" id="toc-q2-3" class="nav-link" data-scroll-target="#q2-3">Q2</a></li>
+  </ul></li>
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate">Mutate</a>
+  <ul class="collapse">
+  <li><a href="#example-4" id="toc-example-4" class="nav-link" data-scroll-target="#example-4">Example</a></li>
+  <li><a href="#q1-4" id="toc-q1-4" class="nav-link" data-scroll-target="#q1-4">Q1</a></li>
+  <li><a href="#q2-4" id="toc-q2-4" class="nav-link" data-scroll-target="#q2-4">Q2</a></li>
+  <li><a href="#q3-3" id="toc-q3-3" class="nav-link" data-scroll-target="#q3-3">Q3</a></li>
+  <li><a href="#q4-1" id="toc-q4-1" class="nav-link" data-scroll-target="#q4-1">Q4</a></li>
+  </ul></li>
+  <li><a href="#mutate-with-groups" id="toc-mutate-with-groups" class="nav-link" data-scroll-target="#mutate-with-groups">Mutate with groups</a>
+  <ul class="collapse">
+  <li><a href="#q1-5" id="toc-q1-5" class="nav-link" data-scroll-target="#q1-5">Q1</a></li>
+  <li><a href="#q2-5" id="toc-q2-5" class="nav-link" data-scroll-target="#q2-5">Q2</a></li>
+  <li><a href="#q3-4" id="toc-q3-4" class="nav-link" data-scroll-target="#q3-4">Q3</a></li>
+  </ul></li>
+  <li><a href="#summarize" id="toc-summarize" class="nav-link" data-scroll-target="#summarize">Summarize</a>
+  <ul class="collapse">
+  <li><a href="#example-5" id="toc-example-5" class="nav-link" data-scroll-target="#example-5">Example</a></li>
+  <li><a href="#q1-6" id="toc-q1-6" class="nav-link" data-scroll-target="#q1-6">Q1</a></li>
+  <li><a href="#q2-6" id="toc-q2-6" class="nav-link" data-scroll-target="#q2-6">Q2</a></li>
+  <li><a href="#q3-5" id="toc-q3-5" class="nav-link" data-scroll-target="#q3-5">Q3</a></li>
+  </ul></li>
+  <li><a href="#summarize-with-groups" id="toc-summarize-with-groups" class="nav-link" data-scroll-target="#summarize-with-groups">Summarize with groups</a>
+  <ul class="collapse">
+  <li><a href="#example-6" id="toc-example-6" class="nav-link" data-scroll-target="#example-6">Example</a></li>
+  <li><a href="#q1-7" id="toc-q1-7" class="nav-link" data-scroll-target="#q1-7">Q1</a></li>
+  <li><a href="#q2-7" id="toc-q2-7" class="nav-link" data-scroll-target="#q2-7">Q2</a></li>
+  <li><a href="#q3-6" id="toc-q3-6" class="nav-link" data-scroll-target="#q3-6">Q3</a></li>
+  <li><a href="#q4-2" id="toc-q4-2" class="nav-link" data-scroll-target="#q4-2">Q4</a></li>
+  </ul></li>
+  <li><a href="#combining-verbs" id="toc-combining-verbs" class="nav-link" data-scroll-target="#combining-verbs">Combining verbs</a>
+  <ul class="collapse">
+  <li><a href="#example-7" id="toc-example-7" class="nav-link" data-scroll-target="#example-7">Example</a></li>
+  <li><a href="#q1-8" id="toc-q1-8" class="nav-link" data-scroll-target="#q1-8">Q1</a></li>
+  <li><a href="#q2-8" id="toc-q2-8" class="nav-link" data-scroll-target="#q2-8">Q2</a></li>
+  <li><a href="#q3-7" id="toc-q3-7" class="nav-link" data-scroll-target="#q3-7">Q3</a></li>
+  <li><a href="#q4-3" id="toc-q4-3" class="nav-link" data-scroll-target="#q4-3">Q4</a></li>
+  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1">Challenge</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The 5 verbs of dplyr</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>teachingr.com </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="getting-started" class="level1">
+<h1>Getting started</h1>
+<p>As always, the first thing we will do is load the tidyverse.</p>
+<p><em>Note: If you haven’t yet installed the tidyverse, you’ll first have to run the code install.packages(“tidyverse”).</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here’s the dataframe that we’ll analyze in this exercise:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data_frame</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"munir"</span>, <span class="st">"raeesa"</span>, <span class="st">"rafiq"</span>, <span class="st">"maria"</span>, <span class="st">"pervaiz"</span>, <span class="st">"jamila"</span>, <span class="st">"bobby"</span>, <span class="st">"saima"</span>, <span class="st">"alina"</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">school =</span> <span class="fu">c</span>(<span class="st">"south"</span>, <span class="st">"south"</span>, <span class="st">"south"</span>, <span class="st">"south"</span>, <span class="st">"north"</span>, <span class="st">"north"</span>, <span class="st">"north"</span>, <span class="st">"south"</span>, <span class="st">"south"</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">teacher =</span> <span class="fu">c</span>(<span class="st">"jamil"</span>, <span class="st">"jamil"</span>, <span class="st">"jamil"</span>, <span class="st">"jamil"</span>,  <span class="st">"sami"</span>, <span class="st">"sami"</span>, <span class="st">"sami"</span>, <span class="st">"fareeha"</span>, <span class="st">"fareeha"</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">c</span>(<span class="st">"male"</span>, <span class="st">"female"</span>, <span class="st">"male"</span>, <span class="st">"female"</span>, <span class="st">"male"</span>, <span class="st">"female"</span>, <span class="st">"male"</span>, <span class="st">"female"</span>, <span class="st">"female"</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">math_score =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">reading_score =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">4</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `data_frame()` was deprecated in tibble 1.1.0.
+ℹ Please use `tibble()` instead.</code></pre>
+</div>
+</div>
+<p>Let’s first take a look at it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>scores</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 6
+  name    school teacher sex    math_score reading_score
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 munir   south  jamil   male            4             1
+2 raeesa  south  jamil   female          3             5
+3 rafiq   south  jamil   male            2             2
+4 maria   south  jamil   female          4             4
+5 pervaiz north  sami    male            3             5
+6 jamila  north  sami    female          4             4
+7 bobby   north  sami    male            5             1
+8 saima   south  fareeha female          4             5
+9 alina   south  fareeha female          5             4</code></pre>
+</div>
+</div>
+<p>Before we get started, I want to make sure you understand the difference between doing something and assigning it to a new name and just doing it without naming it. For example, make sure you understand the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the first 3 rows</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+  name   school teacher sex    math_score reading_score
+  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 munir  south  jamil   male            4             1
+2 raeesa south  jamil   female          3             5
+3 rafiq  south  jamil   male            2             2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the first 3 rows, and assign it to a new name "scores_small"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>scores_small <span class="ot">&lt;-</span> scores <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># see what's in "scores_small"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>scores_small</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+  name   school teacher sex    math_score reading_score
+  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 munir  south  jamil   male            4             1
+2 raeesa south  jamil   female          3             5
+3 rafiq  south  jamil   male            2             2</code></pre>
+</div>
+</div>
+<p>In this exercise we’ll typically just print the results and not save them, but it’s an option if you want it!</p>
+<p>Now we can get to the exercise. Most sections will begin with an example for you to look at. When questions require a written answer, there will be an “Answer” line for you to complete.</p>
+</section>
+<section id="arrange" class="level1">
+<h1>Arrange</h1>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p><strong>Question:</strong> Sort the data by math_score from high to low. Who had the best math score?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(math_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 6
+  name    school teacher sex    math_score reading_score
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 bobby   north  sami    male            5             1
+2 alina   south  fareeha female          5             4
+3 munir   south  jamil   male            4             1
+4 maria   south  jamil   female          4             4
+5 jamila  north  sami    female          4             4
+6 saima   south  fareeha female          4             5
+7 raeesa  south  jamil   female          3             5
+8 pervaiz north  sami    male            3             5
+9 rafiq   south  jamil   male            2             2</code></pre>
+</div>
+</div>
+<p><strong>Answer:</strong> Bobby and alina both tied for the highest math score</p>
+</section>
+<section id="q1" class="level2">
+<h2 class="anchored" data-anchor-id="q1">Q1</h2>
+<p><strong>Question:</strong> Sort the data by name from first to last in the alphabet.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 6
+  name    school teacher sex    math_score reading_score
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 alina   south  fareeha female          5             4
+2 bobby   north  sami    male            5             1
+3 jamila  north  sami    female          4             4
+4 maria   south  jamil   female          4             4
+5 munir   south  jamil   male            4             1
+6 pervaiz north  sami    male            3             5
+7 raeesa  south  jamil   female          3             5
+8 rafiq   south  jamil   male            2             2
+9 saima   south  fareeha female          4             5</code></pre>
+</div>
+</div>
+</section>
+<section id="q2" class="level2">
+<h2 class="anchored" data-anchor-id="q2">Q2</h2>
+<p><strong>Question:</strong> Sort the data by sex so females show up first. Which sex appears to have better reading scores?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 6
+  name    school teacher sex    math_score reading_score
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 raeesa  south  jamil   female          3             5
+2 maria   south  jamil   female          4             4
+3 jamila  north  sami    female          4             4
+4 saima   south  fareeha female          4             5
+5 alina   south  fareeha female          5             4
+6 munir   south  jamil   male            4             1
+7 rafiq   south  jamil   male            2             2
+8 pervaiz north  sami    male            3             5
+9 bobby   north  sami    male            5             1</code></pre>
+</div>
+</div>
+<p><strong>Answer:</strong> Females seem to have better reading scores – they all got either 4 or 5.</p>
+</section>
+<section id="q3" class="level2">
+<h2 class="anchored" data-anchor-id="q3">Q3</h2>
+<p><strong>Question:</strong> Sort the data by school, then teacher, then sex, then math_score, and finally by reading_score.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(school, teacher, sex, math_score, reading_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 6
+  name    school teacher sex    math_score reading_score
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 jamila  north  sami    female          4             4
+2 pervaiz north  sami    male            3             5
+3 bobby   north  sami    male            5             1
+4 saima   south  fareeha female          4             5
+5 alina   south  fareeha female          5             4
+6 raeesa  south  jamil   female          3             5
+7 maria   south  jamil   female          4             4
+8 rafiq   south  jamil   male            2             2
+9 munir   south  jamil   male            4             1</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="select" class="level1">
+<h1>Select</h1>
+<section id="example-1" class="level2">
+<h2 class="anchored" data-anchor-id="example-1">Example</h2>
+<p><strong>Question:</strong> Select only the name, math_score, and reading_score columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, math_score, reading_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 3
+  name    math_score reading_score
+  &lt;chr&gt;        &lt;dbl&gt;         &lt;dbl&gt;
+1 munir            4             1
+2 raeesa           3             5
+3 rafiq            2             2
+4 maria            4             4
+5 pervaiz          3             5
+6 jamila           4             4
+7 bobby            5             1
+8 saima            4             5
+9 alina            5             4</code></pre>
+</div>
+</div>
+</section>
+<section id="q1-1" class="level2">
+<h2 class="anchored" data-anchor-id="q1-1">Q1</h2>
+<p><strong>Question:</strong> Select all of the columns except the sex column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 5
+  name    school teacher math_score reading_score
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt;         &lt;dbl&gt;
+1 munir   south  jamil            4             1
+2 raeesa  south  jamil            3             5
+3 rafiq   south  jamil            2             2
+4 maria   south  jamil            4             4
+5 pervaiz north  sami             3             5
+6 jamila  north  sami             4             4
+7 bobby   north  sami             5             1
+8 saima   south  fareeha          4             5
+9 alina   south  fareeha          5             4</code></pre>
+</div>
+</div>
+</section>
+<section id="q2-1" class="level2">
+<h2 class="anchored" data-anchor-id="q2-1">Q2</h2>
+<p><strong>Question:</strong> Select all of the columns except the math_score and reading_score columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>math_score, <span class="sc">-</span>reading_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 4
+  name    school teacher sex   
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; 
+1 munir   south  jamil   male  
+2 raeesa  south  jamil   female
+3 rafiq   south  jamil   male  
+4 maria   south  jamil   female
+5 pervaiz north  sami    male  
+6 jamila  north  sami    female
+7 bobby   north  sami    male  
+8 saima   south  fareeha female
+9 alina   south  fareeha female</code></pre>
+</div>
+</div>
+</section>
+<section id="q3-1" class="level2">
+<h2 class="anchored" data-anchor-id="q3-1">Q3</h2>
+<p><strong>Question:</strong> Keep all of the columns but rearrange them so sex is the first column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sex, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 6
+  sex    name    school teacher math_score reading_score
+  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt;         &lt;dbl&gt;
+1 male   munir   south  jamil            4             1
+2 female raeesa  south  jamil            3             5
+3 male   rafiq   south  jamil            2             2
+4 female maria   south  jamil            4             4
+5 male   pervaiz north  sami             3             5
+6 female jamila  north  sami             4             4
+7 male   bobby   north  sami             5             1
+8 female saima   south  fareeha          4             5
+9 female alina   south  fareeha          5             4</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="filter" class="level1">
+<h1>Filter</h1>
+<section id="example-2" class="level2">
+<h2 class="anchored" data-anchor-id="example-2">Example</h2>
+<p><strong>Question:</strong> Filter to students who are male and went to south.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 1</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"male"</span> <span class="sc">&amp;</span> school <span class="sc">==</span> <span class="st">"south"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  name  school teacher sex   math_score reading_score
+  &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt;         &lt;dbl&gt;
+1 munir south  jamil   male           4             1
+2 rafiq south  jamil   male           2             2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 2</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"male"</span>, school <span class="sc">==</span> <span class="st">"south"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  name  school teacher sex   math_score reading_score
+  &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt;         &lt;dbl&gt;
+1 munir south  jamil   male           4             1
+2 rafiq south  jamil   male           2             2</code></pre>
+</div>
+</div>
+</section>
+<section id="q1-2" class="level2">
+<h2 class="anchored" data-anchor-id="q1-2">Q1</h2>
+<p><strong>Question:</strong> Filter to students who did well in math (you decide what “well” means).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(math_score <span class="sc">&gt;=</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  name   school teacher sex    math_score reading_score
+  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 munir  south  jamil   male            4             1
+2 maria  south  jamil   female          4             4
+3 jamila north  sami    female          4             4
+4 bobby  north  sami    male            5             1
+5 saima  south  fareeha female          4             5
+6 alina  south  fareeha female          5             4</code></pre>
+</div>
+</div>
+</section>
+<section id="q2-2" class="level2">
+<h2 class="anchored" data-anchor-id="q2-2">Q2</h2>
+<p><strong>Question:</strong> Use filter to figure out how many students had a math score of 4 or more and a reading score of 3 or more.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(math_score <span class="sc">&gt;=</span> <span class="dv">4</span>, reading_score <span class="sc">&gt;=</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 6
+  name   school teacher sex    math_score reading_score
+  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 maria  south  jamil   female          4             4
+2 jamila north  sami    female          4             4
+3 saima  south  fareeha female          4             5
+4 alina  south  fareeha female          5             4</code></pre>
+</div>
+</div>
+<p><strong>Answer</strong> There are 4 such students.</p>
+</section>
+<section id="q3-2" class="level2">
+<h2 class="anchored" data-anchor-id="q3-2">Q3</h2>
+<p><strong>Question:</strong> Explain the errors in each of the following code blocks, then fix it to make it right!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code block 1</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(school <span class="sc">==</span> south)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `filter()`:
+ℹ In argument: `school == south`.
+Caused by error:
+! object 'south' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code block 2</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="at">school =</span> <span class="st">"south"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `filter()`:
+! We detected a named input.
+ℹ This usually means that you've used `=` instead of `==`.
+ℹ Did you mean `school == "south"`?</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fix it! </span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(school <span class="sc">==</span> <span class="st">"south"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  name   school teacher sex    math_score reading_score
+  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 munir  south  jamil   male            4             1
+2 raeesa south  jamil   female          3             5
+3 rafiq  south  jamil   male            2             2
+4 maria  south  jamil   female          4             4
+5 saima  south  fareeha female          4             5
+6 alina  south  fareeha female          5             4</code></pre>
+</div>
+</div>
+<p><strong>Answer:</strong> Code block 1 doesn’t use quotation marks so R thinks it is looking for an object not a word. Code block 2 uses only one equals sign “=” when we need two equals signs “==” for comparison.</p>
+</section>
+<section id="q4" class="level2">
+<h2 class="anchored" data-anchor-id="q4">Q4</h2>
+<p><strong>Question:</strong> You are creating a remediation program. Filter to students who got a 3 or worse in either math or reading.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(math_score <span class="sc">&lt;=</span> <span class="dv">3</span> <span class="sc">|</span> reading_score <span class="sc">&lt;=</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  name    school teacher sex    math_score reading_score
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 munir   south  jamil   male            4             1
+2 raeesa  south  jamil   female          3             5
+3 rafiq   south  jamil   male            2             2
+4 pervaiz north  sami    male            3             5
+5 bobby   north  sami    male            5             1</code></pre>
+</div>
+</div>
+</section>
+<section id="q5" class="level2">
+<h2 class="anchored" data-anchor-id="q5">Q5</h2>
+<p><strong>Question:</strong> Filter to students who got a reading score of 2, 3, or 4.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># option 1</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(reading_score <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 6
+  name   school teacher sex    math_score reading_score
+  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 rafiq  south  jamil   male            2             2
+2 maria  south  jamil   female          4             4
+3 jamila north  sami    female          4             4
+4 alina  south  fareeha female          5             4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># option 2 (if you know that 1 and 5 are the only other 2 options)</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(reading_score <span class="sc">!=</span> <span class="dv">1</span>, reading_score <span class="sc">!=</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 6
+  name   school teacher sex    math_score reading_score
+  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 rafiq  south  jamil   male            2             2
+2 maria  south  jamil   female          4             4
+3 jamila north  sami    female          4             4
+4 alina  south  fareeha female          5             4</code></pre>
+</div>
+</div>
+</section>
+<section id="challenge" class="level2">
+<h2 class="anchored" data-anchor-id="challenge">Challenge</h2>
+<p><strong>Question:</strong> Filter to students who have a name that starts with an “m”. Hint: type “?substr” in the console and then scroll to the bottom of the help file to see useful examples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">substr</span>(name, <span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">==</span> <span class="st">"m"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  name  school teacher sex    math_score reading_score
+  &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 munir south  jamil   male            4             1
+2 maria south  jamil   female          4             4</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="filter-with-groups" class="level1">
+<h1>Filter with groups</h1>
+<section id="example-3" class="level2">
+<h2 class="anchored" data-anchor-id="example-3">Example</h2>
+<p><strong>Question:</strong> Filter to teachers whose best math student got a score of 5.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(teacher) <span class="sc">%&gt;%</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">max</span>(math_score) <span class="sc">==</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+# Groups:   teacher [2]
+  name    school teacher sex    math_score reading_score
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 pervaiz north  sami    male            3             5
+2 jamila  north  sami    female          4             4
+3 bobby   north  sami    male            5             1
+4 saima   south  fareeha female          4             5
+5 alina   south  fareeha female          5             4</code></pre>
+</div>
+</div>
+</section>
+<section id="q1-3" class="level2">
+<h2 class="anchored" data-anchor-id="q1-3">Q1</h2>
+<p><strong>Question:</strong> Filter to the sex with a mean math score of 4.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">mean</span>(math_score) <span class="sc">==</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+# Groups:   sex [1]
+  name   school teacher sex    math_score reading_score
+  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 raeesa south  jamil   female          3             5
+2 maria  south  jamil   female          4             4
+3 jamila north  sami    female          4             4
+4 saima  south  fareeha female          4             5
+5 alina  south  fareeha female          5             4</code></pre>
+</div>
+</div>
+</section>
+<section id="q2-3" class="level2">
+<h2 class="anchored" data-anchor-id="q2-3">Q2</h2>
+<p><strong>Question:</strong> Explain why the following code removes students who have fareeha as their teacher.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(teacher) <span class="sc">%&gt;%</span> </span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">&gt;=</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 6
+# Groups:   teacher [2]
+  name    school teacher sex    math_score reading_score
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 munir   south  jamil   male            4             1
+2 raeesa  south  jamil   female          3             5
+3 rafiq   south  jamil   male            2             2
+4 maria   south  jamil   female          4             4
+5 pervaiz north  sami    male            3             5
+6 jamila  north  sami    female          4             4
+7 bobby   north  sami    male            5             1</code></pre>
+</div>
+</div>
+<p><strong>Answer:</strong> The “n()” stands for the number of rows. This returns the teachers with 3 or more rows in the data frame. This excludes fareeha because there are only 2 students who have fareeha as their teacher.</p>
+</section>
+</section>
+<section id="mutate" class="level1">
+<h1>Mutate</h1>
+<section id="example-4" class="level2">
+<h2 class="anchored" data-anchor-id="example-4">Example</h2>
+<p><strong>Question:</strong> Both the math and reading scores were actually out of 50 – replace both variables to be 10 times their original values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">math_score =</span>  math_score <span class="sc">*</span> <span class="dv">10</span>,</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">reading_score =</span> reading_score <span class="sc">*</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 6
+  name    school teacher sex    math_score reading_score
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 munir   south  jamil   male           40            10
+2 raeesa  south  jamil   female         30            50
+3 rafiq   south  jamil   male           20            20
+4 maria   south  jamil   female         40            40
+5 pervaiz north  sami    male           30            50
+6 jamila  north  sami    female         40            40
+7 bobby   north  sami    male           50            10
+8 saima   south  fareeha female         40            50
+9 alina   south  fareeha female         50            40</code></pre>
+</div>
+</div>
+</section>
+<section id="q1-4" class="level2">
+<h2 class="anchored" data-anchor-id="q1-4">Q1</h2>
+<p><strong>Question:</strong> Create a new column called “math_reading_avg” which is the average of a students math and reading scores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">math_reading_avg =</span> (math_score <span class="sc">+</span> reading_score) <span class="sc">/</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 7
+  name    school teacher sex    math_score reading_score math_reading_avg
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;
+1 munir   south  jamil   male            4             1              2.5
+2 raeesa  south  jamil   female          3             5              4  
+3 rafiq   south  jamil   male            2             2              2  
+4 maria   south  jamil   female          4             4              4  
+5 pervaiz north  sami    male            3             5              4  
+6 jamila  north  sami    female          4             4              4  
+7 bobby   north  sami    male            5             1              3  
+8 saima   south  fareeha female          4             5              4.5
+9 alina   south  fareeha female          5             4              4.5</code></pre>
+</div>
+</div>
+</section>
+<section id="q2-4" class="level2">
+<h2 class="anchored" data-anchor-id="q2-4">Q2</h2>
+<p><strong>Question:</strong> Create a new column “high_math_achiever” that is an indicator of if a student got a 4 or better on their math_score.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">high_math_achiever =</span> math_score <span class="sc">&gt;=</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 7
+  name    school teacher sex    math_score reading_score high_math_achiever
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;lgl&gt;             
+1 munir   south  jamil   male            4             1 TRUE              
+2 raeesa  south  jamil   female          3             5 FALSE             
+3 rafiq   south  jamil   male            2             2 FALSE             
+4 maria   south  jamil   female          4             4 TRUE              
+5 pervaiz north  sami    male            3             5 FALSE             
+6 jamila  north  sami    female          4             4 TRUE              
+7 bobby   north  sami    male            5             1 TRUE              
+8 saima   south  fareeha female          4             5 TRUE              
+9 alina   south  fareeha female          5             4 TRUE              </code></pre>
+</div>
+</div>
+</section>
+<section id="q3-3" class="level2">
+<h2 class="anchored" data-anchor-id="q3-3">Q3</h2>
+<p><strong>Question:</strong> Create a new column “reading_score_centered” that is a students reading score with the mean of all students’ reading scores subtracted from it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">reading_score_centered =</span> reading_score <span class="sc">-</span> <span class="fu">mean</span>(reading_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 7
+  name    school teacher sex    math_score reading_score reading_score_centered
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;                  &lt;dbl&gt;
+1 munir   south  jamil   male            4             1                 -2.44 
+2 raeesa  south  jamil   female          3             5                  1.56 
+3 rafiq   south  jamil   male            2             2                 -1.44 
+4 maria   south  jamil   female          4             4                  0.556
+5 pervaiz north  sami    male            3             5                  1.56 
+6 jamila  north  sami    female          4             4                  0.556
+7 bobby   north  sami    male            5             1                 -2.44 
+8 saima   south  fareeha female          4             5                  1.56 
+9 alina   south  fareeha female          5             4                  0.556</code></pre>
+</div>
+</div>
+</section>
+<section id="q4-1" class="level2">
+<h2 class="anchored" data-anchor-id="q4-1">Q4</h2>
+<p><strong>Question:</strong> Create a new column “science_score”. You can make up what the actual scores are!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">science_score =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 7
+  name    school teacher sex    math_score reading_score science_score
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;
+1 munir   south  jamil   male            4             1             1
+2 raeesa  south  jamil   female          3             5             2
+3 rafiq   south  jamil   male            2             2             3
+4 maria   south  jamil   female          4             4             4
+5 pervaiz north  sami    male            3             5             5
+6 jamila  north  sami    female          4             4             4
+7 bobby   north  sami    male            5             1             3
+8 saima   south  fareeha female          4             5             2
+9 alina   south  fareeha female          5             4             1</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="mutate-with-groups" class="level1">
+<h1>Mutate with groups</h1>
+<section id="q1-5" class="level2">
+<h2 class="anchored" data-anchor-id="q1-5">Q1</h2>
+<p><strong>Question:</strong> munir and saima both got a 4 for their math score. Explain why why munir has a higher “math_score_centered_by_sex” score.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">math_score_centered_by_sex =</span> math_score <span class="sc">-</span> <span class="fu">mean</span>(math_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 7
+# Groups:   sex [2]
+  name    school teacher sex    math_score reading_score math_score_centered_b…¹
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;                   &lt;dbl&gt;
+1 munir   south  jamil   male            4             1                     0.5
+2 raeesa  south  jamil   female          3             5                    -1  
+3 rafiq   south  jamil   male            2             2                    -1.5
+4 maria   south  jamil   female          4             4                     0  
+5 pervaiz north  sami    male            3             5                    -0.5
+6 jamila  north  sami    female          4             4                     0  
+7 bobby   north  sami    male            5             1                     1.5
+8 saima   south  fareeha female          4             5                     0  
+9 alina   south  fareeha female          5             4                     1  
+# … with abbreviated variable name ¹​math_score_centered_by_sex</code></pre>
+</div>
+</div>
+<p><strong>Answer:</strong> We are subtracting the mean math score for that person’s sex off of their score. munir has a higher “math_score_centered_by_sex” because males did worse on average on math and so a small number is subtracted off of his score of 4.</p>
+</section>
+<section id="q2-5" class="level2">
+<h2 class="anchored" data-anchor-id="q2-5">Q2</h2>
+<p><strong>Question:</strong> Create a “reading_score_centered_by_teacher” column. What can you learn from it?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(teacher) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">reading_score_centered_by_teacher =</span> reading_score <span class="sc">-</span> <span class="fu">mean</span>(reading_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 7
+# Groups:   teacher [3]
+  name    school teacher sex    math_score reading_score reading_score_centere…¹
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;                   &lt;dbl&gt;
+1 munir   south  jamil   male            4             1                  -2    
+2 raeesa  south  jamil   female          3             5                   2    
+3 rafiq   south  jamil   male            2             2                  -1    
+4 maria   south  jamil   female          4             4                   1    
+5 pervaiz north  sami    male            3             5                   1.67 
+6 jamila  north  sami    female          4             4                   0.667
+7 bobby   north  sami    male            5             1                  -2.33 
+8 saima   south  fareeha female          4             5                   0.5  
+9 alina   south  fareeha female          5             4                  -0.5  
+# … with abbreviated variable name ¹​reading_score_centered_by_teacher</code></pre>
+</div>
+</div>
+<p><strong>Answer:</strong> We can learn lots of things! For example, relative to other students in their class, bobby did worst on reading and raeesa did the best.</p>
+</section>
+<section id="q3-4" class="level2">
+<h2 class="anchored" data-anchor-id="q3-4">Q3</h2>
+<p><strong>Question:</strong> Make a “number_of_students_in_class” column that is number of students in a student’s class. For example, it should be 4 for munir and 3 for pervaiz.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(teacher) <span class="sc">%&gt;%</span> </span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">number_of_students_in_class =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 7
+# Groups:   teacher [3]
+  name    school teacher sex    math_score reading_score number_of_students_in…¹
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;                   &lt;int&gt;
+1 munir   south  jamil   male            4             1                       4
+2 raeesa  south  jamil   female          3             5                       4
+3 rafiq   south  jamil   male            2             2                       4
+4 maria   south  jamil   female          4             4                       4
+5 pervaiz north  sami    male            3             5                       3
+6 jamila  north  sami    female          4             4                       3
+7 bobby   north  sami    male            5             1                       3
+8 saima   south  fareeha female          4             5                       2
+9 alina   south  fareeha female          5             4                       2
+# … with abbreviated variable name ¹​number_of_students_in_class</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="summarize" class="level1">
+<h1>Summarize</h1>
+<section id="example-5" class="level2">
+<h2 class="anchored" data-anchor-id="example-5">Example</h2>
+<p><strong>Question:</strong> Use the summarize command to find the mean math score for all students.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">math_score_mean =</span> <span class="fu">mean</span>(math_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  math_score_mean
+            &lt;dbl&gt;
+1            3.78</code></pre>
+</div>
+</div>
+</section>
+<section id="q1-6" class="level2">
+<h2 class="anchored" data-anchor-id="q1-6">Q1</h2>
+<p><strong>Question:</strong> Use the summarize command to find the mean reading score for all students.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">reading_score_mean =</span> <span class="fu">mean</span>(reading_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  reading_score_mean
+               &lt;dbl&gt;
+1               3.44</code></pre>
+</div>
+</div>
+</section>
+<section id="q2-6" class="level2">
+<h2 class="anchored" data-anchor-id="q2-6">Q2</h2>
+<p><strong>Question:</strong> Use the summarize command to find the median for both math scores and reading scores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">math_score_median =</span> <span class="fu">median</span>(math_score),</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">reading_score_median =</span> <span class="fu">median</span>(reading_score)</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  math_score_median reading_score_median
+              &lt;dbl&gt;                &lt;dbl&gt;
+1                 4                    4</code></pre>
+</div>
+</div>
+</section>
+<section id="q3-5" class="level2">
+<h2 class="anchored" data-anchor-id="q3-5">Q3</h2>
+<p><strong>Question:</strong> Look closely at the following code. Why is it throwing an error? How can Rstudio help you see this error?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">math_score_max =</span> <span class="fu">max</span>(math_score),</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">reading_score_min =</span> <span class="fu">min</span>(reading_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: &lt;text&gt;:5:0: unexpected end of input
+3:     math_score_max = max(math_score),
+4:     reading_score_min = min(reading_score)
+  ^</code></pre>
+</div>
+</div>
+<p><strong>Answer:</strong> We need another “)” at the end of the code. The first “)” is for the min function but we also need a “)” to end the summarize function. Rstudio helps because if you go to the right of a paranthese, it highlights the corresponding closing paranthese.</p>
+</section>
+</section>
+<section id="summarize-with-groups" class="level1">
+<h1>Summarize with groups</h1>
+<section id="example-6" class="level2">
+<h2 class="anchored" data-anchor-id="example-6">Example</h2>
+<p><strong>Question:</strong> Find the minimum math score for each school.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(school) <span class="sc">%&gt;%</span> </span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">min_math_score =</span> <span class="fu">min</span>(math_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  school min_math_score
+  &lt;chr&gt;           &lt;dbl&gt;
+1 north               3
+2 south               2</code></pre>
+</div>
+</div>
+</section>
+<section id="q1-7" class="level2">
+<h2 class="anchored" data-anchor-id="q1-7">Q1</h2>
+<p><strong>Question:</strong> Find the maximum math score for each teacher.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(teacher) <span class="sc">%&gt;%</span> </span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">max_math_score =</span> <span class="fu">max</span>(math_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  teacher max_math_score
+  &lt;chr&gt;            &lt;dbl&gt;
+1 fareeha              5
+2 jamil                4
+3 sami                 5</code></pre>
+</div>
+</div>
+</section>
+<section id="q2-7" class="level2">
+<h2 class="anchored" data-anchor-id="q2-7">Q2</h2>
+<p><strong>Question:</strong> If we grouped by sex, and then summarized with the minimum reading score, how many rows would the resulting data frame have?</p>
+<p><strong>Answer:</strong> There would be one for each group. Because there are two sexs in the data frame, there would be two rows. See:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">min</span>(reading_score)) <span class="co"># side note: notice what happens when we don't provide a variable name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  sex    `min(reading_score)`
+  &lt;chr&gt;                 &lt;dbl&gt;
+1 female                    4
+2 male                      1</code></pre>
+</div>
+</div>
+</section>
+<section id="q3-6" class="level2">
+<h2 class="anchored" data-anchor-id="q3-6">Q3</h2>
+<p><strong>Question:</strong> Remember that mutate always keeps the same number of rows but summarize usually reduces the number of rows. Why doesn’t the following use of summarize reduce the number of rows?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span> </span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">math_score_mean =</span> <span class="fu">mean</span>(math_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 2
+  name    math_score_mean
+  &lt;chr&gt;             &lt;dbl&gt;
+1 alina                 5
+2 bobby                 5
+3 jamila                4
+4 maria                 4
+5 munir                 4
+6 pervaiz               3
+7 raeesa                3
+8 rafiq                 2
+9 saima                 4</code></pre>
+</div>
+</div>
+<p><strong>Answer:</strong> Summarize with groups makes one row for each group. In this case, we’re grouping by name and everyone has a different name!</p>
+</section>
+<section id="q4-2" class="level2">
+<h2 class="anchored" data-anchor-id="q4-2">Q4</h2>
+<p><strong>Question:</strong> Create a data frame with the mean and median reading score by sex, as well as the number of students of that sex.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_reading_score =</span> <span class="fu">mean</span>(reading_score),</span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_reading_score =</span> <span class="fu">median</span>(reading_score),</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>()</span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  sex    mean_reading_score median_reading_score count
+  &lt;chr&gt;               &lt;dbl&gt;                &lt;dbl&gt; &lt;int&gt;
+1 female               4.4                   4       5
+2 male                 2.25                  1.5     4</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="combining-verbs" class="level1">
+<h1>Combining verbs</h1>
+<section id="example-7" class="level2">
+<h2 class="anchored" data-anchor-id="example-7">Example</h2>
+<p><strong>Question:</strong> Select just the name and math_score columns. Then create a new column “math_score_ec” that is a students math score plus 5 extra credit points. Finally, arrange the data frame by math_score_ec from low to high.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, math_score) <span class="sc">%&gt;%</span> </span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">math_score_ec =</span> math_score <span class="sc">+</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(math_score_ec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 3
+  name    math_score math_score_ec
+  &lt;chr&gt;        &lt;dbl&gt;         &lt;dbl&gt;
+1 rafiq            2             7
+2 raeesa           3             8
+3 pervaiz          3             8
+4 munir            4             9
+5 maria            4             9
+6 jamila           4             9
+7 saima            4             9
+8 bobby            5            10
+9 alina            5            10</code></pre>
+</div>
+</div>
+</section>
+<section id="q1-8" class="level2">
+<h2 class="anchored" data-anchor-id="q1-8">Q1</h2>
+<p><strong>Question:</strong> Select every column except the teacher column. Create a new variable called “mean_score” that is the mean of a student’s math and reading score. Finally, arrange the data frame by mean_score from low to high.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>teacher) <span class="sc">%&gt;%</span> </span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_score =</span> (math_score <span class="sc">+</span> reading_score) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 6
+  name    school sex    math_score reading_score mean_score
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;
+1 saima   south  female          4             5        4.5
+2 alina   south  female          5             4        4.5
+3 raeesa  south  female          3             5        4  
+4 maria   south  female          4             4        4  
+5 pervaiz north  male            3             5        4  
+6 jamila  north  female          4             4        4  
+7 bobby   north  male            5             1        3  
+8 munir   south  male            4             1        2.5
+9 rafiq   south  male            2             2        2  </code></pre>
+</div>
+</div>
+</section>
+<section id="q2-8" class="level2">
+<h2 class="anchored" data-anchor-id="q2-8">Q2</h2>
+<p><strong>Question:</strong> Remove any students with sami as a teacher, then find the mean math_score by sex.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(teacher <span class="sc">!=</span> <span class="st">"sami"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_math_score =</span> <span class="fu">mean</span>(math_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  sex    mean_math_score
+  &lt;chr&gt;            &lt;dbl&gt;
+1 female               4
+2 male                 3</code></pre>
+</div>
+</div>
+</section>
+<section id="q3-7" class="level2">
+<h2 class="anchored" data-anchor-id="q3-7">Q3</h2>
+<p><strong>Question:</strong> Find the min, max, and median reading_score for female students at south school.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"female"</span>, school <span class="sc">==</span> <span class="st">"south"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">min_reading_score =</span> <span class="fu">min</span>(reading_score),</span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_reading_score =</span> <span class="fu">max</span>(reading_score),</span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">median_reading_score =</span> <span class="fu">median</span>(reading_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  min_reading_score max_reading_score median_reading_score
+              &lt;dbl&gt;             &lt;dbl&gt;                &lt;dbl&gt;
+1                 4                 5                  4.5</code></pre>
+</div>
+</div>
+</section>
+<section id="q4-3" class="level2">
+<h2 class="anchored" data-anchor-id="q4-3">Q4</h2>
+<p><strong>Question:</strong> Inspect each of the following code blocks. They both do about the same thing. Which one do you think is preferred from a computer efficiency standpoint?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code block 1</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(school, teacher) <span class="sc">%&gt;%</span> </span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">max_math_score =</span> <span class="fu">max</span>(math_score)) <span class="sc">%&gt;%</span> </span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(school <span class="sc">==</span> <span class="st">"south"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'school'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+# Groups:   school [1]
+  school teacher max_math_score
+  &lt;chr&gt;  &lt;chr&gt;            &lt;dbl&gt;
+1 south  fareeha              5
+2 south  jamil                4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code block 2</span></span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>scores <span class="sc">%&gt;%</span> </span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(school <span class="sc">==</span> <span class="st">"south"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(teacher) <span class="sc">%&gt;%</span> </span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">max_math_score =</span> <span class="fu">max</span>(math_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  teacher max_math_score
+  &lt;chr&gt;            &lt;dbl&gt;
+1 fareeha              5
+2 jamil                4</code></pre>
+</div>
+</div>
+<p><strong>Answer:</strong> They both get the max math score by teacher for teachers at south school. The first block calculates the max_math_score for both north and south and then filters out north after that calculation. The second block filters out north right away. This is preferred because it prevents the computer from making unnecessary calculations.</p>
+</section>
+<section id="challenge-1" class="level2">
+<h2 class="anchored" data-anchor-id="challenge-1">Challenge</h2>
+<p>Play around with these tools. Write a question or two that you think best exposes a misunderstanding you had or drills down on an important thing to remember. I’d love to add these questions in the future! Feel free to email what you came up with to</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

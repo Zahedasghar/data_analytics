@@ -5,7 +5,7 @@ https://moderndive.github.io/moderndive_labs/
   https://argoshare.is.ed.ac.uk/healthyr_book/aggregating-group-by-summarise.html
 
 
-
+library(help=SuffolkEcon)
 ## Be the boss of your factors (factor_data_analysis file)
 https://stat545.com/factors-boss.html
 

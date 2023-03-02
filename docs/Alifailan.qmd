@@ -1,0 +1,38 @@
+---
+title: "Alifailan"
+author: "Zahid Asghar"
+date: "today"
+format: pdf
+execute: 
+  warning: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Alif Ailan 2016 Data
+
+
+
+```{r cars}
+
+alif<-read.csv("Alifailan.csv",header = TRUE)
+library(tidyverse)
+
+alif<-alif %>% filter(Province!="AJK",Province!="GB",Province!="ICT",Province!="FATA")
+
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+p<-ggplot(alif,aes(x=Drinking.water,y=Toilet,color=Province))+geom_point()
+p
+p+facet_wrap(~Province,ncol = 4)+
+  labs(x="Drinking Water",y="Toilet Facility",title = "Toilet facility and Drinking Water Facility situation province wise",
+       caption = "Alif Ailan Data 2016")
+```

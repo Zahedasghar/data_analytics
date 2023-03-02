@@ -10,7 +10,8 @@ Pak_NZ<-menODI|>filter(Opposition=="New Zealand"&Ground=="Karachi")
 Pak_NZ$Innings
 Pak_NZ|>group_by(Player)|>summarise(total_score=sum(Runs))|>arrange(desc(total_score))
 
-Pak_NZ|>filter(Runs>0)|>group_by(Date)|>summarise(total_score=sum(Runs))|>arrange(desc(desc(Date)))
+Pak_NZ |> filter(Runs > 0) |> group_by(Date) |> summarise(total_score = sum(Runs)) |>
+  arrange(desc(desc(Date)))
 Pak_NZ %>%
   ggplot(aes(y = Runs, x = Date)) +
   geom_point(alpha = 0.2, col = "#E97F09") +

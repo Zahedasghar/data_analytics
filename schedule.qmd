@@ -1,0 +1,21 @@
+---
+title: " Day-1 Data Analytics Using R"
+format: pdf
+---
+
+## Learning objectives
+
+1. How to learn R/RStudio(Posit) effectively, where to start, what to study and how to do data and script writing in R
+2. Basic data introduction, taxonomy (factor, chr, dbl, integer)
+3. Understanding RStudio environment 
+4. R-package, tidyverse, some key commands which are most widely used for data analysis 
+5. Questions, feedback and discussion of day 2 plan
+
+| Day   | Topic                                                                    |
+|------------------------------------|------------------------------------|
+| Day 1 | [Taxonomy of Data]()                                                     |
+|       | [Nature of variables]()                                                  |
+| Day 1 | [Introduction to R]()                                                    |
+|       | [R, RStudio, Posit cloud and R environment]()                            |
+| Day 1 | [Why to learn tidyverse in R]()                                          |
+|       | [Some important commands which deals with almost 80% of data problems]() |

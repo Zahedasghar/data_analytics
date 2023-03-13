@@ -5,7 +5,8 @@ library(forcats)
 car_prices <- read_excel("car-prices.xlsx")
 View(car_prices)
 # Remove missing values as t 
-car_prices<- car_prices |> na.omit()
+
+car_prices <- car_prices |> na.omit()
 
 #remove dollar signs from sales column
 #https://uc-r.github.io/lollipop
@@ -15,12 +16,14 @@ car_prices<- car_prices |> na.omit()
 car_prices |> glimpse()
 
 # Price is a character variable and we want it to be numeric variable
-car_prices$Prices<-  parse_number(car_prices$Prices)
+
+car_prices$Prices <-  parse_number(car_prices$Prices)
+
 car_prices|>glimpse() ## Now Prices is a double (numeric variable) and it has PKR written before it
 ## This is another way of doing the same thing
 #car_prices$Prices = as.numeric(gsub("[\\PKR,]", "", car_prices$Prices))
 
-
+View(car_prices)
 ## To get first letter as Make
 car_prices|>
   separate(
@@ -28,13 +31,15 @@ car_prices|>
     into = c("first", "last"),
     sep = " ",
     remove = FALSE
-  )|>head()    ## stringr
+  )|>head()    ## stringr 
+
 car_prices$Make <- gsub("([A-Za-z]+).*", "\\1", car_prices$Cars)
 car_prices|>glimpse()
 ## To convert price into millions of Rs.
-carp<-car_prices|>mutate(prices=Prices/1000000)
-carp|>filter(Make=="Suzuki")|> mutate(Cars = fct_reorder(Cars, prices))|>
-  ggplot(aes(x=Cars,y=prices))+geom_bar(stat = "identity")+coord_flip()
+carp <- car_prices |> mutate(prices = Prices / 1000000)
+
+carp |> filter(Make == "Suzuki") |> mutate(Cars = fct_reorder(Cars, prices)) |>
+  ggplot(aes(x = Cars, y = prices)) + geom_bar(stat = "identity") + coord_flip()
 
 carp|>filter(Make=="Honda")|> mutate(Cars = fct_reorder(Cars, prices))|>
   ggplot(aes(x=Cars,y=prices))+geom_col()+coord_flip()

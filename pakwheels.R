@@ -264,3 +264,4 @@ ggplot(chickwts, aes(x = feed, y = weight)) +
     y = "weight (grams)") +
   theme_minimal() +
   theme(panel.grid = element_blank())
+

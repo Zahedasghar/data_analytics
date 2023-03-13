@@ -23,6 +23,7 @@ When you click the **Render** button a document will be generated that includes 
 | UK LIBOR % / Jan 6                |   4.32 |
 
 ```{r}
+#| warning: false
 library(tidyverse)
 library(gt)
 library(gtExtras)
@@ -42,11 +43,23 @@ Currency<-c("USD PKR Interbank Selling / Jan 6",
 "UK LIBOR % / Jan 6")
 
 Rate<-c(228.15,227.15,132.08,0.93,1.21,1.06,4.32)
+tbl<- tribble(~currency,~rate,
+              "USD PKR Interbank Selling / Jan 6",228.15,
 
-table<-bind_cols(Currency, Rate)
-table<-table|>rename(CURRENCY="...1", RATE="...2")
-table |> gt()|>gt_theme_guardian()|>tab_caption("FOREX, Source:BR")
-table |> gt()|>gt_theme_538()|>tab_caption("FOREX, Source:BR")
+"USD PKR Interbank Buying / Jan 6",227.15,
+
+"USD to Japanese Yen / Jan 6",132.08,
+
+"USD to Swiss Franc / Jan 6",0.93,
+
+"Pound Sterling to USD / Jan 6",1.21,
+
+"Euro to USD / Jan 6",1.06,
+
+"UK LIBOR % / Jan 6",4.32)
+
+tbl |> gt()|>gt_theme_guardian()|>tab_caption("FOREX, Source:BR")
+tbl |> gt()|>gt_theme_538()|>tab_caption("FOREX, Source:BR")
 ```
 
 You can add options to executable code like this

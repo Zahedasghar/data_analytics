@@ -1,15 +1,7 @@
 ---
 title: "Alifailan"
-author: "Zahid Asghar"
-date: "today"
-format: pdf
-execute: 
-  warning: false
+format: PrettyPDF-pdf
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## Alif Ailan 2016 Data
 

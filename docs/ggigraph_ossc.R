@@ -3,8 +3,11 @@ library(tidyverse)
 library(gt)
 library(gtExtras)
 library(gtsummary)
+library(skimr)
 ossc <- read_excel("data/ossc.xlsx")
+
 ossc |> mutate(percentage_of_out_of_school_children_age_5_to_16_years_female=as.numeric(percentage_of_out_of_school_children_age_5_to_16_years_female)) -> ossc
+
 ossc |> glimpse()
 
 library(janitor)
@@ -13,17 +16,22 @@ ossc |> clean_names() -> ossc
 
 
 
-
 ossc |> select(province, district,ossc_f_16=percentage_of_out_of_school_children_age_5_to_16_years_female,
                ossc_m_16=percentage_of_out_of_school_children_age_5_to_16_years_male,
                ossc_total_16=percentage_of_out_of_school_children_age_5_to_16_years_total) -> ossc_sm
+ossc_sm <- ossc_sm |> mutate(ossc_f_16=as.numeric(ossc_f_16))
 
-ossc_sm |> na.omit()|> summarise(ossc_total=mean(ossc_total_16)*100,ossc_male=mean(ossc_m_16)*100,
-                                 ossc_female=mean(ossc_f_16)*100,
-                                 .by=province) |> gt() |> 
+ossc_sm |> na.omit() |> summarise(
+  ossc_total = mean(ossc_total_16) * 100,
+  ossc_male = mean(ossc_m_16) * 100,
+  ossc_female = mean(ossc_f_16) * 100,
+  .by = province
+) |> gt() |>
   fmt_number(
     columns = 2:4,
     decimals = 2)   -> ossc_tbl
+
+ossc_tbl
 
 ossc_tbl |> gt_theme_nytimes()|>  
   gt_highlight_rows(rows = 3, font_weight = "normal") |> 
@@ -31,6 +39,7 @@ ossc_tbl |> gt_theme_nytimes()|>
 
 ossc_sm <- ossc_sm |> mutate(ossc_f_16=ossc_f_16*100,ossc_m_16=ossc_m_16*100)
 ossc_sm |> filter(province=="Punajb") |>   select(is.numeric) |> gt_plt_summary()
+
 
 
 ossc_sm <- ossc_sm |> rename(Female=ossc_f_16,Male=ossc_m_16) 
@@ -203,14 +212,15 @@ p_styled
 
 
 ossc_sm |> mutate(province=as.factor(province)) -> ossc_sm
+ossc_sm
 
 dat1 <- ossc_sm |> na.omit() |> 
   mutate(
     # ID that is shared for boxplots (this one uses factors, i.e. numbers, as ID instead of continents)
     id = as.numeric(province),
     continent = forcats::fct_reorder(province, Female)
-  )
-
+  ) 
+dat1
 selected_year <- 2007
 color_palette <- thematic::okabe_ito(5)
 names(color_palette) <- unique(dat1$province)
@@ -224,7 +234,12 @@ box_stats1 <- dat1 |>
     range = paste(range(Female) |> round(2), collapse = ' - '),
     mean = mean(Female) |> round(2)
   )
+box_stats1
 
+library(ggiraph)
+
+tail(dat1 |> 
+  full_join(box_stats1))
 
 box_plot1 <- dat1 |> 
   full_join(box_stats1) |> 
@@ -233,7 +248,7 @@ box_plot1 <- dat1 |>
     aes(
       tooltip = glue::glue(
         '
-        {levels(dat1$province)[continent]}\n
+        {levels(dat1$province)[province]}\n
         {n} districts\n
         Mean Out of School: {mean}\n
         Range: {range}\n
@@ -257,7 +272,7 @@ box_plot1 <- dat1 |>
   labs(
     x = 'Out of School (in %)',
     y = element_blank(),
-    title = glue::glue('Distribution of Out of School Children')
+    title = glue::glue('Female Children Out of School  (aged 5-16 years) in Pakistan  ')
   ) +
   theme_minimal(base_size = base_size) +
   theme(
@@ -282,8 +297,8 @@ gg <- girafe(
   width_svg = 16
 )
 
+gg
 library(htmltools)
 htmltools::save_html(gg,
-                     file = "ggindex.html")
+                     file = "ossc.html")
 
-rsconnect::setAccountInfo(name='zahid-asghar', token='60149B448EE77CA1218EE2C0197FA804', secret='AwX1MqYBExUVIgxv8+4X4iPr8aS/KgMvxWK3R5eg')

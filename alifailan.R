@@ -2,6 +2,7 @@
 ### install.packages("dplyr")
 
 library(tidyverse)
+library(svglite)
 
 ## .dta , .sav, .xlsx, .csv
 
@@ -16,7 +17,6 @@ alif <- read_csv("docs/Alifailan.csv", col_names = TRUE)
 
 ## Modify column names 
 library(janitor)
-library(flipbookr)
 
 alif |> clean_names() -> alif
 
@@ -66,29 +66,42 @@ alif<-alif |> clean_names() |> glimpse()
 
 
 ## Select data for 4 main provinces (two ways either filter or select)
-alif |> filter(Province != "AJK",
-                  Province != "GB",
-                  Province != "ICT",
-                  Province != "FATA")
+alif |> filter(province != "AJK",
+                  province != "GB",
+                  province != "ICT",
+                  province != "FATA")
 ## Or use filter as
 
-alif |> filter (Province %in% c("Punjab","Sind","Balochistan", "KP"))
+alif |> filter (province %in% c("Punjab","Sind","Balochistan", "KP"))
 
  
-## How many districts in each Province
+## How many districts in each province
 
-alif |>  count(Province, name="District.count")
+alif |>  count(province, name="District.count")
 
-alif |> count(Province, name="dist_count") |> 
+alif |> count(province, name="dist_count") |> 
   arrange(dist_count)
 
 library(gt)
+library(gtsummary)
 library(gtExtras)
-alif |> count(Province, name="dist_count") |> 
+
+alif |> gt_plt_summary()
+
+alif |> select_if(is.numeric) |>  gt_plt_summary()
+
+
+## If Punjab
+
+alif |> filter(province=="Punjab") |> select_if (is.numeric) |> select(-rank_2016) |> 
+  gt_plt_summary() |> gt_theme_guardian() |> tab_header(title = "School conditions in Punjab according to Alif Ailan Data")
+
+alif |> count(province, name="dist_count") |> 
   arrange(desc(dist_count)) |> gt() |>
   gt_theme_pff() 
 
-alif |> glimpse()
+alif |> select(province, infrastructure_score) |> 
+  tbl_summary(by=province)
  
 colnames(alif) 
 
@@ -96,7 +109,7 @@ alif |> select(district, province, drinking_water)
 
 alif |> select(-district, -rank_2016)
 
-alif |>  count(Province, name="district_count")|>
+alif |>  count(province, name="district_count")|>
   arrange( desc(district_count)) |> as.data.frame()
  
 ## Modify column names 
@@ -193,17 +206,45 @@ alif |> filter(province=="Punjab") |>
 
  ## Lets build scatter plot between drinking water and toilet facilty
 
-p<-ggplot(alif1,aes(x=drink_w,y=Toilet,color=Province))+geom_point() ## Name plot as p
+p<-ggplot(alif,aes(x=drinking_water,y=toilet,color=province))+geom_point() ## Name plot as p
 p
 ## Make comment on plot by observing where does each province districts lie
-p+facet_wrap(~Province,ncol = 4)+
+p+facet_wrap(~province,ncol = 4)+
   labs(x="Drinking Water",y="Toilet Facility",title = "Toilet facility and Drinking Water Facility situation province wise",
        caption = "Alif Ailan Data 2016")
 
-alif1 |> glimpse()
-ggplot(alif1)+aes(x=Province,y=drink_w, fill=Province)+geom_boxplot(method="restyle")
+alif |> glimpse()
+ggplot(alif)+aes(x=province,y=drinking_water, fill=province)+geom_boxplot(method="restyle")
 
 
+alif |> filter(province=="Punjab") |> 
+ggplot()+aes(x=reorder(district,toilet),y=toilet)+geom_bar(stat="identity")+
+  coord_flip()+geom_col(fill = 'dodgerblue4') +
+  theme_minimal() 
+alif$drinking_water
+
+alif |> filter(province=="Balochistan") |> 
+  ggplot()+aes(x=reorder(district,drinking_water),y=drinking_water)+geom_bar(stat="identity")+
+  coord_flip()+geom_col(fill = 'dodgerblue4') +
+  theme_minimal() 
+
+
+alif |> filter(province=="Balochistan") |> 
+  ggplot()+aes(x=reorder(district,drinking_water),y=drinking_water)+geom_point(size=2,colour="orange")+
+  geom_segment(aes(x=district,y=0,xend=district,yend=drinking_water, colour="red"))+
+  coord_flip()
+  geom_hline(yintercept = drinking_water)
+  
+
+
+  coord_flip()+geom_col(fill = 'dodgerblue4') +
+  theme_minimal() 
+
+
+
+
+
+alif$
 
 library(dataxray)
 alif |> make_xray() |>

@@ -247,7 +247,7 @@ batting_per_season <- psl_bbb %>%
     strike_rate = round(runs_off_bat_total / balls_faced_total * 100, 1)
   ) %>%
   filter(innings_total > 2) %>%
-  mutate(is_healy = (striker == "Babar Azam"))
+  mutate(is_healy = (striker == "Mohammad Rizwan"))
 
 
 

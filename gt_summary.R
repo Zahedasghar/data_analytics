@@ -31,14 +31,13 @@ selected_countries
 new_colnames <- colnames(selected_countries) |> str_remove('(country|year)')
 names(new_colnames) <- colnames(selected_countries)
 
-selected_countries |> 
-  gt(groupname_col = 'continent') |> 
-  tab_header(
-    title = 'Life Expectancies over time',
-    subtitle = 'Data is courtesy of the Gapminder foundation'
-  ) |> 
-  cols_label(.list = new_colnames) |> 
-  fmt_number(columns = where(is.numeric), decimals = 2) |> 
+
+selected_countries |>
+  gt(groupname_col = 'continent') |>
+  tab_header(title = 'Life Expectancies over time',
+             subtitle = 'Data is courtesy of the Gapminder foundation') |>
+  cols_label(.list = new_colnames) |>
+  fmt_number(columns = where(is.numeric), decimals = 2) |>
   gt_theme_538()
 
 

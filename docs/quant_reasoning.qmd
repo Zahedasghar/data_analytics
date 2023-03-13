@@ -71,6 +71,7 @@ options(digits = 3, width = 75)
 ## 
 
 -   Ex-PM conspiracy theory by a powerful country
+
 -   Damage done when truth emerged
 
 -   [Alberto Barndonlini in 2014, it states:]{.yellow} *"The amount of energy need to refule bullshit is an order of magnitufe bigger than \[that needed\]\[.yellow\] to produce it."*
@@ -84,13 +85,13 @@ options(digits = 3, width = 75)
 Bullshit (Brandolini, Franelli and Swifts taken together)is
 
 ::: incremental
-1.   bullshit takes less work to create that to clean up.
+1.  bullshit takes less work to create that to clean up.
 
-2.   takes less intelligence to create than to clean up, and
+2.  takes less intelligence to create than to clean up, and
 
-3.   spreads fafter than efforts to clean it up.
+3.  spreads faster than efforts to clean it up.
+:::
 
-::::
 ## [Chopal/Baithak *Gupshup* and Face the Nation to Facebook]{.yellow}
 
 Truth tellers have another advantage. Social media provides a fertilizer for the rapid proliferation of distractions, misinformation, bullshit, and fake news.
@@ -101,7 +102,7 @@ Truth tellers have another advantage. Social media provides a fertilizer for the
 -   Brother of printing press
 -   Anything can be produced if one has personal computer and internet
 
-**The inadequacy of the unvarnished truth"** - Mindless lists , quizes, memes, and celebrity gossip that proliferate media might crowd out careful analyses of the sort one sees in responsible media
+**The inadequacy of the unvarnished truth"** - Mindless lists , quizzes, memes, and celebrity gossip that proliferate media might crowd out careful analyses of the sort one sees in responsible media
 
 -   Prior to internet, large publisers cared about content and quality
 
@@ -190,6 +191,8 @@ Percentage not appropriate if negative numbers
 
 ## The Hidden Cause of Murphy's Law
 
-In portugal: 60% of families with children have only one child, but 60% of children have siblings.
+In Portugal: 60% of families with children have only one child, but 60% of children have siblings.
 
-![](images/image-346941666.png)
+![](images/image-1028213529.png)
+
+

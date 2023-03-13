@@ -1,6 +1,6 @@
 ---
-title: "[Role of a teacher to minimize nonsense in digital world ]{.yellow}"
-date: "March 15, 2023"
+title: "Understanding and minimizing nonsense in digital world"
+subtitle: "[Zahid Asghar]{.blue}"
 format:
   revealjs:
     theme: [default, custom.scss]
@@ -9,8 +9,9 @@ format:
     height: 900
     width: 1600
     chalkboard: true
-    #title-slide-attributes: 
-      #data-background-color: "#447099"
+    title-slide-attributes:
+      data-background-image: https://assets.entrepreneur.com/content/3x2/2000/20160224052928-Untitled-1.jpeg 
+      data-background-color: "#447099"
 overview: true
 execute:
   echo: false
@@ -96,7 +97,7 @@ Bullshit (Brandolini, Franelli and Swifts taken together)is
 
 Truth tellers have another advantage. Social media provides a fertilizer for the rapid proliferation of distractions, misinformation, bullshit, and fake news.
 
-## No time but smartphone to spread bullshit
+## [No time but smartphone to spread bullshit]{.yellow}
 
 -   Positive: easy to fact check but why bullshit goes unchecked
 -   Brother of printing press
@@ -106,7 +107,7 @@ Truth tellers have another advantage. Social media provides a fertilizer for the
 
 -   Prior to internet, large publisers cared about content and quality
 
-## Headlines for retention not for information
+## [Headlines for retention not for information]{.yellow}
 
 Algorithms make things even worse. They are not designed to keep you informed but to keep you engaged.
 
@@ -114,7 +115,7 @@ Being careful is admirable but it does not sell ads. Social media is fertile gro
 
 Tech entrepreneur Jeff Hammerbacher (Allen Ginsberg) complained in 2011 that "The best minds of my generation are thinking about how to make people click ads. That sucks." Sophisticated ways to diverge our attention from real issues.
 
-## Misinformation and Disinformation
+## [Misinformation and Disinformation]{.yellow}
 
 December 2016, a website called AWD News published a frightening headline:
 
@@ -125,11 +126,11 @@ Story made a big headline and it named the wrong person as the Israeli Defense M
         Khawaja M Asif, then Pak Def Min via twitter responded “Israeli def min threatens nuclear retaliation presuming pak role in Syria against Daesh…Israel forgets Pakistan is a Nuclear state too.” 
         
 
-## Think more share less
+## [Think more share less]{.yellow}
 
 Social media: firehouse strategy, our trust in friends and institutions erode. Gary Kasprov summarized this approach in a post on Twitter: "The point of modern propaganda isn't only to misinform or push an agenda, It is to exhaust your critical thinking, to annihilate truth."
 
-## Basic Approaches for Protecting ourselves against misinformation
+## [Basic Approaches for Protecting ourselves against misinformation]{.yellow}
 
 1.  Technology: AI technology to detect fake news
 2.  Government regulations
@@ -143,9 +144,9 @@ Due to internet bullshit spreads more easily in a massively networked, click-dri
 
 ### Bullshit and Black Boxes
 
-Cat people earn more than dog people ANCOVA, p-value
+### Cat people earn more than dog people, ANCOVA, p-value
 
-Biases, data representation, relevant to the problem
+### Biases, data representation, relevant to the problem
 
 ### Criminals and Machine Learning
 
@@ -161,7 +162,7 @@ Red Sky at Night , Sailor's delight
 
 Beer and Pitcher
 
-"Where minimum wage is higher, poverty is lower." is not the same claim as "If minimum wage were to increase, poverty would decrease." The first reports a trend across cities: Those with higher minimum wage have lower poverty rates. The second suggests how one might go about reducing poverty in a particular city.
+        [**"Where minimum wage is higher, poverty is lower." is not the same claim as "If minimum wage were to increase, poverty would decrease."]{.yellow} The first reports a trend across cities: Those with higher minimum wage have lower poverty rates. The second suggests how one might go about reducing poverty in a particular city.**
 
 ## Delayed Gratification and Common Causes
 
@@ -178,7 +179,7 @@ Summary statistics condense information but if inappropriate, it can be misleadi
 
 Percentage not appropriate if negative numbers
 
-# Selection Bia
+# Selection Bias
 
 # Friendship Paradox
 
@@ -186,7 +187,7 @@ Percentage not appropriate if negative numbers
 
 ## 
 
-    People who are in good health are more likely to participate in wellness program. Its not wellness program cause good health.
+### **[People who are in good health are more likely to participate in wellness program. Its not wellness program cause good health.]{.yellow}**
         
 
 ## The Hidden Cause of Murphy's Law

@@ -1,6 +1,6 @@
 ---
 title: "Understanding and minimizing nonsense in digital world"
-subtitle: "[Zahid Asghar]{.blue}"
+subtitle: "**[Zahid Asghar]{.pink}**"
 format:
   revealjs:
     theme: [default, custom.scss]

@@ -1,5 +1,5 @@
 ---
-title: "Understanding and minimizing nonsense in digital world"
+title: "[Understanding and minimizing nonsense in digital world]{.pink}"
 subtitle: "**[Zahid Asghar]{.pink}**"
 format:
   revealjs:
@@ -38,11 +38,11 @@ options(digits = 3, width = 75)
 ::: incremental
 -   **How to refute nonsense/bullshit/false claims**
 
--   **Why our quant courses not very helpful**
+-   [**Why our quant courses not very helpful**]{.yellow}
 
 -   **Each of us create lot of nonsense (irrespective of idealogy, belongings, profession)**
 
--   **Skills for talking bullshit vs Art of Critical Skill**
+-   [**Skills for talking bullshit vs Art of Critical Skill**]{.yellow}
 
 -   **Way forward**
 
@@ -59,7 +59,7 @@ options(digits = 3, width = 75)
     :::
 :::
 
-## Bullshit Not a new phenomenon
+## Bullshit is not a new phenomenon
 
 -   Millions of years even among animals
 
@@ -75,7 +75,7 @@ options(digits = 3, width = 75)
 
 -   Damage done when truth emerged
 
--   [Alberto Barndonlini in 2014, it states:]{.yellow} *"The amount of energy need to refule bullshit is an order of magnitufe bigger than \[that needed\]\[.yellow\] to produce it."*
+-   [Alberto Barndonlini in 2014, it states:]{.yellow} *"The amount of energy need to refule bullshit is an order of magnitufe bigger than  [that needed ] [.yellow ] to produce it."*
 
 -   [Satirist Jonathan Swift wrote in 1710 that]{.yellow} *"that falsehood flies, and truth comes limping after it."*
 
@@ -168,7 +168,7 @@ Beer and Pitcher
 
 ## Numbers and Nonsense
 
-Math $2+2=4$\
+Math $2+2=4$ 
 Eng $2+2\approx4$
 
 Accountant: "Before I put anything in writing,"he says in a lower whisper, "what you want it to be?"

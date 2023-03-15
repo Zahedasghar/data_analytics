@@ -1,16 +1,15 @@
 ---
-title: "[Understanding and minimizing nonsense in digital world]{.pink}"
+title: "**Understanding and minimizing nonsense in digital world**"
 subtitle: "**[Zahid Asghar]{.pink}**"
 format:
   revealjs:
     theme: [default, custom.scss]
     logo: ""
-    footer: "[zahid asghar](https://zahedasghar.netlify.app/)"
     height: 900
     width: 1600
     chalkboard: true
     title-slide-attributes:
-      data-background-image: https://assets.entrepreneur.com/content/3x2/2000/20160224052928-Untitled-1.jpeg 
+      data-background-image: https://www.techbusinessnews.com.au/wp-content/uploads/2021/10/digital-world-1.jpg
       data-background-color: "#447099"
 overview: true
 execute:
@@ -75,7 +74,7 @@ options(digits = 3, width = 75)
 
 -   Damage done when truth emerged
 
--   [Alberto Barndonlini in 2014, it states:]{.yellow} *"The amount of energy need to refule bullshit is an order of magnitufe bigger than  [that needed ] [.yellow ] to produce it."*
+-   [Alberto Barndonlini in 2014, it states:]{.yellow} *"The amount of energy need to refule bullshit is an order of magnitufe bigger than  [that needed ] {.yellow} to produce it."*
 
 -   [Satirist Jonathan Swift wrote in 1710 that]{.yellow} *"that falsehood flies, and truth comes limping after it."*
 
@@ -100,7 +99,7 @@ Truth tellers have another advantage. Social media provides a fertilizer for the
 ## [No time but smartphone to spread bullshit]{.yellow}
 
 -   Positive: easy to fact check but why bullshit goes unchecked
--   Brother of printing press
+-   Brothel of printing press
 -   Anything can be produced if one has personal computer and internet
 
 **The inadequacy of the unvarnished truth"** - Mindless lists , quizzes, memes, and celebrity gossip that proliferate media might crowd out careful analyses of the sort one sees in responsible media
@@ -119,22 +118,24 @@ Tech entrepreneur Jeff Hammerbacher (Allen Ginsberg) complained in 2011 that "Th
 
 December 2016, a website called AWD News published a frightening headline:
 
-    “Israeli Defense Minister: If Pakistan Send Ground Troops to Syria on Any Pretext, We Will Destroy the Country With Nuclear Attack.” 
+    #### [“Israeli Defense Minister: If Pakistan Send Ground Troops to Syria on Any Pretext, We Will Destroy the Country With Nuclear Attack.”]{.yellow} 
 
 Story made a big headline and it named the wrong person as the Israeli Defense Minister.
 
-        Khawaja M Asif, then Pak Def Min via twitter responded “Israeli def min threatens nuclear retaliation presuming pak role in Syria against Daesh…Israel forgets Pakistan is a Nuclear state too.” 
+     #### Khawaja M Asif, then Pak Def Min via twitter responded [“Israeli def min threatens nuclear retaliation presuming pak role in Syria against Daesh…Israel forgets Pakistan is a Nuclear state too.”]{.yellow} 
         
 
 ## [Think more share less]{.yellow}
 
-Social media: firehouse strategy, our trust in friends and institutions erode. Gary Kasprov summarized this approach in a post on Twitter: "The point of modern propaganda isn't only to misinform or push an agenda, It is to exhaust your critical thinking, to annihilate truth."
+#### Social media: firehouse strategy, our trust in friends and institutions erode. 
+
+### [Gary Kasprov summarized this approach in a post on Twitter: "The point of modern propaganda isn't only to misinform or push an agenda, It is to exhaust your critical thinking, to annihilate truth."]{.yellow}
 
 ## [Basic Approaches for Protecting ourselves against misinformation]{.yellow}
 
 1.  Technology: AI technology to detect fake news
 2.  Government regulations
-3.  Most powerful approach is education. If we do a good job of educating people in mdeia literacy and critical thinking, the problem of misinformation and disinformation can be solved from the bottom up.
+3.  Most powerful approach is education. If we do a good job of educating people in media literacy and critical thinking, the problem of misinformation and disinformation can be solved from the bottom up.
 
 Due to internet bullshit spreads more easily in a massively networked, click-driven social media world than in any previous social environment. (Friends, Uncle, Small advertisement gatherings on roadside)
 

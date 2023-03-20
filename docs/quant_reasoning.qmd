@@ -60,7 +60,7 @@ library(scales)
 
 
 
-## Why R
+## Why R {.scrollable}
 
 
 ::: columns
@@ -154,21 +154,6 @@ leaflet() %>%
   addMarkers(lng = 73.0885, lat =33.7333 ,  
              popup = "IPRI, Islamabad")
 ```
-
-# Training Outline 
-
-## 
-
-### Meet R 
-
-### Data Wrangling 
-
-### Data Visualization 
-
-### Learn Having Beautiful Regression Models 
-
-### Learn to create beautiful documentation in Quarto
-
 
 ## Nature News Piece
 
@@ -416,7 +401,7 @@ Axis of evil
 
 ## 
 
-**The Prosecutor's Fallacy**\
+**The Prosecutor's Fallacy**
 **"There is absolutely no chance of getting a fingerprint match this good simply by accident."** Is it different than **"No, we want to know what chance there is that my client is innocent given that we've got a match."**
 
 **P(Match/innocent)** $\neq$ **P(innocent/match)**

@@ -163,6 +163,8 @@ leaflet() %>%
 2156: Women finish time for 100 m in 8.08 seconds while men will finish in 8.10 seconds.  
 Letter by Prof Rice to Nature : In 2626 a far more interesting : women in less than zero seconds will finish 100 meter rice 
 
+# [192 Years to overcome gender gap](https://jang.com.pk/news/1206366)
+
 ## [Data Reasoning in Digital World]{.yellow}
 
 ::: incremental

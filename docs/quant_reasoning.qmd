@@ -5,8 +5,7 @@ format:
   revealjs:
     theme: [default, custom.scss]
     logo: "images/ipri.jpg"
-    height: 900
-    width: 1600
+    css: logo.css
     chalkboard: true
     title-slide-attributes:
       data-background-image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUJ5kOKQRo3Izare1fpEJEMUY1pHE4Lq-EOPCLtqggZVQEE2GmezVaENBQX7mJ9SZ2dZE&usqp=CAU
@@ -33,11 +32,148 @@ knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
 options(digits = 3, width = 75)
 ```
 
-##  {background-color="black" background-image="https://media0.giphy.com/media/rvrUqtEdlw7yum4Mev/200w.webp?cid=ecf05e479ljjacyg3gljg41g2ty9i36w5rueowntchx8aakd&rid=200w.webp&ct=g" background-size="300px" background-repeat="repeat"}
+
+
+## {background-color="black" background-image="https://thumbs.gfycat.com/LastingGleamingBadger-size_restricted.gif" background-size="300px" background-repeat="repeat"}
+
+
+## Learning… 
+
+
+### -   [You don’t “learn R”, you learn how to do things in R]{.yellow}
+
+### -   In order to do learn this, you need to learn how to search for what you want to do
+
+### -   [Quarto for beautiful documents (pdf, word, html, pptx, revealjs, beamer, website, blogs, book/thesis/reports)]{.yellow}
+
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(kableExtra)
+library(patchwork)
+library(fontawesome)
+library(gapminder)
+library(scales)
+```
+
+
+
+## Why R
+
+
+::: columns
+::: {.column width="50%"}
+-   **Free** and **open source**
+
+-   A very large community
+
+-   Can handle virtually any data format
+
+-   Makes replication easy
+
+-   Can integrate into documents (with `Quarto`)
+
+-   R is a *language* so it can do *everything*
+
+    -   A good stepping stone to learning other languages like *Python*
+:::
+
+::: {.column width="50%"}
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/1200px-R_logo.svg.png)
+:::
+:::
+
+## Excel (or Stata) Can't Do This 
+
+
+::: panel-tabset
+## Code
+
+```{r}
+#| echo: true
+#| eval: false
+ggplot(data = gapminder, 
+       aes(x = gdpPercap,
+           y = lifeExp,
+           color = continent))+
+  geom_point(alpha=0.3)+
+  geom_smooth(method = "lm")+
+	scale_x_log10(breaks=c(1000,10000, 100000),
+	              label=scales::dollar)+
+	labs(x = "GDP/Capita",
+	     y = "Life Expectancy (Years)")+
+  facet_wrap(~continent)+
+  guides(color = F)+
+  theme_light()
+```
+
+## Output 
+
+```{r}
+#| echo: false
+#| eval: true
+ggplot(data = gapminder, 
+       aes(x = gdpPercap,
+           y = lifeExp,
+           color = continent))+
+  geom_point(alpha=0.3)+
+  geom_smooth(method = "lm")+
+	scale_x_log10(breaks=c(1000,10000, 100000),
+	              label=scales::dollar)+
+	labs(x = "GDP/Capita",
+	     y = "Life Expectancy (Years)")+
+  facet_wrap(~continent)+
+  guides(color = F)+
+  theme_light()
+```
+:::
+
+## Or This 
+
+::: panel-tabset
+### Input
+
+The average GDP per capita is `` ` r dollar(mean(gapminder$gdpPercap)) ` `` with a standard deviation of `` ` r dollar(sd(gapminder$gdpPercap)) ` ``.
+
+### Output
+
+The average GDP per capita is `r dollar(mean(gapminder$gdpPercap))` with a standard deviation of `r dollar(sd(gapminder$gdpPercap))`.
+:::
+
+## Or This 
+
+```{r}
+#| echo: true
+#| fig-width: 18
+#| fig-align: center
+library(leaflet)
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = 73.0885, lat =33.7333 ,  
+             popup = "IPRI, Islamabad")
+```
+
+# Training Outline 
+
+## 
+
+### Meet R 
+
+### Data Wrangling 
+
+### Data Visualization 
+
+### Learn Having Beautiful Regression Models 
+
+### Learn to create beautiful documentation in Quarto
+
 
 ## Nature News Piece
 
 ![](images/image-1571786506.png){fig-align="center"}
+
 
 2156: Women finish time for 100 m in 8.08 seconds while men will finish in 8.10 seconds.  
 Letter by Prof Rice to Nature : In 2626 a far more interesting : women in less than zero seconds will finish 100 meter rice 
@@ -75,19 +211,21 @@ Letter by Prof Rice to Nature : In 2626 a far more interesting : women in less t
 
 -   **Easy access to information has overloaded access**
 
--   **Paltering**
+-   **Paltering** vs **Lying**
 :::
 
-# [Falsehood flies and the truth comes limping after it]{.yellow}
+# [Falsehood flies and the truth comes limping after it]{.yellow} 
+
 
 ## 
 
-::: incremental
+::: incremental 
+
 -   **Ex-PM conspiracy theory by a powerful country**
 
--   **Truth emerges when perception on bullshit has done its damage.**
+-   [**Truth emerges when perception on bullshit has done its damage.**]{.yellow}
 
--   [Alberto Barndonlini in 2014, it states:]{.yellow} **"The amount of energy need to refule bullshit is an order of magnitufe bigger than \[that needed\] {.yellow} to produce it."**
+-   [Alberto Barndonlini in 2014, it states:]{.yellow} **"The amount of energy need to refule bullshit is an order of magnitude bigger than [that needed]{.yellow} to produce it."**
 
 -   [Satirist Jonathan Swift wrote in 1710 that]{.yellow} **"that falsehood flies, and truth comes limping after it."**
 
@@ -136,21 +274,22 @@ Bullshit (Brandolini, Franelli and Swifts taken together)is
 
 ## [Chopal/Baithak *Gupshup* and Face the Nation to Facebook]{.yellow}
 
-### Truth tellers have another advantage. Social media provides a fertilizer for the rapid proliferation of distractions, misinformation, bullshit, and fake news.
+### Social media provides a fertilizer for the rapid proliferation of distractions, misinformation, bullshit, and fake news.
 
-## [No time but smartphone to spread bullshit]{.yellow}
+## [No time but smartphone to spread bullshit]{.yellow}{.scrollable}
 
 ::: incremental
 -   Positive: easy to fact check but why bullshit goes unchecked
 
 -   Brothel of printing press
 
--   Anything can be produced if one has personal computer and internet
-:::
+-   Anything can be produced if one has personal computer and internet 
 
-**The inadequacy of the unvarnished truth"** - Mindless lists , quizzes, memes, and celebrity gossip that proliferate media might crowd out careful analyses of the sort one sees in responsible media
 
+-   **The inadequacy of the unvarnished truth** 
+-   Mindless lists , quizzes, memes, and celebrity gossip that proliferate media might crowd out careful analyses of the sort one sees in responsible media. 
 -   Prior to internet, large publishers cared about content and quality
+::: 
 
 ## [Headlines for retention not for information]{.yellow}
 
@@ -168,7 +307,8 @@ December 2016, a website called AWD News published a frightening headline:
 
 Story made a big headline and it named the wrong person as the Israeli Defense Minister.
 
-#### Khawaja M Asif, then Pak Def Min via twitter responded ["Israeli def min threatens nuclear retaliation presuming pak role in Syria against Daesh...Israel forgets Pakistan is a Nuclear state too."]{.yellow}
+#### Khawaja M Asif, then Pak Def Min via twitter responded 
+["Israeli def min threatens nuclear retaliation presuming pak role in Syria against Daesh...Israel forgets Pakistan is a Nuclear state too."]{.yellow}
 
 ## [Think more share less]{.yellow}
 
@@ -176,7 +316,7 @@ Story made a big headline and it named the wrong person as the Israeli Defense M
 
 ### [Gary Kasprov summarized this approach in a post on Twitter: "The point of modern propaganda isn't only to misinform or push an agenda, It is to exhaust your critical thinking, to annihilate truth."]{.yellow}
 
-## [Basic Approaches for Protecting ourselves against misinformation]{.yellow}
+## [Approaches for protecting ourselves against misinformation]{.yellow}
 
 ::: incremental
 1.  Technology: AI technology to detect fake news
@@ -184,9 +324,11 @@ Story made a big headline and it named the wrong person as the Israeli Defense M
 2.  Government regulations
 
 3.  Most powerful approach is education. If we do a good job of educating people in media literacy and critical thinking, the problem of misinformation and disinformation can be solved from the bottom up.
-:::
 
-Due to internet bullshit spreads more easily in a massively networked, click-driven social media world than in any previous social environment. (Friends, Uncle, Small advertisement gatherings on roadside)
+
+-   Due to internet bullshit spreads more easily in a massively networked, click-driven social media world than in any previous social environment. (Friends, Uncle, Small advertisement gatherings on roadside)
+
+:::: 
 
 ## The Nature of Bullshit
 
@@ -228,13 +370,13 @@ Percentage not appropriate if negative numbers
 
 ## Biases
 
-### Confirmatory Bias
+### [Confirmatory Bias]{.yellow}
 
 Confirmation bias is the tendency to notice, believe, and share information that is consistent with our preexisting beliefs.
 
 ### Selection Bias
 
-### Desirability Bias
+### [Desirability Bias]{.yellow}
 
 ### Bandwagon Effect Bias
 
@@ -346,3 +488,9 @@ Bullshit spotting requires care (walking at night)
 ### Calling Bullshit is a performative utterance in which one repudiates something objectionable.
 
 ### [The scope of targets is broader than bullshit alone.]{.yellow} You can call bullshit on bullshit, [but you can also call bullshit on lies, treachery, trickery, or injustice.]{.yellow}
+
+##  {background-color="black" background-image="https://media0.giphy.com/media/rvrUqtEdlw7yum4Mev/200w.webp?cid=ecf05e479ljjacyg3gljg41g2ty9i36w5rueowntchx8aakd&rid=200w.webp&ct=g" background-size="300px" background-repeat="repeat"}
+
+
+##  {background-color="black" background-image="https://media3.giphy.com/media/92cu6TfCZDVRBkmmDu/200w.webp?cid=ecf05e47zo2233mp4672wczn9mlp9rgckhrhslmyebyeoypx&rid=200w.webp&ct=g" background-size="300px" background-repeat="repeat"}
+

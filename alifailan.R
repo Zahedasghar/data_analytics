@@ -2,6 +2,7 @@
 ### install.packages("dplyr")
 
 library(tidyverse)
+
 library(svglite)
 
 ## .dta , .sav, .xlsx, .csv
@@ -179,27 +180,18 @@ alif |> filter(province=="Punjab") |>
 
 alif |> filter(province=="Punjab") |> 
   ggplot()+aes(x=drinking_water,y=electricity)+
-  geom_point() 
+  geom_point()+geom_text(aes(label=district),hjust=0, vjust=0)
+
+alif |> filter(province=="Punjab") -> alif_punjab
+  ggplot(alif_punjab)+aes(x=drinking_water,y=electricity)+
+  geom_point()+geom_label(data=alif_punjab |> filter(electricity<70),
+                          aes(label=district),hjust=0, vjust=0)
+  
 ## Concept of ecological correlations
 
 alif |> filter(province=="Punjab") |> 
   ggplot()+aes(x=drinking_water,y=electricity)+
   geom_point()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -233,7 +225,8 @@ alif |> filter(province=="Balochistan") |>
   ggplot()+aes(x=reorder(district,drinking_water),y=drinking_water)+geom_point(size=2,colour="orange")+
   geom_segment(aes(x=district,y=0,xend=district,yend=drinking_water, colour="red"))+
   coord_flip()
-  geom_hline(yintercept = drinking_water)
+  
+#geom_hline(yintercept = drinking_water)
   
 
 
@@ -244,7 +237,6 @@ alif |> filter(province=="Balochistan") |>
 
 
 
-alif$
 
 library(dataxray)
 alif |> make_xray() |>

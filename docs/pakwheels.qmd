@@ -3,8 +3,8 @@ title: "Analysing used car sales data for Pakistan"
 subtitle: "Zahid Asghar, SOE, QAU"
 title-block-banner: true
 format:
-  pdf:
-    theme: [default, custom.scss]
+  html:
+    theme: [default, custom2.scss]
     logo: "za_icon_2.png"
     footer: "[zahidasghaR](https://zahidasghar.com/data_analytics/Workshop-DAEC)"
     #height: 900
@@ -84,7 +84,7 @@ library(ggrepel)
 
 pakwheels <- readRDS("D:/RepTemplates/data_analytics/pakwheels.rds")
 
-View(pakwheels)
+pakwheels |> head()
 
 ```
 

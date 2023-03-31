@@ -99,7 +99,7 @@ alif |> filter(province=="Punjab") |> select_if (is.numeric) |> select(-rank_201
 
 alif |> count(province, name="dist_count") |> 
   arrange(desc(dist_count)) |> gt() |>
-  gt_theme_pff() 
+  gt_theme_dark() 
 
 alif |> select(province, infrastructure_score) |> 
   tbl_summary(by=province)

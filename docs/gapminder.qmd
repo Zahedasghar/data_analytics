@@ -1,7 +1,7 @@
 ---
 format:
   html: 
-    theme: [default, custom.scss]
+    theme: [solarized]
     toc: true
     code-fold: true
 execute: 
@@ -50,6 +50,8 @@ gapminder %>% filter(country=="Sweden")%>%
 ```
 
 First few rows of data are displayed here and there 1704 observations in total. In this training, some very basic but important things you will learn are
+
+$$Y_i=\beta_0+\beta_1 x_i+\epsilon$$
 
 # Key components of handling data
 
@@ -181,7 +183,9 @@ gapminderSA %>% mutate(pop=pop/1000000)
 
 If we want to calculate GDP, we need to multiply gdpPercap by pop.
 
-    But wait! Didn't we just change pop so it's expressed in millions? 
+```         
+But wait! Didn't we just change pop so it's expressed in millions? 
+```
 
 No: we never stored the results of our previous command, we simply displayed them. Just as I discussed above, unless you overwrite it, the original gapminder dataset will be unchanged. With this in mind, we can create the gdp variable as follows:
 

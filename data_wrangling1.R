@@ -1,3 +1,5 @@
+#install.packages("gapminder")
+#install.packages("tidyverse")
 library(gapminder)
 library(tidyverse)
 
@@ -10,50 +12,41 @@ glimpse(diamonds)
 
 as_tibble(diamonds)
 
-library(dataxray)
-diamonds |>
-  make_xray()|>
-  view_xray()
-
-
-gapminder|>make_xray()|>
-  view_xray()
-
 ## Arrange
 # order by year, with the smallest to largest pop in each year
-gapminder %>%
+gapminder |> 
   arrange(year, pop)
 
 
 ## Arrange by Descending order
-gapminder %>%
+gapminder |>
   arrange(desc(pop))
 
 ## Select
 
-gapminder %>%
+gapminder |>
   select(country, year, pop)
 
 # keep all variables *except* gdpPercap
-gapminder %>%
+gapminder |>
   select(-gdpPercap)
 
 # Reordering column
 
 # move pop to first column
-gapminder %>%
+gapminder |>
   select(pop, everything())
 
 # keep all variables starting with "co"
-gapminder %>%
+gapminder |>
   select(starts_with("co"))
 
 # keep country and all variables containing "per"
-gapminder %>%
+gapminder |>
   select(country, contains("per"))
 gapminder
 # rename gdpPercap to GDP and lifeExp to population
-gapminder %>%
+gapminder |>
   rename(GDP = gdpPercap,
          LE = lifeExp)
 
@@ -66,11 +59,11 @@ library(help=tidyrgee)
 
 ## Filter
 # look only at African observations
-gapminder %>%
+gapminder |>
   filter(country %in% c("Pakistan","India", "Sri Lanka", "Bangladesh"), year==2007)
 
 # look only at African observations in 1997
-gapminder %>%
+gapminder |>
   filter(continent == "Africa",
          year == 1997)
 
@@ -80,13 +73,13 @@ gapminder %>%
 
 
 # look only at African observations OR observations in 1997
-gapminder %>%
+gapminder |>
   filter(continent == "Africa" | 
            year == 1997)
 
 ## `filter()` with Conditionals III
 # look only at U.S. and U.K. observations in 2002
-gapminder %>%
+gapminder |>
   filter(country %in% 
            c("United States",
              "United Kingdom"),
@@ -103,27 +96,27 @@ mutate(gapminder,
 ## `mutate()`: Changing a Variable's Scale
 
 # create population in millions variable
-gapminder %>%
+gapminder |>
   mutate(pop_mil = pop / 1000000)
 
 ## `mutate()`: Variable Based on Other Variables
 
 
 # create GDP variable from gdpPercap and pop, in billions
-gapminder %>%
+gapminder |>
   mutate(GDP = ((gdpPercap * pop) / 1000000000))
 
 ## `mutate()`: Change Class of Variable
 
 
 # change year variable from an integer to a factor
-gapminder %>%
+gapminder |>
   mutate(year = as.factor(year))
 
 ## `mutate()`: Create Multiple Variables
 
 
-gapminder %>%
+gapminder |>
   mutate(GDP = gdpPercap * pop,
          pop_millions = pop / 1000000)
 
@@ -132,7 +125,7 @@ gapminder %>%
 ## `transmute()`: Keep Only New Variables
 
 
-gapminder %>%
+gapminder |>
   transmute(GDP = gdpPercap * pop,
             pop_millions = pop / 1000000)
 
@@ -141,8 +134,8 @@ gapminder %>%
 
 #   Boolean, logical, and conditionals all work well in `mutate()`:
 
-gapminder %>%
-  select(country, year, lifeExp) %>%
+gapminder |>
+  select(country, year, lifeExp) |>
   mutate(long_life_1 = lifeExp > 70,
          long_life_2 = case_when(lifeExp > 70 ~ "Long",
                                  lifeExp <= 70 ~ "Short"))
@@ -151,8 +144,8 @@ gapminder %>%
 ## `mutate()` is Order Aware
 
 
-gapminder %>%
-  select(country, year, lifeExp) %>%
+gapminder |>
+  select(country, year, lifeExp) |>
   mutate(dog_years = lifeExp * 7,
          comment = paste("Life expectancy in", country, "is", dog_years, "in dog years.", sep = " "))
 
@@ -163,7 +156,7 @@ gapminder %>%
 #-   `mutate_at()` affects named or selected variables
 #-   `mutate_if()` affects variables that meet a criteria
 # round all observations of numeric variables to 2 digits
-gapminder %>%
+gapminder |>
   mutate_if(is.numeric, round, digits = 2)
 
 ## `mutate()`: Scoped-functions II
@@ -173,7 +166,7 @@ gapminder %>%
 #   `mutate_at()` affects named or selected variables
 #   `mutate_if()` affects variables that meet a criteria
 # make all factor variables uppercase
-gapminder %>%
+gapminder |>
   mutate_if(is.factor, toupper)
 
 ## A Reminder on Viewing, Saving, & Overwriting Objects I
@@ -183,11 +176,11 @@ gapminder %>%
 #-   If assigned, you will not see the output until you call up the new `tibble` by name
 
 # Prints output, doesn't save/overwrite object
-gapminder %>%
+gapminder |>
   filter(continent == "Africa") 
 
 # Saves as africa
-africa <- gapminder %>%
+africa <- gapminder |>
   filter(continent == "Africa")
 
 # Look at it
@@ -197,7 +190,7 @@ africa
 
 #-   Neat trick:
 # Save and view at same time by wrapping whole command with ()
-(africa <- gapminder %>%
+(africa <- gapminder |>
     filter(continent == "Africa"))
 
 
@@ -206,7 +199,7 @@ africa
 
 # get average life expectancy and call it avg_LE
 
-gapminder %>%
+gapminder |>
   summarize(avg_LE = mean(lifeExp))
 
 ## `summarize()`: Useful commands

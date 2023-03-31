@@ -112,3 +112,27 @@ fin_st1<-sticker(p1, package="Data Analytics", p_size=12, s_x=1, s_y=.75, s_widt
                 filename="ggplot_2.png",h_fill="#401097",h_color = "#062047")
 
 plot(fin_st1)
+
+
+
+
+
+
+img2 <- image_read("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/C.L_Quaid-e-Azam_University_Islamabad.jpg/1280px-C.L_Quaid-e-Azam_University_Islamabad.jpg")
+img2 %>% 
+  image_convert("png") %>% 
+  image_resize("1080 x 600")%>% 
+  image_fill(color="white", point="+75") %>% 
+  image_annotate("", size=25, location = "50-50", color="blue") -> res2
+
+res2
+#Actual Sticker Creation
+
+
+# wrap in plot to preview ie plot(sticker(...))
+final_res2<-sticker(res2, package="Q.A.U, Islamabad", p_size=12,
+                   p_y = .5,
+                   s_x=1.0, s_y=1.0, s_width=1.2,
+                   s_height = 14,
+                   filename="qau.png",h_fill="navyblue",h_color = "lightblue")
+plot(final_res2)

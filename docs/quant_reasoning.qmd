@@ -1,5 +1,5 @@
 ---
-title: "[Understanding]{.pink} and minimizing [nonsense]{.pink} in digital world"
+title: "Understanding and minimizing [nonsense]{.pink} in digital world"
 subtitle: "**[Zahid Asghar]{.pink}**"
 format:
   revealjs:
@@ -32,20 +32,15 @@ knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
 options(digits = 3, width = 75)
 ```
 
+##  {background-color="black" background-image="https://thumbs.gfycat.com/LastingGleamingBadger-size_restricted.gif" background-size="300px" background-repeat="repeat"}
 
+## Learning...
 
-## {background-color="black" background-image="https://thumbs.gfycat.com/LastingGleamingBadger-size_restricted.gif" background-size="300px" background-repeat="repeat"}
+### - [You don't "learn R", you learn how to do things in R]{.yellow}
 
+### - In order to do learn this, you need to learn how to search for what you want to do
 
-## Learning… 
-
-
-### -   [You don’t “learn R”, you learn how to do things in R]{.yellow}
-
-### -   In order to do learn this, you need to learn how to search for what you want to do
-
-### -   [Quarto for beautiful documents (pdf, word, html, pptx, revealjs, beamer, website, blogs, book/thesis/reports)]{.yellow}
-
+### - [Quarto for beautiful documents (pdf, word, html, pptx, revealjs, beamer, website, blogs, book/thesis/reports)]{.yellow}
 
 ```{r}
 #| label: setup
@@ -58,10 +53,7 @@ library(gapminder)
 library(scales)
 ```
 
-
-
 ## Why R {.scrollable}
-
 
 ::: columns
 ::: {.column width="50%"}
@@ -85,8 +77,7 @@ library(scales)
 :::
 :::
 
-## Excel (or Stata) Can't Do This 
-
+## Excel (or Stata) Can't Do This
 
 ::: panel-tabset
 ## Code
@@ -109,7 +100,7 @@ ggplot(data = gapminder,
   theme_light()
 ```
 
-## Output 
+## Output
 
 ```{r}
 #| echo: false
@@ -130,7 +121,7 @@ ggplot(data = gapminder,
 ```
 :::
 
-## Or This 
+## Or This
 
 ::: panel-tabset
 ### Input
@@ -142,7 +133,7 @@ The average GDP per capita is `` ` r dollar(mean(gapminder$gdpPercap)) ` `` with
 The average GDP per capita is `r dollar(mean(gapminder$gdpPercap))` with a standard deviation of `r dollar(sd(gapminder$gdpPercap))`.
 :::
 
-## Or This 
+## Or This
 
 ```{r}
 #| echo: true
@@ -159,9 +150,8 @@ leaflet() %>%
 
 ![](images/image-1571786506.png){fig-align="center"}
 
-
-2156: Women finish time for 100 m in 8.08 seconds while men will finish in 8.10 seconds.  
-Letter by Prof Rice to Nature : In 2626 a far more interesting : women in less than zero seconds will finish 100 meter rice 
+2156: Women finish time for 100 m in 8.08 seconds while men will finish in 8.10 seconds.\
+Letter by Prof Rice to Nature : In 2626 a far more interesting : women in less than zero seconds will finish 100 meter race
 
 # [192 Years to overcome gender gap](https://jang.com.pk/news/1206366)
 
@@ -201,13 +191,11 @@ Letter by Prof Rice to Nature : In 2626 a far more interesting : women in less t
 -   **Paltering** vs **Lying**
 :::
 
-# [Falsehood flies and the truth comes limping after it]{.yellow} 
-
+# [Falsehood flies and the truth comes limping after it]{.yellow}
 
 ## 
 
-::: incremental 
-
+::: incremental
 -   **Ex-PM conspiracy theory by a powerful country**
 
 -   [**Truth emerges when perception on bullshit has done its damage.**]{.yellow}
@@ -263,20 +251,21 @@ Bullshit (Brandolini, Franelli and Swifts taken together)is
 
 ### Social media provides a fertilizer for the rapid proliferation of distractions, misinformation, bullshit, and fake news.
 
-## [No time but smartphone to spread bullshit]{.yellow}{.scrollable}
+## [No time but smartphone to spread bullshit]{.yellow} {.scrollable}
 
 ::: incremental
 -   Positive: easy to fact check but why bullshit goes unchecked
 
 -   Brothel of printing press
 
--   Anything can be produced if one has personal computer and internet 
+-   Anything can be produced if one has personal computer and internet
 
+-   **The inadequacy of the unvarnished truth**
 
--   **The inadequacy of the unvarnished truth** 
--   Mindless lists , quizzes, memes, and celebrity gossip that proliferate media might crowd out careful analyses of the sort one sees in responsible media. 
+-   Mindless lists , quizzes, memes, and celebrity gossip that proliferate media might crowd out careful analyses of the sort one sees in responsible media.
+
 -   Prior to internet, large publishers cared about content and quality
-::: 
+:::
 
 ## [Headlines for retention not for information]{.yellow}
 
@@ -294,7 +283,8 @@ December 2016, a website called AWD News published a frightening headline:
 
 Story made a big headline and it named the wrong person as the Israeli Defense Minister.
 
-#### Khawaja M Asif, then Pak Def Min via twitter responded 
+#### Khawaja M Asif, then Pak Def Min via twitter responded
+
 ["Israeli def min threatens nuclear retaliation presuming pak role in Syria against Daesh...Israel forgets Pakistan is a Nuclear state too."]{.yellow}
 
 ## [Think more share less]{.yellow}
@@ -312,10 +302,8 @@ Story made a big headline and it named the wrong person as the Israeli Defense M
 
 3.  Most powerful approach is education. If we do a good job of educating people in media literacy and critical thinking, the problem of misinformation and disinformation can be solved from the bottom up.
 
-
 -   Due to internet bullshit spreads more easily in a massively networked, click-driven social media world than in any previous social environment. (Friends, Uncle, Small advertisement gatherings on roadside)
-
-:::: 
+:::
 
 ## The Nature of Bullshit
 
@@ -341,7 +329,7 @@ Story made a big headline and it named the wrong person as the Israeli Defense M
 
 ### [Beer and Pitcher]{.yellow}
 
-#### "Where minimum wage is higher, poverty is lower." is not the same claim as "If minimum wage were to increase, poverty would decrease."]{.yellow} The first reports a trend across cities: Those with higher minimum wage have lower poverty rates. The second suggests how one might go about reducing poverty in a particular city.
+#### "Where minimum wage is higher, poverty is lower." is not the same claim as "If minimum wage were to increase, poverty would decrease."\]{.yellow} The first reports a trend across cities: Those with higher minimum wage have lower poverty rates. The second suggests how one might go about reducing poverty in a particular city.
 
 ## Numbers and Nonsense
 
@@ -403,8 +391,7 @@ Axis of evil
 
 ## 
 
-**The Prosecutor's Fallacy**
-**"There is absolutely no chance of getting a fingerprint match this good simply by accident."** Is it different than **"No, we want to know what chance there is that my client is innocent given that we've got a match."**
+**The Prosecutor's Fallacy** **"There is absolutely no chance of getting a fingerprint match this good simply by accident."** Is it different than **"No, we want to know what chance there is that my client is innocent given that we've got a match."**
 
 **P(Match/innocent)** $\neq$ **P(innocent/match)**
 
@@ -478,6 +465,4 @@ Bullshit spotting requires care (walking at night)
 
 ##  {background-color="black" background-image="https://media0.giphy.com/media/rvrUqtEdlw7yum4Mev/200w.webp?cid=ecf05e479ljjacyg3gljg41g2ty9i36w5rueowntchx8aakd&rid=200w.webp&ct=g" background-size="300px" background-repeat="repeat"}
 
-
 ##  {background-color="black" background-image="https://media3.giphy.com/media/92cu6TfCZDVRBkmmDu/200w.webp?cid=ecf05e47zo2233mp4672wczn9mlp9rgckhrhslmyebyeoypx&rid=200w.webp&ct=g" background-size="300px" background-repeat="repeat"}
-

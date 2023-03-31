@@ -1,15 +1,14 @@
 ---
-  title: "Demystifying R Survey Report"
+title: "Demystifying R Survey Report"
 format: 
   html:
-  css: slides/style.css
-toc: true
-toc_depth: 2
-toc_float: true
-df_print: paged
+    theme: [default, custom.scss]
+    toc: true
+    toc_depth: 2
+    toc_float: true
 ---
   
-  ```{r setup, include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE,
                       include = TRUE,
                       warning = FALSE,

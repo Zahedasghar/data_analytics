@@ -4,13 +4,13 @@ library(tseries)
 #cons<-WDI(indicator="NE.CON.PRVT.PC.KD",start=1960, end=2020)
 #cons|>filter(country=="Pakistan")
 
-age0_14 <- WDI(indicator = "SP.POP.0014.TO.ZS", start = 2018, end = 2018) # proportion of 0-14 year olds 
+age0_14 <- WDI(indicator = "SP.POP.0014.TO.ZS", start = 2019, end = 2019) # proportion of 0-14 year olds 
 
 #pak_veit<-age0_14|>filter(country=="Pakistan"|country=="Vietnam"|country=="Bangladesh")
 
 age0_14|>glimpse()
 age0_14|>select(country,SP.POP.0014.TO.ZS)|>gt_plt_summary()|>tab_header("Age distribution")
-pol_stab <- WDI(indicator = "PV.EST", start = 2018, end = 2018) # political stability indicator
+pol_stab <- WDI(indicator = "PV.EST", start = 2019, end = 2019) # political stability indicator
 pol_stab|>glimpse()
 pol_stab|>filter(country=="Pakistan")
 #View(age0_14)
@@ -19,37 +19,52 @@ pol_stab|>filter(country=="Pakistan")
 
 youth <- merge(age0_14, pol_stab) |> na.omit()
 youth<-youth|>select(country, SP.POP.0014.TO.ZS, PV.EST)
+colnames(youth) <- c("country", "age0_14", "pol_stab")
+youth <- saveRDS(youth, file="youth.rds")
+youth<- readRDS("youth.rds")
 #View(youth)
 colnames(youth) <- c("country", "age0_14", "pol_stab")
+
+colnames(youth)
 #saveRDS(youth,file = "youth_2019.rds")
 #readRDS("youth_2019.rds")
-df2<-youth|>filter(country%in% c("Pakistan","India", "Afghanistan","Bangladesh","Sri Lanka"))
+
+library(gt)
+library(gtsummary)
+library(gtExtras)
 
 
-df2|>gt()|>gt_theme_538() |>tab_header("Distribution")
-
-youth<-youth|>mutate(pol_stab=round(pol_stab,2),age0_14=round(age0_14,2)) 
+youth <-
+  youth |> mutate(pol_stab = round(pol_stab, 2),
+                  age0_14 = round(age0_14, 2))
 
 library(gt)
 library(gtExtras)
-youth %>% arrange(pol_stab)|> top_n(-10)|>gt()|>gt_theme_nytimes()
 
-youth %>% arrange(pol_stab)|> top_n(-10)|>gt()|>gt_theme_nytimes()|>
+df2 |> gt() |> gt_theme_538() |> tab_header("Distribution")
+
+
+df2 <-
+  youth |> filter(country %in% c("Pakistan", "India", "Afghanistan", "Bangladesh", "Sri Lanka"))
+
+youth |> arrange(pol_stab)|> top_n(-10)|>gt()|>gt_theme_nytimes()
+
+youth |> arrange(pol_stab)|> top_n(-10)|>gt()|>gt_theme_nytimes()|>
   tab_header("Bottom 10 countries by political stability level")
 
 
-youth %>% arrange(desc(pol_stab)) %>% top_n(-10)
+youth |> arrange(desc(pol_stab)) |> top_n(-10) |> gt()
 
-youth %>% mutate(rank = dense_rank(desc(pol_stab))) %>% arrange(rank) %>% filter(country%in% c("Pakistan","India", "Afghanistan","Bangladesh","Sri Lanka"))
+youth |> mutate(rank = dense_rank(desc(pol_stab))) |> arrange(rank) |> filter(country%in% c("Pakistan","India", "Afghanistan","Bangladesh","Sri Lanka"))
 
-youth %>% arrange(desc(age0_14)) %>% top_n(-10)
+youth |> arrange(desc(age0_14)) |> top_n(-10)
 #youth[order(data$pol_stab), ] |> head(10)
 #View(data)
 ggplot(data=youth)+aes(x=age0_14,y=pol_stab)+geom_point()+geom_smooth(method = "lm",se=FALSE)+
   geom_point(aes(x =35.05438 , y = -2.265187,colour="red",size=2))+
   labs(x="Proportion of young people (in %)",y="Political stability",title = "Youth bulge and political stability", 
        subtitle = "There is close association between youth bulge and political stability. 
-       Pakistan has huge youth and high political instability over last two decades", caption="By Zahid Asghar,data:WDI")+
+       Pakistan has huge youth and low political stability over last two decades", caption="By Zahid Asghar,data:WDI")+
   geom_text( x =35.05438 , y = -2.265187, label = "Pakistan")
 
 ggplot(data=youth)+aes(x=age0_14,y=pol_stab)+geom_point()+geom_smooth(method = "lm",se=FALSE)+

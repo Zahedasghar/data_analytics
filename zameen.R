@@ -6,7 +6,7 @@ library(lubridate)
 
 
 #saveRDS(zameen, "zameen.rds")
-readRDS("zameen.rds")
+zameen <- readRDS("zameen.rds")
 
 
 zameen |> glimpse()
@@ -23,6 +23,7 @@ zameen |> group_by(year)
 
 
 zameen |> mutate(price_m=price/1000000) -> zameen 
+
 
 
 

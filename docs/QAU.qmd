@@ -1,5 +1,5 @@
 ---
-title: "[Quaid-i-Azam University: Way Forward]{.flow}"
+title: "[Quaid-i-Azam University: Way Forward]{.yellow}"
 subtitle: " "
 format:
   revealjs:
@@ -12,7 +12,7 @@ format:
       data-background-size: 15%
       data-background-position: 0% 95%
       background-opacity: "1.30"
-      data-background-color: "#f7f9fa"
+      #data-background-color: "#0298ed"
 overview: true
 execute:
   echo: false
@@ -45,7 +45,7 @@ library(gapminder)
 library(scales)
 ```
 
-# [Put Students First]{.flow} {background-color="white"}
+# [Put Students First]{.yellow} 
 
 # Analysis  
 

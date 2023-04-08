@@ -1,5 +1,5 @@
 ---
-title: "[Quaid-i-Azam University: Way Forward]{.yellow}"
+title: "[Quaid-i-Azam University: A Way Forward]{.yellow}"
 subtitle: " "
 format:
   revealjs:

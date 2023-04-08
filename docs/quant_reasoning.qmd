@@ -4,11 +4,11 @@ subtitle: "**[Zahid Asghar]{.pink}**"
 format:
   revealjs:
     theme: [default, custom.scss]
-    logo: "images/ipri.jpg"
+    logo: "images/QAU.jpg"
     css: logo.css
     chalkboard: true
     title-slide-attributes:
-      data-background-image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUJ5kOKQRo3Izare1fpEJEMUY1pHE4Lq-EOPCLtqggZVQEE2GmezVaENBQX7mJ9SZ2dZE&usqp=CAU
+      data-background-image: vc_qau.jpg
       data-background-size: 100%
       data-background-position: 0% 0%
       background-opacity: "1.0"

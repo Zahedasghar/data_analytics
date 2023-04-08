@@ -26,11 +26,18 @@ df <- cpi |>
 ggplot(df, aes(x = date, y = value)) +
       geom_line(aes(color = variable), size = 2) + 
       scale_color_manual(values = c("#00AFBB", "#E7B800")) +
-     theme_minimal()+labs(x="Time",y="inflation",title = "YoY inflation at its peak in history",
-                          subtitle="A little monthly respite trend changing again. Instead of preparing for harsh weathers, we wait for favorable
-winds to blow. Inflation, climate, high energy costs, recession in exporting partners among other risks have made Pakistani economy very fragile",
-caption="source:PBS, by: Zahid Asghar")
+     theme_minimal()+labs(x="Time",y="inflation",title = "Inflation hit a record high of 35.4 percent in March since 1965",
+                          subtitle="No favorable winds seem blowing at least in the coming couple of month. \n Inflation, climate, high energy costs, recession in exporting partners among \n other risks have made Pakistani economy very fragile",
+caption="source:PBS, by: Zahid Asghar")+theme(legend.position = "none")
 
+
+df |> filter(variable=="year_on_year") |> 
+  ggplot()+ aes(x = date, y = value, fill="red") +
+  geom_col() + 
+  #scale_color_manual(values = "#00AFBB") +
+  theme_minimal()+labs(x="Time",y="inflation",title = "Inflation hit a record high of 35.4 percent in March since 1965 ",
+                       subtitle="No favorable winds seem blowing at least in the coming couple of month. \n Inflation, climate, high energy costs, recession in exporting partners among \n other risks have made Pakistani economy very fragile",
+                       caption="source:PBS, by: Zahid Asghar")+theme(legend.position="none")
 
 
 
@@ -87,4 +94,41 @@ View(ER)
 ggplot(ER, aes(x = time, y = D_Rs)) +
   geom_line(size=1)
 +geom_rect(aes( ymin=220, ymax=230))
+
+
+p <- df |> filter(variable=="year_on_year") |> 
+  ggplot()+ aes(x = date, y = value, fill="red") +
+  geom_col() + 
+  #scale_color_manual(values = "#00AFBB") +
+  theme_minimal()+labs(x="Time",y="inflation",title = "Inflation hit a record high of 35.4 percent in March since 1965 ",
+                       subtitle="No favorable winds seem blowing at least in the coming couple of month. \n Inflation, climate, high energy costs, recession in exporting partners among \n other risks have made Pakistani economy very fragile",
+                       caption="source:PBS, by: Zahid Asghar")+theme(legend.position="none")
+
+
+p
+library(magick)
+gif<-image_read("https://img.etimg.com/thumb/msid-93194137,width-1200,height-900,imgsize-1101135,resizemode-8/20220729_inflation_01.jpg")
+plot <- image_graph(width = 1000, height = 500, res = 100)
+p
+dev.off()
+frames <- image_composite(plot, gif, offset = "+500-100")
+frames
+animation <- image_animate(image_join(frames), optimize = TRUE)
+animation <- image_quantize(animation,
+                            max = 20,
+                            colorspace = "rgb")
+
+animation
+
+
+image_write(animation, "C:D:\\RepTemplates\\data_analytics\\bleeding_econ.gif")
+
+animation <- image_animate(image_join(frames), optimize = TRUE, loop = 1)
+
+animation <- image_quantize(animation,
+                            max = 20,
+                            colorspace = "rgb")
+length(gif)
+gif<-gif|>image_scale("300")
+gif
   

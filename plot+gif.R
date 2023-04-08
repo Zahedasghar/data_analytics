@@ -118,4 +118,3 @@ animation <- image_quantize(animation,
                             colorspace = "rgb")
 length(gif)
 gif<-gif|>image_scale("300")
-

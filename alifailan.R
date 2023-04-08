@@ -1,9 +1,8 @@
 
-### install.packages("dplyr")
+ # install.packages("tidyverse")
 
 library(tidyverse)
 
-library(svglite)
 
 ## .dta , .sav, .xlsx, .csv
 
@@ -14,7 +13,11 @@ library(readr)  # To read csv file
 
 alif <- read_csv("docs/Alifailan.csv", col_names = TRUE)
 
-  names(alif)
+names(alif)
+alif |> clean_names() |> head()
+
+
+
 
 ## Modify column names 
 library(janitor)
@@ -54,6 +57,7 @@ View(alif)
 
 names(alif)
 
+alif |> slice(1:10)
 
 ## Rename
  
@@ -66,11 +70,18 @@ alif<-alif |> clean_names() |> glimpse()
 #    build_cond = Building.condition.satisfactory  )
 
 
+alif |> filter(province=="ICT")
+
+
 ## Select data for 4 main provinces (two ways either filter or select)
 alif |> filter(province != "AJK",
                   province != "GB",
                   province != "ICT",
-                  province != "FATA")
+                  province != "FATA") ->alif123
+
+alif |> glimpse()
+
+
 ## Or use filter as
 
 alif |> filter (province %in% c("Punjab","Sind","Balochistan", "KP"))
@@ -99,7 +110,7 @@ alif |> filter(province=="Punjab") |> select_if (is.numeric) |> select(-rank_201
 
 alif |> count(province, name="dist_count") |> 
   arrange(desc(dist_count)) |> gt() |>
-  gt_theme_dark() 
+  gt_theme_pff()
 
 alif |> select(province, infrastructure_score) |> 
   tbl_summary(by=province)
@@ -113,11 +124,6 @@ alif |> select(-district, -rank_2016)
 alif |>  count(province, name="district_count")|>
   arrange( desc(district_count)) |> as.data.frame()
  
-## Modify column names 
-library(janitor)
-library(flipbookr)
-
-alif |> clean_names() -> alif
 
 
 ## plots
@@ -175,6 +181,7 @@ alif |> filter(province=="Punjab")
 alif |> filter(province=="Punjab") |> 
   ggplot()+aes(x=drinking_water,y=electricity)
 
+library(help="janitor")
 
 
 
@@ -187,11 +194,21 @@ alif |> filter(province=="Punjab") -> alif_punjab
   geom_point()+geom_label(data=alif_punjab |> filter(electricity<70),
                           aes(label=district),hjust=0, vjust=0)
   
+ggplot(alif)+
+  aes(x=drinking_water,y=electricity)+
+  geom_point()+geom_label(data=alif |> filter(province=="Balochistan"&electricity<20),
+                          aes(label=district),col='red',size=2, hjust=0,vjust=0)
+
+
+
+
+
 ## Concept of ecological correlations
 
 alif |> filter(province=="Punjab") |> 
   ggplot()+aes(x=drinking_water,y=electricity)+
   geom_point()
+
 
 
 

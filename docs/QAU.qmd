@@ -1,0 +1,105 @@
+---
+title: "[Quaid-i-Azam University: Way Forward]{.flow}"
+subtitle: " "
+format:
+  revealjs:
+    theme: [default, custom.scss, styles.scss]
+    logo: "images/QAU.jpg"
+    css: logo.css
+    chalkboard: true
+    title-slide-attributes:
+      data-background-image: images/vc_qau.jpg
+      data-background-size: 15%
+      data-background-position: 0% 95%
+      background-opacity: "1.30"
+      data-background-color: "#f7f9fa"
+overview: true
+execute:
+  echo: false
+  warning: false
+  freeze: auto
+resources:
+  - slides.pdf
+editor: visual
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(httr)
+clrs <- MetBrewer::met.brewer(name = "Java")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
+options(digits = 3, width = 75)
+```
+
+
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(kableExtra)
+library(patchwork)
+library(fontawesome)
+library(gapminder)
+library(scales)
+```
+
+# [Put Students First]{.flow} {background-color="white"}
+
+# Analysis {background-color="blue"}
+
+## Adminstration and Efficiency {background-color="blue"}
+- 80% issues due to capacity and poor functioning of administration
+  - files processing
+  - admissions issues
+  - examination issues
+
+## Students {background-color="blue"}
+
+
+
+- Improve work culture 
+  - stop some social media , newspapers and other browsing through ban during office hours 
+  - Monitoring timings of staff entry and exit starting right from admn block 
+  - tracking their total work hours and providing staff only if the section is in really need of it.
+  
+
+## Acadeemic Analysis {background-color="blue"}
+- Ask Deans to bound faculty for revision and update of courses and place them on website
+- Identify 3 to 5 programs as flagships and their faculty and students should be provided facilities at par with their revenue generations. In the past, its tried to manage those departments by those who have 25% of students admitted out of total allocated seats.
+
+## Virtual Learning with New Educational Accounting System {background-color="blue"}
+
+## Horticulture {background-color="blue"}
+
+- Closure of plant nursery
+    - Costs : More than Rs.10 million per anum in terms of salary and over time excluding utility
+    - Benefits: Less than Rs.2 million (calculations can be updated)
+
+## Transport {background-color="blue"}
+- Long routes terminal at destination rather having extra redundant trip on daily basis
+- Work on outsourcing of bus system gradually 
+
+
+## Workshop {background-color="blue"}
+- Most easy CBA but me and my staff has to bear the cost when tried to do it.
+- Its a piece rate job. What are total salaries, expenditures and other costs versus what is total output (monetized) 
+
+## Supporting Staff and Outsourcing {background-color="blue"}
+Each department has almost 1 to 2 computer lab assistant/attendants recruited in 90s and 2010s for each department computer labs which have become obsolete over time. All that staff is not engaged productivity. Such staff should be included in routine staff of departments.
+
+## Medical center {background-color="blue"}
+- Option to employees/faculty either to surrender their medical bills or facility only for students
+- Working with Alumni , medical professionals, volunteers for donations as many are ready to support the cause. Ambulance in 2016 was from Alumni.
+
+## Library {background-color="blue"}
+- Get a record of total books issued over last 4 years per capita (students+faculty), if its less than 3, then library budget should be spent in providing mobile e-libraries at small places 
+- Rethink library role in digital world and revamp it accordingly.
+- Stop recruiting library attendants unless needed on urgent basis.
+
+## Land Use {background-color="blue"}
+
+
+
+

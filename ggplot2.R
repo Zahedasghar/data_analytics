@@ -31,10 +31,9 @@ ggplot(df)+aes(x=mpg,y=wt)+geom_point()
 ggplot(df)+aes(x=mpg,y=wt)+geom_point()+
   geom_smooth()
 
-ggplot(df)+aes(x=mpg,y=wt, color=cyl)+geom_point()
 ## Add colors
 
-qplot(mpg, wt, data = df, colour = cyl, shape = cyl)
+ggplot(df,aes(x=mpg,y=wt, colour=cyl))+geom_point()
 
 ## Shape
 ggplot(df)+aes(x=mpg,y=wt, color=cyl,shape=cyl)+geom_point()
@@ -49,6 +48,7 @@ wdata = data.frame(
   weight = c(rnorm(200, 55), rnorm(200, 58)))
 head(wdata)
 # Basic box plot from data frame
+?starwars
 qplot(sex, weight, data = wdata, 
       geom= "boxplot", fill = sex)
 # Violin plot

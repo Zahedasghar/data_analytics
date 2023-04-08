@@ -47,26 +47,26 @@ library(scales)
 
 # [Put Students First]{.flow} {background-color="white"}
 
-# Analysis {background-color="#18185c"}
+# Analysis  
 
 ::: {.callout-note}
 This is my assessment and sharing these just as my feedback solely with a positive mindset without any personal interests. I fully understand given the exposure and experience you have, this all may simply be bullshit and can be ignored. 
 :::
 
-## Research and Teaching {background-color="#18185c"}
+## Research and Teaching  
 - Positive: faculty and research students do their job irrespective of external circumstances
 - [Its not research its research which matters, needs face to face deliberations]{.yellow}
 - Teaching: Each teacher course outline and lesson plan be made publicly available on each department/school/center websites
 - [But these are the most tough measures , so let these come at second or third stage.]{.yellow} 
 
-## Adminstration and Efficiency {background-color="#18185c"}
+## Adminstration and Efficiency  
 - 80% issues due to capacity and poor functioning of administration
-- files processing system of 1980s
+- [files processing system of 1980s]{.yellow}
 - admissions issues: outdated approach by the admission office
-  - staff is outdated, very poor response to students/parents who call admission office. 
-  - Needs shuffling in running admission office which registrar should look into but mainly politics and OWA/EWA happiness is more important for Registrar than efficiency [**with due apology**]{.yellow} becuase we want to stay popular rather to stay with transparent process.
+  - [staff is outdated, very poor response to students/parents who call admission office.]{.yellow} 
+  - Needs shuffling in running admission office,but relevant authority in admn wants to stay popular among OWA/EWA 
   
-## Controller examination {background-color="#18185c"}
+## Controller examination  
   - Controller examination : only demands for more staff but is unable to get work from the staff he has. 
   - [no capacity to execute and lacks basic level leadership required to make examination in expecation of current generation students]{.yellow}
   - needs serious revamp by some highly committed individuals
@@ -79,7 +79,7 @@ This is my assessment and sharing these just as my feedback solely with a positi
 - Spins (how difficult tasks were for assessing how much work is done) 
 - [Point scoring : Bi-monthly score card for each section]{.yellow}
 
-## Work Culture {background-color="#18185c"}
+## Work Culture  
 
 - Improve work culture with some fundamental reforms
   - [stop some social media , newspapers and other browsing through ban on certan social media platforms during office hours]{.yellow} 
@@ -87,11 +87,11 @@ This is my assessment and sharing these just as my feedback solely with a positi
   - [tracking their total work hours and providing staff only if the section is in really need of it.]{.yellow}
   
 
-## Acadeemic Analysis {background-color="#18185c"}
+## Acadeemic Analysis  
 - Ask Deans to bound Chairpersons/Directors for periodic revision and update of courses and place them on website
 - [Identify 3 to 5 programs as **flagship**]{.yellow} and their faculty and students should be provided facilities at par with their revenue generations. These departments need encouragement and some high goals for them needs to be fixed.
 
-## Virtual Learning with New Educational Accounting System {background-color="#18185c"}
+## Virtual Learning not distance with new ecosytem {.scroll}
 - [Click here for my views](https://zahedasghar.netlify.app/posts/higher_education/)
 - [Convert common courses online to be taught by one prominent scholar (with very high remuneration) wills save money for more than 150 courses per semester and will bring huge savings.]{.yellow}. I can discuss at length.
 - Launch MOOCs with proportionate share to faculty as per enrolment
@@ -99,7 +99,7 @@ This is my assessment and sharing these just as my feedback solely with a positi
 
 ### Result: saving upto 20 to 30 millions 
 
-## Horticulture {background-color="#18185c"}
+## Horticulture  
 
 - Closure of plant nursery
     - [Costs : More than Rs.10 million per anum in terms of salary and over time excluding utility]{.yellow}
@@ -107,7 +107,7 @@ This is my assessment and sharing these just as my feedback solely with a positi
 
 ### Outcome: 5/6 malis will be spared besides a saving of Rs.10 million per year
 
-## Transport {background-color="#18185c"}
+## Transport  
 - Long routes terminal at destination rather having extra redundant trip on daily basis
 - [Work on outsourcing of bus system gradually]{.yellow} 
 - Fix certain points for buses start and end from where employees and students should join
@@ -115,42 +115,42 @@ This is my assessment and sharing these just as my feedback solely with a positi
 ### Outcome: Huge saving in terms of POL
 
 
-## Workshop {background-color="#18185c"}
+## Workshop  
 - Most easy CBA but me and my staff has to bear the cost when tried to do it.
 - [Its a piece rate job. What are total salaries, expenditures and other costs versus what is total output (**monetized**)]{.yellow} 
 
 ### Outcome: 10s of millions will either be saved or generated after its regulation and effective functioning
 
-## Supporting Staff and Outsourcing {background-color="#18185c"}
+## Supporting Staff and Outsourcing  
 Each department has almost 1 to 2 computer lab assistant/attendants recruited in 90s and 2000s for each department computer lab which have become obsolete over time. All that staff is not engaged productively. [Such staff TORs needs to be revisited and their portfolios need to be worked out.]{.yellow}
 
-## Medical center {background-color="#18185c"}
+## Medical center  
 - Option to employees/faculty either to surrender their medical bills or facility only for students
 - Working with Alumni , medical professionals, volunteers for donations as many are ready to support the cause. [Ambulance in 2016 was from Alumni.]{.yellow}
 
-## Library {background-color="#18185c"}
+## Library  
 - Get a record of total books issued over last 4 years per capita (students+faculty), if its less than 3 per semester, then library budget should be spent in providing mobile e-libraries at various places with some facilities.
 - [Rethink library role in digital world and revamp it accordingly.]{.yellow}
 - Stop recruiting library attendants unless needed on urgent basis.
 
-## Outsource Supporting Staff {background-color="#18185c"}
+## Outsource Supporting Staff  
 - Switch to this model as contractors are supposed to provide services.
 - In case of failure, [business as usual]{.yellow} option is alway available.
 
-## Data Center, External Linkages and other centers {background-color="#18185c"} 
+## Data Center, External Linkages and other centers   
 - There should be well-defined business model even some seed money is available and staff should be for project duration.
 - [Staff recruited once becomes permanent liability for institutions.]{.yellow}
 - Directors of these centers should have clear goals specially of generating some minimum amount through market. 
 
-## ORIC {background-color="#18185c"} 
+## ORIC   
 - ORIC director should be some [industry person hired on flexible terms]{.yellow}
 - Director from industry can only help to commercialize research
 - Faculty members, living in Silos, have hardly capacity for research commercialisation as they have little understanding of what happens in real world.
 
-## QEC {background-color="#18185c"} 
+## QEC   
 - No comments
 
-## Land Use {background-color="#18185c"} 
+## Land Use   
 
 - Area nearby Murree Road should be used for some multi-purpose buildings which can serve as [conference centers, examination centers (like PMDC and other exams), QAU seminars, community as purely business model through public private partnership or with AIOU as once planned.]{.yellow} 
 - Botanical garden land should be utilized for multipurpose activities and CBA should also be carried out for it as it maybe another white elephant.
@@ -158,5 +158,5 @@ Each department has almost 1 to 2 computer lab assistant/attendants recruited in
 
 
 
-
+# Good luck and stay blessed {background-color="#0298ed"}
 

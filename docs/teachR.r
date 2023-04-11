@@ -22,6 +22,7 @@ scores <-   tibble(
 
 scores
 
+
 #' Before we get started, I want to make sure you understand the difference between doing something and assigning
 #'  it to a new name and just doing it without naming it. For example, make sure you understand the following:
 

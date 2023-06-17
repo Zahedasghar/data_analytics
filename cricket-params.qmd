@@ -4,8 +4,12 @@ date: "today"
 format: 
   html :
     theme: [simple, custom.scss]
+
+highlight-style: dracula
+execute: 
+  freeze: auto
 params:
-  player: "Kraigg Brathwaite"
+  player: "Babar Azam"
 ---
 
 ```{r}
@@ -16,19 +20,19 @@ library(cricketdata)
 library(tidyverse)
 library(ggtext)
 player_id<-find_player_id(params$player)$ID
-df<-fetch_player_data(player_id, "Test") %>%
+df<-fetch_player_data(player_id, "ODI") %>%
   mutate(NotOut = (Dismissal == "not out"))
 ```
 
 We have data about `r nrow(params$player)` players. Performance of `r params$player` is shown below:
 
-## Test match scores by `r params$player`
+## ODI match scores by `r params$player`
 
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
-df<-fetch_player_data(player_id, "Test") %>%
+df<-fetch_player_data(player_id, "ODI") %>%
   mutate(NotOut = (Dismissal == "not out"))
 
 AAave <- df %>%
@@ -42,13 +46,14 @@ AAave <- df %>%
   summarise(Average = sum(Runs) / (n() - sum(NotOut))) %>%
 pull(Average)
 
-
+library(ggthemes)
 names(AAave) <- paste("Average =", round(AAave, 2))
 AAave
-title_text<-paste0(' Batting Performance')
+title_text<-paste0(' Batting Performance `r params$player`')
 # Plot ODI scores
-ggplot(df) +
+ ggplot(df) +
   geom_hline(aes(yintercept = AAave), col="gray") +
   geom_point(aes(x = Date, y = Runs, col = NotOut))  +
-  scale_y_continuous(sec.axis = sec_axis(~., breaks = AAave))+theme(legend.position = "none") +labs(title=title_text)
+  scale_y_continuous(sec.axis = sec_axis(~., breaks = AAave))+theme(legend.position = "none") +labs(title=' Batting Performance  in ODI') +theme_fivethirtyeight()+theme()
 ```
+

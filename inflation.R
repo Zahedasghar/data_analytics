@@ -3,7 +3,8 @@ library(fpp3)
 library(tseries)
 library(lubridate)
 library(ggthemes)
-cpi<- readr::read_csv("data/cpi.csv") ## karandaz march
+library(readr)
+cpi<- readr::read_csv("data/cpi.csv") 
 cpi <- cpi |> na.omit()
 cpi |> glimpse()
 
@@ -26,24 +27,24 @@ df <- cpi |>
 ggplot(df, aes(x = date, y = value)) +
       geom_line(aes(color = variable), size = 2) + 
       scale_color_manual(values = c("#00AFBB", "#E7B800")) +
-     theme_minimal()+labs(x="Time",y="inflation",title = "Inflation hit a record high of 35.4 percent in March since 1965",
-                          subtitle="No favorable winds seem blowing at least in the coming couple of month. \n Inflation, climate, high energy costs, recession in exporting partners among \n other risks have made Pakistani economy very fragile",
-caption="source:PBS, by: Zahid Asghar")+theme(legend.position = "none")
+     theme_minimal()+labs(x="Time",y="inflation YoY & MoM",title = "Inflation Rate in Pakistan is continuously on rise  and hitting all time high in May-2023.",
+                          subtitle="Rural inflation is 42.2% on YoY basis.",
+caption="source:PBS, by: Zahid Asghar")
 
 
 df |> filter(variable=="year_on_year") |> 
   ggplot()+ aes(x = date, y = value, fill="red") +
   geom_col() + 
   #scale_color_manual(values = "#00AFBB") +
-  theme_minimal()+labs(x="Time",y="inflation",title = "Inflation hit a record high of 35.4 percent in March since 1965 ",
-                       subtitle="No favorable winds seem blowing at least in the coming couple of month. \n Inflation, climate, high energy costs, recession in exporting partners among \n other risks have made Pakistani economy very fragile",
-                       caption="source:PBS, by: Zahid Asghar")+theme(legend.position="none")
+  theme_minimal()+labs(x="Time",y="inflation YoY",title = "Inflation Rate in Pakistan is continuously on rise  and hitting all time high in May-2023.",
+                       subtitle="Rural inflation is 42.2% on YoY basis.",
+                       caption="source:PBS, by: Zahid Asghar")+ theme(legend.position = "none")
 
 
 
 
-bot<- read_csv("data/trade_bal.csv")
-bot<-bot|>na.omit()
+bot <- read_csv("data/trade_bal.csv")
+bot <- bot |> na.omit()
 bot <- bot |> clean_names()
 bot
 bot <- bot |> mutate_at(c('exports', 'imports', 'balance_of_trade'), as.numeric)

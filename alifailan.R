@@ -1,29 +1,20 @@
-
- # install.packages("tidyverse")
-
-library(tidyverse)
-
-
-## .dta , .sav, .xlsx, .csv
-
-library(readr)  # To read csv file
-
-## alif1<-read.csv("docs/Alifailan.csv",header = TRUE) 
+## Always start with a project
+## getwd()
+## setwd()
 
 
-alif <- read_csv("docs/Alifailan.csv", col_names = TRUE)
+## Lesson Plan
 
-names(alif)
-alif |> clean_names() |> head()
+## Reading Data
+## Using Required package
+## data frame
+## glimpse (to have an overview of data, rows, variables, variables nature)
+## structure of data with `str` command , similar as glimpse from base R
+## head
+## tail
+## View
 
-
-
-
-## Modify column names 
-library(janitor)
-
-alif |> clean_names() -> alif
-
+## glimpse()  or str()
 
 ## select()
 
@@ -34,9 +25,38 @@ alif |> clean_names() -> alif
 
 ## mutate()
 
-## summarise()
+## summarise  (mean, min, max, median, sd,q1, q3)
 
 
+
+# install.packages("tidyverse")
+
+library(tidyverse)
+
+
+## .dta , .sav, .xlsx, .csv
+
+library(readr)  # To read csv file
+
+
+
+
+alif <- read_csv("docs/Alifailan.csv", col_names = TRUE)
+
+names(alif)
+
+
+
+
+
+## Modify column names 
+library(janitor)
+
+alif |> clean_names() |> head()    ## data not assigned
+
+alif |> clean_names() -> alif      ## data assigned name alif again
+
+names(alif)
 
 
 
@@ -47,23 +67,15 @@ alif |> glimpse()
 
 glimpse(alif)
 
-str(alif)
 
 head(alif)
 
 tail(alif)
 
-View(alif)
 
-names(alif)
+alif |> slice(13:15)
 
-alif |> slice(1:10)
 
-## Rename
- 
-library(janitor)
-alif<-alif |> clean_names() |> glimpse()
-  
 
 # alif <-   alif |> rename(inf_scr = infrastructure.score,
  #   drink_w = Drinking.water,    bound_w = Boundary.wall,
@@ -74,25 +86,64 @@ alif |> filter(province=="ICT")
 
 
 ## Select data for 4 main provinces (two ways either filter or select)
+
 alif |> filter(province != "AJK",
                   province != "GB",
                   province != "ICT",
-                  province != "FATA") ->alif123
-
-alif |> glimpse()
-
+                  province != "FATA") 
 
 ## Or use filter as
 
 alif |> filter (province %in% c("Punjab","Sind","Balochistan", "KP"))
 
+alif |> filter(province==Punjab) ## why an error
+
+alif |> filter(province="Punjab") ## Why an error
+
+alif |> filter(province=="Punjab")
+
+
+## Select , arrange
+alif |> select(district, province, drinking_water)
+
+alif |> select(-district, -rank_2016)
+
+alif |>  count(province, name="district_count")|>
+  arrange( desc(district_count)) |> as.data.frame()
+
  
 ## How many districts in each province
 
-alif |>  count(province, name="District.count")
+alif |>  count(province, name="dist_count")
 
 alif |> count(province, name="dist_count") |> 
   arrange(dist_count)
+
+
+## Summary
+
+alif |> filter(province=="Balochistan") |> 
+  select_if(is.numeric) |> select(-rank_2016) |> summarise(mean_drink=mean(drinking_water),
+                                                           mean_electiricty=mean(electricity))
+
+## Similarly for Punjab 
+
+# Or if we want for all province at onece 
+
+alif |> group_by(province) |> 
+  select_if(is.numeric) |> select(-rank_2016) |> 
+  summarise(mean_drink=mean(drinking_water), mean_electiricty=mean(electricity))
+
+
+## Arrange 
+
+alif |> group_by(province) |> 
+  select_if(is.numeric) |> select(-rank_2016) |> 
+  summarise(mean_drink=mean(drinking_water), mean_electiricty=mean(electricity)) |> 
+  arrange(mean_drink)
+
+
+
 
 library(gt)
 library(gtsummary)
@@ -103,9 +154,9 @@ alif |> gt_plt_summary()
 alif |> select_if(is.numeric) |>  gt_plt_summary()
 
 
-## If Punjab
+## If Balochistan
 
-alif |> filter(province=="Punjab") |> select_if (is.numeric) |> select(-rank_2016) |> 
+alif |> filter(province=="Balochistan") |> select_if (is.numeric) |> select(-rank_2016) |> 
   gt_plt_summary() |> gt_theme_guardian() |> tab_header(title = "School conditions in Punjab according to Alif Ailan Data")
 
 alif |> count(province, name="dist_count") |> 
@@ -115,29 +166,33 @@ alif |> count(province, name="dist_count") |>
 alif |> select(province, infrastructure_score) |> 
   tbl_summary(by=province)
  
-colnames(alif) 
 
-alif |> select(district, province, drinking_water)
+## Summarise
 
-alif |> select(-district, -rank_2016)
+alif |> select(province,drinking_water) |> 
+  summarise(mean=mean(drinking_water), median=median(drinking_water),
+            min=min(drinking_water),max=max(drinking_water), sd=sd(drinking_water),
+            .by=province)
 
-alif |>  count(province, name="district_count")|>
-  arrange( desc(district_count)) |> as.data.frame()
- 
+alif |> select(province,drinking_water) |> 
+  summarise(mean=mean(drinking_water), median=median(drinking_water),
+            min=min(drinking_water),max=max(drinking_water), sd=sd(drinking_water),
+            .by=province) |> 
+  gt() |>  gt_theme_538()
 
+alif |> select(province,drinking_water) |> 
+  summarise(mean=round(mean(drinking_water),2), median=median(drinking_water),
+            min=min(drinking_water),max=max(drinking_water), sd=round(sd(drinking_water),2),
+            .by=province) |> 
+  gt() |>  gt_theme_nytimes() |> tab_header("Drinking water situation province wise") |> 
+  tab_footnote("Source: alifailan, by: Zahid Asghar")
+
+alif |> select(province, district,drinking_water) |> arrange(-drinking_water) |> slice(1)
 
 ## plots
 
 library(ggplot2)
 
-alif |> filter(province==Punjab) ## why an error
-
-alif |> filter(province=="Punjab")
-
-alif |> filter(province=="Punjab") |> 
-  select(-rank_2016,-province) |> 
-  slice(5:8)
-  
 
 ggplot(alif) 
 

@@ -3,14 +3,16 @@ library(tidyverse)
 library(gt)
 library(gtsummary)
 library(gtExtras)
+
 library(vtable)
+
 ahk<-read_spss("AHK-health.sav")
-ahk<-as_tibble(ahk)
+#ahk<-as_tibble(ahk)
 View(ahk)
 
 ahk %>% glimpse()
 
-ahk_other<-ahk %>% select(contains("_other"))
+ahk %>% select(contains("_other")) |> glimpse()
 
 ahk_other %>% glimpse()
 

@@ -134,5 +134,3 @@ Salaries |>
        y="Current salary",
        color="Position")
 
-
-

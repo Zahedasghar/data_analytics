@@ -25,7 +25,7 @@ library(janitor)
 library(lubridate)
 library(tigris)
 library(hrbrthemes)
-library(gendercoder)
+#library(gendercoder)
 library(tidygeocoder)
 library(leaflet)
 library(scales)
@@ -90,7 +90,7 @@ We did a **survey** on `r today_pretty`. We received responses from `r number_of
 
 ```{r }
 # This is a comment
-
+survey_responses_today$how_old_are_you
 mean_age <- survey_responses_today %>% 
   summarize(mean_age = mean(how_old_are_you, na.rm = TRUE)) %>% 
   mutate(mean_age = round_half_up(mean_age, 1)) %>% 

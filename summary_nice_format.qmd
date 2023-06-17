@@ -1,0 +1,146 @@
+
+Bad summarise
+
+```{r}
+library(tidyverse)
+palmerpenguins::penguins |> 
+  summarise(
+    mean_bill_length = mean(bill_length_mm, na.rm = TRUE),
+    mean_bill_depth = mean(bill_depth_mm, na.rm = TRUE),
+    mean_flipper_length = mean(flipper_length_mm, na.rm = TRUE),
+    mean_body_mass = mean(body_mass_g, na.rm = TRUE)
+  )
+```
+
+Good summarise
+
+```{r}
+palmerpenguins::penguins |> 
+  summarise(
+    across(
+      .cols = c(
+        bill_length_mm, bill_depth_mm, 
+        flipper_length_mm, body_mass_g
+      ),
+      .fns = \(x) mean(x, na.rm = TRUE)
+    )
+  )
+```
+
+
+Using multiple functions
+
+```{r}
+palmerpenguins::penguins |> 
+  summarise(
+    across(
+      .cols = c(
+        bill_length_mm, bill_depth_mm, 
+        flipper_length_mm, body_mass_g
+      ),
+      .fns = c(
+        \(x) mean(x, na.rm = TRUE),
+        \(x) var(x, na.rm = TRUE)
+      )
+    )
+  )
+```
+
+Better column names by naming function in vector
+
+```{r}
+palmerpenguins::penguins |> 
+  summarise(
+    across(
+      .cols = c(
+        bill_length_mm, bill_depth_mm, 
+        flipper_length_mm, body_mass_g
+      ),
+      .fns = c(
+        mean = \(x) mean(x, na.rm = TRUE),
+        variance =\(x) var(x, na.rm = TRUE)
+      )
+    )
+  )
+```
+
+Better separator for pivot_longer()
+
+```{r}
+palmerpenguins::penguins |> 
+  summarise(
+    across(
+      .cols = c(
+        bill_length_mm, bill_depth_mm, 
+        flipper_length_mm, body_mass_g
+      ),
+      .fns = c(
+        mean = \(x) mean(x, na.rm = TRUE),
+        variance =\(x) var(x, na.rm = TRUE)
+      ),
+      .names = '{.col}----{.fn}'
+    )
+  ) |> 
+  pivot_longer(
+    cols = everything(),
+    names_sep = '----',
+    names_to = c('variable', 'stat')
+  )
+```
+
+
+Better approach for many columns using tidyselect helpers
+
+```{r}
+library(modeldata)
+modeldata::ames |> 
+  summarise(
+    across(
+      .cols = where(is.numeric),
+      .fns = c(
+        mean = \(x) mean(x, na.rm = TRUE),
+        variance =\(x) var(x, na.rm = TRUE)
+      ),
+      .names = '{.col}----{.fn}'
+    )
+  ) |> 
+  pivot_longer(
+    cols = everything(),
+    names_to = c('variable', 'stat'),
+    names_sep = '----'
+  )
+```
+
+Combine multiple select helpers
+
+```{r}
+modeldata::ames |> 
+  summarise(
+    across(
+      .cols = where(is.numeric) & starts_with('Lot'),
+      .fns = c(
+        mean = \(x) mean(x, na.rm = TRUE),
+        variance =\(x) var(x, na.rm = TRUE)
+      ),
+      .names = '{.col}----{.fn}'
+    )
+  ) |> 
+  pivot_longer(
+    cols = everything(),
+    names_to = c('variable', 'stat'),
+    names_sep = '----'
+  )
+```
+
+You can use across() with mutate as well.
+
+```{r}
+modeldata::ames |> 
+  mutate(
+    across(
+      .cols = matches('(Y|y)ear'),
+      .fns = \(x) lubridate::make_date(year = x)
+    )
+  ) |> 
+  select(where(lubridate::is.Date))
+```

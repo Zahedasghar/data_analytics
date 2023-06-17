@@ -1,0 +1,116 @@
+
+```{r}
+library(tidyverse)
+manufacturers <- mpg |> 
+  mutate(manufacturer = str_to_title(manufacturer))
+```
+
+
+```{r}
+manufacturers |> 
+  mutate(
+    manufacturer = fct_infreq(manufacturer) |>
+      fct_rev()
+  ) |> 
+  ggplot(aes(y = manufacturer)) +
+  geom_bar(fill = 'dodgerblue4') +
+  geom_text(
+    data = count(manufacturers, manufacturer),
+    mapping = aes(
+      x = n, y = manufacturer, label = n
+    ),
+    hjust = 1,
+    nudge_x = -0.25,
+    color = 'white',
+    size = 6
+  ) +
+  labs(
+    x = element_blank(),
+    y = element_blank(), 
+    title = 'Number of cars in the {mpg} dataset'
+  ) +
+  theme_minimal(
+    base_size = 20,
+    base_family = 'Source Sans Pro'
+  ) +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    plot.title = element_text(
+      family = 'Merriweather',
+      size = rel(1.2)
+    ),
+    plot.title.position = 'plot'
+  ) +
+  scale_x_continuous(
+    expand = expansion(mult = c(0, 0.01))
+  )
+```
+
+
+
+```{r}
+manufacturers |> 
+  mutate(
+    manufacturer = fct_infreq(manufacturer) |>
+      fct_rev()
+  ) |> 
+  ggplot(aes(y = manufacturer)) +
+  geom_bar(
+    just = 1, 
+    fill = 'dodgerblue4', 
+    width = 0.4
+  ) +
+  geom_text(
+    data = count(manufacturers, manufacturer),
+    mapping = aes(
+      x = n, 
+      y = manufacturer, 
+      label = n
+    ),
+    hjust = 1,
+    vjust = 0,
+    nudge_y = 0.1,
+    color = 'grey30',
+    fontface = 'bold',
+    size = 5.5
+  ) +
+  geom_text(
+    data = count(manufacturers, manufacturer),
+    mapping = aes(
+      x = 0, 
+      y = manufacturer, 
+      label = str_to_title(manufacturer)
+    ),
+    hjust = 0,
+    vjust = 0,
+    nudge_y = 0.1,
+    nudge_x = 0.05,
+    color = 'grey30',
+    fontface = 'bold',
+    size = 5.5
+  ) +
+  labs(
+    y = element_blank(), 
+    x = element_blank(),
+    title = 'Number of cars in the {mpg} dataset'
+  ) +
+  theme_minimal(
+    base_size = 20,
+    base_family = 'Source Sans Pro'
+  ) +
+  theme(
+    panel.grid = element_blank(),
+    plot.title = element_text(
+      family = 'Merriweather',
+      size = rel(1.2)
+    ),
+    plot.title.position = 'plot'
+  ) +
+  geom_vline(xintercept = 0) +
+  scale_x_continuous(
+    breaks = NULL, 
+    expand = expansion(mult = c(0, 0.01))
+  ) +
+  scale_y_discrete(breaks = NULL)
+```

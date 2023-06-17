@@ -31,9 +31,10 @@ ggplot(df)+aes(x=mpg,y=wt)+geom_point()
 ggplot(df)+aes(x=mpg,y=wt)+geom_point()+
   geom_smooth()
 
+ggplot(df)+aes(x=mpg,y=wt, color=cyl)+geom_point()
 ## Add colors
 
-ggplot(df,aes(x=mpg,y=wt, colour=cyl))+geom_point()
+qplot(mpg, wt, data = df, colour = cyl, shape = cyl)
 
 ## Shape
 ggplot(df)+aes(x=mpg,y=wt, color=cyl,shape=cyl)+geom_point()
@@ -48,7 +49,6 @@ wdata = data.frame(
   weight = c(rnorm(200, 55), rnorm(200, 58)))
 head(wdata)
 # Basic box plot from data frame
-?starwars
 qplot(sex, weight, data = wdata, 
       geom= "boxplot", fill = sex)
 # Violin plot
@@ -63,6 +63,47 @@ ggplot(wdata)+aes(x=sex,y=weight)+geom_dotplot(stackdir = "center",
 #The histogram and density plots are used to display the distribution of data.
 
 # Histogram  plot
+
+expenditure <- tribble(~year,~gr,
+             "H2FY19",37.8, 
+             "H1FY20",15.8,
+             "H2FY20",19.5,
+             "H1FY21",4.7,
+             "H2FY21",8.9,
+             "H1FY22",26.2,
+             "H2FY22",35.3,
+             "H1FY23",8.2)
+library(forcats)
+exp<-expenditure$year
+p1 <- ggplot(expenditure,aes(year,gr))+geom_bar(stat="identity",fill="darkgreen", alpha=0.8)+
+  geom_text(aes(label = gr), vjust = 2,colour = "white")+
+  theme_minimal()+labs(title = "Growth in Non-interest current expenditur (yoy %)",
+         x="Fiscal Year",y=" ",     caption="Ministry of Finance")+
+  theme(axis.text = element_text(size = 8))    
+
+
+expenditure$year <- factor(expenditure$year,levels = c("H2FY19" ,"H1FY20" ,"H2FY20", "H1FY21", "H2FY21" ,"H1FY22", "H2FY22", "H1FY23"))
+
+p1
+LSM <- tribble(~year,~gr,
+                       "H2FY19",5, 
+                       "H1FY20",-1,
+                       "H2FY20",-20,
+                       "H1FY21",2,
+                       "H2FY21",22,
+                       "H1FY22",8,
+                       "H2FY22",16,
+                       "H1FY23",-4)
+LSM$year <- factor(LSM$year,levels = c("H2FY19" ,"H1FY20" ,"H2FY20", "H1FY21", "H2FY21" ,"H1FY22", "H2FY22", "H1FY23"))
+p2 <- ggplot(LSM,aes(year,gr))+
+  geom_bar(stat="identity",fill="darkgreen", alpha=0.8)+
+  geom_text(aes(label = gr),vjust=1.5, colour="orange")+  theme_minimal()+
+  labs(title = "LSM Growth in %", x="Fiscal Year",y=" ",  caption="Source: Pakistan Bureau of Statistics")+
+  theme(axis.text = element_text(size = 8))    
+p2
+library(patchwork)
+p1
+p1+p2
 # Change histogram fill color by group (sex)
 ggplot(wdata)+aes(weight)+geom_histogram()
 

@@ -6,30 +6,38 @@ menODI|>glimpse()
 View(menODI)
 
 
-Pak_NZ<-menODI|>filter(Opposition=="New Zealand"&Ground=="Karachi")
-Pak_NZ$Innings
-Pak_NZ|>group_by(Player)|>summarise(total_score=sum(Runs))|>arrange(desc(total_score))
+Pak_NZ <- menODI |> filter(Opposition == "New Zealand" &
+                             Ground == "Karachi")
+Pak_NZ |> View()
+
+library(gt)
+library(gtExtras)
+
+Pak_NZ|>group_by(Player)|>summarise(total_score=sum(Runs))|>arrange(desc(total_score)) |>
+  filter(total_score>100) |> gt() |> gt_theme_538() |> tab_header(title="Top scoring players against New Zealand in Karachi Stadium") |> 
+  tab_footnote("source: cricketdata")
 
 Pak_NZ |> filter(Runs > 0) |> group_by(Date) |> summarise(total_score = sum(Runs)) |>
   arrange(desc(desc(Date)))
-Pak_NZ %>%
+Pak_NZ %>% filter(Runs>50, Date>2006-01-01) |> 
   ggplot(aes(y = Runs, x = Date)) +
-  geom_point(alpha = 0.2, col = "#E97F09") +
-  geom_smooth() +
-  ggtitle("Pakistani Men: Runs per Innings")
+  geom_point(alpha = 0.2, col = "red",size=4) +
+  ggtitle("Pakistani players scored more than 50 in ODI against New Zealand \n in Karachi")+
+  geom_text(aes(label=Player),nudge_x = 0.25, nudge_y = 0.25, 
+             check_overlap = T)+theme_fivethirtyeight()
 
 
 
-test <- fetch_cricinfo("ODI", "Men",type = "innings", country = "Pakistan")
+ODI <- fetch_cricinfo("ODI", "Men",type = "innings", country = "Pakistan")
 
-View(test|>glimpse())
+ODI |>glimpse()
 
 Pak_NZ|>group_by(Date,Innings)|>summarise(total=sum(Innings))
 
 
-Pak<-fetch_cricinfo(matchtype = "Test","Men","Batting",type="career",country = "Pakistan")
+Pak<-fetch_cricinfo(matchtype = "ODI","Men","Batting",type="career",country = "Pakistan")
 Pak|>glimpse()
 
 
 # Fetch match metadata
-match_info <- fetch_cricsheet(competition = "test", type = "match", gender = "male")
+match_info <- fetch_cricsheet(competition = "ODI", type = "match", gender = "male")

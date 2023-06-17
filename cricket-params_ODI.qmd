@@ -3,9 +3,11 @@ title: "Batting Performance of `r params$player`"
 date: "today"
 format: 
   html :
-    theme: [simple, custom.scss]
+    theme: [simple]
 params:
   player: "Babar Azam"
+execute: 
+  freeze: auto
 ---
 
 ```{r}
@@ -22,7 +24,7 @@ df<-fetch_player_data(player_id, "ODI") %>%
 
 We have data about `r nrow(params$player)` players. Performance of `r params$player` is shown below:
 
-## Test match scores by `r params$player`
+## ODI match scores by `r params$player`
 
 ```{r}
 #| echo: false

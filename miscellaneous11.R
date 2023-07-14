@@ -134,3 +134,10 @@ long_data |> filter(category %in% c( 'exports', 'remitances')) |>
   ggplot(aes(x=date,y=values))+geom_line(aes(color = category, linetype = category),
                                          linewidth=1.0) + 
   scale_color_manual(values = c("darkred", "steelblue", "black"))
+
+
+xport |> mutate(
+    day=day(date),
+   month=month(date),
+   year=year(date)
+    ) |> View()

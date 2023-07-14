@@ -5,55 +5,64 @@ library(gganimate)
 # install.packages("RJSONIO")
 library(RJSONIO)
 library(WDI)
+
 theme_set(theme_minimal())
 #Let's see if we can find a code for export?
 
 WDIsearch(string='Export ', field='name', cache=NULL)
 
 #Ahha, seems like "NE.EXP.GNFS.CD" (Export of Goods and Services) will do it...
-NE.EXP.GNFS.CD
-#(There are also codes for Export of Goods and Services for males and females separately)
 
-df.exp <-
+#NE.EXP.GNFS.CD
+
+WDI(
+  country = "all",
+  indicator = c("NE.EXP.GNFS.CD"),
+  start = 1980,
+  end = 2021
+) |> filter(country == 'Pakistan' |
+              country == 'Bangladesh') |> mutate(export = NE.EXP.GNFS.CD / 1000000) |>
+  ggplot() + aes(x = year, y = export, color = country) + geom_line() +
+  labs(
+    title = "Export of goods and service in million USD",
+    x = "year",
+    y = "current USD",
+    caption = "Source:WDI"
+  ) + theme_minimal() 
++ transition_reveal(year)
+
+
+
+
+df_exp <-
   WDI(
     country = "all",
     indicator = c("NE.EXP.GNFS.CD"),
     start = 1980,
     end = 2021
   )
+df_exp |> glimpse()
+# saveRDS(df_exp,file = "df_export.rds")
 
+df_exp <- readRDS("df_export.rds")
+df_exp |> filter(country=="Pakistan") |> View()
 
-df.exp |> filter(country=="Pakistan")
+## We can assign data name for BD and PK if we like
 
-library(ggplot2)
-#Alfred used a boxplot to provide an overview of the range of life expectanices
-#across countries over a period of year. The outliers during the 1990s really jumped out:
+Bd_Pk <-
+  df_exp  |>  filter(country == 'Pakistan' | country == 'Bangladesh') |> mutate(export=NE.EXP.GNFS.CD/1000000)
 
-g <- ggplot(df.exp) +aes(x=year,y=NE.EXP.GNFS.CD, group=year)+geom_boxplot()
-
-g
-g=g+theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-#Let's filter the data to tunnel down and look to see which country or countries the outliers correspond to:
-
-
-
-#Rwanda is notable, so let's overlay the numbers for Export of Goods and Services in Rwanda on the chart:
-
-
-df1.exp <-
-  df.exp  |>  filter(country == 'Pakistan' | country == 'Bangladesh') |> mutate(export=NE.EXP.GNFS.CD/1000000)
-ggplot(df1.exp, aes(x = year, y = export, color = country)) + geom_line() +
+ggplot(Bd_Pk, aes(x = year, y = export, color = country)) + geom_line() +
   labs(
     title = "Export of goods and service in million USD",
     x = "year",
     y = "current USD",
     caption = "Source:WDI"
-  ) + theme_minimal()
+  ) + theme_minimal() + transition_reveal(year)
 
 ## Animated one
 an <-
-  ggplot(df1.exp, aes(x = year, y = export, color = country)) + geom_line(size=1) +
+  ggplot(Bd_Pk, aes(x = year, y = export, color = country)) + geom_line(size=1) +
   labs(
     title = "Export of goods \n and service in \n current USD",
     x = "year",
@@ -61,32 +70,41 @@ an <-
     caption = "Source:WDI"
   )
 
-an+transition_reveal(year)
+p <- an+transition_reveal(year)
+
+  anim_save("export.gif", animation = animate(p), renderer = gifski_renderer())
+
+
+# Save the animation as a GIF
+#anim_save("export.gif", animation = animate(p), renderer = gifski_renderer())
+
+# Save the animation as an MP4
+anim_save("export.mp4", animation = animate(p), renderer = av_renderer())
 
 ## One line code
-df.exp |> filter(country%in%c('Pakistan', 'India','Bangladesh')) |> 
+df_exp |> filter(country%in%c('Pakistan', 'India','Bangladesh')) |> 
   mutate(export=NE.EXP.GNFS.CD/1000000) |> 
                    ggplot()+aes(x=year,y=export, group=country) +
   geom_line(size=1.0)
 
 
 
-# g=ggplot(df.exp)+geom_line(data=subset(df.exp,country%in%c('Pakistan', 'India','Bangladesh')),aes(x=year,y=NE.EXP.GNFS.CD),col='red')
+# g=ggplot(df_exp)+geom_line(sel_wdi=subset(df_exp,country%in%c('Pakistan', 'India','Bangladesh')),aes(x=year,y=NE.EXP.GNFS.CD),col='red')
 # g
 #So what's causing the drop Export of Goods and Services? One way of exploring
 #this problem is to look at the Export of Goods and Services figures for other
 #countries with known problems over a particular period to see if their Export
 #of Goods and Services figures have a similar signature over that particular
-#period. So for example, let's bring in in data for Kenyan life expectancy -
+#period. So for example, let's bring in in sel_wdi for Kenyan life expectancy -
 #does the Aids epidemic that hit that country have a similar signarture
 #effect?
 library(scales)
-df.exp |> filter(country%in%c('Pakistan', 'India', 'Bangladesh')) |>
+df_exp |> filter(country%in%c('Pakistan', 'India', 'Bangladesh')) |>
   mutate(export=NE.EXP.GNFS.CD/1000000) |>  
   ggplot()+aes(x=year,y=export, group=country) +
   geom_line(aes(color=country),size=1) + scale_y_log10()
 
-  transition_reveal(year)
+  #transition_reveal(year)
 
 
 WDI(
@@ -102,38 +120,37 @@ WDI(
 
 
 
-#How about Uganda, which suffered similarly?
 
-g=g+geom_line(data=subset(df.exp,country=='India'),aes(x=year,y=NE.EXP.GNFS.CD),col='blue')
-g
-#Neither of those traces appear to have the same signature as the Rwandan curve.
-#So might there be another cause? How about civil war? For example, Bangladesh 
-#suffered a civil war in the early 1970s - what was the effect on Export of Goods and Services 
-#over that period?
+sel_wdi <- WDI(
+  indicator = c(
+    "EG.ELC.ACCS.ZS",
+    # access to electricity
+    "BN.CAB.XOKA.GD.ZS",
+    # current account balance
+    "IC.BUS.DFRN.XQ",
+    # ease of doing business
+    "FP.CPI.TOTL.ZG",
+    # CPI
+    "FR.INR.LNDP",# interest rate spread
+  ),
+  
+  start = 1960,
+  end = 2021
+) |> as_tibble() 
 
-g=g+geom_line(data=subset(df.exp,country=='Bangladesh'),aes(x=year,y=NE.EXP.GNFS.CD),col='purple')
-g
-#Ah ha - that has a marked similarity, to the eye at least...
-
-#Search for mortaility indicators
-
-Data<-WDI(indicator = c("EG.ELC.ACCS.ZS", # access to electricity
-                  "BN.CAB.XOKA.GD.ZS", # current account balance
-                  "IC.BUS.DFRN.XQ", # ease of doing business
-                  "FP.CPI.TOTL.ZG", # CPI
-                  "FR.INR.LNDP"), # interest rate spread
-    start = 1960, end = 2021) |> as_tibble() 
-Data |> glimpse()
-Data<-Data |>
+saveRDS(sel_wdi,file="sel_wdi.rds")
+sel_wdi <- readRDS("sel_wdi.rds")
+sel_wdi |> glimpse()
+sel_wdi<-sel_wdi |>
   rename(elecperpop = 5,
          cab = 6,
          edb = 7,
          cpi = 8,
          ratespread = 9) 
-Data |> filter(country=="Pakistan") |>   na.omit() |> View()
 
 library(stevemisc)
-Data |>
+
+sel_wdi |>
   filter(country == "Pakistan") |>
   mutate(cpiprop = cpi/100) |> # going somewhere with this...
   ggplot()+aes(year, cpiprop)+ 
@@ -143,12 +160,12 @@ Data |>
   # Below is why I like proportions
   scale_y_continuous(labels = scales::percent) +
   labs(x = "", y = "Consumer Price Index (Annual %)",
-       caption = "Data: International Monetary Fund, via {WDI}",
+       caption = "sel_wdi: International Monetary Fund, via {WDI}",
        title = "The Consumer Price Index (Annual %) in Pakistan, 1960-2020",
        subtitle = "International events,debt and currency devaluations will account for the spikes you see.")
 
 
-Data |>
+sel_wdi |>
   filter(country == "Pakistan") |>
   #mutate(cpiprop = cpi/100) |> # going somewhere with this...
   ggplot()+aes(year, cab)+ 
@@ -158,14 +175,9 @@ Data |>
   # Below is why I like proportions
   #scale_y_continuous(labels = scales::percent) +
   labs(x = "", y = "Current Account Balance",
-       caption = "Data: International Monetary Fund, via {WDI}",
+       caption = "sel_wdi: International Monetary Fund, via {WDI}",
        title = "Current Account Balance in Pakistan, 1960-2021",
        subtitle = "Pakistan current account balance has hardly been favorable in its history.")
 
 
-
-n<-10000
-x<-runif(n)
-x_n<-cumsum(x)/(1:n)
-plot(1:n,x_n)
 

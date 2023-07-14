@@ -5,12 +5,14 @@ library(lubridate)
 library(ggthemes)
 library(readr)
 cpi<- readr::read_csv("data/cpi.csv") 
+
 cpi <- cpi |> na.omit()
 cpi |> glimpse()
 
 library(janitor)
 
 cpi <- cpi |> clean_names()
+
 cpi <-
   cpi |>  mutate(year_on_year = year_on_year * 100,
                  month_over_month = month_over_month * 100)
@@ -18,13 +20,14 @@ cpi <- cpi |> select(period, year_on_year, month_over_month)
 
 cpi$date <- dmy(paste("01/", cpi$period , sep =""))
 
-cpi
+cpi |> mutate(date=ceiling_date(date,"month")-days(1)) ->cpi
+
 
 df <- cpi |> 
     select(date, year_on_year, month_over_month) |> 
-      gather(key = "variable", value = "value", -date)
+      gather(key = "variable", value = "value", -date) 
 
-ggplot(df, aes(x = date, y = value)) +
+ ggplot(df, aes(x = date, y = value)) +
       geom_line(aes(color = variable), size = 2) + 
       scale_color_manual(values = c("#00AFBB", "#E7B800")) +
      theme_minimal()+labs(x="Time",y="inflation YoY & MoM",title = "Inflation Rate in Pakistan is continuously on rise  and hitting all time high in May-2023.",
@@ -39,6 +42,96 @@ df |> filter(variable=="year_on_year") |>
   theme_minimal()+labs(x="Time",y="inflation YoY",title = "Inflation Rate in Pakistan is continuously on rise  and hitting all time high in May-2023.",
                        subtitle="Rural inflation is 42.2% on YoY basis.",
                        caption="source:PBS, by: Zahid Asghar")+ theme(legend.position = "none")
+
+df |> filter(variable=="year_on_year") |> 
+  ggplot()+ aes(x = date, y = value, fill="red") +
+  geom_line(size=1.5, col="#0b6ba6") + 
+  scale_x_date(
+    limits = c(as.Date("2020-03-31"), as.Date("2023-06-30")),
+    expand = c(0, 0)
+  ) + 
+  geom_hline(yintercept = 29.2, linetype="dashed", color = "#cf191e",size=1) +
+  scale_y_continuous(
+    limits = c(5, 45),
+    labels = scales::percent_format(scale = 1)
+  )+
+  geom_hline(yintercept = 0, size = 1.1) + 
+  labs(x="",y="",
+    title = "Annual consumer price inflation was 29.2% in FY-2023",
+    subtitle = "After January, YoY inflation first time touching below 30%. MoM is 4th time negative in last 3 years. \n Core inflation is still very high so seems no immediate respite other than base effect ",
+    caption = "Source: PBS \n Graphic: @zahedasghar"
+  ) +
+  annotate(
+    geom = "curve", x = as.Date('2022-11-30'), y = 32, xend = as.Date('2023-01-31'), yend = 21, 
+    curvature = .3, arrow = arrow(length = unit(2, "mm"))
+  ) +
+  annotate('label', x = as.Date('2022-11-30'), y = 32, label = "SBP Nov target 21%", hjust = "right") + 
+  annotate('label', x = as.Date('2023-03-31'), y = 26, label = "SBP revised march \n upper limit (29%)")+
+  theme_fivethirtyeight() + 
+  theme(panel.background = element_rect(fill = "#ffffff"),
+        plot.background = element_rect(fill = "#ffffff"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text.x = element_blank(),
+        panel.border = element_blank())+
+  theme_grey(base_size = 15)
+
+plot <- df |> filter(variable=="year_on_year") |> 
+  ggplot()+ aes(x = date, y = value, fill="red") +
+  geom_line(size=1.5, col="#0b6ba6") + 
+  scale_x_date(
+    limits = c(as.Date("2020-03-31"), as.Date("2023-06-30")),
+    expand = c(0, 0)
+  ) + 
+  geom_hline(yintercept = 29.2, linetype="dashed", color = "#cf191e",size=1) +
+  scale_y_continuous(
+    limits = c(5, 45),
+    labels = scales::percent_format(scale = 1)
+  )+
+  geom_hline(yintercept = 0, size = 1.1) + 
+  labs(x="",y="",
+       title = "Annual consumer price inflation was 29.2% in FY-2023",
+       subtitle = "After January, YoY inflation first time touching below 30%. MoM is 4th time negative in last 3 years. \n Core inflation is still very high so seems no immediate respite other than base effect ",
+       caption = "Source: PBS \n Graphic: @zahedasghar"
+  ) +
+  annotate(
+    geom = "curve", x = as.Date('2022-11-30'), y = 32, xend = as.Date('2023-01-31'), yend = 21, 
+    curvature = .3, arrow = arrow(length = unit(2, "mm"))
+  ) +
+  annotate('label', x = as.Date('2022-11-30'), y = 32, label = "SBP Nov target 21%", hjust = "right") + 
+  annotate('label', x = as.Date('2023-03-31'), y = 26, label = "SBP revised march \n upper limit (29%)")+
+  theme_fivethirtyeight() + 
+  theme(panel.background = element_rect(fill = "#ffffff"),
+        plot.background = element_rect(fill = "#ffffff"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text.x = element_blank(),
+        panel.border = element_blank())+
+  theme_grey(base_size = 15)
+
+
+ragg::agg_png("images/inflation_15x10.png", width = 15, height = 10, units = "in", res = 300)
+plot
+dev.off()
+
+
+
+
+
+  #scale_color_manual(values = "#00AFBB") +
+  theme_minimal()+labs(x="Time",y="inflation YoY",title = "Inflation Rate in Pakistan is continuously on rise  and hitting all time high in May-2023.",
+                       subtitle="Rural inflation is 42.2% on YoY basis.",
+                       caption="source:PBS, by: Zahid Asghar")+ theme(legend.position = "none")
+
+
+df |> filter(variable=="month_over_month") |> 
+  ggplot()+ aes(x = date, y = value, fill="red") +
+  geom_line(size=1, col="red") + 
+  #scale_color_manual(values = "#00AFBB") +
+  theme_minimal()+labs(x="Time",y="inflation MoM",title = "Inflation Rate in Pakistan is continuously on rise  and hitting all time high in May-2023.",
+                       subtitle="Rural inflation is 42.2% on YoY basis.",
+                       caption="source:PBS, by: Zahid Asghar")+ theme(legend.position = "none")
+
 
 
 

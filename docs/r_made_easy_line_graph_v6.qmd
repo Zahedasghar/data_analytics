@@ -1,0 +1,86 @@
+---
+title: "[Time series plot with shaded areas]{.flow}"
+subtitle: "[R-101]{.flow} V#6 "
+format:
+  revealjs:
+    theme: [default, custom.scss, styles.scss]
+    #logo: "https://e7.pngegg.com/pngimages/45/628/png-clipart-programming-language-computational-statistics-rstudio-others-blue-angle.png"
+    css: logo.css
+    chalkboard: true
+    title-slide-attributes:
+      #data-background-image: https://cdn-coiao.nitrocdn.com/CYHudqJZsSxQpAPzLkHFOkuzFKDpEHGF/assets/static/optimized/rev-85bf93c/wp-content/uploads/2018/10/a-visual-explanation-of-ggplot2-syntax-with-geom_line.png
+      data-background-size: 80%
+      data-background-position: 0% 10%
+      background-opacity: "1.30"
+      data-background-color: "white"
+highlight-style: dracula
+overview: true
+execute:
+  echo: false
+  warning: false
+  freeze: auto
+resources:
+  - slides.pdf
+editor: visual
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(httr)
+clrs <- MetBrewer::met.brewer(name = "Java")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
+options(digits = 3, width = 75)
+```
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(kableExtra)
+library(patchwork)
+library(fontawesome)
+library(gapminder)
+library(scales)
+```
+
+## [ggplot2 Line Graph]{.flow} {background-color="white"}
+
+![](images/bbplot.png)
+
+# World Development Indicators in R: simply a fun
+
+## Reading data directly
+
+# Have a line plot 
+
+# Animated Graph
+
+
+
+
+
+
+
+
+## 
+
+::: columns
+::: {.column width="50%"}
+1.  First
+
+. . .
+
+2.  Second
+:::
+
+::: {.column width="50%"}
+3.  Third
+
+. . .
+
+\`\`\`{r} head(mtcars) . . .
+
+Forth
+:::
+:::

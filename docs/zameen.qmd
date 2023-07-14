@@ -1,0 +1,326 @@
+---
+title: "House rental and sales market: Case study of Pakistan"
+author: "Zahid Asghar, QAU, Islamabad"
+format: 
+  html:
+    theme: [default, theme.scss]
+    toc: true
+    code-fold: true
+    code-link: true
+execute: 
+  warning: false
+  freeze: auto
+editor: visual
+---
+
+## Introduction
+
+Purpose is to analyze the latest trends in Pakistan's house sale and rental market. As official data on such activities is not available, therefore, data are scrapped from one of the largest data portal for the purpose in Pakistan: [Zameen](www.zameen.com) and author is personally thankful to Ms Fatima Zahid for scrapping this data. This data contains 191, 393 observations on 24 variable. You can access the dataset and all the codes by sending a requestion to .....
+
+# Why R
+
+There is an increasing recognition of reproducibility of research, though it has limited recognition in social sciences. The document in your hand is written in `Quarto`. `Quarto` which can be used for pdf, html, word, PowerPoint/Slidy/Beamer Presentations, Webpages, LaTex and many others. Besides learning basics of R-coding, another objective of this workshop is understanding the importance of reproducibility. Building this new habit of reproducible work at times maybe little challenging occasionally. Getting rid of culture of copying and pasting, and sparing this time for doing data analysis and research is one of the objectives of this or coming workshops. Purpose is to help you to get away from this tedious activity so that you can spend more time **doing science**.
+
+::: panel-tabset
+## Installing and loading packages
+
+The first thing we need to do is install and then load the `tidyverse` set of R packages to provide us with lots of extra functionality. You only need to install this once: once it's installed we can simply load it into the workspace using the library() function each time we open a new R session.
+
+Understanding data sets requires many hours/days or in some cases weeks.There are many commercially available software but open source community based software have now dominated and R is one of these. R makes data understanding process as easy as possible through the `dplyr` package. It is one of the easiest solution for code-based data analysis. We will learn in this training how to do it. In case, you need more information, you can watch my [videos](https://youtu.be/ZNBZevfYgo0).
+
+```{r }
+library(tidyverse)
+library(janitor)
+library(knitr)
+library(kableExtra)
+library(hrbrthemes)
+library(viridis)
+library(gt)
+library(gtsummary)
+library(gtExtras)
+options(knitr.table.format = "html")
+library(plotly)
+library(ggrepel)
+library(patchwork)
+library(fontawesome)
+library(scales)
+library(httr)
+clrs <- MetBrewer::met.brewer(name = "Java")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
+options(digits = 3, width = 75)
+
+```
+
+**Data from [zameen](zameen.com) on house for rental and for sale are scrapped and is uploaded here.**
+
+```{r}
+load("D:/RepTemplates/data_analytics/data/zameen.RData")
+```
+
+## Data details
+
+```{r}
+zameen |> glimpse()
+
+```
+
+There are `191,393` rows of data on `24` variables. From glimpse we can observe nature of variables and can drop variables which are redundant for us for this analysis. Therefore, we drop property_id and location_id, latitude, longitude, locality (as both city and location are already availble). Similarly area which is character variable is given in Kanals, Marlas, sqft. We retain `area_marla` and `area_sqft` and drop variable `area` from the data. To drop variables, we shall use `select(-c(var1,var2,...))` as follows and rename new data as `zam_sel`
+
+```{r}
+zameen |>select(-c(property_id,location_id,page_url,locality, area, latitude,longitude)) -> zam_sel
+zam_sel |> glimpse()
+```
+
+Now I have 17 variables on 191,393 observations. Variables are classified either `chr` or `dbl`. We have date variable defined as character and we can convert it into date variable or combine year, month and day to have date variables. But we will discuss it later on.
+:::
+
+| Variable | class |
+|------|------|
+| propert_id     |  numeric    |
+|   location_id   | numeric |
+|   page_url   |   character   |
+|   property_type   |  character    |
+|  price    |    numeric in Rs.  |
+|    price_bin  | character|
+|  location    |  character    |
+|   city   |  character    |
+|   province_name   |   character   |
+|   locality   |   character   |
+|    latitude  |  numeric    |
+|    longitude  | numeric  |
+|  baths    |    numeric  |
+|  area    |  character    |
+|  area_marla    |    numeric  |
+|  area_sqft    |    numeric  |
+|  purpose    |   character (For Sale or For Rent)   |
+|   date_added   |  character    |
+| year| numeric|
+|month|character|
+|day|character|
+|agency|character|
+|agent|character|
+
+## Exploratory Data Analysis
+
+How many properties are listed on website for sale and rent by each city? We apply `group_by()` and count to find it out.
+
+```{r}
+zam_sel |> group_by(city) |> count() #<2>
+
+```
+
+2.  To find properties listed by each city
+
+But output is not in nice tabular form. To do this we use `gt` package (there are a number of other packages available) to have nice table for above mentioned result. A better way to present this number in tabular form is as follows:
+
+```{r}
+zam_sel |> summarise(frequency=n(),.by=city)  |> gt() |> tab_header(title = "Number of properties listed by each city")
+
+```
+
+Similarly we can do it by year wise and for purpose (sale or rental).
+
+```{r}
+zam_sel |> summarise(frequency=n(),.by=year)  |> gt() |> tab_header(title = "Number of properties listed for each year")
+```
+
+## Properties for Sale and for Rental purposes
+
+Lets separate properties for sale and rental purpose and list them city wise.
+
+```{r}
+zam_sel |> group_by(purpose) |> summarise(frequency=n()) |> gt()
+```
+
+To explore further we list properties not only by purpose but also by city as follows:
+
+```{r}
+
+zam_sel |> group_by(purpose, city) |> summarise(frequency=n()) |> arrange(-frequency) |> gt()
+
+```
+
+This is an exploratory analysis and one must not draw strong conclusions from these tabular results. As Islamabad has maximum properties listed for rental purposes. It may be really the case but it may also be the case that listing of properties for rental on zameen.com is more common practice than other cities or we have a data which is not truly reflecting the real picture. So one should observe care while drawing conclusions on exploratory data analysis as its main objective is to get insight of data for oneself.
+
+So far I have provided overview of data and using `select` to drop or keep variables. Now I am using `mutate` another important verb for `data wrangling`. It is used to calculate a new variable. I am calculating price in million of Rs.
+
+```{r}
+
+zam_sel |> mutate(price_mill = price / 1000000) -> zam_sel
+zam_sel 
+```
+
+## Exercise
+
+Calculate a variable `price per square feet` and store it as `price_prsqft`.
+
+```{r}
+zam_sel <- zam_sel |> mutate(price_sqft=price/area_sqft)   #<1>
+```
+
+## Create data sets for rental and sale
+
+`Filter()` is a verb used to select rows which fulfills certain conditions and here we are splitting our data set into two parts. One is for sale and one for rental and assinging these sets as `sale` and `rental`.
+
+```{r}
+
+rental <- zam_sel |> filter(purpose=="For Rent") 
+
+sale <- zam_sel |> filter(purpose=="For Sale") #<3>
+
+```
+
+3.  Be careful when applying `filter` as it must have `==` and if you will use `=` it, it will not apply filter command.
+
+There is no result output as we have assigned these data sets new names. Now lets analyze these data sets separately depending upon whether one is interested to study rental makret or sale market. 1. Price per square ft is calculated and assigned it a name `price_sqft`.
+
+Classify `rental` and `sales` properties by **Price bins**.
+
+```{r}
+rental |> group_by(price_bin)  |> summarise(frequency=n()) |> gt() |> 
+  tab_header(title = "Listing properties by price bins")
+```
+
+
+## Exercise 2
+
+List these properties from very high to very low. Convert price_bin `as_factor`.
+
+```{r}
+rental |> mutate(price_bin=as_factor(price_bin)) |> group_by(price_bin)  |> summarise(frequency=n()) |> gt() |> 
+  tab_header(title = "Listing properties by price bins")
+
+```
+
+
+# Number of agencies city wise 
+
+```{r}
+zam_sel |> group_by(agency) |> filter(city=="Islamabad"|city=="Rawalpindi") |> 
+  summarise(n=n()) |> arrange(-n) |> na.omit() |> filter(n>50) 
+```
+
+
+# Top 10  agencies in Lahore
+
+```{r}
+zam_sel |> group_by(agency) |> filter(city=="Lahore") |> 
+  summarise(n=n()) |> arrange(-n) |> na.omit() |> filter(n>50) 
+``` 
+
+
+## Which place in Islamabad has maximum properties for rent
+```{r}
+zam_sel |> group_by(location) |> filter(city=="Islamabad", purpose=="For Rent") |> 
+  summarise(n=n()) |> arrange(-n) |> na.omit() |> top_n(5) 
+```
+
+## Which place in Islamabad has maximum properties for sale
+
+```{r}
+zam_sel |> group_by(location) |> filter(city=="Islamabad", purpose=="For Sale") |> 
+  summarise(n=n()) |> arrange(-n) |> na.omit() |> top_n(10) 
+``` 
+
+## Which place in Islamabad has maximum properties for sale
+
+```{r}
+zam_sel |> group_by(location) |> filter(city=="Rawalpindi", purpose=="For Sale") |> 
+  summarise(n=n()) |> arrange(-n) |> na.omit() |> top_n(10) 
+``` 
+
+
+
+
+## Histogram of a price variable
+
+
+```{r}
+ggplot(zam_sel)+aes(price)+geom_histogram()
+```
+
+### log(price)
+
+```{r}
+ggplot(zam_sel)+aes(log(price))+geom_histogram()
+``` 
+
+
+## 5 marla property 
+
+```{r}
+zam_sel |> filter(area_marla==5) |> 
+  ggplot()+aes(log(price))+geom_histogram()
+``` 
+
+
+## Why two peaks, because one is rental, other one is for sale
+
+
+```{r}
+rental |> filter(area_marla==5) |> arrange(-price) |> top_n(5)
+
+```
+
+##
+
+```{r}
+zam_sel |> filter(area_marla==5,  price<1.30e5) |> 
+  ggplot()+aes(price)+geom_histogram(bins=10)
+
+```
+
+
+##
+
+```{r}
+zam_sel |> filter(area_marla==5, purpose=="For Rent", price<1.30e5) |> 
+  ggplot()+aes(log(price), fill="grey")+geom_histogram(bins=10, col="blue")+theme_minimal()
+
+```
+
+## 
+
+```{r}
+zam_sel |> filter(area_marla==5, purpose=="For Sale", price>3e6) |> 
+  ggplot()+aes(log(price), fill="grey")+geom_histogram(bins=15, col="blue")+theme_minimal()
+```
+
+## Compare prices of 5 Marla across cities
+
+
+```{r}
+zam_sel |>filter(purpose=="For Rent", area_marla==5) |>  
+  ggplot(aes(x=city, y=price))+
+  geom_boxplot()
+```
+
+##
+
+```{r}
+zam_sel |>filter(purpose=="For Rent", area_marla==5) |>  
+  ggplot(aes(x=city, y=log(price)))+
+  geom_boxplot()
+``` 
+
+## 
+
+```{r}
+zam_sel |>filter(purpose=="For Sale", area_marla==5) |>  
+  ggplot(aes(x=city, y=log(price)))+
+  geom_boxplot()
+```
+
+
+##
+
+
+```{r}
+zam_sel |> filter(city=="Islamabad", area_sqft<8000, purpose=="For Rent", price>15000) |> 
+ggplot()+
+  aes(x=area_sqft,y=log(price))+ geom_point() +
+  geom_smooth()
+
+```
+

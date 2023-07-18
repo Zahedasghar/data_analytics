@@ -1,12 +1,9 @@
 ---
-title: " Batting Performance of `r params$player`"
-author: "[Zahid Asghar](zahedasghar.netlify.app)"
-date: "today"
 format: 
   html :
     theme: [default, theme.scss]
 params:
-  player: "Agha Salman"
+  player: "Saud Shakeel"
 execute: 
   freeze: auto
 ---
@@ -26,8 +23,8 @@ df<-fetch_player_data(player_id, "Test") %>%
 
 
 
-## Test match runs by **`r params$player`** 
-`r params$player` awesome inning
+## Double century by **`r params$player`** 
+`r params$player` awesome inning of double hundred
 ```{r}
 #| echo: false
 #| warning: false

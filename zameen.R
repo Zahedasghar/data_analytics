@@ -21,9 +21,21 @@
 #'  `Which locality in Lahore has highest rent `
 #'  `List top 10 agents`
 #'  
+#'  How many total properties listed?
+#'  which city has maximum properties listed?
+#'  Whch city has maximum properties listed by area in square feel?
+#'  Make a histogram of area, prices
+#'  Make a boxplot of #number of bed rooms , #of bath rooms
+#'  Creata variable price per square feet and store it as price_prsqft
+#'  Make a histogram of this price_prsqft for rental and for sale properties
+#'  Make a boxplot of price_prsqft across cities for Sale and for Rental properties.
+#'  Make a scatter plot of price and area in square ft
+#'  log of price per square ft and area
+#'  boxplot of priceprsqft and bedrooms
+#'  boxplot of price_prsqft and bathrooms
 #'  
-#'  ``
-
+#'  
+#'  GT Tables
 
 
 
@@ -45,72 +57,103 @@ variable_info <-
 
 variable_info |> gt()
 
-
+#' Give a table of variables in nice format 
 
 
 zameen |> glimpse()
 
-zameen |> clean_names() -> zameen
+# Which day of the week maximum properties are made available on zameen.com
 
-zameen <- zameen |> mutate(date = mdy(date_added))
+# From glimpse we can observe nature of variables and can drop variables which are
+# redundant for us for this analysis.
+# so we drop property_id and location_id, latitude, longitude,
+# locality (as both city and location are already availe)
+# Similarly area which is character variable is given in Kamals, Marlas...
+# while area_marla and area_sqft
+# are more useful.
+
+
+zameen |>select(-c(property_id,location_id,page_url,locality, area, latitude,longitude)) |>  clean_names() -> zam_sel
+zam_sel |> glimpse()
+
+zam_sel <- zam_sel |> mutate(date = mdy(date_added))
 
 library(gt)
 library(gtExtras)
 
-zameen |> group_by(city) |> count() |> arrange(-n) |> gt()
+zam_sel |> group_by(city) |> count() |> arrange(-n) |> gt()
 
-zameen |> group_by(year) 
-
-
-zameen |> mutate(price_m = price / 1000000) -> zameen
+zam_sel |> group_by(year) 
 
 
-summary(zameen$area_sqft)
+zam_sel |> mutate(price_m = price / 1000000) -> zam_sel
+
+
+summary(zam_sel$area_sqft)
 
 
 ## What type of properties are listed
-zameen |> select(property_type, purpose) |> tbl_summary()
+zam_sel |> select(property_type, purpose) |> tbl_summary()
 ## List properties by frequency
-zameen |> group_by(property_type, purpose) |>
+zam_sel |> group_by(property_type, purpose) |>
   summarise(property_types = n()) |> gt()
 
 
 
 
-zameen |> filter(area_marla > 5 & area_marla < 12) |>  group_by(city) |>
+zam_sel |> filter(area_marla > 5 & area_marla < 12) |>  group_by(city) |>
   arrange(-price_m) |> select(price, city, price_m) |> top_n(n = 5) |> gt()
 
 
-zameen |> select(purpose, price) |> tbl_summary() |> as_gt()
+zam_sel |> select(purpose, price) |> tbl_summary() |> as_gt()
 
 
-zameen |> select(purpose,price,year) |> tbl_summary()
+zam_sel |> select(purpose,price,year) |> tbl_summary()
+
+
+## One variable : median
+
+zam_sel |>filter(purpose=="For Rent", area_marla>1 & area_marla<40) |>  select(area_marla)  |> summarise(avg_size=mean(area_marla),med_size=median(area_marla),
+                                          min_size=min(area_marla),max_size=max(area_marla))
+
+
+
+zam_sel |>filter(purpose=="For Rent", area_marla>1 & area_marla<40) |> 
+  ggplot(aes(area_marla)) +
+  geom_histogram()
+
+
+#' some improbable values are included
+#' To avoid this apply filters 
+
+zam_sel |> select(area_sqft)  |> summarise(avg_size=mean(area_sqft),med_size=median(area_sqft),
+                                           min_size=min(area_sqft),max_size=max(area_sqft))
 
 
 # Number of agencies city wise 
 
-zameen |> group_by(agency) |> filter(city=="Islamabad"|city=="Rawalpindi") |> 
+zam_sel |> group_by(agency) |> filter(city=="Islamabad"|city=="Rawalpindi") |> 
   summarise(n=n()) |> arrange(-n) |> na.omit() |> filter(n>50) 
 
 
 # Top 10  agencies in Lahore
-zameen |> group_by(agency) |> filter(city=="Lahore") |> 
+zam_sel |> group_by(agency) |> filter(city=="Lahore") |> 
   summarise(n=n()) |> arrange(-n) |> na.omit() |> filter(n>50) 
 
 
 ## Which place in Islamabad has maximum properties for rent
 
-zameen |> group_by(location) |> filter(city=="Islamabad", purpose=="For Rent") |> 
+zam_sel |> group_by(location) |> filter(city=="Islamabad", purpose=="For Rent") |> 
   summarise(n=n()) |> arrange(-n) |> na.omit() |> top_n(5) 
 
 ## Which place in Islamabad has maximum properties for sale
 
-zameen |> group_by(location) |> filter(city=="Islamabad", purpose=="For Sale") |> 
+zam_sel |> group_by(location) |> filter(city=="Islamabad", purpose=="For Sale") |> 
   summarise(n=n()) |> arrange(-n) |> na.omit() |> top_n(10) 
 
 ## Which place in Islamabad has maximum properties for sale
 
-zameen |> group_by(location) |> filter(city=="Rawalpindi", purpose=="For Sale") |> 
+zam_sel |> group_by(location) |> filter(city=="Rawalpindi", purpose=="For Sale") |> 
   summarise(n=n()) |> arrange(-n) |> na.omit() |> top_n(10) 
 
 ## Which size properties are more in number
@@ -118,47 +161,47 @@ zameen |> group_by(location) |> filter(city=="Rawalpindi", purpose=="For Sale") 
 
 ## Histogram of a price variable
 
-ggplot(zameen)+aes(price)+geom_histogram()
+ggplot(zam_sel)+aes(price)+geom_histogram()
 
 
-ggplot(zameen)+aes(log(price))+geom_histogram()
+ggplot(zam_sel)+aes(log(price))+geom_histogram()
 
-zameen |> filter(area_marla==5) |> 
+zam_sel |> filter(area_marla==5) |> 
   ggplot()+aes(log(price))+geom_histogram()
 
 ## Why two peaks, because one is rental, other one is for sale
-zameen |> filter(area_marla==5, purpose=="For Rent") |> arrange(-price) |> top_n(5)
-zameen |> filter(area_marla==5, purpose=="For Rent", price<1.30e5) |> 
+zam_sel |> filter(area_marla==5, purpose=="For Rent") |> arrange(-price) |> top_n(5)
+zam_sel |> filter(area_marla==5, purpose=="For Rent", price<1.30e5) |> 
   ggplot()+aes(price)+geom_histogram(bins=10)
 
-zameen |> filter(area_marla==5, purpose=="For Rent", price<1.30e5) |> 
+zam_sel |> filter(area_marla==5, purpose=="For Rent", price<1.30e5) |> 
   ggplot()+aes(log(price), fill="grey")+geom_histogram(bins=10, col="blue")+theme_minimal()
 
 
-zameen |> filter(area_marla==5, purpose=="For Sale", price>3e6) |> 
+zam_sel |> filter(area_marla==5, purpose=="For Sale", price>3e6) |> 
   ggplot()+aes(log(price), fill="grey")+geom_histogram(bins=15, col="blue")+theme_minimal()
 
 
 ## Compare prices of 5 Marla across cities
 
-zameen |>filter(purpose=="For Rent", area_marla==5) |>  
+zam_sel |>filter(purpose=="For Rent", area_marla==5) |>  
   ggplot(aes(x=city, y=price))+
   geom_boxplot()
 
 
-zameen |>filter(purpose=="For Rent", area_marla==5) |>  
+zam_sel |>filter(purpose=="For Rent", area_marla==5) |>  
   ggplot(aes(x=city, y=log(price)))+
   geom_boxplot()
 
 
-zameen |>filter(purpose=="For Sale", area_marla==5) |>  
+zam_sel |>filter(purpose=="For Sale", area_marla==5) |>  
   ggplot(aes(x=city, y=log(price)))+
   geom_boxplot()
 
 
 
 
-zameen |> filter(city=="Islamabad", area_sqft<8000, purpose=="For Rent", price>15000) |> 
+zam_sel |> filter(city=="Islamabad", area_sqft<8000, purpose=="For Rent", price>15000) |> 
 ggplot()+
   aes(x=area_sqft,y=log(price))+ geom_point() +
   geom_smooth()

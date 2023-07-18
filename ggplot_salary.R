@@ -1,6 +1,16 @@
 library(tidyverse)
 library(car)
 library(forcats)
+library(gt)
+library(gtsummary)
+library(modelsummary)
+library(gtExtras)
+
+
+
+
+
+
 theme_set(theme_bw())
 head(Salaries)
 
@@ -11,11 +21,6 @@ sdf |> glimpse()
 
 colnames(sdf)
 
-library(forcats)
-library(gt)
-library(gtsummary)
-library(modelsummary)
-library(gtExtras)
 
 sdf |> select(is.factor) |> tbl_summary()
 

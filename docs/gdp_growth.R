@@ -15,7 +15,7 @@ gdppk
 
 ggplot(gdppk) +
   aes(x = date, y = growth) +
-  geom_line(size = 1.2)+
+  geom_line(size = 1.2)+W
   geom_smooth(size = 2,
               se = FALSE,
               color = "red") +

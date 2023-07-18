@@ -5,7 +5,7 @@ format:
   html:
     theme: [default, theme.scss]
     toc: true
-    code-fold: true
+    # code-fold: true
     code-link: true
 execute: 
   warning: false
@@ -15,7 +15,7 @@ editor: visual
 
 ## Introduction
 
-Purpose is to analyze the latest trends in Pakistan's house sale and rental market. As official data on such activities is not available, therefore, data are scrapped from one of the largest data portal for the purpose in Pakistan: [Zameen](www.zameen.com) and author is personally thankful to Ms Fatima Zahid for scrapping this data. This data contains 191, 393 observations on 24 variable. You can access the dataset and all the codes by sending a requestion to .....
+Purpose is to analyze the latest trends in Pakistan's house sale and rental market. As official data on such activities is not available, therefore, data are scrapped from one of the largest data portal for the purpose in Pakistan: [Zameen](www.zameen.com) and author is personally thankful to [Ms Fatima Zahid](https://www.linkedin.com/in/fatima-zahid-795a4a194/) for scrapping this data. This data contains 191, 393 observations on 24 variable. You can access the dataset and all the codes by sending a requestion to .....
 
 # Why R
 
@@ -68,11 +68,11 @@ zameen |> glimpse()
 There are `191,393` rows of data on `24` variables. From glimpse we can observe nature of variables and can drop variables which are redundant for us for this analysis. Therefore, we drop property_id and location_id, latitude, longitude, locality (as both city and location are already availble). Similarly area which is character variable is given in Kanals, Marlas, sqft. We retain `area_marla` and `area_sqft` and drop variable `area` from the data. To drop variables, we shall use `select(-c(var1,var2,...))` as follows and rename new data as `zam_sel`
 
 ```{r}
-zameen |>select(-c(property_id,location_id,page_url,locality, area, latitude,longitude)) -> zam_sel
+zameen |>select(-c(property_id,location_id,page_url,locality,  latitude,longitude)) -> zam_sel
 zam_sel |> glimpse()
 ```
 
-Now I have 17 variables on 191,393 observations. Variables are classified either `chr` or `dbl`. We have date variable defined as character and we can convert it into date variable or combine year, month and day to have date variables. But we will discuss it later on.
+Now I have 18 variables on 191,393 observations. Variables are classified either `chr` or `dbl`. We have date variable defined as character and we can convert it into date variable or combine year, month and day to have date variables. But we will discuss it later on.
 :::
 
 | Variable | class |
@@ -151,13 +151,12 @@ zam_sel |> mutate(price_mill = price / 1000000) -> zam_sel
 zam_sel 
 ```
 
-## Exercise
-
-Calculate a variable `price per square feet` and store it as `price_prsqft`.
+## Properties listed by property types
 
 ```{r}
-zam_sel <- zam_sel |> mutate(price_sqft=price/area_sqft)   #<1>
+zam_sel |> group_by(property_type, purpose) |> summarise(frequency=n())
 ```
+From this one can sort only properties as `House` and `Flat` as sale. There is confusion among listing of sale of upper and lower portion as it may be a `Flat`, otherwise, in `House`, usually its a complete set which is for `Sale`.
 
 ## Create data sets for rental and sale
 
@@ -167,13 +166,23 @@ zam_sel <- zam_sel |> mutate(price_sqft=price/area_sqft)   #<1>
 
 rental <- zam_sel |> filter(purpose=="For Rent") 
 
-sale <- zam_sel |> filter(purpose=="For Sale") #<3>
+sale <- zam_sel |> filter(property_type=="House"|property_type=="Flat",purpose=="For Sale") #<3>
 
 ```
 
 3.  Be careful when applying `filter` as it must have `==` and if you will use `=` it, it will not apply filter command.
 
 There is no result output as we have assigned these data sets new names. Now lets analyze these data sets separately depending upon whether one is interested to study rental makret or sale market. 1. Price per square ft is calculated and assigned it a name `price_sqft`.
+
+
+## Exercise
+
+Calculate a variable `price per square feet` and store it as `price_prsqft`.
+
+```{r}
+zam_sel <- zam_sel |> mutate(price_sqft=price/area_sqft)   #<1>
+```
+
 
 Classify `rental` and `sales` properties by **Price bins**.
 
@@ -198,7 +207,7 @@ rental |> mutate(price_bin=as_factor(price_bin)) |> group_by(price_bin)  |> summ
 
 ```{r}
 zam_sel |> group_by(agency) |> filter(city=="Islamabad"|city=="Rawalpindi") |> 
-  summarise(n=n()) |> arrange(-n) |> na.omit() |> filter(n>50) 
+  summarise(n=n()) |> arrange(-n) |> na.omit() |> filter(n>50) |> top_n(10) |> gt()
 ```
 
 
@@ -206,30 +215,59 @@ zam_sel |> group_by(agency) |> filter(city=="Islamabad"|city=="Rawalpindi") |>
 
 ```{r}
 zam_sel |> group_by(agency) |> filter(city=="Lahore") |> 
-  summarise(n=n()) |> arrange(-n) |> na.omit() |> filter(n>50) 
+  summarise(n=n()) |> arrange(-n) |> na.omit() |> filter(n>50) |> top_n(10) |> gt()
 ``` 
 
 
 ## Which place in Islamabad has maximum properties for rent
 ```{r}
-zam_sel |> group_by(location) |> filter(city=="Islamabad", purpose=="For Rent") |> 
-  summarise(n=n()) |> arrange(-n) |> na.omit() |> top_n(5) 
+rental |> group_by(location) |> filter(city=="Islamabad") |> 
+  summarise(n=n()) |> arrange(-n) |> na.omit() |> top_n(5) |> gt()
 ```
 
+
+
+
+
+
+
+## Which place in Islamabad has maximum properties for rent of 10 Marla
+```{r}
+rental |> group_by(location) |> filter(city=="Islamabad", area_marla==10) |> 
+  summarise(n=n()) |> arrange(-n) |> na.omit() |> top_n(5) |> gt()
+```
+
+
+
+
 ## Which place in Islamabad has maximum properties for sale
 
 ```{r}
-zam_sel |> group_by(location) |> filter(city=="Islamabad", purpose=="For Sale") |> 
-  summarise(n=n()) |> arrange(-n) |> na.omit() |> top_n(10) 
+sale |> group_by(location) |> filter(city=="Islamabad") |> 
+  summarise(n=n()) |> arrange(-n) |> na.omit() |> top_n(10) |> gt()
 ``` 
 
-## Which place in Islamabad has maximum properties for sale
+
+## Data by property size of 5 Marla in Islamabad
+
+Sale of `5 Marla` plots in Islamabad by location.
 
 ```{r}
-zam_sel |> group_by(location) |> filter(city=="Rawalpindi", purpose=="For Sale") |> 
-  summarise(n=n()) |> arrange(-n) |> na.omit() |> top_n(10) 
+sale |> group_by( location) |> filter(city=="Islamabad", area=="5 Marla") |> 
+  summarise(n=n()) |> arrange(-n) |> na.omit() |> top_n(10) |> gt()
 ``` 
+DHA Defence is followed by Ghauri Town as per properties listed for 5 Marla houses for sale.
 
+
+## Data by property size of 10 Marla in Islamabad
+
+Sale of `10 Marla` plots in Islamabad by location.
+
+```{r}
+sale |> group_by( location) |> filter(city=="Islamabad", area=="10 Marla") |> 
+  summarise(n=n()) |> arrange(-n) |> na.omit() |> top_n(10) |> gt()
+``` 
+DHA Defence is followed by Ghauri Town as per properties listed for 5 Marla houses for sale.
 
 
 
@@ -250,9 +288,20 @@ ggplot(zam_sel)+aes(log(price))+geom_histogram()
 ## 5 marla property 
 
 ```{r}
-zam_sel |> filter(area_marla==5) |> 
-  ggplot()+aes(log(price))+geom_histogram()
+rental |> filter(area_marla==5, property_type=="House", price<60000, price>5000) |> 
+  ggplot()+aes(price)+geom_histogram()
 ``` 
+
+## Examine rents by upper portion, flat, house, lower portion for 10 marla 
+
+
+```{r}
+rental |> group_by(property_type) |> filter (price<200000) |> summarise(avg=mean(price))
+```
+
+
+
+
 
 
 ## Why two peaks, because one is rental, other one is for sale
@@ -321,6 +370,100 @@ zam_sel |> filter(city=="Islamabad", area_sqft<8000, purpose=="For Rent", price>
 ggplot()+
   aes(x=area_sqft,y=log(price))+ geom_point() +
   geom_smooth()
+
+```
+
+
+
+## Price vs area in square feet
+
+
+```{r}
+rental |> filter(city=="Islamabad", area_sqft<8000, price>15000) |> 
+ggplot()+
+  aes(x=area_sqft,y=log(price))+ geom_point() +
+  geom_smooth()
+```
+
+
+## Price per square feet vs area in square feet
+
+
+```{r}
+#| eval: false
+rental |> filter(city=="Islamabad", area_sqft<6000) |> 
+ggplot()+
+  aes(x=area_sqft,y=log(price_sqft))+ geom_point() +
+  geom_smooth()
+```
+
+
+## 2019 data
+
+Filter data only for properties for sale in 2019
+
+```{r}
+sale <- sale |> filter(year==2019 )
+sale |> group_by(city) |> summarise(frequency=n()) |> arrange(-frequency) 
+```
+
+How many properties by area in Islamabad and Rawalpindi city?
+
+First lets see what possible property size are listed?
+
+```{r}
+sale |>#  filter(city %in% c("Islamabad", "Rawalpindi"))  |>   
+  summarise( min=min(area_marla),  max=max(area_marla), mean=mean(area_marla),q1 = quantile(area_marla, probs = 0.25),
+            median = quantile(area_marla, probs = 0.50),
+            q3 = quantile(area_marla, probs = 0.75),
+             p97.5= quantile(area_marla, probs = 0.975),
+            p2.5= quantile(area_marla, probs = 0.025))
+
+```
+This indicates that 95% of the properties listed on zameen.com are between 2 and 40 marla size. Therefore, in order to be little careful and to work on data which are most frequent, we are going to discard bottom 2.5 and top 2.5% properties by their size. `Please take this statement with caution as we dont mean dealing with extreme values is discard extremes. We dont mean that.` Its an exploratory analysis and not a purely random sample so we are here describing issues in little different context.
+
+
+## Price of 10 Marla in various locations (having min plot 20 listed for sale)
+
+```{r}
+sale_isb <- sale |> filter(area_marla==10, city=="Islamabad")
+df_freq <- sale_isb |> group_by(location) |> summarise(frequency=n()) |> filter(frequency>20)
+sale_10isb <- sale_isb |> inner_join(df_freq,by="location")
+sale_10isb |> filter(property_type=="House") |> mutate(location=as_factor(location)) |>  ggplot(aes(x=location,y=price_mill))+geom_boxplot()+ 
+  coord_flip() + labs(x="",y="Rs. (Millions)", title="Price of 10 marla houses in Islamabad in 2019", caption = "Source: zameen.com, graphics: @zahedasghar")+
+  ggthemes::theme_fivethirtyeight()
+```
+
+## Flats in Islamabad
+
+
+```{r}
+sale |> filter(property_type=="Flat", city=="Islamabad")
+|> ggplot(aes(x=location,y=price))+geom_boxplot()+ 
+  coord_flip()
+
+```
+
+
+
+
+
+
+
+```{r}
+sale |> filter(area_marla>2 & area_marla<40, city=="Islamabad") |> ggplot(aes(x=location,y=price))+
+  geom_boxplot()+coord_flip()
+```
+
+
+
+
+
+```{r}
+
+
+sale |>mutate(area=as_factor(area)) |>  filter(city %in% c("Islamabad", "Rawalpindi")) |> group_by(area) |> 
+  summarise(frequency=n()) 
 
 ```
 

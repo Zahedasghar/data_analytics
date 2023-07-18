@@ -1,0 +1,57 @@
+---
+title: " Batting Performance of `r params$player`"
+author: "[Zahid Asghar](zahedasghar.netlify.app)"
+date: "today"
+format: 
+  html :
+    theme: [default, theme.scss]
+params:
+  player: "Agha Salman"
+execute: 
+  freeze: auto
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+library(cricketdata)
+library(tidyverse)
+library(ggtext)
+player_id<-find_player_id(params$player)$ID
+df<-fetch_player_data(player_id, "Test") %>%
+  mutate(NotOut = (Dismissal == "not out"))
+
+```
+
+
+
+## Test match runs by **`r params$player`** 
+`r params$player` awesome inning
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+df<-fetch_player_data(player_id, "Test") %>%
+  mutate(NotOut = (Dismissal == "not out")) #|> filter(Date>"2018-07-01")
+
+AAave <- df %>%
+  filter(!is.na(Runs)) %>%
+  summarise(Average = sum(Runs) / (n() - sum(NotOut))) %>%
+  pull(Average)
+
+AAave <- df %>%
+  filter(!is.na(Runs)) %>%
+  summarise(Average = sum(Runs) / (n() - sum(NotOut))) %>%
+pull(Average)
+
+
+names(AAave) <- paste("Average =", round(AAave, 2))
+
+title_text<-paste0('  ')
+# Plot Test scores
+ggplot(df) +
+  geom_hline(aes(yintercept = AAave), col="blue", size=1) +
+  geom_point(aes(x = Date, y = Runs, col = NotOut, size=0.001))  +
+  scale_y_continuous(sec.axis = sec_axis(~., breaks = AAave))+theme(legend.position = "none") +labs(title=title_text)+theme_minimal()
+```

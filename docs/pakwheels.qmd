@@ -60,6 +60,8 @@ Understanding data sets requires many hours/days or in some cases weeks.There ar
 
 I have discussed the [Gapminder dataset](https://cran.r-project.org/web/packages/gapminder/index.html) in [my videos](youtube), you can watch those videos. `gapminder` package is available through CRAN, so make sure to install it. Here's how to load in all required packages:
 
+
+
 ```{r , warning=FALSE,message=FALSE}
 library(tidyverse)
 library(knitr)

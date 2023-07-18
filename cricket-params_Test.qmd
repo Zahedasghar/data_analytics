@@ -1,0 +1,57 @@
+---
+title: "Batting Performance of `r params$player`"
+date: "today"
+format: 
+  html :
+    theme: [default, theme.scss]
+params:
+  player: "Dimuth Karunaratne"
+execute: 
+  freeze: auto
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+library(cricketdata)
+library(tidyverse)
+library(ggtext)
+player_id<-find_player_id(params$player)$ID
+df<-fetch_player_data(player_id, "Test") %>%
+  mutate(NotOut = (Dismissal == "not out"))
+
+```
+
+ Performance of `r params$player` is shown below who scored more than 3200 runs at an average of 50.6 which are highest during the last 5 years by any player in the world. Lets see how Shaheen and Babar deals with him.
+
+## Test match scores by `r params$player` during last 5 years
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+df<-fetch_player_data(player_id, "Test") %>%
+  mutate(NotOut = (Dismissal == "not out")) |> filter(Date>"2018-07-01")
+
+AAave <- df %>%
+  filter(!is.na(Runs)) %>%
+  summarise(Average = sum(Runs) / (n() - sum(NotOut))) %>%
+  pull(Average)
+
+AAave <- df %>%
+  filter(!is.na(Runs)) %>%
+  summarise(Average = sum(Runs) / (n() - sum(NotOut))) %>%
+pull(Average)
+
+
+names(AAave) <- paste("Average =", round(AAave, 2))
+
+title_text<-paste0('  ')
+# Plot Test scores
+ggplot(df) +
+  geom_hline(aes(yintercept = AAave), col="gray") +
+  geom_point(aes(x = Date, y = Runs, col = NotOut))  +
+  scale_y_continuous(sec.axis = sec_axis(~., breaks = AAave))+theme(legend.position = "none") +labs(title=title_text)
+```

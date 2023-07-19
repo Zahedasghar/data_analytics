@@ -76,8 +76,6 @@ standard error. We’ll start first with an aside on correlation, which is its o
 correlation, scatterplot, Pearson’s r, multicollinearity, (multiple) regression, regression coefficient, standard
 error, prediction error, “ordinary least squares”, partial effects, interactive effects.
 
-## Forecasting
-
 
 
 

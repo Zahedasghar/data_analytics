@@ -57,8 +57,8 @@ treat an ordinal variable as interval/continuous?, mode/median/mean.
 ## Session 2
 
 ## Hypotheses and Comparisons 
-Prospectus due on Thursday.
-There will be some back-tracking this week in as much we’re going to talk about hypothesis crafting in some
+
+There will be some back-tracking this session in as much we’re going to talk about hypothesis crafting in some
 detail. We will talk a little bit more about writing theories. More importantly, we’re going to talk about making
 some comparisons with actual data. Everything this will be super basic statements of association the direction
 of relationships.  
@@ -66,7 +66,7 @@ of relationships.
 **Keywords**: (independent, dependent) variable, (positive, negative, zero, curvilinear) relationship, cross-tabulation, mean comparison
 
 ## Correlation and Linear Regression with Real Data
-This week will extend statistical inference into the world of regression. Regression is a tool to model variation
+This session will extend statistical inference into the world of regression. Regression is a tool to model variation
 in some outcome as a (linear) function of one or more predictors and it is the workhorse of applied inferential
 statistics. The process of inference is the same, though typically regression modelers reject (or fail to reject)
 null hypotheses of zero relationship between a predictor and an outcome based on an observed coefficient and
@@ -75,6 +75,11 @@ standard error. We’ll start first with an aside on correlation, which is its o
 **Keywords**: 
 correlation, scatterplot, Pearson’s r, multicollinearity, (multiple) regression, regression coefficient, standard
 error, prediction error, “ordinary least squares”, partial effects, interactive effects.
+
+## Forecasting
+
+
+
 
 ## New ways of having data and analyzing
 

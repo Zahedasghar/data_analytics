@@ -49,16 +49,16 @@ editor:
 
 ## Session 1
 
-
+All data, codes, slides and other material will be available freely for all participants on web cloud  during and after the training. It is highly desirable if participants have laptops and high speed internet to practice in the last half an hour of each session. 
 ### Introduction to softwares
 
-| Col1                                             | Col2                                        | Col3                                       |
+|                                              |                                        |                                       |
 |------------------|------------------|------------------|
 | Introduction to softwares: R, SPSS, STATA, NVIVO | With some general benefits of each of these | Why open community softwares and how these |
 
 -   Understanding packages and libraries in R/RStudio Cloud 
 
-### Qualitative data in R
+### Qualitative data analysis in R (Posit Cloud)
 
 -   Process of working with text data
 

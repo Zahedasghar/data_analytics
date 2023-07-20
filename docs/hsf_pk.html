@@ -3000,7 +3000,7 @@ background: #27455C;
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">19-07-2023</p>
+        <p class="date">20-07-2023</p>
       </div>
     </div>
     
@@ -3014,18 +3014,20 @@ background: #27455C;
     <h2 id="toc-title">Summary</h2>
    
   <ul>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#mixed-methods-research-data-analysis" id="toc-mixed-methods-research-data-analysis" class="nav-link active" data-scroll-target="#mixed-methods-research-data-analysis">Mixed methods Research Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#session-1" id="toc-session-1" class="nav-link" data-scroll-target="#session-1">Session 1</a>
   <ul class="collapse">
-  <li><a href="#defining-and-measuring-concepts" id="toc-defining-and-measuring-concepts" class="nav-link" data-scroll-target="#defining-and-measuring-concepts">Defining and Measuring Concepts</a></li>
-  <li><a href="#measuring-and-describing-variables-with-real-data" id="toc-measuring-and-describing-variables-with-real-data" class="nav-link" data-scroll-target="#measuring-and-describing-variables-with-real-data">Measuring and Describing Variables with Real Data</a></li>
-  </ul></li>
-  <li><a href="#session-2" id="toc-session-2" class="nav-link" data-scroll-target="#session-2">Session 2</a></li>
-  <li><a href="#hypotheses-and-comparisons" id="toc-hypotheses-and-comparisons" class="nav-link" data-scroll-target="#hypotheses-and-comparisons">Hypotheses and Comparisons</a></li>
+  <li><a href="#introduction-to-softwares" id="toc-introduction-to-softwares" class="nav-link" data-scroll-target="#introduction-to-softwares">Introduction to softwares</a></li>
+  <li><a href="#qualitative-data-in-r" id="toc-qualitative-data-in-r" class="nav-link" data-scroll-target="#qualitative-data-in-r">Qualitative data in R</a></li>
+  <li><a href="#quantitative-data-analysis" id="toc-quantitative-data-analysis" class="nav-link" data-scroll-target="#quantitative-data-analysis">Quantitative Data Analysis</a></li>
   <li><a href="#correlation-and-linear-regression-with-real-data" id="toc-correlation-and-linear-regression-with-real-data" class="nav-link" data-scroll-target="#correlation-and-linear-regression-with-real-data">Correlation and Linear Regression with Real Data</a></li>
+  </ul></li>
   <li><a href="#new-ways-of-having-data-and-analyzing" id="toc-new-ways-of-having-data-and-analyzing" class="nav-link" data-scroll-target="#new-ways-of-having-data-and-analyzing">New ways of having data and analyzing</a>
   <ul class="collapse">
   <li><a href="#analyzing-google-trends-google-news-api-media-api" id="toc-analyzing-google-trends-google-news-api-media-api" class="nav-link" data-scroll-target="#analyzing-google-trends-google-news-api-media-api">Analyzing Google Trends, Google News API, Media API</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -3037,11 +3039,17 @@ background: #27455C;
 
 
 
+<section id="mixed-methods-research-data-analysis" class="level1">
+<h1>Mixed methods Research Data Analysis</h1>
+<blockquote class="blockquote">
+<p>As per my understanding if someone is using : DISCOVERY through rigorous qualitative research and then testing using a quantitative approach. Unfortunately, most of the research studies simply mention some interviews and then there is neither rigorous analysis nor any problem identification.</p>
+</blockquote>
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><p>Delineate variables among various types, like nominal, ordinal and interval.</p></li>
-<li><p>Express why the logic of control is vital to any good research design.</p></li>
+<li><p>Understanding mixed method approach.</p></li>
+<li><p>Analyzing qualitative and quantitative data.</p></li>
+<li><p>Understanding to analyze textual, sentimental, N-Gram: correlations</p></li>
 <li><p>Understand important elements of data, like central tendency and spread in practice</p></li>
 <li><p>Correlation, Regression, and Hypothesis testing in practice</p></li>
 <li><p>Becoming familiar with use of R (without downloading and with zero coding experience), Excel and datwrapper</p></li>
@@ -3049,34 +3057,58 @@ background: #27455C;
 </section>
 <section id="session-1" class="level2">
 <h2 class="anchored" data-anchor-id="session-1">Session 1</h2>
-<section id="defining-and-measuring-concepts" class="level3">
-<h3 class="anchored" data-anchor-id="defining-and-measuring-concepts">Defining and Measuring Concepts</h3>
-<p>conceptual definition, operational definition, unit of analysis, ecological fallacy, (measurement) reliability, (measurement) validity, (systematic, random) measurement error, Hawthorne effect, test-restest method, (face, construct) validity.</p>
+<section id="introduction-to-softwares" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-to-softwares">Introduction to softwares</h3>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Col1</th>
+<th>Col2</th>
+<th>Col3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Introduction to softwares: R, SPSS, STATA, NVIVO</td>
+<td>With some general benefits of each of these</td>
+<td>Why open community softwares and how these</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Understanding packages and libraries in R/RStudio Cloud</li>
+</ul>
 </section>
-<section id="measuring-and-describing-variables-with-real-data" class="level3">
-<h3 class="anchored" data-anchor-id="measuring-and-describing-variables-with-real-data">Measuring and Describing Variables with Real Data</h3>
-<p>This will delve more into the statistics side of things. Consider, for example, your measure of “democracy” may be 0 (non-democracy [e.g. China]) or 1 (democracy [e.g. Canada]), but only you (the researcher and the reader) will know that. Your computer program will not care. It just sees numerical measurements that vary and that it can do any number of things to summarize them. Beware, though: your computer is deceptively stupid. It will give you a mean of a categorical measurement if you ask for one. Your job is to be smarter than the computer. As daunting as that sounds, it is more a plea to be careful/mindful of some limitations you have with your data.</p>
-<p><strong>Keywords</strong>: constant/variable, nominal/ordinal/interval variable, dummy variable, Likert item, when can you treat an ordinal variable as interval/continuous?, mode/median/mean.</p>
+<section id="qualitative-data-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="qualitative-data-in-r">Qualitative data in R</h3>
+<ul>
+<li><p>Process of working with text data</p></li>
+<li><p>Word frequencies and Word network with n-grams</p></li>
+<li><p>Stop word: removing noise from the data</p></li>
+<li><p>Exploring correlations</p></li>
+<li><p>Twitter/Sentimental analysis</p></li>
+</ul>
 </section>
+<section id="quantitative-data-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="quantitative-data-analysis">Quantitative Data Analysis</h3>
+<p><strong>Keywords</strong>: constant/variable, nominal/ordinal/interval variable, dummy variable, Likert item, mode/median/mean.(independent, dependent) variable, (positive, negative, zero, curvilinear) relationship, cross-tabulation, mean comparison</p>
 </section>
-<section id="session-2" class="level2">
-<h2 class="anchored" data-anchor-id="session-2">Session 2</h2>
-</section>
-<section id="hypotheses-and-comparisons" class="level2">
-<h2 class="anchored" data-anchor-id="hypotheses-and-comparisons">Hypotheses and Comparisons</h2>
-<p>There will be some back-tracking this session in as much we’re going to talk about hypothesis crafting in some detail. We will talk a little bit more about writing theories. More importantly, we’re going to talk about making some comparisons with actual data. Everything this will be super basic statements of association the direction of relationships.</p>
-<p><strong>Keywords</strong>: (independent, dependent) variable, (positive, negative, zero, curvilinear) relationship, cross-tabulation, mean comparison</p>
-</section>
-<section id="correlation-and-linear-regression-with-real-data" class="level2">
-<h2 class="anchored" data-anchor-id="correlation-and-linear-regression-with-real-data">Correlation and Linear Regression with Real Data</h2>
-<p>This session will extend statistical inference into the world of regression. Regression is a tool to model variation in some outcome as a (linear) function of one or more predictors and it is the workhorse of applied inferential statistics. The process of inference is the same, though typically regression modelers reject (or fail to reject) null hypotheses of zero relationship between a predictor and an outcome based on an observed coefficient and standard error. We’ll start first with an aside on correlation, which is its own useful tool as well.</p>
+<section id="correlation-and-linear-regression-with-real-data" class="level3">
+<h3 class="anchored" data-anchor-id="correlation-and-linear-regression-with-real-data">Correlation and Linear Regression with Real Data</h3>
 <p><strong>Keywords</strong>: correlation, scatterplot, Pearson’s r, multicollinearity, (multiple) regression, regression coefficient, standard error, prediction error, “ordinary least squares”, partial effects, interactive effects.</p>
+</section>
 </section>
 <section id="new-ways-of-having-data-and-analyzing" class="level2">
 <h2 class="anchored" data-anchor-id="new-ways-of-having-data-and-analyzing">New ways of having data and analyzing</h2>
 <section id="analyzing-google-trends-google-news-api-media-api" class="level3">
 <h3 class="anchored" data-anchor-id="analyzing-google-trends-google-news-api-media-api">Analyzing Google Trends, Google News API, Media API</h3>
 <p>Discussion of various sources from where one can read all data directly from web API. - Google trends - Google news API - Media API - UN votes data from 1948-49 on 6 key issues directly from API till to-date (Comparing Pakistan and India ) - Participants feedback for way forward</p>
+</section>
 </section>
 </section>
 

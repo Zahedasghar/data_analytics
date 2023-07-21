@@ -79,108 +79,109 @@ SARMA and other statistical models
 
 ## Daywise detail
 
-+----------------+------------------------+------------+-------------------+------+
-| Days           | Title                  | Topics to  | Reading material  |      |
-|                |                        | be covered |                   |      |
-+----------------+------------------------+------------+-------------------+------+
-| 1 (Monday)     | Introduction to        | In         |                   |      |
-|                | software               | troduction |                   |      |
-|                |                        | to R,      |                   |      |
-|                |                        | RStudio,   |                   |      |
-|                |                        | POSIT      |                   |      |
-|                |                        | Cloud ,    |                   |      |
-|                |                        | gituhub    |                   |      |
-+----------------+------------------------+------------+-------------------+------+
-| 2 (Wedn esday) | Data Vocabulary,       |            |                   |      |
-|                | taxonomy (nominal,     |            |                   |      |
-|                | categorical, discrete, |            |                   |      |
-|                | continuous), cleaning  |            |                   |      |
-|                | and data wrangling     |            |                   |      |
-+----------------+------------------------+------------+-------------------+------+
-|                | Reading/writing        | In         | continued         |      |
-|                | STATA/SPSS/csv/xlsx    | class-labs |                   |      |
-|                | webAPI data in R       |            |                   |      |
-+----------------+------------------------+------------+-------------------+------+
-| 3 (Monday)     | Data Visualization     | bar,       | graphics for      |      |
-|                | (when to make which    | scatter,   | categorical and   |      |
-|                | graph )                | line and   | continuous data   |      |
-|                |                        | histograms | using R,          |      |
-|                |                        | with       |                   |      |
-|                |                        | e          |                   |      |
-|                |                        | ducational |                   |      |
-|                |                        | case study |                   |      |
-|                |                        | data in    |                   |      |
-|                |                        | ggplot2    |                   |      |
-+----------------+------------------------+------------+-------------------+------+
-| 3              | Lab on having data     | In-class   | Applications      |      |
-|                | visuali zation         | lab        |                   |      |
-+----------------+------------------------+------------+-------------------+------+
-| 4 (Wednesday)  | Data Tables, Measure   | Learning   | Tables from       |      |
-|                | of central tendency,   | Data       | various PIE       |      |
-|                | dispersion             | Tables     | resources and     |      |
-|                |                        | with R as  | reproducing       |      |
-|                |                        | pub lished | tables like 538,  |      |
-|                |                        | in world l | NYT, WSJ, FT...   |      |
-|                |                        | eading     |                   |      |
-|                |                        | outlets    |                   |      |
-+----------------+------------------------+------------+-------------------+------+
-| 4              | -   \*Lab\*\*          | In class   |                   |      |
-|                |                        | lab        |                   |      |
-+----------------+------------------------+------------+-------------------+------+
-| 5 (M onday)    | -   \*Exploratory Data | Data       | dataxray in R     |      |
-|                |     An alysis in R in  | E          |                   |      |
-|                |     min utes\*\*       | xploration |                   |      |
-|                |                        | not in     |                   |      |
-|                |                        | months     |                   |      |
-|                |                        | /weeks but |                   |      |
-|                |                        | in minutes |                   |      |
-+----------------+------------------------+------------+-------------------+------+
-| 5 (Wedn esday) | Exploratory Data       | Lab        |                   |      |
-|                | Analysis in R          |            |                   |      |
-+----------------+------------------------+------------+-------------------+------+
-| 6              | Regression             | How to     |                   |      |
-|                | /Econometric Model     | have       |                   |      |
-|                | Results                | results of |                   |      |
-|                |                        | various    |                   |      |
-|                |                        | models     |                   |      |
-|                |                        | like those |                   |      |
-|                |                        | of leading |                   |      |
-|                |                        | journals   |                   |      |
-+----------------+------------------------+------------+-------------------+------+
-| 6              | Lab                    |            |                   |      |
-+----------------+------------------------+------------+-------------------+------+
-| 7 (M onday)    | Time Series , Sm       | -          |                   |      |
-|                | oothin gExpon ential   |  Exploring |                   |      |
-|                | Smo othing             |     and    |                   |      |
-|                |                        |     v      |                   |      |
-|                |                        | isualizing |                   |      |
-|                |                        |     time   |                   |      |
-|                |                        |     series |                   |      |
-|                |                        |            |                   |      |
-|                |                        | -   Simple |                   |      |
-|                |                        |            |                   |      |
-|                |                        |  benchmark |                   |      |
-|                |                        |            |                   |      |
-|                |                        |    methods |                   |      |
-|                |                        |     for    |                   |      |
-|                |                        |     f      |                   |      |
-|                |                        | orecasting |                   |      |
-|                |                        |            |                   |      |
-|                |                        | -   Dec    |                   |      |
-|                |                        | omposition |                   |      |
-|                |                        |     of     |                   |      |
-|                |                        |     time   |                   |      |
-|                |                        |     series |                   |      |
-+----------------+------------------------+------------+-------------------+------+
-| 8 (Wedn esday) | ARMA, ARIMA, SARIMA    |            |                   |      |
-|                | model, Forec asting    |            |                   |      |
-+----------------+------------------------+------------+-------------------+------+
-| 9-10 (Opt      |                        | Revision   |                   |      |
-| ional)         |                        | of all     |                   |      |
-|                |                        | concepts   |                   |      |
-|                |                        | with       |                   |      |
-|                |                        | practice   |                   |      |
-+----------------+------------------------+------------+-------------------+------+
++----------+----------+----------+----------+----------+
+| Sessions | Title    | Topics   | Reading  |          |
+|          |          | to be    | materia  |          |
+|          |          | covered  |          |          |
++----------+----------+----------+----------+----------+
+| 1        | Intr     | In       |          |          |
+|          | oduction | tr       |          |          |
+|          | to       | oduction |          |          |
+|          | software | to R,    |          |          |
+|          |          | RStudio, |          |          |
+|          |          | POSIT    |          |          |
+|          |          | Cloud ,  |          |          |
+|          |          | gituhub  |          |          |
++----------+----------+----------+----------+----------+
+|          | Data     |          |          |          |
+|          | Voc      |          |          |          |
+|          | abulary, |          |          |          |
+|          | taxonomy |          |          |          |
+|          | (        |          |          |          |
+|          | nominal, |          |          |          |
+|          | cate     |          |          |          |
+|          | gorical, |          |          |          |
+|          | d        |          |          |          |
+|          | iscrete, |          |          |          |
+|          | cont     |          |          |          |
+|          | inuous), |          |          |          |
+|          | cleaning |          |          |          |
+|          | and data |          |          |          |
+|          | w        |          |          |          |
+|          | rangling |          |          |          |
++----------+----------+----------+----------+----------+
+|          | Re       | In       | c        |          |
+|          | ading    | cl       | ontinued |          |
+|          | /writing | ass-labs |          |          |
+|          | STATA/   |          |          |          |
+|          | SPSS/    |          |          |          |
+|          | csv/xlsx |          |          |          |
+|          | webAPI   |          |          |          |
+|          | data in  |          |          |          |
+|          | R        |          |          |          |
++----------+----------+----------+----------+----------+
+| 2        | Data     | bar,     | graphics |          |
+|          | Visua    | scatter, | for c    |          |
+|          | lization | line and | at       |          |
+|          | (when to | hi       | egorical |          |
+|          | make     | stograms | and      |          |
+|          | which    | with e   | co       |          |
+|          | graph )  | du       | ntinuous |          |
+|          |          | cational | data     |          |
+|          |          | case     | using R, |          |
+|          |          | study    |          |          |
+|          |          | data in  |          |          |
+|          |          | ggplot2  |          |          |
++----------+----------+----------+----------+----------+
+|          | Lab on   | In-class | Ap       |          |
+|          | having   | lab      | pl       |          |
+|          | data     |          | ications |          |
+|          | visuali  |          |          |          |
+|          | zation   |          |          |          |
++----------+----------+----------+----------+----------+
+| 3        | Data     | Learning | Tables   |          |
+|          | Tables,  | Data     | from     |          |
+|          | Measure  | Tables   | various  |          |
+|          | of       | with R   | PIE      |          |
+|          | central  | as pub   | r        |          |
+|          | t        | lished   | esources |          |
+|          | endency, | in world | and r    |          |
+|          | di       | l eading | ep       |          |
+|          | spersion | outlets  | roducing |          |
+|          |          |          | tables   |          |
+|          |          |          | like     |          |
+|          |          |          | 538,     |          |
+|          |          |          | NYT,     |          |
+|          |          |          | WSJ,     |          |
+|          |          |          | FT...    |          |
++----------+----------+----------+----------+----------+
+|          | -   \    | Homework |          |          |
+|          | *Lab\*\* | lab      |          |          |
++----------+----------+----------+----------+----------+
+| 4        | -        | Data     | dataxray |          |
+|          |    \*Exp | Exp      | in R     |          |
+|          | loratory | loration |          |          |
+|          |     Data | not in   |          |          |
+|          |     An   | months   |          |          |
+|          |          | weeks    |          |          |
+|          |   alysis | but in   |          |          |
+|          |     in R | minutes  |          |          |
+|          |     in   |          |          |          |
+|          |     min  |          |          |          |
+|          |          |          |          |          |
+|          | utes\*\* |          |          |          |
++----------+----------+----------+----------+----------+
+|          | Re       | How to   |          |          |
+|          | gression | have     |          |          |
+|          | /Econome | results  |          |          |
+|          | tric/For | of       |          |          |
+|          | ecasting | various  |          |          |
+|          | Model    | models   |          |          |
+|          | Results  | like     |          |          |
+|          |          | those of |          |          |
+|          |          | leading  |          |          |
+|          |          | journals |          |          |
++----------+----------+----------+----------+----------+
 
 ## New ways of having data and analyzing
 

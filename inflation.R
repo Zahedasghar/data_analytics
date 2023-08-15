@@ -35,13 +35,23 @@ df <- cpi |>
 caption="source:PBS, by: Zahid Asghar")
 
 
-df |> filter(variable=="year_on_year") |> 
+inflation <- df |> filter(variable=="year_on_year") |> 
   ggplot()+ aes(x = date, y = value, fill="red") +
   geom_col() + 
   #scale_color_manual(values = "#00AFBB") +
-  theme_minimal()+labs(x="Time",y="inflation YoY",title = "Inflation Rate in Pakistan is continuously on rise  and hitting all time high in May-2023.",
-                       subtitle="Rural inflation is 42.2% on YoY basis.",
-                       caption="source:PBS, by: Zahid Asghar")+ theme(legend.position = "none")
+  theme_minimal()+labs(x="Time",y="inflation YoY",title = "Pakistan CPI witnessed little decrease with YoY inflation 28.3% ",
+                       subtitle = "Bumpy road ahead due to apparent surge in oil prices at global level  besides putting extra burden on those who pay their bills regularly",
+                       caption = "Source: PBS \n Graphic: @zahedasghar")+ theme(legend.position = "none")+
+  theme_grey(base_size = 15)
+
+
+library(ragg)
+ragg::agg_png("images/inflation_15x10.png", width = 15, height = 10, units = "in", res = 300)
+
+inflation
+dev.off()
+
+
 
 df |> filter(variable=="year_on_year") |> 
   ggplot()+ aes(x = date, y = value, fill="red") +
@@ -57,8 +67,8 @@ df |> filter(variable=="year_on_year") |>
   )+
   geom_hline(yintercept = 0, size = 1.1) + 
   labs(x="",y="",
-    title = "Annual consumer price inflation was 29.2% in FY-2023",
-    subtitle = "After January, YoY inflation first time touching below 30%. MoM is 4th time negative in last 3 years. \n Core inflation is still very high so seems no immediate respite other than base effect ",
+    title = "Pakistan CPI witnessed little decrease with YoY inflation 28.3% ",
+    subtitle = "Bumpy road ahead due to apparent surge in oil prices at global level besides putting extra burden on those who pay their bills regularly",
     caption = "Source: PBS \n Graphic: @zahedasghar"
   ) +
   annotate(
@@ -202,10 +212,12 @@ p <- df |> filter(variable=="year_on_year") |>
 p
 library(magick)
 gif<-image_read("https://img.etimg.com/thumb/msid-93194137,width-1200,height-900,imgsize-1101135,resizemode-8/20220729_inflation_01.jpg")
-plot <- image_graph(width = 1000, height = 500, res = 100)
-p
+
+scaled_gif <- image_scale(gif, "300x200") 
+plot <- image_graph(width = 800, height = 700, res = 100)
+inflation
 dev.off()
-frames <- image_composite(plot, gif, offset = "+500-100")
+frames <- image_composite(plot, scaled_gif, offset = "+300-200")
 frames
 animation <- image_animate(image_join(frames), optimize = TRUE)
 animation <- image_quantize(animation,
@@ -215,7 +227,7 @@ animation <- image_quantize(animation,
 animation
 
 
-image_write(animation, "C:D:\\RepTemplates\\data_analytics\\bleeding_econ.gif")
+image_write(animation, "C:D:\\RepTemplates\\data_analytics\\infation.gif")
 
 animation <- image_animate(image_join(frames), optimize = TRUE, loop = 1)
 

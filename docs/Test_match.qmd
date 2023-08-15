@@ -1,9 +1,10 @@
 ---
+title: "Performance of `r params$player`"
 format: 
   html :
     theme: [default, theme.scss]
 params:
-  player: "Saud Shakeel"
+  player: "Virat Kohli"
 execute: 
   freeze: auto
 ---
@@ -23,7 +24,7 @@ df<-fetch_player_data(player_id, "Test") %>%
 
 
 
-## Double century by **`r params$player`** 
+##  **`r params$player`** 
 `r params$player` awesome inning of double hundred
 ```{r}
 #| echo: false

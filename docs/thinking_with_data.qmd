@@ -1,6 +1,6 @@
 ---
 title: "The Philosophy and Techniques for Impact Evaluation Tools in SS"
-subtitle: "University of Sargodha, Sargodha"
+subtitle: "Pakistan Institute of Development Economics, Islamabad"
 author: "Zahid Asghar"
 institute: "Quaid-i-Azam University, Islamabad"
 date: "`r format(Sys.time(), '%d %B %Y')`"
@@ -13,7 +13,7 @@ format:
     width: 1600
     chalkboard: true
     title-slide-attributes: 
-      data-background-image: "http://www.result.pk/_images/articles/images/2021-01/12165_1_56856.jpg"
+      data-background-image: "https://upload.wikimedia.org/wikipedia/commons/e/ef/PIDE-New-Logo.jpg"
       data-background-size: 20%
       data-background-position: 100% 0%
       data-background-color: "#447099"

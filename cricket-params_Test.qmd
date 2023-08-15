@@ -1,11 +1,10 @@
 ---
 title: "Batting Performance of `r params$player`"
-date: "today"
 format: 
   html :
     theme: [default, theme.scss]
 params:
-  player: "Dimuth Karunaratne"
+  player: "Saud Shakeel"
 execute: 
   freeze: auto
 ---
@@ -23,9 +22,7 @@ df<-fetch_player_data(player_id, "Test") %>%
 
 ```
 
- Performance of `r params$player` is shown below who scored more than 3200 runs at an average of 50.6 which are highest during the last 5 years by any player in the world. Lets see how Shaheen and Babar deals with him.
-
-## Test match scores by `r params$player` during last 5 years
+ Performance of `r params$player` is shown below 
 
 
 ```{r}
@@ -48,10 +45,9 @@ pull(Average)
 
 names(AAave) <- paste("Average =", round(AAave, 2))
 
-title_text<-paste0('  ')
 # Plot Test scores
 ggplot(df) +
-  geom_hline(aes(yintercept = AAave), col="gray") +
-  geom_point(aes(x = Date, y = Runs, col = NotOut))  +
-  scale_y_continuous(sec.axis = sec_axis(~., breaks = AAave))+theme(legend.position = "none") +labs(title=title_text)
+  geom_hline(aes(yintercept = AAave), col="gray")+ 
+  geom_point(aes(x = Date, y = Runs, col = NotOut,size=2)) +
+  scale_y_continuous(sec.axis = sec_axis(~., breaks = AAave))+theme(legend.position = "none") 
 ```

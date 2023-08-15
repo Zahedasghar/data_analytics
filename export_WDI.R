@@ -9,18 +9,19 @@ library(WDI)
 theme_set(theme_minimal())
 #Let's see if we can find a code for export?
 
-WDIsearch(string='Export ', field='name', cache=NULL)
+WDIsearch(string='Equity Indices', field='name', cache=NULL)
 
 #Ahha, seems like "NE.EXP.GNFS.CD" (Export of Goods and Services) will do it...
 
 #NE.EXP.GNFS.CD
 
-WDI(
+wdf <- WDI(
   country = "all",
   indicator = c("NE.EXP.GNFS.CD"),
   start = 1980,
-  end = 2021
-) |> filter(country == 'Pakistan' |
+  end = 2021)
+
+  wdf |> filter(country == 'Pakistan' |
               country == 'Bangladesh') |> mutate(export = NE.EXP.GNFS.CD / 1000000) |>
   ggplot() + aes(x = year, y = export, color = country) + geom_line() +
   labs(

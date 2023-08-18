@@ -1,0 +1,254 @@
+---
+title: "Workshop Sessions on Data Analysis"
+author: "[Zahid Asghar](https://zahedasghar.netlify.app)"
+date: last-modified
+date-format: "DD-MM-YYYY"
+title-block-banner: "#27455C"
+format: 
+  html:
+    embed-resources: true
+    smooth-scroll: true
+    theme: theme.scss
+    fontcolor: black
+    toc: true
+    toc-location: left
+    toc-title: Summary
+    toc-depth: 3
+    keep-md: false
+css: logo1.css
+execute: 
+  warning: false
+  freeze: auto
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# Research Data Analysis MsExcel & R
+
+Without effective communication and story with numbers it will be hard
+to convince someone for converting data insight into actions. Nothing
+better than data story to share data insight. Data visualization and
+dashboards play important role in having story with numbers. According
+to Brent Dykes (Forbes Magzine) "Data storytelling is a structured
+approach for communicating data insights, and it involves a combination
+of three key elements:*data*,*visuals*, and*narrative*."
+
+> As per my understanding if someone is using : DISCOVERY through
+> rigorous qualitative research and then testing using a quantitative
+> approach. Unfortunately, most of the research studies simply mention
+> some interviews and then there is neither rigorous analysis nor any
+> problem identification.
+
+## Objectives
+
+### MsExcel
+
+-   Learning MsExcel to work productively.
+
+-   Importing/Exporting data
+
+-   Learning to make beautiful graphs and tables in Excel for better
+    report writing.
+
+-   Learning pivot-tables and vlookups
+
+-   Introduction to datawrapper for tables and graphs for nontechnical
+    people
+
+### Learning R for Qualitative and Quantitative Data
+
+-   Becoming familiar with use of R (without downloading and with zero
+    coding experience)
+
+-   Learning 5 verbs of `dplyr` for handling almost 80% of data issues
+
+-   IPRI own theme tables and graphs for reports
+
+-   Analyzing Pakistan election data sets,
+
+-   Understanding to analyze textual, sentimental, N-Gram: correlations
+
+-   Introduction to Quarto (used in R/Python/Julia) for writing reports,
+    documents, slides, pdfs, htmls among many others for which no coding
+    is required.
+
+### Learning Outcomes
+
+-   Participants have to practice and demonstrate their skills through
+    purpose built exercises
+
+-   Participants have to develop a report based on some real data (to be
+    decided in consultation with coordinator and trainer) related to
+    **IPRI** work
+
+-   One speech data text analysis
+
+-   Reading a report of an organization (preferably IPRI) and giving a
+    review of how to improve it with skills learnt throughout workshop
+
+## Training material
+
+All data, codes, slides and other material will be available freely for
+all participants on web cloud during and after the training. It is
+highly desirable if participants have laptops and high speed internet to
+practice in the last half an hour of each session.
+
+### MsExcel
+
++------------------+------------------+------------------+
+| Day              | Topics           | Summary          |
++------------------+------------------+------------------+
+| Day 1            | An overview of   | Importance of    |
+|                  | workshop         | data in          |
+|                  |                  | political        |
+|                  |                  | science,         |
+|                  |                  | journalism and   |
+|                  |                  | public policy    |
+|                  |                  | making           |
++------------------+------------------+------------------+
+| Day 1-2          |                  | -   What data is |
+|                  |                  |     and where it |
+|                  |                  |     comes from   |
+|                  |                  |                  |
+|                  |                  | -   Why is data  |
+|                  |                  |     important    |
+|                  |                  |                  |
+|                  |                  | -   How to find  |
+|                  |                  |     stories in   |
+|                  |                  |     data         |
+|                  |                  |                  |
+|                  |                  | -   Where and    |
+|                  |                  |     how to find  |
+|                  |                  |     data         |
+|                  |                  |                  |
+|                  |                  | -   Drill Down   |
+|                  |                  |     Data         |
+|                  |                  |     Analysis     |
+|                  |                  |                  |
+|                  |                  | -   How to make  |
+|                  |                  |     sense of     |
+|                  |                  |     data through |
+|                  |                  |                  |
+|                  |                  |    visualization |
+|                  |                  |                  |
+|                  |                  | -   Dealing with |
+|                  |                  |     various      |
+|                  |                  |     types of     |
+|                  |                  |     data         |
+|                  |                  |     including    |
+|                  |                  |     pdf data     |
+|                  |                  |     tables in    |
+|                  |                  |     excel        |
++------------------+------------------+------------------+
+| Day 3-4          |                  | -   Data         |
+|                  |                  |     Handling     |
+|                  |                  |     Using Excel  |
+|                  |                  |                  |
+|                  |                  | -   Sorting      |
+|                  |                  |                  |
+|                  |                  | -   Filtering    |
+|                  |                  |                  |
+|                  |                  | -   Cleaning     |
+|                  |                  |                  |
+|                  |                  | -   Pivot tables |
+|                  |                  |                  |
+|                  |                  | -   Charting :   |
+|                  |                  |     Best         |
+|                  |                  |     practices    |
+|                  |                  |                  |
+|                  |                  | -   Good         |
+|                  |                  |                  |
+|                  |                  |    visualization |
+|                  |                  |     principles   |
+|                  |                  |                  |
+|                  |                  | -   Making       |
+|                  |                  |     tables and   |
+|                  |                  |     graphs for   |
+|                  |                  |                  |
+|                  |                  |    publications, |
+|                  |                  |     reports and  |
+|                  |                  |     presentation |
++------------------+------------------+------------------+
+
+## RStudio
+
++---------------------+---------------------+---------------------+
+| Day                 | Topics              | Summary             |
++---------------------+---------------------+---------------------+
+| Day 5               | Introduction of R   | Basics of R for     |
+|                     | for political       | working with social |
+|                     | science             | sciences data       |
++---------------------+---------------------+---------------------+
+| Day6                | Reading data from   | Learning to read    |
+|                     | different sources   | data from various   |
+|                     | including UN , WDI, | platforms in        |
+|                     | Political sites     | different formats,  |
+|                     |                     |                     |
+|                     |                     | reading pdf         |
+|                     |                     | reports, tables in  |
+|                     |                     | R                   |
++---------------------+---------------------+---------------------+
+| Day 7               | 5 verbs dealing for | -   filter          |
+|                     | data                |                     |
+|                     | wrangling/cleaning  | -   arrange         |
+|                     |                     |                     |
+|                     |                     | -   select          |
+|                     |                     |                     |
+|                     |                     | -   mutate          |
+|                     |                     |                     |
+|                     |                     | -   summarise       |
++---------------------+---------------------+---------------------+
+| Day 8               | ggplot to create \| |                     |
+|                     | Basic tools for \|  |                     |
+|                     | \| visualizing data |                     |
+|                     | plots like wsj, \|  |                     |
+|                     | economist, bbc...   |                     |
+|                     | or \| IPRI own      |                     |
+|                     | theme \|            |                     |
++---------------------+---------------------+---------------------+
+| Day 9               | Summarising data    | gt                  |
+|                     | and making          |                     |
+|                     | beautiful tables    |                     |
+|                     | with IPRI own theme |                     |
+|                     | (if any)            |                     |
++---------------------+---------------------+---------------------+
+| Day 10              | Analyzing text      | Text data analysis  |
+|                     | data: TedTalks,     |                     |
+|                     | Speeches            |                     |
++---------------------+---------------------+---------------------+
+
+### Qualitative data analysis in R (Posit Cloud)
+
+-   Process of working with text data
+
+-   Word frequencies and Word network with n-grams
+
+-   Stop word: removing noise from the data
+
+-   Exploring correlations
+
+-   Twitter/Sentimental analysis
+
+### Quantitative Data Analysis
+
+**Keywords**: constant/variable, nominal/ordinal/interval variable,
+dummy variable, Likert item, mode/median/mean.(independent, dependent)
+variable, (positive, negative, zero, curvilinear) relationship,
+cross-tabulation, mean comparison
+
+### Correlation and Linear Regression with Real Data
+
+**Keywords**: correlation, scatterplot, Pearson's r, multicollinearity,
+(multiple) regression, regression coefficient, standard error,
+prediction error, "ordinary least squares", partial effects, interactive
+effects.
+
+## New ways of having data and analyzing
+
+### Analyzing Google Trends, Google News API, Media API
+
+Discussion of various sources from where one can read all data directly
+from web API. - Google trends - Google news API - Media API - UN votes
+data from 1948-49 on 6 key issues directly from API till to-date
+(Comparing Pakistan and India ) - Participants feedback for way forward

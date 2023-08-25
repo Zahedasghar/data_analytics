@@ -96,127 +96,101 @@ practice in the last half an hour of each session.
 
 ### MsExcel
 
-+------------------+------------------+------------------+
-| Day              | Topics           | Summary          |
-+------------------+------------------+------------------+
-| Day 1            | An overview of   | Importance of    |
-|                  | workshop         | data in          |
-|                  |                  | political        |
-|                  |                  | science,         |
-|                  |                  | journalism and   |
-|                  |                  | public policy    |
-|                  |                  | making           |
-+------------------+------------------+------------------+
-| Day 1-2          |                  | -   What data is |
-|                  |                  |     and where it |
-|                  |                  |     comes from   |
-|                  |                  |                  |
-|                  |                  | -   Why is data  |
-|                  |                  |     important    |
-|                  |                  |                  |
-|                  |                  | -   How to find  |
-|                  |                  |     stories in   |
-|                  |                  |     data         |
-|                  |                  |                  |
-|                  |                  | -   Where and    |
-|                  |                  |     how to find  |
-|                  |                  |     data         |
-|                  |                  |                  |
-|                  |                  | -   Drill Down   |
-|                  |                  |     Data         |
-|                  |                  |     Analysis     |
-|                  |                  |                  |
-|                  |                  | -   How to make  |
-|                  |                  |     sense of     |
-|                  |                  |     data through |
-|                  |                  |                  |
-|                  |                  |    visualization |
-|                  |                  |                  |
-|                  |                  | -   Dealing with |
-|                  |                  |     various      |
-|                  |                  |     types of     |
-|                  |                  |     data         |
-|                  |                  |     including    |
-|                  |                  |     pdf data     |
-|                  |                  |     tables in    |
-|                  |                  |     excel        |
-+------------------+------------------+------------------+
-| Day 3-4          |                  | -   Data         |
-|                  |                  |     Handling     |
-|                  |                  |     Using Excel  |
-|                  |                  |                  |
-|                  |                  | -   Sorting      |
-|                  |                  |                  |
-|                  |                  | -   Filtering    |
-|                  |                  |                  |
-|                  |                  | -   Cleaning     |
-|                  |                  |                  |
-|                  |                  | -   Pivot tables |
-|                  |                  |                  |
-|                  |                  | -   Charting :   |
-|                  |                  |     Best         |
-|                  |                  |     practices    |
-|                  |                  |                  |
-|                  |                  | -   Good         |
-|                  |                  |                  |
-|                  |                  |    visualization |
-|                  |                  |     principles   |
-|                  |                  |                  |
-|                  |                  | -   Making       |
-|                  |                  |     tables and   |
-|                  |                  |     graphs for   |
-|                  |                  |                  |
-|                  |                  |    publications, |
-|                  |                  |     reports and  |
-|                  |                  |     presentation |
-+------------------+------------------+------------------+
++---------+-------------------------+----------------------------+
+| Day     | Topics                  | Summary                    |
++---------+-------------------------+----------------------------+
+| Day 1   | An overview of workshop | Importance of data in      |
+|         |                         | political science,         |
+|         |                         | journalism and public      |
+|         |                         | policy making              |
++---------+-------------------------+----------------------------+
+| Day 1-2 |                         | -   What data is and where |
+|         |                         |     it comes from          |
+|         |                         |                            |
+|         |                         | -   Why is data important  |
+|         |                         |                            |
+|         |                         | -   How to find stories in |
+|         |                         |     data                   |
+|         |                         |                            |
+|         |                         | -   Where and how to find  |
+|         |                         |     data                   |
+|         |                         |                            |
+|         |                         | -   Drill Down Data        |
+|         |                         |     Analysis               |
+|         |                         |                            |
+|         |                         | -   How to make sense of   |
+|         |                         |     data through           |
+|         |                         |                            |
+|         |                         | visualization              |
+|         |                         |                            |
+|         |                         | -   Dealing with various   |
+|         |                         |     types of data          |
+|         |                         |     including pdf data     |
+|         |                         |     tables in excel        |
++---------+-------------------------+----------------------------+
+| Day 3-4 |                         | -   Data Handling Using    |
+|         |                         |     Excel                  |
+|         |                         |                            |
+|         |                         | -   Sorting                |
+|         |                         |                            |
+|         |                         | -   Filtering              |
+|         |                         |                            |
+|         |                         | -   Cleaning               |
+|         |                         |                            |
+|         |                         | -   Pivot tables           |
+|         |                         |                            |
+|         |                         | -   Charting : Best        |
+|         |                         |     practices              |
+|         |                         |                            |
+|         |                         | -   Good                   |
+|         |                         |                            |
+|         |                         | visualization principles   |
+|         |                         |                            |
+|         |                         | -   Making tables and      |
+|         |                         |     graphs for             |
+|         |                         |                            |
+|         |                         | publications, reports and  |
+|         |                         | presentation               |
++---------+-------------------------+----------------------------+
 
 ## RStudio
 
-+---------------------+---------------------+---------------------+
-| Day                 | Topics              | Summary             |
-+---------------------+---------------------+---------------------+
-| Day 5               | Introduction of R   | Basics of R for     |
-|                     | for political       | working with social |
-|                     | science             | sciences data       |
-+---------------------+---------------------+---------------------+
-| Day6                | Reading data from   | Learning to read    |
-|                     | different sources   | data from various   |
-|                     | including UN , WDI, | platforms in        |
-|                     | Political sites     | different formats,  |
-|                     |                     |                     |
-|                     |                     | reading pdf         |
-|                     |                     | reports, tables in  |
-|                     |                     | R                   |
-+---------------------+---------------------+---------------------+
-| Day 7               | 5 verbs dealing for | -   filter          |
-|                     | data                |                     |
-|                     | wrangling/cleaning  | -   arrange         |
-|                     |                     |                     |
-|                     |                     | -   select          |
-|                     |                     |                     |
-|                     |                     | -   mutate          |
-|                     |                     |                     |
-|                     |                     | -   summarise       |
-+---------------------+---------------------+---------------------+
-| Day 8               | ggplot to create \| |                     |
-|                     | Basic tools for \|  |                     |
-|                     | \| visualizing data |                     |
-|                     | plots like wsj, \|  |                     |
-|                     | economist, bbc...   |                     |
-|                     | or \| IPRI own      |                     |
-|                     | theme \|            |                     |
-+---------------------+---------------------+---------------------+
-| Day 9               | Summarising data    | gt                  |
-|                     | and making          |                     |
-|                     | beautiful tables    |                     |
-|                     | with IPRI own theme |                     |
-|                     | (if any)            |                     |
-+---------------------+---------------------+---------------------+
-| Day 10              | Analyzing text      | Text data analysis  |
-|                     | data: TedTalks,     |                     |
-|                     | Speeches            |                     |
-+---------------------+---------------------+---------------------+
++--------+-----------------------------+-----------------------------+
+| Day    | Topics                      | Summary                     |
++--------+-----------------------------+-----------------------------+
+| Day 5  | Introduction of R for       | Basics of R for working     |
+|        | political science           | with social sciences data   |
++--------+-----------------------------+-----------------------------+
+| Day6   | Reading data from different | Learning to read data from  |
+|        | sources including UN , WDI, | various platforms in        |
+|        | Political sites             | different formats,          |
+|        |                             |                             |
+|        |                             | reading pdf reports, tables |
+|        |                             | in R                        |
++--------+-----------------------------+-----------------------------+
+| Day 7  | 5 verbs dealing for data    | -   filter                  |
+|        | wrangling/cleaning          |                             |
+|        |                             | -   arrange                 |
+|        |                             |                             |
+|        |                             | -   select                  |
+|        |                             |                             |
+|        |                             | -   mutate                  |
+|        |                             |                             |
+|        |                             | -   summarise               |
++--------+-----------------------------+-----------------------------+
+| Day 8  | ggplot to create \| Basic   |                             |
+|        | tools for \| \| visualizing |                             |
+|        | data plots like wsj, \|     |                             |
+|        | economist, bbc... or \|     |                             |
+|        | IPRI own theme \|           |                             |
++--------+-----------------------------+-----------------------------+
+| Day 9  | Summarising data and making | gt                          |
+|        | beautiful tables with IPRI  |                             |
+|        | own theme (if any)          |                             |
++--------+-----------------------------+-----------------------------+
+| Day 10 | Analyzing text data:        | Text data analysis          |
+|        | TedTalks, Speeches          |                             |
++--------+-----------------------------+-----------------------------+
 
 ### Qualitative data analysis in R (Posit Cloud)
 

@@ -4,6 +4,7 @@ author: "Zahid Asghar"
 format: 
   html:
     theme: solarized
+    keep-md: false
 highlight-style: dracula
 execute: 
   freeze: auto
@@ -27,7 +28,7 @@ library(tidyverse)
 
 ## arrange
 
-## aelect
+## select
 
 ## mutate
 

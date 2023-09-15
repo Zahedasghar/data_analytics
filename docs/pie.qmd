@@ -31,13 +31,13 @@ editor:
 -   Importance of research question and research design for data
     analysis.
 
--   Understand important elements of data, summarising, visualization
+-   Understand important elements of data, summarizing, visualization
     and tabulating data as per best practices
 
 -   Correlation and Regression, Linear and Nonlinear regressions
 
--   Forecasting education needs: enrolment, infrastructure, human capita
-    and other requirements
+-   Forecasting education needs: enrollment, infrastructure, human
+    capital and other requirements
 
 -   Becoming familiar with use of R (without downloading and with zero
     coding experience)

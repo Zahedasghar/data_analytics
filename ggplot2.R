@@ -4,7 +4,6 @@
 #  install.packages('ggplot2')
 # Loading
 library(tidyverse)
-library(ggplot2)
 #Data format and preparation
 #The data should be a data.frame (columns are variables and rows are observations).
 
@@ -12,10 +11,15 @@ library(ggplot2)
 
 # Load the data
 data(mtcars)
+
 df <- mtcars %>% select("mpg","cyl","wt")
+
+
+
+
 # Convert cyl to a factor variable
 #df$cyl <- as.factor(df$cyl)
-df<-df %>% mutate(cyl=as.factor(cyl))
+df <- df %>% mutate(cyl = as.factor(cyl))
 head(df)
 
 #mtcars : Motor Trend Car Road Tests.
@@ -25,7 +29,9 @@ glimpse(df)
 
 
 # Basic scatter plot
-ggplot(df)+aes(x=mpg,y=wt)+geom_point()
+
+
+ggplot(df)+aes(x=mpg,y=wt, col=cyl)+geom_point(size=2)
 # Scatter plot with smoothed line
 
 ggplot(df)+aes(x=mpg,y=wt)+geom_point()+
@@ -44,7 +50,7 @@ ggplot(df)+aes(x=mpg,y=wt, color=cyl,shape=cyl)+geom_point()
 #The R code below generates some data containing the weights by sex (M for male; F for female):
 
 set.seed(1234)
-wdata = data.frame(
+wdata <-  data.frame(
   sex = factor(rep(c("F", "M"), each=200)),
   weight = c(rnorm(200, 55), rnorm(200, 58)))
 head(wdata)
@@ -53,7 +59,7 @@ qplot(sex, weight, data = wdata,
       geom= "boxplot", fill = sex)
 # Violin plot
 
-ggplot(wdata,aes(x=sex,y=weight))+geom_violin()
+ggplot(wdata)+ aes(x=sex,y=weight)+geom_violin()
 # Dot plot
 ggplot(wdata)+aes(x=sex,y=weight)+geom_dotplot(stackdir = "center",
                                                binaxis = "y",
@@ -107,7 +113,7 @@ p1+p2
 # Change histogram fill color by group (sex)
 ggplot(wdata)+aes(weight)+geom_histogram()
 
-ggplot(wdata)+aes(weight,fill=sex)+geom_histogram()
+ggplot(wdata)+aes(weight,fill=sex)+geom_histogram(bins = 25)
 
 # Density plot
 # Change density plot line color by group (sex)
@@ -704,18 +710,18 @@ Key function: geom_bar()
 Alternative function: stat_identity()
 g + stat_identity(geom = "bar")
 g + stat_identity(geom = "bar", position = "dodge")
-Two variables: Discrete X, Discrete Y
-The diamonds data set [in ggplot2] we’ll be used to plot the discrete variable color (for diamond colors) by the discrete variable cut (for diamond cut types). The plot is created using the function geom_jitter().
-
-ggplot(diamonds, aes(cut, color)) +
-  geom_jitter(aes(color = cut), size = 0.5)
-
-
-To customize the plot, the following arguments can be used: alpha, color, fill, shape and size.
-
-Key function: geom_jitter()
-Two variables: Visualizing error
-The ToothGrowth data set we’ll be used. We start by creating a data set named df which holds ToothGrowth data.
+# Two variables: Discrete X, Discrete Y
+# The diamonds data set [in ggplot2] we’ll be used to plot the discrete variable color (for diamond colors) by the discrete variable cut (for diamond cut types). The plot is created using the function geom_jitter().
+# 
+# ggplot(diamonds, aes(cut, color)) +
+#   geom_jitter(aes(color = cut), size = 0.5)
+# 
+# 
+# To customize the plot, the following arguments can be used: alpha, color, fill, shape and size.
+# 
+# Key function: geom_jitter()
+# Two variables: Visualizing error
+# The ToothGrowth data set we’ll be used. We start by creating a data set named df which holds ToothGrowth data.
 
 # ToothGrowth data set
 df <- ToothGrowth
@@ -843,9 +849,9 @@ Bar plot with error bars
 Line plot with error bars
 
 
-Key functions: geom_errorbar(), stat_summary()
-geom_errorbarh(): Horizontal error bars
-We’ll use the data set named df2, which holds the mean and the SD of tooth length (len) by groups (dose):
+# Key functions: geom_errorbar(), stat_summary()
+# geom_errorbarh(): Horizontal error bars
+# We’ll use the data set named df2, which holds the mean and the SD of tooth length (len) by groups (dose):
   
   df2 <- data_summary(ToothGrowth, varname="len", grps = "dose")
 head(df2)
@@ -854,17 +860,17 @@ We start by creating a plot, named f, that we’ll finish next by adding a layer
 
 f <- ggplot(df2, aes(x = len, y = dose ,
                      xmin=len-sd, xmax=len+sd))
-The arguments xmin and xmax are used for horizontal error bars.
-
-
-
-To customize the plot, the following arguments can be used: alpha, color, linetype, size and height.
-
-Key functions: geom_errorbarh()
-geom_linerange() and geom_pointrange(): An interval represented by a vertical line
-geom_linerange(): Add an interval represented by a vertical line
-geom_pointrange(): Add an interval represented by a vertical line with a point in the middle
-We’ll use the data set df2.
+# The arguments xmin and xmax are used for horizontal error bars.
+# 
+# 
+# 
+# To customize the plot, the following arguments can be used: alpha, color, linetype, size and height.
+# 
+# Key functions: geom_errorbarh()
+# geom_linerange() and geom_pointrange(): An interval represented by a vertical line
+# geom_linerange(): Add an interval represented by a vertical line
+# geom_pointrange(): Add an interval represented by a vertical line with a point in the middle
+# We’ll use the data set df2.
 
 f <- ggplot(df2, aes(x = dose, y = len,
                      ymin=len-sd, ymax=len+sd))
@@ -874,12 +880,12 @@ f + geom_linerange()
 f + geom_pointrange()
 
 
-To customize the plot, the following arguments can be used: alpha, color, linetype, size, shape and fill (for geom_pointrange()).
-
-Combine geom_dotplot and error bars
-It’s also possible to combine geom_dotplot() and error bars. We’ll use the ToothGrowth data set. You don’t need to compute the mean and SD. This can be done automatically by using the function stat_summary() in combination with the argument fun.data = “mean_sdl”.
-
-We start by creating a dot plot, named g, that we’ll finish in the next section by adding error bar layers.
+# To customize the plot, the following arguments can be used: alpha, color, linetype, size, shape and fill (for geom_pointrange()).
+# 
+# Combine geom_dotplot and error bars
+# It’s also possible to combine geom_dotplot() and error bars. We’ll use the ToothGrowth data set. You don’t need to compute the mean and SD. This can be done automatically by using the function stat_summary() in combination with the argument fun.data = “mean_sdl”.
+# 
+# We start by creating a dot plot, named g, that we’ll finish in the next section by adding error bar layers.
 
 g <- ggplot(df, aes(x=dose, y=len)) + 
   geom_dotplot(binaxis='y', stackdir='center')
@@ -896,16 +902,16 @@ g + stat_summary(fun.data=mean_sdl, fun.args = list(mult=1),
                  geom="pointrange", color="red")
 
 
-To customize the plot, the following arguments can be used: alpha, color, fill, linetype and size. Learn more here: ggplot2 error bars.
-
-Key functions: geom_errorbarh(), geom_errorbar(), geom_linerange(), geom_pointrange(), geom_crossbar(), stat_summary()
-Two variables: Maps
-The function geom_map() can be used to create a map with ggplot2. The R package map is required. It contains geographical information useful for drawing easily maps in ggplot2.
+# To customize the plot, the following arguments can be used: alpha, color, fill, linetype and size. Learn more here: ggplot2 error bars.
+# 
+# Key functions: geom_errorbarh(), geom_errorbar(), geom_linerange(), geom_pointrange(), geom_crossbar(), stat_summary()
+# Two variables: Maps
+# The function geom_map() can be used to create a map with ggplot2. The R package map is required. It contains geographical information useful for drawing easily maps in ggplot2.
 
 #Install map package (if you don’t have it):
 
 #install.packages("map")
-In the following R code, we’ll create USA map and USArrests crime data to shade each region.
+#In the following R code, we’ll create USA map and USArrests crime data to shade each region.
 #library(map)
 # Prepare the data
 crimes <- data.frame(state = tolower(rownames(USArrests)), 
@@ -921,14 +927,14 @@ ggplot(crimes, aes(map_id = state)) +
   expand_limits(x = map_data$long, y = map_data$lat)
 
 
-To customize the plot, the following arguments can be used: alpha, color, fill, linetype and size. Learn more here: ggplot2 map.
-
-Key function: geom_map()
-
-Three variables
-The mtcars data set we’ll be used. We first compute a correlation matrix, which will be visualized using specific ggplot2 functions.
-
-Prepare the data:
+# To customize the plot, the following arguments can be used: alpha, color, fill, linetype and size. Learn more here: ggplot2 map.
+# 
+# Key function: geom_map()
+# 
+# Three variables
+# The mtcars data set we’ll be used. We first compute a correlation matrix, which will be visualized using specific ggplot2 functions.
+# 
+# Prepare the data:
   
   df <- mtcars[, c(1,3,4,5,6,7)]
 # Correlation matrix
@@ -937,19 +943,19 @@ cormat <- round(cor(df),2)
 require(reshape2)
 cormat <- melt(cormat)
 head(cormat)
-We start by creating a plot, named g, that we’ll finish in the next section by adding a layer.
+# We start by creating a plot, named g, that we’ll finish in the next section by adding a layer.
 
 g <- ggplot(cormat, aes(x = Var1, y = Var2))
 
-Possible layers include:
-  
-  geom_tile(): Tile plane with rectangles (similar to levelplot and image)
-geom_raster(): High-performance rectangular tiling. This is a special case of geom_tile where all tiles are the same size.
+# Possible layers include:
+#   
+#   geom_tile(): Tile plane with rectangles (similar to levelplot and image)
+# geom_raster(): High-performance rectangular tiling. This is a special case of geom_tile where all tiles are the same size.
+# 
 
-
-We’ll use the function geom_tile() to visualize a correlation matrix.
-
-Compute and visualize correlation matrix:
+# We’ll use the function geom_tile() to visualize a correlation matrix.
+# 
+# Compute and visualize correlation matrix:
   
   # 1. Compute correlation
   cormat <- round(cor(df),2)
@@ -974,26 +980,26 @@ ggplot(melted_cormat, aes(Var2, Var1, fill = value))+
   coord_fixed()
 
 
-To customize the plot, the following arguments can be used: alpha, color, fill, linetype and size. Learn more here: ggplot2 correlation matrix heatmap.
-
-Key functions: geom_tile(), geom_raster()
-Other types of graphs
-Pie chart: (click to read more)
-
-
-Survival curves: (click to read more)
+# To customize the plot, the following arguments can be used: alpha, color, fill, linetype and size. Learn more here: ggplot2 correlation matrix heatmap.
+# 
+# Key functions: geom_tile(), geom_raster()
+# Other types of graphs
+# Pie chart: (click to read more)
 
 
-Graphical primitives: polygon, path, ribbon, segment, rectangle
-This section describes how to add graphical elements to a plot. The functions below we’ll be used:
+# Survival curves: (click to read more)
+# 
+# 
+# Graphical primitives: polygon, path, ribbon, segment, rectangle
+# This section describes how to add graphical elements to a plot. The functions below we’ll be used:
+#   
   
-  
-  geom_polygon(): Add polygon, a filled path
-geom_path(): Connect observations in original order
-geom_ribbon(): Add ribbons, y range with continuous x values.
-geom_segment(): Add a single line segments
-geom_curve(): Add curves
-geom_rect(): Add a 2d rectangles.
+#   geom_polygon(): Add polygon, a filled path
+# geom_path(): Connect observations in original order
+# geom_ribbon(): Add ribbons, y range with continuous x values.
+# geom_segment(): Add a single line segments
+# geom_curve(): Add curves
+# geom_rect(): Add a 2d rectangles.
 
 
 The R code below draws France map using geom_polygon():
@@ -1003,7 +1009,7 @@ ggplot(france, aes(x = long, y = lat, group = group)) +
   geom_polygon(fill = 'white', colour = 'black')
 
 
-To customize the plot, the following arguments can be used: alpha, color, fill, linetype and size.
+# To customize the plot, the following arguments can be used: alpha, color, fill, linetype and size.
 
 The following R code uses econimics data [in ggplot2] and produces path, ribbon and rectangles.
 h <- ggplot(economics, aes(date, unemploy))

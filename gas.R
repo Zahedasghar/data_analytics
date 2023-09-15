@@ -14,7 +14,8 @@ names(gas |> clean_names())
 # View(gas)
 # library(janitor)
  gas |> clean_names() -> gas
-# 
+gas |> View()
+ # 
 # 
 # 
 # names(gas)

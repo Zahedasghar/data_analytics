@@ -5,7 +5,7 @@ format:
   html :
     theme: [simple]
 params:
-  player: "Babar Azam"
+  player: "Aasif Sheikh"
 execute: 
   freeze: auto
 ---
@@ -30,6 +30,7 @@ We have data about `r nrow(params$player)` players. Performance of `r params$pla
 #| echo: false
 #| warning: false
 #| message: false
+
 df<-fetch_player_data(player_id, "ODI") %>%
   mutate(NotOut = (Dismissal == "not out"))
 

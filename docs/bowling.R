@@ -1,13 +1,13 @@
 library(cricketdata)
 library(tidyverse)
-#bowling <- fetch_cricinfo("Test", "Men", "Bowling")
-Pakbowling <- fetch_cricinfo("Test", "Men", "Bowling",country = "Pakistan")
+#bowling <- fetch_cricinfo("ODI", "Men", "Bowling")
+Pakbowling <- fetch_cricinfo("ODI", "Men", "Bowling",country = "Pakistan")
 Pakbowling|>glimpse()
 
 pkbowling <- Pakbowling %>%  
-  filter(Wickets >= 100) %>%  
+  filter(Wickets >= 80) %>%  
   ggplot(aes(x=reorder(Player, Wickets),y=Wickets))+geom_bar(stat="identity", fill="dodgerblue4") +coord_flip()+
-  labs(x="",y="Wickets", title="Shaheen Shah Afridi joins Pakistan's 100 Test wicket takers club ",
+  labs(x="",y="Wickets", title="ODI wicket takers club ",
        caption="cricketdata, graphics: @zahedasghar")+theme_minimal()+theme(plot.title = element_text(size = 15))
 pkbowling
   
@@ -22,7 +22,7 @@ Pakbowling %>%  select(Player, Matches, Runs, Wickets,StrikeRate) |>
 plt <- Pakbowling %>%  
   filter(Wickets >= 100) %>%  
   ggplot(aes(x=reorder(Player, Wickets),y=Wickets))+geom_bar(stat="identity", fill="dodgerblue4") +coord_flip()+
-  labs(x="",y="Wickets", title="Shaheen Shah Afridi joins Pakistan's 100 Test wicket takers club ",
+  labs(x="",y="Wickets", title="80 or more ODI wicket takers ",
        caption="cricketdata, graphics: @zahedasghar")+theme_minimal()+theme(plot.title = element_text(size = 15))
 
 plt  

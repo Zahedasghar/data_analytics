@@ -200,6 +200,36 @@ ggplot(ER, aes(x = time, y = D_Rs)) +
 +geom_rect(aes( ymin=220, ymax=230))
 
 
+df |> mutate(color = case_when(value < 15 ~ "red",
+                                      TRUE ~ "dodgerblue")) |>
+  filter(variable == "year_on_year") |>
+  ggplot() + aes(x = date, y = value, fill = "red") +
+  geom_bar(aes(fill = value < 15), stat = 'identity') +
+  theme_minimal() + labs(
+    x = "Time",
+    y = "inflation",
+    title = "27.3% is very high inflation as base rate was also very high",
+    subtitle = "Inflation has become very serious as 27% inflation over last three months have a very high base. \n Hike in fuel prices and recovering line losses from those who are regularly paying their bills will make things \n more worse in months to come",
+    caption = "source:PBS, by: Zahid Asghar" 
+  ) + theme(legend.position = "none")+theme(plot.title = element_text(size = 15))
+
+camcorder::gg_record(
+  dir = 'images',
+  width = 12,
+  height = 12 * 9 / 16,
+  dpi = 300,
+  bg = 'white' 
+  # Makes sure background of plot is actually white, not transparent
+)
+
+
+ggplotly(p11)
+
+
+
+
+
+
 p <- df |> filter(variable=="year_on_year") |> 
   ggplot()+ aes(x = date, y = value, fill="red") +
   geom_col() + 
@@ -210,6 +240,9 @@ p <- df |> filter(variable=="year_on_year") |>
 
 
 p
+library(plotly)
+
+ggplotly(p)
 library(magick)
 gif<-image_read("https://img.etimg.com/thumb/msid-93194137,width-1200,height-900,imgsize-1101135,resizemode-8/20220729_inflation_01.jpg")
 

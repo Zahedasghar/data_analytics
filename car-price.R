@@ -2,8 +2,11 @@ library(readxl)
 library(readr)
 library(tidyverse)
 library(forcats)
-car_prices <- read_excel("docs/data/car-prices.xlsx")
-# View(car_prices)
+car_prices <- read_excel("car-prices.xlsx")
+
+
+
+ View(car_prices)
 # Remove missing values as t 
 
 car_prices <- car_prices |> na.omit()
@@ -19,6 +22,11 @@ car_prices |> glimpse()
 
 car_prices <- 
   car_prices |> mutate(prices=parse_number(Prices))
+
+
+
+
+
 # car_prices$Prices <-  parse_number(car_prices$Prices)
 
 car_prices|>glimpse() ## Now Prices is a double (numeric variable) and it has PKR written before it
@@ -66,7 +74,7 @@ ggplot(carp, aes(x = fct_infreq(make))) +
 
 ggplot(carp, aes(x = fct_infreq(make))) +
   geom_bar(fill = "steelblue") + coord_flip()
-0
+
 library(ggthemes)
 
 ggplot(carp, aes(x = fct_rev(fct_infreq(make)))) +
@@ -235,9 +243,16 @@ diamonds <- diamonds %>%
          table = structure(table, label = 'width of top of diamond relative to widest point'))
 
 library(flexdashboard)
+
 diamonds %>% 
   report_xray(data_name = 'Diamonds', study = 'ggplot2')
 
 diamonds |> add_count()
 
 diamonds |> mutate(rn = row_number())
+
+
+
+mtcars |> 
+  report_xray(data_name = 'mtcars', study = 'ggplot2')
+

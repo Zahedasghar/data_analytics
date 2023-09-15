@@ -1,5 +1,5 @@
 library(tidyverse)
-oad("D:/RepTemplates/mixture/data/anes20.rda")
+load("D:/RepTemplates/mixture/data/anes20.rda")
 anes20 |> glimpse()
 
 anes20 |> group_by(V201320x) |> count() 

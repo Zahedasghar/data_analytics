@@ -1,7 +1,8 @@
 library(tidyverse)
-library(readxl)
+#library(readxl)
 
 wide_df <- read_excel("wide_data.xlsx")
+wide_df |> glimpse()
 
 wide_df <- wide_df |> mutate(Dec=as.numeric(Dec)) |> na.omit()
 

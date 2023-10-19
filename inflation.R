@@ -34,17 +34,25 @@ df <- cpi |>
                           subtitle="Rural inflation is 42.2% on YoY basis.",
 caption="source:PBS, by: Zahid Asghar")
 
+ # Highlight specific months with a different color
+ highlighted_months <- c("2022-09-30", "2023-09-30")
+ colors <- c("blue", "red", rep("blue", length(df$date) - 2))
+ 
+ df$highlight <- ifelse(df$date %in% highlighted_months, "highlighted", "not highlighted")
 
 inflation <- df |> filter(variable=="year_on_year") |> 
-  ggplot()+ aes(x = date, y = value, fill="red") +
+  ggplot()+ aes(x = date, y = value, fill=highlight) +
   geom_col() + 
   #scale_color_manual(values = "#00AFBB") +
-  theme_minimal()+labs(x="Time",y="inflation YoY",title = "Pakistan CPI witnessed little decrease with YoY inflation 28.3% ",
-                       subtitle = "Bumpy road ahead due to apparent surge in oil prices at global level  besides putting extra burden on those who pay their bills regularly",
+  theme_minimal()+labs(x="Time",y="inflation YoY",title = "30% Sep-23 over 23% Sep-22 inflation",
+                       subtitle = "This high inflation is simply a killer and more to come by. IMF conditions fulfilment simply means more indirect taxes 
+                       without doing anything hard and where it is required. Rural inflation surpassed 33% and all with almost 
+                       zero economic growth",
                        caption = "Source: PBS \n Graphic: @zahedasghar")+ theme(legend.position = "none")+
   theme_grey(base_size = 15)
 
-
+inflation 
+ 
 library(ragg)
 ragg::agg_png("images/inflation_15x10.png", width = 15, height = 10, units = "in", res = 300)
 

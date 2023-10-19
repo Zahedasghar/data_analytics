@@ -1,11 +1,11 @@
 ---
-title: "Batting Performance of `r params$player`"
+#title: "Batting Performance of `r params$player`"
 date: "today"
 format: 
   html :
     theme: [simple]
 params:
-  player: "Aasif Sheikh"
+  player: "Abdullah Shafiq"
 execute: 
   freeze: auto
 ---
@@ -22,7 +22,7 @@ df<-fetch_player_data(player_id, "ODI") %>%
   mutate(NotOut = (Dismissal == "not out"))
 ```
 
-We have data about `r nrow(params$player)` players. Performance of `r params$player` is shown below:
+
 
 ## ODI match scores by `r params$player`
 
@@ -51,6 +51,6 @@ title_text<-paste0(' Batting Performance')
 # Plot ODI scores
 ggplot(df) +
   geom_hline(aes(yintercept = AAave), col="gray") +
-  geom_point(aes(x = Date, y = Runs, col = NotOut))  +
+  geom_point(aes(x = Date, y = Runs, col = NotOut),size=2)  +
   scale_y_continuous(sec.axis = sec_axis(~., breaks = AAave))+theme(legend.position = "none") +labs(title=title_text)
 ```

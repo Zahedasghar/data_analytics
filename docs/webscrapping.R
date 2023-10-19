@@ -2,20 +2,21 @@ library(rvest)
 library(tidytable)
 library(xml2)
 library(tidyverse)
+
 df1 <- 
   read_html("https://www.psx.com.pk/psx/announcement/financial-announcements") %>% 
   html_elements("body") %>%
   html_table() %>%
   .[[1]]
 
-df1
 
+df1 |> glimpse()
 
 df2 <- read_html("https://dps.psx.com.pk/") |> 
   html_elements("body") |> 
   html_table() 
 
-
+df2
 #
 #        Author: Dr Eugene O'Loughlin
 #   Video Title: How To... Read HTML Tables from the Internet in R
@@ -56,21 +57,41 @@ head(teamBatting)
 teamPitching <- allTables[[2]]
 head(teamPitching)
 
+# LESS IS MORE
+# TUfte : minimize non-data ink ratio
 
 world_pop <- read_html("https://www.worldometers.info/world-population/population-by-country/")
 
 world_pop <- html_table(world_pop, fill = TRUE)[[1]]
 
+world_pop |> colnames()
+
 library(janitor)
 world_pop |> clean_names() -> pop_df
-pop_df
+pop_df |> glimpse()
+
 pop_df |> mutate(population_23=as.numeric(gsub(",", "", population_2023))) -> df_pop
 
-df_pop |> rename(country=country_or_dependency) |> select(country, population_23) ->df_pop
-df_pop |> arrange(-population_23)
+df_pop |> mutate(urban=gsub("([A-Za-z]+).*", "\\ %", urban_pop_percent)) |> glimpse()
 
-pop_12 <- df_pop |> arrange(-population_23) |> top_n(12) |> mutate(country_code_2=c("CN","IN","US","ID", "PK","NG" ,"BR","BD", "JP", "RU", "MX","ET")) |> 
-  mutate(country_code_3=c("CHN","USA","IDN","IND","BRA","NGA" ,"BGD", "PAK", "JPN","RUS", "MEX","ETH")) |> 
+
+
+df_pop |> rename(country=country_or_dependency) |> select(country, population_23) ->df_pop
+
+
+
+df_pop |> arrange(desc(population_23)) |> head(10)
+
+
+
+
+
+
+
+
+pop_12 <- df_pop |> arrange(-population_23) |> top_n(12) |>
+  mutate(country_code_2=c("IN","CN","US","ID", "PK","NG" ,"BR","BD", "RU", "MX","ET","JP")) |> 
+  mutate(country_code_3=c("IND","CHN","USA","IDN","PAK","NGA" ,"BRA","BGD",  "RUS", "MEX","ETH","JPN")) |> 
   rename(country_name=country)
 
 
@@ -100,7 +121,6 @@ pop_12 |>
     source_note = "Source: https://www.worldometers.info/world-population/population-by-country/") |> 
   tab_source_note(source_note = "The population data in year 2023"
   )
-
 
 
 

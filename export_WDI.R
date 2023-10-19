@@ -14,7 +14,7 @@ WDIsearch(string='Equity Indices', field='name', cache=NULL)
 #Ahha, seems like "NE.EXP.GNFS.CD" (Export of Goods and Services) will do it...
 
 #NE.EXP.GNFS.CD
-
+options(timeout = 300)
 wdf <- WDI(
   country = "all",
   indicator = c("NE.EXP.GNFS.CD"),

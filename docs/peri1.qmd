@@ -1,0 +1,119 @@
+---
+title: "[Data Analysis Workshop for PERI]{.flow}"
+author: "[Zahid Asghar](https://zahedasghar.netlify.app)"
+date: last-modified
+date-format: "DD-MM-YYYY"
+title-block-banner: "#27455C"
+format: 
+   
+  html:
+    theme: [default, custom.css, styles.scss]
+    toc: true
+    code-link: true
+    toc-location: right
+    toc-title: Summary
+    toc-depth: 3
+css: logo1.css
+execute: 
+  warning: false
+  freeze: auto
+---
+
+## What one will learn 
+
+-   Manipulate numeric and textual data types using tidyverse in RStudio 
+
+-   Read, write, and save data files from SPSS, STATA, Excel, csv, SAS and scrape web pages using R. 
+
+-   Define and manipulate data structures, including vectors, factors, lists, and data frames. 
+
+-   Use of 5 verbs : select, mutate, summarize, filter and arrange to deal with 80% data wrangling 
+
+-   Dealing with dirty excel and other data formats 
+
+-   Data wrangling, visualization and basic regression analysis
+-   Exploring MICS/PDHS/ASER/Punjab ST other data sets
+
+-   Learning to use R for serving data analysis instead of learning coding
+
+-   All slides, data , data codes and related stuff will be handed over to reproduce all training material and prepare reports whenever required after the training.
+
+## Workshop Description
+
+The R language plays a critical role in data analysis, machine learning, quarto documentation and is a common programming language when working in the field of data science & analytics. This workshop will introduce you to R language fundamentals with the primary goal being to learn R in a way that allows you to practically tackle a problem at hand.  
+
+
+This is not a workshop on just R coding. You will learn how to work data types, techniques for manipulation, and how to implement fundamental programming tasks. This workshop emphasizes learning by doing as data science is not something to learn about but to do about. You will learn to write a project in Quarto in Posit to produce data-driven insights. 
+Anyone working with data, analytics and machine learning should join this workshop for improving one’s productivity, career growth and increasing earning opportunities through free-lancing. 
+The workshop is beginner friendly, with no previous experience with R or in programming required. This workshop will enable you to start your data analytics journey or will enhance your skills if you are already working with data.
+
+### What is R? 
+
+R is a programming language and environment designed mainly for the purposes of data mining, statistical analysis, data visualization, and machine learning. R is widely popular with Data scientists and data analysts because of its wonderful capacity to visualize data. 
+
+When sharing findings with non-technical teams, having graphs, charts, and images helps make data easier to understand - making it a versatile and in-demand tool.
+
+## Day-1
+
+### Session 1 
+
+Introduction to R, Rstudio, Rstudio Cloud, R-packages, Libraries, reading and cleaning data. Main objective is to learn R environment, data formats, and how to start working with data
+
+Installing R studio
+Navigating R Studio interface
+Learning about data formats, and how to start working with data 
+
+#### Activity 1: Practice in importing excel/csv/stata/spss data
+
+
+### Session 2: Learning Data Wrangling and Cleaning
+This module will teach students how to detect outliers, use sources from the open web, and create maps.
+
+#### Learning 5 verbs of data 
+
+-   Select
+-   Mutate 
+-   Filter 
+-   Summarize 
+-   Arrange, slice 
+
+> Working with real world datasets, including PDHS, GST and other data sets 
+
+#### Activity: Exploring data with hands on practice with these 5 verbs
+
+### Session 3: Data handling
+
+-   Joining/Merging Data Sets 
+-   Data summary by groups 
+-   Constructing awesome report tables 
+
+#### Activity: Summarising one real data 
+
+
+## Day 2
+### Session 1: Advanced/More Topics in R
+Using ggplot2 to create awesome graphs along the likes of the type you would see in The Economist, Wall Street Journal, and BBC.
+
+-   ggplot2 basics
+-   annotating 
+-   creating publication/report style tables
+
+### Session 2
+
+-   table and summary tables 
+-   exploring data in seconds not in days (dataxray) 
+-   dealing with categorical data 
+
+### Activity: Make a graph and table with world leading publications formats (Economists/WSJ/NYT/538)
+
+### Session 3 Fundamentals of modeling
+-   Fundamentals of modeling in R 
+-   Basic regression analysis, having regression tables of various models in nice tabular format with one click.
+
+#### Activity: Making a complete report of all the stuff learnt in Quarto language (html/pdf/word) with each participants own meta-data in it and also discussion of automating reports 
+
+
+
+### Analyzing Google Trends, Google News API, Media API (if time permits)
+
+Discussion of various sources from where one can read all data directly from web API. - Google trends - Google news API - Media API - UN votes data from 1948-49 on 6 key issues directly from API till to-date (Comparing Pakistan and India ) - Participants feedback for way forward

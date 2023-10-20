@@ -6,7 +6,7 @@ date-format: "DD-MM-YYYY"
 title-block-banner: "#27455C"
 format: 
    
-  html:
+  pdf:
     theme: [default, custom.css, styles.scss]
     toc: true
     code-link: true
